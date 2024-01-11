@@ -17,7 +17,8 @@ RTM 1.0, RTM 1.1, and RSM 1.2, all published by UIC, follow principles generally
 ## Tools
 * Protégé desktop for RDF edition and reasoning.
 * Sparx Enterprise Architect for UML diagrams.
-* Sample data set based on a real network.
+* Sample data set based on a fictive network.
+* Draw.io for graphics
 
 ## Languages
 RDF/OWL/SHACL, SPARQL, Python, SWI Prolog.
