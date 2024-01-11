@@ -15,7 +15,8 @@ RTM 1.0, RTM 1.1, and RSM 1.2, all published by UIC, follow principles generally
 * Ability to determine paths under constraints using SPARQL and inference engines, rather than bespoke code.
 
 ## Tools
-* Protégé desktop.
+* Protégé desktop for RDF edition and reasoning.
+* Sparx Enterprise Architect for UML diagrams.
 * Sample data set based on a real network.
 
 ## Languages
