@@ -25,3 +25,7 @@ The process considers the RINF use case, with priority to topology and geographi
 
 ## Languages
 RDF/OWL/SHACL, SPARQL, Python, SWI Prolog.
+
+# Documentation
+## Wiki
+The Wiki documents the design process, esp. main design choices.
