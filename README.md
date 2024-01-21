@@ -9,7 +9,7 @@ RTM 1.0, RTM 1.1, and RSM 1.2, all published by UIC, follow principles generally
 
 ## Design goals
 * Backward compatibility.
-* Simplification.
+* Simplification (not: dumbing down).
 * Improvements: navigability as a transitive property, internal navigability in "operational points" (yards, stations), more flexible composition of net elements...
 * Systematic usage of well-established external vocabularies, where relevant.
 * Ability to determine paths under constraints using SPARQL and inference engines, rather than bespoke code.
