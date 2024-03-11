@@ -35,4 +35,4 @@ _This document is under preparation._
 There is not a single way to formally describe networks. Nor are there "obvious" ways. Taking a step back from decade-long developments and discussions, we try to get back to some fundamental subjects.
 
 ## Wiki
-The Wiki documents the design process, esp. main design choices.
+The Wiki documents the design process, esp. main design choices. It is an integrated wiki; see menu bar.
