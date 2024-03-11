@@ -27,5 +27,10 @@ The process considers the RINF use case, with priority to topology and geographi
 RDF/OWL/SHACL, SPARQL, Python, SWI Prolog.
 
 # Documentation
+## Railway network description: topology, its rationale, and related subjects
+_This document is under preparation._
+
+There is not a single way to formally describe networks. Nor are there "obvious" ways. Taking a step back from decade-long developments and discussions, we try to get back to some fundamental subjects.
+
 ## Wiki
 The Wiki documents the design process, esp. main design choices.
