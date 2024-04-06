@@ -4,7 +4,7 @@ RSM recast, based on direct RDF/OWL modelling.
 RSM stands for Rail System Model. RSM is a UIC IRS (International Railway Standard), first released in 2016 as RailTopoModel (RTM): see https://rsm.uic.org.
 
 ## License
-EUPL 1.2
+EUPL 1.2 
 
 ## Purpose
 RTM 1.0, RTM 1.1, RSM 1.2 and its extensions, all published by UIC, follow principles generally observed in conceptual modelling, 
