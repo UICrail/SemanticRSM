@@ -22,10 +22,11 @@ The process considers the RINF use case, with priority to topology and geographi
 ## Tools
 * Protégé desktop for RDF edition, checking, and saving to different formats.
 * [EasyRdf](https://www.easyrdf.org/converter) for file conversion.
-* Sparx Enterprise Architect for UML diagrams, possibly using the built-in [ODM](https://www.omg.org/odm/) UML profile.
 * Sample data set based on a fictive network.
-* Draw.io for graphics
-* Diagrams (in the Wiki) were generated from an extended markdown using [Mermaid](https://github.com/mermaid-js/mermaid), or from ttl files using [OntoMermaid](https://github.com/floresbakker/OntoMermaid).
+* Graphics:
+    - Sparx Enterprise Architect for UML diagrams, possibly using the built-in [ODM](https://www.omg.org/odm/) UML profile.
+    - Draw.io for hand-drawn graphics.
+    - Diagrams (in the Wiki) were generated from an extended markdown using [Mermaid](https://github.com/mermaid-js/mermaid), or from ttl files using [OntoMermaid](https://github.com/floresbakker/OntoMermaid).
 
 ## Languages
 RDF/OWL/SHACL, SPARQL, Python, SWI Prolog.
