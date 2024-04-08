@@ -1,3 +1,4 @@
+import rdflib.graph
 from rdflib import Graph, Literal, URIRef
 from rdflib.namespace import Namespace, RDF
 from typing import Tuple, Optional, Dict
@@ -6,17 +7,6 @@ from shapely.wkt import loads, dumps
 
 GEO = Namespace("http://www.opengis.net/ont/geosparql#")
 RSM = Namespace("http://www.example.org/rsm#")
-
-
-def parse_geometry(graph: Graph) -> Dict[URIRef, LineString]:
-    """
-    Parse geometries of LinearElements from the RDF graph.
-    """
-    elements = {}
-    for s, _, o in graph.triples((None, GEO.asWKT, None)):
-        if (s, RDF.type, RSM.LinearElement) in graph:
-            elements[s] = loads(o)
-    return elements
 
 
 def reverse_linestring(geom: LineString) -> LineString:
@@ -43,14 +33,20 @@ def can_chain(geom_x: LineString, geom_y: LineString) -> Optional[Tuple[bool, bo
     return None
 
 
+def regenerate_elements(gr: rdflib.graph.Graph) -> Dict[URIRef, LineString]:
+    elements: Dict[URIRef, LineString] = {}
+    for s, _, o in gr.triples((None, GEO.asWKT, None)):
+        if (s, RDF.type, RSM.LinearElement) in gr:
+            elements[s] = loads(str(o))
+    return elements
+
+
 def chain_linear_elements(input_ttl: str, output_ttl: str) -> None:
+    """Extremely inefficient, but hopefully correct"""
     g = Graph()
     g.parse(input_ttl, format="turtle")
 
-    elements: Dict[URIRef, LineString] = {}
-    for s, _, o in g.triples((None, GEO.asWKT, None)):
-        if (s, RDF.type, RSM.LinearElement) in g:
-            elements[s] = loads(str(o))
+    elements = regenerate_elements(g)
 
     chained = set()
     chain_counter = 0
@@ -78,13 +74,12 @@ def chain_linear_elements(input_ttl: str, output_ttl: str) -> None:
                 g.set((uri_x, GEO.asWKT, Literal(dumps(new_geom), datatype=GEO.wktLiteral)))
                 chained.add(uri_y)
                 chain_counter += 1
+                # Remove the original elements that have been chained
+                g.remove((uri_y, None, None))
+                g.remove((uri_y, RDF.type, RSM.LinearElement))
+                g.remove((uri_y, GEO.asWKT, None))
+                regenerate_elements(g)
                 break
-
-    # Remove the original elements that have been chained
-    for uri in chained:
-        g.remove((uri, None, None))
-        g.remove((uri, RDF.type, RSM.LinearElement))
-        g.remove((uri, GEO.asWKT, None))
 
     g.serialize(destination=output_ttl, format='turtle')
     print(f'Chained {chain_counter} linear elements')

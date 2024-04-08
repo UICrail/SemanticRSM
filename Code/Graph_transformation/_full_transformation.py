@@ -18,6 +18,18 @@ def transform_osm_to_rsm(osm_geojson_file):
     ttl_to_kml("/Users/airymagnien/PycharmProjects/SemanticRSM/Intermediate_files/osm_railways_chained.ttl",
                "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/osm_railways_chained.kml")
 
+def osm_via_rsm_to_kml(osm_geojson_file):
+    """
+    direct transformation, without attempting to split or merge
+    :param osm_geojson_file:
+    :return:
+    """
+    print("reading the OSM file: ", osm_geojson_file)
+    osm_import.osm_import(osm_geojson_file)
+    ttl_to_kml("/Users/airymagnien/PycharmProjects/SemanticRSM/Intermediate_files/osm_railways_raw.ttl",
+               "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/osm_railways_direct.kml")
+
 
 if __name__ == "__main__":
     transform_osm_to_rsm("/Users/airymagnien/PycharmProjects/SemanticRSM/Source_data/OSM/Sankt_Pölten.geojson")
+    # osm_via_rsm_to_kml("/Users/airymagnien/PycharmProjects/SemanticRSM/Source_data/OSM/Sankt_Pölten.geojson")
