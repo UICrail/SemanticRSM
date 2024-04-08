@@ -33,6 +33,19 @@
   <component name="http://lnkd.tech/editor#GlobalGraphsAssignments">
     <option name="assignments">
       <map>
+        <entry key="https://lov.linkeddata.es/dataset/lov/">
+          <value>
+            <map>
+              <entry key="http://www.opengis.net/ont/geosparql">
+                <value>
+                  <set>
+                    <option value="urn:tag:lnkd.tech,2023:digest:sha-256/A529358193330E6BA813FAB769F879AB97B010D988BFFBCFEE560B65E9D06BCF" />
+                  </set>
+                </value>
+              </entry>
+            </map>
+          </value>
+        </entry>
         <entry key="urn:tag:lnslr.eu,2018:java:eu.lunisolar.lava.rdfvocab.get.lava.LavaCatalog">
           <value>
             <map>
@@ -170,6 +183,32 @@
                 </value>
               </entry>
             </map>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="http://lnkd.tech/editor#GraphVisibilityConfig">
+    <option name="visibility">
+      <map>
+        <entry key="DOCUMENTATION">
+          <value>
+            <Visibility />
+          </value>
+        </entry>
+        <entry key="GENERAL">
+          <value>
+            <Visibility />
+          </value>
+        </entry>
+        <entry key="SHACL_DATA">
+          <value>
+            <Visibility />
+          </value>
+        </entry>
+        <entry key="SHACL_SHAPES">
+          <value>
+            <Visibility />
           </value>
         </entry>
       </map>

@@ -10,7 +10,8 @@ EUPL 1.2
 RTM 1.0, RTM 1.1, RSM 1.2 and its extensions, all published by UIC, follow principles generally observed in conceptual modelling, 
 using UML. RSM 1.2 model was successfully transformed into an OWL ontology, using the Ontorail toolset developed by UIC.
 
-However, the expressiveness of OWL differs from UML class diagrams. OWL offers possibilities to make RSM both more compact and more expressive, while remaining compatible with former, UML-based versions. The present repository summarizes the re-casting efforts.
+However, the expressiveness of OWL differs from UML class diagrams.
+OWL offers possibilities to make RSM both more compact and more expressive, while remaining compatible with former, UML-based versions. The present repository summarizes the re-casting efforts.
 
 ## Design goals
 * Backward compatibility.
@@ -28,11 +29,12 @@ Other use cases may come from other pieces of EU Law, such as TAF TSI, or from o
 
 ## Tools
 * [Protégé](https://protege.stanford.edu/) desktop 5.x for RDF edition, checking, and saving to different formats.
-* [EasyRdf](https://www.easyrdf.org/converter) for file conversion.
+* [EasyRdf](https://www.easyrdf.org/converter) for format conversion (between RDFXML and Turtle, mostly).
 * Graphics:
     - Sparx Enterprise Architect for UML diagrams, possibly using the built-in [ODM](https://www.omg.org/odm/) UML profile.
     - Draw.io for hand-drawn graphics.
-    - Diagrams (in the Wiki) were generated from an extended markdown using [Mermaid](https://github.com/mermaid-js/mermaid), or from ttl files using [OntoMermaid](https://github.com/floresbakker/OntoMermaid).
+    - Diagrams (in the Wiki) were generated from an extended markdown using [Mermaid](https://github.com/mermaid-js/mermaid) scripts, or
+    - from ttl files using [OntoMermaid](https://github.com/floresbakker/OntoMermaid), a Python program returning a Mermaid script.
  
 ## Data
 * Sample data sets:
@@ -40,7 +42,7 @@ Other use cases may come from other pieces of EU Law, such as TAF TSI, or from o
     - possibly generated from OpenStreetMap.
 
 ## Languages
-RDF/[RDF-star](https://www.w3.org/2022/08/rdf-star-wg-charter/)/OWL/SHACL, SPARQL/SPARQL-star, Python, SWI Prolog.
+RDF, [RDF-star](https://www.w3.org/2022/08/rdf-star-wg-charter/), OWL, SHACL (for constraints), SPARQL (for queries), SPARQL-star, Python, possibly SWI Prolog.
 
 # Documentation
 ## Railway network description: topology, its rationale, and related subjects
