@@ -9,8 +9,8 @@ GEO = Namespace("http://www.opengis.net/ont/geosparql#")
 MY_NS = Namespace("http://www.example.org/osm#")
 RSM = Namespace("http://www.example.org/rsm#")
 
-def osm_import(osm_file_path):
 
+def osm_import(osm_file_path):
     # Initialize your RDF graph
     g = rdflib.Graph()
 
@@ -34,4 +34,5 @@ def osm_import(osm_file_path):
         g.add((line_uri, GEO.asWKT, Literal(wkt, datatype=GEO.wktLiteral)))
 
     # Serialize the graph to a Turtle file
-    g.serialize(destination='/Users/airymagnien/PycharmProjects/SemanticRSM/Intermediate_files/osm_railways_raw.ttl', format='turtle')
+    g.serialize(destination='/Users/airymagnien/PycharmProjects/SemanticRSM/Intermediate_files/osm_railways_raw.ttl',
+                format='turtle')

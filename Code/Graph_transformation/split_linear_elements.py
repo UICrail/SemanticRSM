@@ -25,7 +25,7 @@ def split_linear_elements(file_path):
     shared_coords = find_shared_coordinates(elements)
     new_elements = element_split(elements, shared_coords)
     generate_turtle_from_elements(new_elements,
-                                  "/Users/airymagnien/PycharmProjects/SemanticRSM/Intermediate_files/osm_railways_split.ttl")
+                "/Users/airymagnien/PycharmProjects/SemanticRSM/Intermediate_files/osm_railways_split.ttl")
 
     # Further processing to save new_elements back to a Turtle file can be added here.
     # This involves converting the LineStrings back to WKT and creating RDF triples.

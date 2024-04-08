@@ -51,7 +51,6 @@ def generate_kml_from_elements_and_colors(elements: Dict[URIRef, LineString], co
 
 def build_adjacency_list(elements: Dict[URIRef, LineString]) -> Dict[URIRef, List[URIRef]]:
     adjacency_list = {uri: [] for uri in elements.keys()}
-    adjacency_list = {uri: [] for uri in elements.keys()}
     endpoints = {}
     for uri, geom in elements.items():
         for point in [geom.coords[0], geom.coords[-1]]:

@@ -1,4 +1,3 @@
-import rdflib
 from rdflib import Graph, Literal, URIRef
 from rdflib.namespace import Namespace, RDF
 from typing import Tuple, Optional, Dict
