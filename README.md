@@ -42,7 +42,7 @@ Other use cases may come from other pieces of EU Law, such as TAF TSI, or from o
     - possibly generated from OpenStreetMap.
 
 ## Languages
-RDF/[RDF-star](https://www.w3.org/2022/08/rdf-star-wg-charter/)/OWL/SHACL, SPARQL/SPARQL-star, Python, SWI Prolog.
+RDF, [RDF-star](https://www.w3.org/2022/08/rdf-star-wg-charter/), OWL, SHACL (for constraints), SPARQL (for queries), SPARQL-star, Python, possibly SWI Prolog.
 
 # Documentation
 ## Railway network description: topology, its rationale, and related subjects
