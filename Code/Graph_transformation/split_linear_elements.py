@@ -4,13 +4,18 @@ in any other linestring.
 The procedure is simplistic, and not optimized for efficiency:
 probably O(Nˆ2), N being the number of coord pairs in linestrings.
 Consider using spatial indexing in an improved version.
+
+Checked for correctness, 9/4/2024: output seems OK as the splits indeed have a common point at some extremity.
+Not thoroughly checked for exhaustiveness, but looks OK too.
 """
 
-from collections import defaultdict
+from typing import List
+
 import rdflib
-from rdflib import RDF, Literal
+from rdflib import RDF, Literal, URIRef
 from rdflib.namespace import Namespace
 import shapely
+from rdflib.term import Node
 from shapely.geometry import LineString
 from shapely.wkt import dumps
 
@@ -19,19 +24,16 @@ GEO = Namespace("http://www.opengis.net/ont/geosparql#")
 RSM = Namespace("http://www.example.org/rsm#")
 
 
-def split_linear_elements(file_path):
+def split_linear_elements(file_path: str):
     print("splitting the Turtle file: ", file_path)
     elements = parse_turtle(file_path)
-    shared_coords = find_shared_coordinates(elements)
-    new_elements = element_split(elements, shared_coords)
+    shared_coords = find_shared_intermediate_points(elements)
+    new_elements = split_elements(elements, shared_coords)
     generate_turtle_from_elements(new_elements,
-                "/Users/airymagnien/PycharmProjects/SemanticRSM/Intermediate_files/osm_railways_split.ttl")
-
-    # Further processing to save new_elements back to a Turtle file can be added here.
-    # This involves converting the LineStrings back to WKT and creating RDF triples.
+                                  "/Users/airymagnien/PycharmProjects/SemanticRSM/Intermediate_files/osm_railways_split.ttl")
 
 
-def parse_turtle(file_path):
+def parse_turtle(file_path: str) -> dict[Node, str]:
     g = rdflib.Graph()
     g.parse(file_path, format="turtle")
 
@@ -43,56 +45,71 @@ def parse_turtle(file_path):
     return elements
 
 
-def find_shared_coordinates(elements):
-    """Identify shared coordinates that are intermediate points in the linestrings."""
-    coord_count = defaultdict(int)
-    for ls in elements.values():
-        # Consider only intermediate points
-        for coord in list(ls.coords)[1:-1]:
-            coord_count[coord] += 1
+def find_shared_intermediate_points(elements) -> dict[str, List[URIRef | str]]:
+    """
+    Identify intermediate points in the linestrings that are shared between two or more elements.
+    The returned dictionary maps points to a list of URIRefs where the point is shared;
+    when the shared point is at an extremity of another element, URIRef is replaced by 'extremity'
+    (since we will not split an element at its extremity...)
+    """
 
-    shared_coords = {coord for coord, count in coord_count.items() if count >= 3}
-    return shared_coords
+    shared: dict[str, List[URIRef | str]] = {}  # where str is the POINT WKT coordinate tuple
 
-
-def element_split(elements, shared_coords):
-    """Split elements at shared coordinates and remove original elements if split."""
-    new_elements = {}
-    elements_to_remove = set()
-    split_counter = 0
+    # First, scan through all elements
 
     for uri, ls in elements.items():
-        split_points = [coord for coord in shared_coords if coord in list(ls.coords)[1:-1]]
-        if not split_points:
-            # If there are no split points, keep the element as is
-            new_elements[uri] = ls
-            continue
+        max_index = len(list(ls.coords)) - 1
+        for count, coord in enumerate(ls.coords):
+            if coord not in shared:
+                shared[coord] = []
+            if 0 < count < max_index:
+                # append URI of element that has the coord at some intermediate place
+                shared[coord].append(uri)
+            else:
+                shared[coord].append('extremity')
 
-        # Track elements that will be split, so they can be removed
-        elements_to_remove.add(uri)
+    # Drop those coords that only occur once (and that's a lot)
 
-        # Split the LineString at each split point
-        # Note: This example assumes a single split point for simplicity
-        for split_point in split_points:
-            split_index = list(ls.coords).index(split_point)
-            part1 = LineString(ls.coords[:split_index + 1])
-            part2 = LineString(ls.coords[split_index:])
+    shared = {coord: uris for coord, uris in shared.items() if len(uris) > 1}
 
-            # Add the new parts as new elements
-            new_elements[f"{uri}_part1"] = part1
-            new_elements[f"{uri}_part2"] = part2
-            split_counter += 1
+    # Then drop the numerous points that correspond to two or more elements joint at their extremity
+    shared = {coord: uris for coord, uris in shared.items() if set(uris) != {'extremity'}}
 
-    # Remove the original elements that have been split
+    # Finally, remove the 'extremity' placeholders
+
+    shared = {coord: [uri for uri in uris if uri != 'extremity'] for coord, uris in shared.items()}
+
+    return shared
+
+
+def split_elements(elements, shared_coords: dict[str, List[URIRef]]):
+    """
+    Split elements at intermediate points in linestrings when these points are shared between two or more elements.
+    :param shared_coords:
+    :return:
+    """
+    elements_to_remove = set()
+
+    for split_point, uris in shared_coords.items():
+        for uri in uris:
+            if uri in elements:
+                coords = list(elements[uri].coords)
+                split_index = coords.index(split_point)
+                part1 = LineString(coords[:split_index + 1])
+                part2 = LineString(coords[split_index:])
+                elements[f"{uri}_part1"] = part1
+                elements[f"{uri}_part2"] = part2
+                elements_to_remove.add(uri)
+
+    # finally, do the cleanup
     for uri in elements_to_remove:
-        if uri in new_elements:
-            del new_elements[uri]
+        if uri in elements:
+            del elements[uri]
 
-    print("split count: ", split_counter)
-    return new_elements
+    return elements
 
 
-def generate_turtle_from_elements(new_elements, output_file):
+def generate_turtle_from_elements(new_elements, output_file: str):
     # Initialize the RDF graph
     g = rdflib.Graph()
 
@@ -104,16 +121,24 @@ def generate_turtle_from_elements(new_elements, output_file):
         # Ensure the geometry is a LineString
         if not isinstance(linestring, LineString):
             continue
+        uri_ref = URIRef(uri)
 
         # Convert the LineString to WKT
         wkt = dumps(linestring)
         wkt_literal = Literal(wkt, datatype=GEO.wktLiteral)
 
         # Create the triples
-        g.add((uri, RDF.type, RSM.LinearElement))  # Type of the element
-        g.add((uri, RDF.type, GEO.Geometry))  # Subclass of Geometry
-        g.add((uri, GEO.asWKT, wkt_literal))  # Geometry representation
+        g.add((uri_ref, RDF.type, RSM.LinearElement))  # Type of the element
+        g.add((uri_ref, RDF.type, GEO.Geometry))  # Subclass of Geometry
+        g.add((uri_ref, GEO.asWKT, wkt_literal))  # Geometry representation
 
     # Serialize the graph to the Turtle file
     g.serialize(destination=output_file, format='turtle')
     print(f"Generated Turtle file: {output_file}")
+
+
+if __name__ == "__main__":
+    from Code.Export.export_to_kml import ttl_to_kml
+
+    ttl_to_kml("/Users/airymagnien/PycharmProjects/SemanticRSM/Intermediate_files/osm_railways_raw.ttl",
+               "/Users/airymagnien/PycharmProjects/SemanticRSM/Intermediate_files/osm_railways_split.kml")

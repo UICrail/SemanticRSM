@@ -17,7 +17,7 @@ output_kml = 'output.kml'  # Update this path to your desired output KML file
 def ttl_to_kml(input_ttl, output_kml):
     elements = parse_ttl_to_linestrings(input_ttl)
     adjacency_list = build_adjacency_list(elements)
-    element_colors = color_elements(elements, adjacency_list)
+    element_colors = color_elements(adjacency_list)
     generate_kml_from_elements_and_colors(elements, element_colors, output_kml)
     print(f"KML file generated: {output_kml}")
 
@@ -28,7 +28,7 @@ def parse_ttl_to_linestrings(input_ttl: str) -> Dict[URIRef, LineString]:
     g = Graph()
     g.parse(input_ttl, format="turtle")
 
-    elements = {}
+    elements: Dict[URIRef, LineString] = {}
     for s, _, o in g.triples((None, GEO.asWKT, None)):
         if (s, RDF.type, RSM.LinearElement) in g:
             geom = loads(str(o))
@@ -45,7 +45,7 @@ def generate_kml_from_elements_and_colors(elements: Dict[URIRef, LineString], co
     for uri, geom in elements.items():
         linestring = kml.newlinestring(name=str(uri), coords=[(pt[0], pt[1]) for pt in geom.coords])
         linestring.style.linestyle.color = colors[uri]
-        linestring.style.linestyle.width = 2  # Adjust width as needed
+        linestring.style.linestyle.width = 4  # Adjust width as needed
     kml.save(output_kml)
 
 
@@ -64,13 +64,27 @@ def build_adjacency_list(elements: Dict[URIRef, LineString]) -> Dict[URIRef, Lis
     return adjacency_list
 
 
-def color_elements(elements: Dict[URIRef, LineString], adjacency_list: Dict[URIRef, List[URIRef]]) -> Dict[URIRef, str]:
-    colors = ['ff0000ff', 'ff00ff00', 'ffff0000', 'ff800080']  # Red, Green, Blue, Purple
-    element_colors = {}
-    for uri in elements.keys():
-        available_colors = set(colors)
-        for neighbor in adjacency_list[uri]:
-            if neighbor in element_colors:
-                available_colors.discard(element_colors[neighbor])
-        element_colors[uri] = available_colors.pop()  # Assign the first available color
+def color_elements(adjacency_list: Dict[URIRef, List[URIRef]]) -> Dict[URIRef, str]:
+    """
+    Assigns colors to elements based on adjacency, ensuring no adjacent elements share the same color.
+    Uses hexadecimal color codes, with black as a fallback if all other colors are in use.
+
+    :param adjacency_list: A dictionary representing the adjacency list of the elements,
+                           where keys are element URIs (as URIRef) and values are lists of URIs (as URIRef)
+                           of adjacent elements.
+    :return: A dictionary mapping element URIs (as URIRef) to their assigned hexadecimal color codes.
+    """
+    colors = ['ff0000aa', 'ff00ff00', 'ffff0000', 'ff800080']  # Dark Red, Green, Blue, Purple
+    element_colors: Dict[URIRef, str] = {}
+
+    for element in adjacency_list.keys():
+        used_colors = {element_colors.get(adjacent) for adjacent in adjacency_list[element]}
+        for color in colors:
+            if color not in used_colors:
+                element_colors[element] = color
+                break
+        else:
+            # If all predefined colors are used, assign 'yellow'
+            element_colors[element] = 'ffffff00'
+
     return element_colors

@@ -32,4 +32,4 @@ def osm_via_rsm_to_kml(osm_geojson_file):
 
 if __name__ == "__main__":
     transform_osm_to_rsm("/Users/airymagnien/PycharmProjects/SemanticRSM/Source_data/OSM/Sankt_Pölten.geojson")
-    # osm_via_rsm_to_kml("/Users/airymagnien/PycharmProjects/SemanticRSM/Source_data/OSM/Sankt_Pölten.geojson")
+    osm_via_rsm_to_kml("/Users/airymagnien/PycharmProjects/SemanticRSM/Source_data/OSM/Sankt_Pölten.geojson")
