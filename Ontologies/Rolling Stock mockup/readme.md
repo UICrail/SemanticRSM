@@ -8,9 +8,9 @@ This ontology intends to represent "static" __aspects__ of railway rolling stock
 5. performance settings : effort vs. speed curves, resistance to forward movement, mass and rotating mass inertia ...
 
 The above aspects are made available at various business __levels__:
-a. operations planning : "train IC94 is composed of three first-class, one dining, and seven second-class coaches, hauled by an electric locomotive"
-b. manufacturing : "to serve IC trains, these are manufacturer X catalogue entries (rolling stock types, in the sense of EU law)"
-c. fleet management : reflecting actual vehicles or trainsets with a "chassis number" such as an EVN.
+1. operations planning : "train IC94 is composed of three first-class, one dining, and seven second-class coaches, hauled by an electric locomotive"
+2. manufacturing : "to serve IC trains, these are manufacturer X catalogue entries (rolling stock types, in the sense of EU law)"
+3. fleet management : reflecting actual vehicles or trainsets with a "chassis number" such as an EVN.
 
 Design goals are:
 * each aspect and level shall be pairwise independent from others, as far as possible;
