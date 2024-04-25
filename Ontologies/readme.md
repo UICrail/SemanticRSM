@@ -1,11 +1,12 @@
 # Ontologies folder
 ## Caveat
 All ontologies are at draft stage and subject to change.
+As of 25/4/2024: please look into the Wiki. The ontologies (TTL files) are under revision and this will require a few more days.
 
 ## Availability of the ontologies
 The ontologies are provided:
-* on the present GitHub repository
-* on the site http://cdm.ovh/cdm_<version>
+* on the present GitHub repository (TBD)
+* on the site http://cdm.ovh/cdm/ (TBD)
 where version = 0.1 for now.
 
 The sources should normally be synchronized, but check (most recent files are sure to be on GitHub).
@@ -17,6 +18,7 @@ The ontology files are normally available in RDF/OWL and RDF Turtle formats. The
     - ports (elements, ports, links)
 * Infrastructure
     - topology (net elements, navigabilities)
+    - location (spot-, linear-, arealocation)
 * Rolling stock
     - aspects
 
