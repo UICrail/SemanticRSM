@@ -31,11 +31,12 @@ Other use cases may come from other pieces of EU Law, such as TAF TSI, or from o
 * [Protégé](https://protege.stanford.edu/) desktop 5.x for RDF edition, checking, and saving to different formats.
 * [EasyRdf](https://www.easyrdf.org/converter) for format conversion (between RDFXML and Turtle, mostly).
 * Graphics:
-    - Sparx Enterprise Architect for UML diagrams, possibly using the built-in [ODM](https://www.omg.org/odm/) UML profile.
+    - Sparx Enterprise Architect (v. 16 or later) for UML diagrams, possibly using the built-in [ODM](https://www.omg.org/odm/) UML profile.
     - Visual Paradigm also for UML diagrams, possibly using the [OntoUML](https://ontouml.org/) profile (linked with the UFO general ontology).
     - Draw.io for hand-drawn graphics.
-    - Diagrams (in the Wiki) were generated from an extended markdown using [Mermaid](https://github.com/mermaid-js/mermaid) scripts, or
+    - Other diagrams (in the Wiki) were generated from an extended markdown using [Mermaid](https://github.com/mermaid-js/mermaid) scripts, or
     - from ttl files using [OntoMermaid](https://github.com/floresbakker/OntoMermaid), a Python program returning a Mermaid script.
+ As Sparx Enterprise Architect and Visual Paradigm are paid applications, copies of the diagrams are also provided in PNG.
  
 ## Data
 * Sample data sets:
