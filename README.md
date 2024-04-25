@@ -14,16 +14,16 @@ However, the expressiveness of OWL differs from UML class diagrams.
 OWL offers possibilities to make RSM both more compact and more expressive, while remaining compatible with former, UML-based versions. The present repository summarizes the re-casting efforts.
 
 ## Design goals
-* Backward compatibility.
+* Backward compatibility ("easy" automated transformations).
 * Simplification (not: dumbing down).
 * Separation into small vocabularies (high-cohesion, low-dependency principle) to facilitate ontology management.
 * Improvements:
-    - about topology: navigability as a transitive property, internal navigability in "operational points" (yards, stations), more flexible composition of net elements...
-* Systematic, explicit usage of well-established external vocabularies, where relevant: for instance, SSN ontology.
-* Ability to determine paths under constraints using SPARQL and inference engines, rather than bespoke code.
+    - about topology: navigability as a transitive property, internal navigability in "operational points" (yards, stations), more flexible composition of net elements.
+* Systematic, explicit usage of well-established external vocabularies, where relevant: for instance, SSN ontology, geosparql, w3c time.
+* Ability to determine paths under constraints using SPARQL and inference engines, even though bespoke code may be recommended for computing efficiency.
 
 ## Design process
-The process considers the RINF use case, with priority to topology and geographic referencing. However the design, as previously with RSM, emphasizes generality and avoids ad-hoc solutions.
+The process considers the RINF use case, with priority to topology (micro level = track level) and geographic referencing. However the design, as previously with RSM, emphasizes generality and avoids ad-hoc solutions.
 
 Other use cases may come from other pieces of EU Law, such as TAF TSI, or from ongoing EU projects.
 
@@ -32,6 +32,7 @@ Other use cases may come from other pieces of EU Law, such as TAF TSI, or from o
 * [EasyRdf](https://www.easyrdf.org/converter) for format conversion (between RDFXML and Turtle, mostly).
 * Graphics:
     - Sparx Enterprise Architect for UML diagrams, possibly using the built-in [ODM](https://www.omg.org/odm/) UML profile.
+    - Experimentally, OntoUML profile in Visual Paradigm
     - Draw.io for hand-drawn graphics.
     - Diagrams (in the Wiki) were generated from an extended markdown using [Mermaid](https://github.com/mermaid-js/mermaid) scripts, or
     - from ttl files using [OntoMermaid](https://github.com/floresbakker/OntoMermaid), a Python program returning a Mermaid script.
@@ -42,13 +43,8 @@ Other use cases may come from other pieces of EU Law, such as TAF TSI, or from o
     - possibly generated from OpenStreetMap.
 
 ## Languages
-RDF, [RDF-star](https://www.w3.org/2022/08/rdf-star-wg-charter/), OWL, SHACL (for constraints), SPARQL (for queries), SPARQL-star, Python, possibly SWI Prolog.
+RDF, [RDF-star](https://www.w3.org/2022/08/rdf-star-wg-charter/), OWL, SHACL (for constraints), SPARQL (for queries), SPARQL-star, Python; possibly SWI Prolog.
 
 # Documentation
-## Railway network description: topology, its rationale, and related subjects
-_This document is under preparation._
-
-There is not a single way to formally describe networks. Nor are there "obvious" ways. Taking a step back from decade-long developments and discussions, we try to get back to some fundamental subjects.
-
 ## Wiki
-The Wiki documents the design process, esp. main design choices. It is an integrated wiki; see menu bar.
+The Wiki documents the design process, esp. main design choices. It is an integrated wiki, accessible via the menu bar.
