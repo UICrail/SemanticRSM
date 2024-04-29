@@ -1,5 +1,5 @@
 """
-Purpose: pick an OSM geojson file and transform it into an RSM-compliant topology graph
+Purpose: pick an OSM geojson file and transform it into an RSM-compliant topology.ttl graph
 """
 from Code.Export.export_to_kml import ttl_to_kml
 from Code.Graph_transformation.chain_linear_elements import chain_linear_elements

@@ -22,7 +22,7 @@ def create_nodes(g: Graph) -> Dict[str, List[URIRef]]:
         if (s, RDF.type, RSM.LinearElement) in g:
             geom = loads(str(o))
             if isinstance(geom, Point):
-                print('WARNING: a point was found in the topology graph, where only linestrings are expected.')
+                print('WARNING: a point was found in the topology.ttl graph, where only linestrings are expected.')
             else:
                 start_point_wkt = dumps(Point(geom.coords[0]))
                 end_point_wkt = dumps(Point(geom.coords[-1]))

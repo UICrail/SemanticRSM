@@ -1,407 +1,141 @@
-<?xml version="1.0"?>
-<rdf:RDF xmlns="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology#"
-     xml:base="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:xml="http://www.w3.org/XML/1998/namespace"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-    <owl:Ontology rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology"/>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Datatypes
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/IntrinsicCoordinateValueType -->
-
-    <rdfs:Datatype rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/IntrinsicCoordinateValueType"/>
-    
-
-
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/PortNumber -->
-
-    <rdfs:Datatype rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/PortNumber"/>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Object Properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/associatedElementPart -->
-
-    <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/associatedElementPart">
-        <rdfs:domain rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/LinearLocation"/>
-        <rdfs:range rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/LinearElementPart"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/associatedNetElement -->
-
-    <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/associatedNetElement">
-        <rdfs:domain rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/AreaLocation"/>
-        <rdfs:range rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/TopologyElement"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/atCoordinate -->
-
-    <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/atCoordinate">
-        <rdfs:domain>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/atCoordinate"/>
-                <owl:allValuesFrom rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/LinearPosition"/>
-            </owl:Restriction>
-        </rdfs:domain>
-        <rdfs:range>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/atCoordinate"/>
-                <owl:allValuesFrom rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/IntrinsicCoordinate"/>
-            </owl:Restriction>
-        </rdfs:range>
-        <rdfs:range>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/hasBound"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/Port"/>
-            </owl:Restriction>
-        </rdfs:range>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/connectedToPort -->
-
-    <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/connectedToPort">
-        <rdfs:subPropertyOf rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/relationToPort"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/hasBound -->
-
-    <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/hasBound">
-        <rdfs:domain>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/hasBound"/>
-                <owl:allValuesFrom rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/LinearElementPart"/>
-            </owl:Restriction>
-        </rdfs:domain>
-        <rdfs:range>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/hasBound"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/LinearPosition"/>
-            </owl:Restriction>
-        </rdfs:range>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/hasPart -->
-
-    <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/hasPart">
-        <owl:inverseOf rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/inElement"/>
-        <rdfs:domain>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/hasPart"/>
-                <owl:allValuesFrom rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/NetElement"/>
-            </owl:Restriction>
-        </rdfs:domain>
-        <rdfs:range>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/hasPart"/>
-                <owl:allValuesFrom rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/TopologyElement"/>
-            </owl:Restriction>
-        </rdfs:range>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/inElement -->
-
-    <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/inElement"/>
-    
-
-
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/navigableToPort -->
-
-    <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/navigableToPort">
-        <rdfs:subPropertyOf rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/relationToPort"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/onElement -->
-
-    <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/onElement">
-        <rdfs:domain>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/onElement"/>
-                <owl:allValuesFrom rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/Position"/>
-            </owl:Restriction>
-        </rdfs:domain>
-        <rdfs:range>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/onElement"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/NetElement"/>
-            </owl:Restriction>
-        </rdfs:range>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/onLinearElement -->
-
-    <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/onLinearElement">
-        <rdfs:subPropertyOf rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/onElement"/>
-        <rdfs:domain>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/onLinearElement"/>
-                <owl:allValuesFrom rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/LinearPosition"/>
-            </owl:Restriction>
-        </rdfs:domain>
-        <rdfs:range>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/onLinearElement"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/LinearElement"/>
-            </owl:Restriction>
-        </rdfs:range>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/relationToPort -->
-
-    <owl:ObjectProperty rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/relationToPort">
-        <rdfs:domain>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/relationToPort"/>
-                <owl:allValuesFrom rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/Port"/>
-            </owl:Restriction>
-        </rdfs:domain>
-        <rdfs:range>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/relationToPort"/>
-                <owl:allValuesFrom rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/Port"/>
-            </owl:Restriction>
-        </rdfs:range>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Data properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
+@prefix : <http://cdm.ovh/rsm/topology/topology.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://cdm.ovh/rsm/topology/topology.owl> .
 
+<http://cdm.ovh/rsm/topology/topology.owl> rdf:type owl:Ontology ;
+                                            owl:versionIRI <http://cdm.ovh/rsm/topology/0.1/topology.owl> .
 
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/icValue -->
+#################################################################
+#    Datatypes
+#################################################################
 
-    <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/icValue">
-        <rdfs:domain rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/IntrinsicCoordinate"/>
-        <rdfs:range rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/IntrinsicCoordinateValueType"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/portCoordinate -->
-
-    <owl:DatatypeProperty rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/portCoordinate">
-        <rdfs:domain rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/Port"/>
-        <rdfs:range rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/PortNumber"/>
-    </owl:DatatypeProperty>
-    
+###  http://cdm.ovh/rsm/topology/topology.owl#IntrinsicCoordinate
+:IntrinsicCoordinate rdf:type rdfs:Datatype ;
+                     rdfs:comment "A total order relation along a linear element, usually interpreted as a percentage of its nominal length. Value in [0, 1]."@en .
 
 
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Classes
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
+###  http://cdm.ovh/rsm/topology/topology.owl#LinearElementLength
+:LinearElementLength rdf:type rdfs:Datatype ;
+                     owl:equivalentClass xsd:decimal .
 
-    
 
+#################################################################
+#    Object Properties
+#################################################################
 
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/AreaLocation -->
+###  http://cdm.ovh/rsm/topology/topology.owl#connectedWith
+:connectedWith rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :portRelation ;
+               rdf:type owl:SymmetricProperty .
 
-    <owl:Class rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/AreaLocation">
-        <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/BaseLocation"/>
-    </owl:Class>
-    
 
+###  http://cdm.ovh/rsm/topology/topology.owl#hasPort
+:hasPort rdf:type owl:ObjectProperty ,
+                  owl:InverseFunctionalProperty ;
+         rdfs:domain <http://cdm.ovh/rsm/topology/topology#NetElement> ;
+         rdfs:range <http://cdm.ovh/rsm/topology/topology#Port> .
 
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/BaseLocation -->
 
-    <owl:Class rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/BaseLocation">
-        <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/era:Feature"/>
-        <owl:disjointUnionOf rdf:parseType="Collection">
-            <rdf:Description rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/AreaLocation"/>
-            <rdf:Description rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/LinearLocation"/>
-            <rdf:Description rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/SpotLocation"/>
-        </owl:disjointUnionOf>
-    </owl:Class>
-    
+###  http://cdm.ovh/rsm/topology/topology.owl#navigableFrom
+:navigableFrom rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :portRelation ;
+               owl:inverseOf :navigableTo ;
+               rdf:type owl:TransitiveProperty .
 
 
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/BoundaryElement -->
+###  http://cdm.ovh/rsm/topology/topology.owl#navigableTo
+:navigableTo rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :portRelation ;
+             rdf:type owl:TransitiveProperty .
 
-    <owl:Class rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/BoundaryElement">
-        <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/NetElement"/>
-        <owl:disjointWith rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/LinearElement"/>
-        <owl:disjointWith rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/NonlinearElement"/>
-    </owl:Class>
-    
 
+###  http://cdm.ovh/rsm/topology/topology.owl#partOf
+:partOf rdf:type owl:ObjectProperty ,
+                 owl:FunctionalProperty ;
+        rdfs:domain <http://cdm.ovh/rsm/topology/topology#LinearElementPart> ;
+        rdfs:range <http://cdm.ovh/rsm/topology/topology#LinearElement> .
 
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/IntrinsicCoordinate -->
 
-    <owl:Class rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/IntrinsicCoordinate"/>
-    
+###  http://cdm.ovh/rsm/topology/topology.owl#portRelation
+:portRelation rdf:type owl:ObjectProperty ;
+              rdfs:domain <http://cdm.ovh/rsm/topology/topology#Port> ;
+              rdfs:range <http://cdm.ovh/rsm/topology/topology#Port> .
 
 
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/LinearElement -->
+#################################################################
+#    Data properties
+#################################################################
 
-    <owl:Class rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/LinearElement">
-        <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/NetElement"/>
-        <owl:disjointWith rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/NonlinearElement"/>
-    </owl:Class>
-    
+###  http://cdm.ovh/rsm/topology/topology.owl#endsAt
+:endsAt rdf:type owl:DatatypeProperty ;
+        rdfs:domain <http://cdm.ovh/rsm/topology/topology#LinearElementPart> ;
+        rdfs:range :IntrinsicCoordinate .
 
 
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/LinearElementPart -->
+###  http://cdm.ovh/rsm/topology/topology.owl#nominalLength
+:nominalLength rdf:type owl:DatatypeProperty ;
+               rdfs:domain <http://cdm.ovh/rsm/topology/topology#LinearElement> ;
+               rdfs:range :LinearElementLength .
 
-    <owl:Class rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/LinearElementPart">
-        <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/TopologyElement"/>
-    </owl:Class>
-    
 
+###  http://cdm.ovh/rsm/topology/topology.owl#startsAt
+:startsAt rdf:type owl:DatatypeProperty ;
+          rdfs:domain <http://cdm.ovh/rsm/topology/topology#LinearElementPart> ;
+          rdfs:range :IntrinsicCoordinate .
 
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/LinearLocation -->
 
-    <owl:Class rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/LinearLocation">
-        <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/BaseLocation"/>
-    </owl:Class>
-    
+#################################################################
+#    Classes
+#################################################################
 
+###  http://cdm.ovh/rsm/topology/topology#BoundaryElement
+<http://cdm.ovh/rsm/topology/topology#BoundaryElement> rdf:type owl:Class ;
+                                                       rdfs:subClassOf <http://cdm.ovh/rsm/topology/topology#NetElement> ;
+                                                       owl:disjointWith <http://cdm.ovh/rsm/topology/topology#LinearElement> ,
+                                                                        <http://cdm.ovh/rsm/topology/topology#NonlinearElement> .
 
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/LinearPosition -->
 
-    <owl:Class rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/LinearPosition">
-        <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/Position"/>
-    </owl:Class>
-    
+###  http://cdm.ovh/rsm/topology/topology#LinearElement
+<http://cdm.ovh/rsm/topology/topology#LinearElement> rdf:type owl:Class ;
+                                                     rdfs:subClassOf <http://cdm.ovh/rsm/topology/topology#NetElement> ;
+                                                     owl:disjointWith <http://cdm.ovh/rsm/topology/topology#NonlinearElement> .
 
 
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/NetElement -->
+###  http://cdm.ovh/rsm/topology/topology#LinearElementPart
+<http://cdm.ovh/rsm/topology/topology#LinearElementPart> rdf:type owl:Class ;
+                                                         rdfs:subClassOf :TopologyComponent .
 
-    <owl:Class rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/NetElement">
-        <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/TopologyElement"/>
-        <owl:disjointUnionOf rdf:parseType="Collection">
-            <rdf:Description rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/BoundaryElement"/>
-            <rdf:Description rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/LinearElement"/>
-            <rdf:Description rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/NonlinearElement"/>
-        </owl:disjointUnionOf>
-    </owl:Class>
-    
 
+###  http://cdm.ovh/rsm/topology/topology#NetElement
+<http://cdm.ovh/rsm/topology/topology#NetElement> rdf:type owl:Class ;
+                                                  rdfs:subClassOf :TopologyComponent ;
+                                                  owl:disjointUnionOf ( <http://cdm.ovh/rsm/topology/topology#BoundaryElement>
+                                                                        <http://cdm.ovh/rsm/topology/topology#LinearElement>
+                                                                        <http://cdm.ovh/rsm/topology/topology#NonlinearElement>
+                                                                      ) .
 
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/NonlinearElement -->
 
-    <owl:Class rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/NonlinearElement">
-        <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/NetElement"/>
-    </owl:Class>
-    
+###  http://cdm.ovh/rsm/topology/topology#NonlinearElement
+<http://cdm.ovh/rsm/topology/topology#NonlinearElement> rdf:type owl:Class ;
+                                                        rdfs:subClassOf <http://cdm.ovh/rsm/topology/topology#NetElement> .
 
 
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/Port -->
+###  http://cdm.ovh/rsm/topology/topology#Port
+<http://cdm.ovh/rsm/topology/topology#Port> rdf:type owl:Class ;
+                                            rdfs:subClassOf :TopologyObject .
 
-    <owl:Class rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/Port">
-        <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/Position"/>
-    </owl:Class>
-    
 
+###  http://cdm.ovh/rsm/topology/topology.owl#TopologyComponent
+:TopologyComponent rdf:type owl:Class ;
+                   rdfs:subClassOf :TopologyObject .
 
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/Position -->
 
-    <owl:Class rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/Position">
-        <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/era:Feature"/>
-    </owl:Class>
-    
+###  http://cdm.ovh/rsm/topology/topology.owl#TopologyObject
+:TopologyObject rdf:type owl:Class .
 
 
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/SpotLocation -->
-
-    <owl:Class rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/SpotLocation">
-        <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/BaseLocation"/>
-        <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/Position"/>
-    </owl:Class>
-    
-
-
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/TopologyElement -->
-
-    <owl:Class rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/TopologyElement">
-        <rdfs:subClassOf rdf:resource="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/era:Feature"/>
-    </owl:Class>
-    
-
-
-    <!-- https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/era:Feature -->
-
-    <owl:Class rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/era:Feature"/>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // General axioms
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/AreaLocation"/>
-            <rdf:Description rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/LinearLocation"/>
-            <rdf:Description rdf:about="https://raw.githubusercontent.com/UICrail/SemanticRSM/blob/main/Ontologies/topology/SpotLocation"/>
-        </owl:members>
-    </rdf:Description>
-</rdf:RDF>
-
-
-
-<!-- Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://raw.githubusercontent.com/owlcs/owlapi -->
-
+###  Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi
