@@ -1,0 +1,248 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://cdm.ovh/rsm/topology/topology.owl#"
+     xml:base="http://cdm.ovh/rsm/topology/topology.owl"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://cdm.ovh/rsm/topology/topology.owl">
+        <owl:versionIRI rdf:resource="http://cdm.ovh/rsm/topology/0.1/topology.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology.owl#IntrinsicCoordinate -->
+
+    <rdfs:Datatype rdf:about="http://cdm.ovh/rsm/topology/topology.owl#IntrinsicCoordinate">
+        <rdfs:comment xml:lang="en">A total order relation along a linear element, usually interpreted as a percentage of its nominal length. Value in [0, 1].</rdfs:comment>
+    </rdfs:Datatype>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology.owl#LinearElementLength -->
+
+    <rdfs:Datatype rdf:about="http://cdm.ovh/rsm/topology/topology.owl#LinearElementLength">
+        <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </rdfs:Datatype>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology.owl#connectedWith -->
+
+    <owl:ObjectProperty rdf:about="http://cdm.ovh/rsm/topology/topology.owl#connectedWith">
+        <rdfs:subPropertyOf rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#portRelation"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology.owl#hasComponent -->
+
+    <owl:ObjectProperty rdf:about="http://cdm.ovh/rsm/topology/topology.owl#hasComponent">
+        <owl:inverseOf rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#inElement"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology.owl#hasPort -->
+
+    <owl:ObjectProperty rdf:about="http://cdm.ovh/rsm/topology/topology.owl#hasPort">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#NetElement"/>
+        <rdfs:range rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#Port"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology.owl#inElement -->
+
+    <owl:ObjectProperty rdf:about="http://cdm.ovh/rsm/topology/topology.owl#inElement">
+        <rdfs:domain rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#TopologyComponent"/>
+        <rdfs:range rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#NetElement"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology.owl#navigableFrom -->
+
+    <owl:ObjectProperty rdf:about="http://cdm.ovh/rsm/topology/topology.owl#navigableFrom">
+        <rdfs:subPropertyOf rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#portRelation"/>
+        <owl:inverseOf rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#navigableTo"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology.owl#navigableTo -->
+
+    <owl:ObjectProperty rdf:about="http://cdm.ovh/rsm/topology/topology.owl#navigableTo">
+        <rdfs:subPropertyOf rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#portRelation"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology.owl#partOf -->
+
+    <owl:ObjectProperty rdf:about="http://cdm.ovh/rsm/topology/topology.owl#partOf">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#LinearElementPart"/>
+        <rdfs:range rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#LinearElement"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology.owl#portRelation -->
+
+    <owl:ObjectProperty rdf:about="http://cdm.ovh/rsm/topology/topology.owl#portRelation">
+        <rdfs:domain rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#Port"/>
+        <rdfs:range rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#Port"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology.owl#endsAt -->
+
+    <owl:DatatypeProperty rdf:about="http://cdm.ovh/rsm/topology/topology.owl#endsAt">
+        <rdfs:domain rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#LinearElementPart"/>
+        <rdfs:range rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#IntrinsicCoordinate"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology.owl#nominalLength -->
+
+    <owl:DatatypeProperty rdf:about="http://cdm.ovh/rsm/topology/topology.owl#nominalLength">
+        <rdfs:domain rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#LinearElement"/>
+        <rdfs:range rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#LinearElementLength"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology.owl#startsAt -->
+
+    <owl:DatatypeProperty rdf:about="http://cdm.ovh/rsm/topology/topology.owl#startsAt">
+        <rdfs:domain rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#LinearElementPart"/>
+        <rdfs:range rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#IntrinsicCoordinate"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology.owl#BoundaryElement -->
+
+    <owl:Class rdf:about="http://cdm.ovh/rsm/topology/topology.owl#BoundaryElement">
+        <rdfs:subClassOf rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#NetElement"/>
+        <owl:disjointWith rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#LinearElement"/>
+        <owl:disjointWith rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#NonlinearElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology.owl#LinearElement -->
+
+    <owl:Class rdf:about="http://cdm.ovh/rsm/topology/topology.owl#LinearElement">
+        <rdfs:subClassOf rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#NetElement"/>
+        <owl:disjointWith rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#NonlinearElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology.owl#LinearElementPart -->
+
+    <owl:Class rdf:about="http://cdm.ovh/rsm/topology/topology.owl#LinearElementPart">
+        <rdfs:subClassOf rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#TopologyComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology.owl#NetElement -->
+
+    <owl:Class rdf:about="http://cdm.ovh/rsm/topology/topology.owl#NetElement">
+        <rdfs:subClassOf rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#TopologyComponent"/>
+        <owl:disjointUnionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://cdm.ovh/rsm/topology/topology.owl#BoundaryElement"/>
+            <rdf:Description rdf:about="http://cdm.ovh/rsm/topology/topology.owl#LinearElement"/>
+            <rdf:Description rdf:about="http://cdm.ovh/rsm/topology/topology.owl#NonlinearElement"/>
+        </owl:disjointUnionOf>
+    </owl:Class>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology.owl#NonlinearElement -->
+
+    <owl:Class rdf:about="http://cdm.ovh/rsm/topology/topology.owl#NonlinearElement">
+        <rdfs:subClassOf rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#NetElement"/>
+    </owl:Class>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology.owl#Port -->
+
+    <owl:Class rdf:about="http://cdm.ovh/rsm/topology/topology.owl#Port">
+        <rdfs:subClassOf rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#TopologyObject"/>
+    </owl:Class>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology.owl#TopologyComponent -->
+
+    <owl:Class rdf:about="http://cdm.ovh/rsm/topology/topology.owl#TopologyComponent">
+        <rdfs:subClassOf rdf:resource="http://cdm.ovh/rsm/topology/topology.owl#TopologyObject"/>
+    </owl:Class>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology.owl#TopologyObject -->
+
+    <owl:Class rdf:about="http://cdm.ovh/rsm/topology/topology.owl#TopologyObject"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi -->
+

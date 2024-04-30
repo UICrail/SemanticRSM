@@ -13,22 +13,22 @@
     <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
     <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
     <Declaration>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#BoundaryElement"/>
+        <Class IRI="#BoundaryElement"/>
     </Declaration>
     <Declaration>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#LinearElement"/>
+        <Class IRI="#LinearElement"/>
     </Declaration>
     <Declaration>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#LinearElementPart"/>
+        <Class IRI="#LinearElementPart"/>
     </Declaration>
     <Declaration>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#NetElement"/>
+        <Class IRI="#NetElement"/>
     </Declaration>
     <Declaration>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#NonlinearElement"/>
+        <Class IRI="#NonlinearElement"/>
     </Declaration>
     <Declaration>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#Port"/>
+        <Class IRI="#Port"/>
     </Declaration>
     <Declaration>
         <Class IRI="#TopologyComponent"/>
@@ -40,7 +40,13 @@
         <ObjectProperty IRI="#connectedWith"/>
     </Declaration>
     <Declaration>
+        <ObjectProperty IRI="#hasComponent"/>
+    </Declaration>
+    <Declaration>
         <ObjectProperty IRI="#hasPort"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#inElement"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#navigableFrom"/>
@@ -70,27 +76,27 @@
         <Datatype IRI="#LinearElementLength"/>
     </Declaration>
     <SubClassOf>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#BoundaryElement"/>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#NetElement"/>
+        <Class IRI="#BoundaryElement"/>
+        <Class IRI="#NetElement"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#LinearElement"/>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#NetElement"/>
+        <Class IRI="#LinearElement"/>
+        <Class IRI="#NetElement"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#LinearElementPart"/>
+        <Class IRI="#LinearElementPart"/>
         <Class IRI="#TopologyComponent"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#NetElement"/>
+        <Class IRI="#NetElement"/>
         <Class IRI="#TopologyComponent"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#NonlinearElement"/>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#NetElement"/>
+        <Class IRI="#NonlinearElement"/>
+        <Class IRI="#NetElement"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#Port"/>
+        <Class IRI="#Port"/>
         <Class IRI="#TopologyObject"/>
     </SubClassOf>
     <SubClassOf>
@@ -98,22 +104,22 @@
         <Class IRI="#TopologyObject"/>
     </SubClassOf>
     <DisjointClasses>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#BoundaryElement"/>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#LinearElement"/>
+        <Class IRI="#BoundaryElement"/>
+        <Class IRI="#LinearElement"/>
     </DisjointClasses>
     <DisjointClasses>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#BoundaryElement"/>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#NonlinearElement"/>
+        <Class IRI="#BoundaryElement"/>
+        <Class IRI="#NonlinearElement"/>
     </DisjointClasses>
     <DisjointClasses>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#LinearElement"/>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#NonlinearElement"/>
+        <Class IRI="#LinearElement"/>
+        <Class IRI="#NonlinearElement"/>
     </DisjointClasses>
     <DisjointUnion>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#NetElement"/>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#BoundaryElement"/>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#LinearElement"/>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#NonlinearElement"/>
+        <Class IRI="#NetElement"/>
+        <Class IRI="#BoundaryElement"/>
+        <Class IRI="#LinearElement"/>
+        <Class IRI="#NonlinearElement"/>
     </DisjointUnion>
     <SubObjectPropertyOf>
         <ObjectProperty IRI="#connectedWith"/>
@@ -127,6 +133,10 @@
         <ObjectProperty IRI="#navigableTo"/>
         <ObjectProperty IRI="#portRelation"/>
     </SubObjectPropertyOf>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#hasComponent"/>
+        <ObjectProperty IRI="#inElement"/>
+    </InverseObjectProperties>
     <InverseObjectProperties>
         <ObjectProperty IRI="#navigableFrom"/>
         <ObjectProperty IRI="#navigableTo"/>
@@ -148,39 +158,47 @@
     </TransitiveObjectProperty>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#hasPort"/>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#NetElement"/>
+        <Class IRI="#NetElement"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#inElement"/>
+        <Class IRI="#TopologyComponent"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#partOf"/>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#LinearElementPart"/>
+        <Class IRI="#LinearElementPart"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#portRelation"/>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#Port"/>
+        <Class IRI="#Port"/>
     </ObjectPropertyDomain>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#hasPort"/>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#Port"/>
+        <Class IRI="#Port"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#inElement"/>
+        <Class IRI="#NetElement"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#partOf"/>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#LinearElement"/>
+        <Class IRI="#LinearElement"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#portRelation"/>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#Port"/>
+        <Class IRI="#Port"/>
     </ObjectPropertyRange>
     <DataPropertyDomain>
         <DataProperty IRI="#endsAt"/>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#LinearElementPart"/>
+        <Class IRI="#LinearElementPart"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="#nominalLength"/>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#LinearElement"/>
+        <Class IRI="#LinearElement"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="#startsAt"/>
-        <Class IRI="http://cdm.ovh/rsm/topology/topology#LinearElementPart"/>
+        <Class IRI="#LinearElementPart"/>
     </DataPropertyDomain>
     <DataPropertyRange>
         <DataProperty IRI="#endsAt"/>

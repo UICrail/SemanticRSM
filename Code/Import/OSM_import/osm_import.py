@@ -1,20 +1,24 @@
+# Imports GeoJSON file using GeoPandas
+# WARNING: does not seem to work properly with GeoJSON export from OSM using the Overpass API;
+# overlapping linestrings would cause trouble in the subsequent processing.
+
 import geopandas as gpd
 import rdflib
 from rdflib import RDF, Literal
 from rdflib.namespace import Namespace
 from shapely.geometry import LineString, Point
 
-# Define your namespaces
+# Define namespaces
 GEO = Namespace("http://www.opengis.net/ont/geosparql#")
 MY_NS = Namespace("http://www.example.org/osm#")
 RSM = Namespace("http://www.example.org/rsm#")
 
 
 def osm_import(osm_file_path):
-    # Initialize your RDF graph
+    # Initialize RDF graph
     g = rdflib.Graph()
 
-    # Load your OSM data (assumed to be in GeoJSON format) with GeoPandas
+    # Load OSM data (assumed to be in GeoJSON format) with GeoPandas
     gdf = gpd.read_file(osm_file_path)
 
     # Assuming the 'railway' attribute is within the properties field, filter for railway lines
