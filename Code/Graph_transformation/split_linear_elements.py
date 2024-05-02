@@ -13,24 +13,22 @@ from typing import List
 
 import rdflib
 from rdflib import RDF, Literal, URIRef
-from rdflib.namespace import Namespace
+
 import shapely
 from rdflib.term import Node
 from shapely.geometry import LineString
 from shapely.wkt import dumps
-
-# Define your namespaces
-GEO = Namespace("http://www.opengis.net/ont/geosparql#")
-RSM = Namespace("http://www.example.org/rsm#")
+from Code.Namespaces import *
 
 
-def split_linear_elements(file_path: str):
+def split_linear_elements(file_path: str, short_name: str = ""):
     print("splitting the Turtle file: ", file_path)
     elements = parse_turtle(file_path)
     shared_coords = find_shared_intermediate_points(elements)
     new_elements = split_elements(elements, shared_coords)
     generate_turtle_from_elements(new_elements,
-                                  "/Users/airymagnien/PycharmProjects/SemanticRSM/Intermediate_files/osm_railways_split.ttl")
+                                  "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{}_split.ttl".format(
+                                      short_name))
 
 
 def parse_turtle(file_path: str) -> dict[Node, str]:
@@ -38,24 +36,24 @@ def parse_turtle(file_path: str) -> dict[Node, str]:
     g.parse(file_path, format="turtle")
 
     elements = {}
-    for s, _, o in g.triples((None, RDF.type, RSM.LinearElement)):
+    for s, _, o in g.triples((None, RDF.type, RSM_TOPOLOGY.LinearElement)):
         wkt = g.value(s, GEO.asWKT)
         if wkt:
             elements[s] = shapely.wkt.loads(str(wkt))
     return elements
 
 
+# checked 1/5/2024
 def find_shared_intermediate_points(elements) -> dict[str, List[URIRef | str]]:
     """
-    Identify intermediate points in the linestrings that are shared between two or more elements.
-    The returned dictionary maps points to a list of URIRefs where the point is shared;
-    when the shared point is at an extremity of another element, URIRef is replaced by 'extremity'
+    Identify intermediate points in the linestrings ("ls") that are shared between two or more line strings.
+    The returned dictionary maps points to a list of URIRefs of Linear Elements that share the same point.
+    When the shared point is at an extremity of another element, URIRef is replaced by 'extremity'
     (since we will not split an element at its extremity...)
     """
+    shared: dict[str, List[URIRef | str]] = {}  # where the first "str" is the POINT WKT coordinate tuple
 
-    shared: dict[str, List[URIRef | str]] = {}  # where str is the POINT WKT coordinate tuple
-
-    # First, scan through all elements
+    # First, scan through all elements and put all coords into the dictionary:
 
     for uri, ls in elements.items():
         max_index = len(list(ls.coords)) - 1
@@ -72,7 +70,7 @@ def find_shared_intermediate_points(elements) -> dict[str, List[URIRef | str]]:
 
     shared = {coord: uris for coord, uris in shared.items() if len(uris) > 1}
 
-    # Then drop the numerous points that correspond to two or more elements joint at their extremity
+    # Then drop the points that correspond to two or more elements joint at their extremity
     shared = {coord: uris for coord, uris in shared.items() if set(uris) != {'extremity'}}
 
     # Finally, remove the 'extremity' placeholders
@@ -85,6 +83,7 @@ def find_shared_intermediate_points(elements) -> dict[str, List[URIRef | str]]:
 def split_elements(elements, shared_coords: dict[str, List[URIRef]]):
     """
     Split elements at intermediate points in linestrings when these points are shared between two or more elements.
+    :param elements:
     :param shared_coords:
     :return:
     """
@@ -115,7 +114,7 @@ def generate_turtle_from_elements(new_elements, output_file: str):
 
     # Bind the namespaces
     g.bind("geo", GEO)
-    g.bind("rsm", RSM)
+    g.bind("rsm", RSM_TOPOLOGY)
 
     for uri, linestring in new_elements.items():
         # Ensure the geometry is a LineString
@@ -128,7 +127,7 @@ def generate_turtle_from_elements(new_elements, output_file: str):
         wkt_literal = Literal(wkt, datatype=GEO.wktLiteral)
 
         # Create the triples
-        g.add((uri_ref, RDF.type, RSM.LinearElement))  # Type of the element
+        g.add((uri_ref, RDF.type, RSM_TOPOLOGY.LinearElement))  # Type of the element
         g.add((uri_ref, RDF.type, GEO.Geometry))  # Subclass of Geometry
         g.add((uri_ref, GEO.asWKT, wkt_literal))  # Geometry representation
 

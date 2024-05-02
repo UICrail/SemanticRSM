@@ -3,9 +3,7 @@ from rdflib.namespace import RDF, Namespace
 from shapely.wkt import loads
 from shapely.geometry import LineString
 from typing import Dict, List
-
-GEO = Namespace("http://www.opengis.net/ont/geosparql#")
-RSM = Namespace("http://www.example.org/rsm#")
+from Code.Namespaces import *
 
 # Assuming the `build_adjacency_list` and `color_elements` functions are defined as previously
 
@@ -30,7 +28,7 @@ def parse_ttl_to_linestrings(input_ttl: str) -> Dict[URIRef, LineString]:
 
     elements: Dict[URIRef, LineString] = {}
     for s, _, o in g.triples((None, GEO.asWKT, None)):
-        if (s, RDF.type, RSM.LinearElement) in g:
+        if (s, RDF.type, RSM_TOPOLOGY.LinearElement) in g:
             geom = loads(str(o))
             if isinstance(geom, LineString):
                 elements[s] = geom

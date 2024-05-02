@@ -1,14 +1,12 @@
 from rdflib import Graph, URIRef, Literal
-from rdflib.namespace import Namespace, RDF
+from rdflib.namespace import RDF
 from shapely import LineString
 from shapely.geometry import Point
 from shapely.wkt import loads, dumps
 from shapely.ops import linemerge
 from collections import Counter
 from typing import Dict, List, Optional, Set
-
-GEO = Namespace("http://www.opengis.net/ont/geosparql#")
-RSM = Namespace("http://www.example.org/rsm#")
+from Code.Namespaces import *
 
 
 def create_nodes(g: Graph) -> Dict[str, List[URIRef]]:
@@ -19,7 +17,7 @@ def create_nodes(g: Graph) -> Dict[str, List[URIRef]]:
     """
     nodes: Dict[str, List[URIRef]] = {}
     for s, _, o in g.triples((None, GEO.asWKT, None)):
-        if (s, RDF.type, RSM.LinearElement) in g:
+        if (s, RDF.type, RSM_TOPOLOGY.LinearElement) in g:
             geom = loads(str(o))
             if isinstance(geom, Point):
                 print('WARNING: a point was found in the topology.ttl graph, where only linestrings are expected.')
@@ -69,7 +67,7 @@ def perform_chaining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]]) -> Graph
             uri_z = URIRef(f"{str(elements[0])}_chained_with_{str(elements[1])}")
 
             # Add the new chained element Z
-            g.add((uri_z, RDF.type, RSM.LinearElement))
+            g.add((uri_z, RDF.type, RSM_TOPOLOGY.LinearElement))
             g.add((uri_z, GEO.asWKT, Literal(dumps(geom_z), datatype=GEO.wktLiteral)))
 
             # Mark X and Y for removal
