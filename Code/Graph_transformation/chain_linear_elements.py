@@ -8,11 +8,11 @@ from collections import Counter
 from typing import Dict, List, Optional, Set
 from Code.Namespaces import *
 
-
+#TODO: chaining does not consider orientation of line strings - to be corrected
 def create_nodes(g: Graph) -> Dict[str, List[URIRef]]:
     """
     Creates a dictionary:
-    key = WKT POINTs at extremities of linear elements
+    key = WKT POINTs shared by extremities of linear elements
     values = URIs of those linear elements, based on the provided RDF graph.
     """
     nodes: Dict[str, List[URIRef]] = {}
@@ -39,7 +39,7 @@ def create_nodes(g: Graph) -> Dict[str, List[URIRef]]:
     return nodes
 
 
-def report_degrees(nodes: Dict[str, List[URIRef]]) -> None:
+def report_degrees(nodes: dict[str, list[URIRef]]) -> None:
     """
     Reports the number of nodes for each degree (number of related linear elements).
     """
@@ -53,7 +53,7 @@ def perform_chaining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]]) -> Graph
     Performs chaining on linear elements that meet at nodes with degree 2 and updates references.
     """
     # Prepare a set for elements to be removed and a dict for updating node references
-    elements_to_remove: Set[URIRef] = set()
+    elements_to_remove: set[URIRef] = set()
     nodes_updates: Dict[str, List[URIRef]] = {}
 
     for node_wkt, elements in nodes_degree_2.items():

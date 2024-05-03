@@ -19,32 +19,38 @@ from rdflib.term import Node
 from shapely.geometry import LineString
 from shapely.wkt import dumps
 from Code.Namespaces import *
+from Code.Export.export_to_kml import ttl_to_kml
 
 
-def split_linear_elements(file_path: str, short_name: str = ""):
+def split_linestrings_in_file(file_path: str, short_name: str = ""):
     print("splitting the Turtle file: ", file_path)
-    elements = parse_turtle(file_path)
-    shared_coords = find_shared_intermediate_points(elements)
-    new_elements = split_elements(elements, shared_coords)
-    generate_turtle_from_elements(new_elements,
-                                  "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{}_split.ttl".format(
-                                      short_name))
+    linestring_dict = parse_turtle_for_linear_element_geometry(file_path)
+    shared_coords = find_shared_intermediate_points(linestring_dict)
+    new_elements = split_linestrings(linestring_dict, shared_coords)
+    path_to_split = "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/"
+    generate_turtle_from_linestrings(new_elements, path_to_split + f"osm_{short_name}_split.ttl")
+    ttl_to_kml(path_to_split + f"osm_{short_name}_split.ttl", path_to_split + f"osm_{short_name}_split.kml")
 
 
-def parse_turtle(file_path: str) -> dict[Node, str]:
+
+def parse_turtle_for_linear_element_geometry(file_path: str) -> dict[URIRef, LineString]:
+    """
+    retrieves WKT strings from file
+    :returns dictionary with key = URL, value = WKT string
+    """
     g = rdflib.Graph()
     g.parse(file_path, format="turtle")
 
-    elements = {}
+    linestring_dict = {}
     for s, _, o in g.triples((None, RDF.type, RSM_TOPOLOGY.LinearElement)):
         wkt = g.value(s, GEO.asWKT)
         if wkt:
-            elements[s] = shapely.wkt.loads(str(wkt))
-    return elements
+            linestring_dict[s] = shapely.wkt.loads(str(wkt))
+    return linestring_dict
 
 
 # checked 1/5/2024
-def find_shared_intermediate_points(elements) -> dict[str, List[URIRef | str]]:
+def find_shared_intermediate_points(elements: dict[URIRef, LineString]) -> dict[str, list[URIRef | str]]:
     """
     Identify intermediate points in the linestrings ("ls") that are shared between two or more line strings.
     The returned dictionary maps points to a list of URIRefs of Linear Elements that share the same point.
@@ -80,43 +86,69 @@ def find_shared_intermediate_points(elements) -> dict[str, List[URIRef | str]]:
     return shared
 
 
-def split_elements(elements, shared_coords: dict[str, List[URIRef]]):
+def split_linestrings(linestrings: dict[URIRef, LineString], shared_coords: dict[str, list[URIRef]]):
     """
     Split elements at intermediate points in linestrings when these points are shared between two or more elements.
-    :param elements:
+    :param linestrings:
     :param shared_coords:
+
     :return:
     """
-    elements_to_remove = set()
+    linestrings_to_remove = set()
+    linestrings_to_add = dict()
 
-    for split_point, uris in shared_coords.items():
-        for uri in uris:
-            if uri in elements:
-                coords = list(elements[uri].coords)
-                split_index = coords.index(split_point)
-                part1 = LineString(coords[:split_index + 1])
-                part2 = LineString(coords[split_index:])
-                elements[f"{uri}_part1"] = part1
-                elements[f"{uri}_part2"] = part2
-                elements_to_remove.add(uri)
+    for uri, ls in linestrings.items():
+        ls_coords = list(ls.coords)
+        ls_split_at = []
+        for coord, uri_list in shared_coords.items():
+            if uri in uri_list:
+                ls_split_at.append(coord)
+        if ls_split_at:  ## test for non-empty list
+            part_index: int = 0
+            tail = ls_coords
+            for coord in ls_coords:
+                if coord in ls_split_at:
+                    head = tail[:tail.index(coord) + 1]
+                    new_tail = tail[tail.index(coord):]
+                    linestrings_to_add[URIRef(f"{uri}_part_{part_index}")] = LineString(head)
+                    part_index += 1
+                    tail = new_tail
+            linestrings_to_add[URIRef(f"{uri}_part_{part_index}")] = LineString(tail)
+            linestrings_to_remove.add(URIRef(uri))
+            print(f"linestring {uri} was split into {part_index + 1} parts")
 
-    # finally, do the cleanup
-    for uri in elements_to_remove:
-        if uri in elements:
-            del elements[uri]
+    # Lastly, remove all split linestrings
+    print(f"Split : number of raw linestrings before splitting: {len(linestrings)}")
+    for ls in linestrings_to_remove:
+        del linestrings[ls]
+    print(f"Split : number of linestrings to remove: {len(linestrings_to_remove)}")
+    print(f"Split : remaining linestrings: {len(linestrings)}")
+    # ... and add the splits
+    print(f"Split : linestrings to be added: {len(linestrings_to_add)}")
+    for k, v in linestrings_to_add.items():
+        linestrings[k] = v
+    print(f"Split : resulting linestrings: {len(linestrings)}")
 
-    return elements
+    return linestrings
 
 
-def generate_turtle_from_elements(new_elements, output_file: str):
+def generate_turtle_from_linestrings(modified_linestrings: dict[str, LineString], output_file_path: str):
+    """
+
+    :param modified_linestrings:
+    :param output_file_path:
+    :return:
+    """
+
     # Initialize the RDF graph
     g = rdflib.Graph()
 
     # Bind the namespaces
     g.bind("geo", GEO)
     g.bind("rsm", RSM_TOPOLOGY)
+    g.bind("", WORK)
 
-    for uri, linestring in new_elements.items():
+    for uri, linestring in modified_linestrings.items():
         # Ensure the geometry is a LineString
         if not isinstance(linestring, LineString):
             continue
@@ -128,16 +160,19 @@ def generate_turtle_from_elements(new_elements, output_file: str):
 
         # Create the triples
         g.add((uri_ref, RDF.type, RSM_TOPOLOGY.LinearElement))  # Type of the element
-        g.add((uri_ref, RDF.type, GEO.Geometry))  # Subclass of Geometry
-        g.add((uri_ref, GEO.asWKT, wkt_literal))  # Geometry representation
+        g.add((uri_ref, RDF.type, GEO.Geometry))  # ...also of type: Geometry
+        g.add((uri_ref, GEO.asWKT, wkt_literal))  # Geometry representation using Well-Known Text (WKT)
 
     # Serialize the graph to the Turtle file
-    g.serialize(destination=output_file, format='turtle')
-    print(f"Generated Turtle file: {output_file}")
+    g.serialize(destination=output_file_path, format='turtle')
+    print(f"Generated Turtle file: {output_file_path}")
 
 
 if __name__ == "__main__":
     from Code.Export.export_to_kml import ttl_to_kml
 
-    ttl_to_kml("/Users/airymagnien/PycharmProjects/SemanticRSM/Intermediate_files/osm_railways_raw.ttl",
-               "/Users/airymagnien/PycharmProjects/SemanticRSM/Intermediate_files/osm_railways_split.kml")
+    short_name = "Ventimiglia-Albenga"
+
+    ttl_to_kml(
+        f"/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{short_name}_raw.ttl",
+        f"/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{short_name}_split.kml")

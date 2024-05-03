@@ -13,6 +13,11 @@ def osm_import(osm_file_path: str, short_name: str = ""):
     # Initialize RDF graph
     g = rdflib.Graph()
 
+    # Bind the namespaces
+    g.bind("geo", GEO)
+    g.bind("rsm", RSM_TOPOLOGY)
+    g.bind("", WORK)
+
     # Load OSM data (assumed to be in GeoJSON format) with GeoPandas
     gdf = gpd.read_file(osm_file_path)
 
@@ -21,7 +26,7 @@ def osm_import(osm_file_path: str, short_name: str = ""):
 
     # Process railway lines
     for index, row in railways.iterrows():
-        line_uri = MY_NS[f"railway/{index}"]
+        line_uri = WORK[f"railway_{index}"]
         # Convert geometry to WKT
         if isinstance(row.geometry, LineString) or isinstance(row.geometry, Point):
             wkt = row.geometry.wkt
@@ -34,5 +39,5 @@ def osm_import(osm_file_path: str, short_name: str = ""):
 
     # Serialize the graph to a Turtle file
     g.serialize(
-        destination='/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{}_raw.ttl'.format(
-            short_name), format='turtle')
+        destination=f'/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{short_name}_raw.ttl',
+        format='turtle')
