@@ -7,11 +7,22 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      ontologyIRI="http://cdm.ovh/rsm/topology/topology.owl"
      versionIRI="http://cdm.ovh/rsm/topology/0.1/topology.owl">
+    <Prefix name="" IRI="http://cdm.ovh/rsm/topology/topology.owl#"/>
     <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
     <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
     <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
     <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
     <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <Literal>In this version, I&apos;ve added: 
+- one property onElement (Port, NetElement)
+- rdfs:labels to the classes and properties</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="owl:versionInfo"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">0.2</Literal>
+    </Annotation>
     <Declaration>
         <Class IRI="#BoundaryElement"/>
     </Declaration>
@@ -53,6 +64,9 @@
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#navigableTo"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#onElement"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="#partOf"/>
@@ -165,6 +179,10 @@
         <Class IRI="#TopologyComponent"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
+        <ObjectProperty IRI="#onElement"/>
+        <Class IRI="#Port"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
         <ObjectProperty IRI="#partOf"/>
         <Class IRI="#LinearElementPart"/>
     </ObjectPropertyDomain>
@@ -178,6 +196,10 @@
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="#inElement"/>
+        <Class IRI="#NetElement"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#onElement"/>
         <Class IRI="#NetElement"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
@@ -213,9 +235,94 @@
         <Datatype IRI="#IntrinsicCoordinate"/>
     </DataPropertyRange>
     <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#BoundaryElement</IRI>
+        <Literal xml:lang="en">Boundary Element</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
         <IRI>#IntrinsicCoordinate</IRI>
         <Literal xml:lang="en">A total order relation along a linear element, usually interpreted as a percentage of its nominal length. Value in [0, 1].</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#LinearElement</IRI>
+        <Literal xml:lang="en">Linear Element</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#LinearElementPart</IRI>
+        <Literal xml:lang="en">Linear Element Part</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#NetElement</IRI>
+        <Literal xml:lang="en">Net Element</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#NonlinearElement</IRI>
+        <Literal xml:lang="en">Non Linear Element</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#Port</IRI>
+        <Literal xml:lang="en">Port</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#TopologyComponent</IRI>
+        <Literal xml:lang="en">Topology component</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#TopologyObject</IRI>
+        <Literal xml:lang="en">Topology Object</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#endsAt</IRI>
+        <Literal xml:lang="en">ends at</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#hasComponent</IRI>
+        <Literal xml:lang="en">has component</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#hasPort</IRI>
+        <Literal xml:lang="en">has port</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#inElement</IRI>
+        <Literal xml:lang="en">in Element</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#nominalLength</IRI>
+        <Literal xml:lang="en">nominal length</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#onElement</IRI>
+        <Literal xml:lang="en">on Element</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#partOf</IRI>
+        <Literal xml:lang="en">part of</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#portRelation</IRI>
+        <Literal xml:lang="en">port relation</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#startsAt</IRI>
+        <Literal xml:lang="en">starts at</Literal>
     </AnnotationAssertion>
     <DatatypeDefinition>
         <Datatype IRI="#LinearElementLength"/>
@@ -225,5 +332,5 @@
 
 
 
-<!-- Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.5.24.2023-01-14T21:28:32Z) https://github.com/owlcs/owlapi -->
 
