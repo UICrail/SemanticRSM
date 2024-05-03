@@ -4,14 +4,10 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://cdm.ovh/rsm/topology/topology.owl#> .
+@base <http://cdm.ovh/rsm/topology/topology.owl> .
 
 <http://cdm.ovh/rsm/topology/topology.owl> rdf:type owl:Ontology ;
-                                            owl:versionIRI <http://cdm.ovh/rsm/topology/0.1/topology.owl> ;
-                                            rdfs:comment """In this version, I've added: 
-- one property onElement (Port, NetElement)
-- rdfs:labels to the classes and properties""" ;
-                                            owl:versionInfo 0.2 .
+                                            owl:versionIRI <http://cdm.ovh/rsm/topology/0.1/topology.owl> .
 
 #################################################################
 #    Datatypes
@@ -39,23 +35,20 @@
 
 ###  http://cdm.ovh/rsm/topology/topology.owl#hasComponent
 :hasComponent rdf:type owl:ObjectProperty ;
-              owl:inverseOf :inElement ;
-              rdfs:label "has component"@en .
+              owl:inverseOf :inElement .
 
 
 ###  http://cdm.ovh/rsm/topology/topology.owl#hasPort
 :hasPort rdf:type owl:ObjectProperty ,
                   owl:InverseFunctionalProperty ;
          rdfs:domain :NetElement ;
-         rdfs:range :Port ;
-         rdfs:label "has port"@en .
+         rdfs:range :Port .
 
 
 ###  http://cdm.ovh/rsm/topology/topology.owl#inElement
 :inElement rdf:type owl:ObjectProperty ;
            rdfs:domain :TopologyComponent ;
-           rdfs:range :NetElement ;
-           rdfs:label "in Element"@en .
+           rdfs:range :NetElement .
 
 
 ###  http://cdm.ovh/rsm/topology/topology.owl#navigableFrom
@@ -71,26 +64,17 @@
              rdf:type owl:TransitiveProperty .
 
 
-###  http://cdm.ovh/rsm/topology/topology.owl#onElement
-:onElement rdf:type owl:ObjectProperty ;
-           rdfs:domain :Port ;
-           rdfs:range :NetElement ;
-           rdfs:label "on Element"@en .
-
-
 ###  http://cdm.ovh/rsm/topology/topology.owl#partOf
 :partOf rdf:type owl:ObjectProperty ,
                  owl:FunctionalProperty ;
         rdfs:domain :LinearElementPart ;
-        rdfs:range :LinearElement ;
-        rdfs:label "part of"@en .
+        rdfs:range :LinearElement .
 
 
 ###  http://cdm.ovh/rsm/topology/topology.owl#portRelation
 :portRelation rdf:type owl:ObjectProperty ;
               rdfs:domain :Port ;
-              rdfs:range :Port ;
-              rdfs:label "port relation"@en .
+              rdfs:range :Port .
 
 
 #################################################################
@@ -100,22 +84,19 @@
 ###  http://cdm.ovh/rsm/topology/topology.owl#endsAt
 :endsAt rdf:type owl:DatatypeProperty ;
         rdfs:domain :LinearElementPart ;
-        rdfs:range :IntrinsicCoordinate ;
-        rdfs:comment "ends at"@en .
+        rdfs:range :IntrinsicCoordinate .
 
 
 ###  http://cdm.ovh/rsm/topology/topology.owl#nominalLength
 :nominalLength rdf:type owl:DatatypeProperty ;
                rdfs:domain :LinearElement ;
-               rdfs:range :LinearElementLength ;
-               rdfs:label "nominal length"@en .
+               rdfs:range :LinearElementLength .
 
 
 ###  http://cdm.ovh/rsm/topology/topology.owl#startsAt
 :startsAt rdf:type owl:DatatypeProperty ;
           rdfs:domain :LinearElementPart ;
-          rdfs:range :IntrinsicCoordinate ;
-          rdfs:label "starts at"@en .
+          rdfs:range :IntrinsicCoordinate .
 
 
 #################################################################
@@ -126,21 +107,18 @@
 :BoundaryElement rdf:type owl:Class ;
                  rdfs:subClassOf :NetElement ;
                  owl:disjointWith :LinearElement ,
-                                  :NonlinearElement ;
-                 rdfs:label "Boundary Element"@en .
+                                  :NonlinearElement .
 
 
 ###  http://cdm.ovh/rsm/topology/topology.owl#LinearElement
 :LinearElement rdf:type owl:Class ;
                rdfs:subClassOf :NetElement ;
-               owl:disjointWith :NonlinearElement ;
-               rdfs:label "Linear Element"@en .
+               owl:disjointWith :NonlinearElement .
 
 
 ###  http://cdm.ovh/rsm/topology/topology.owl#LinearElementPart
 :LinearElementPart rdf:type owl:Class ;
-                   rdfs:subClassOf :TopologyComponent ;
-                   rdfs:label "Linear Element Part"@en .
+                   rdfs:subClassOf :TopologyComponent .
 
 
 ###  http://cdm.ovh/rsm/topology/topology.owl#NetElement
@@ -149,31 +127,26 @@
             owl:disjointUnionOf ( :BoundaryElement
                                   :LinearElement
                                   :NonlinearElement
-                                ) ;
-            rdfs:label "Net Element"@en .
+                                ) .
 
 
 ###  http://cdm.ovh/rsm/topology/topology.owl#NonlinearElement
 :NonlinearElement rdf:type owl:Class ;
-                  rdfs:subClassOf :NetElement ;
-                  rdfs:label "Non Linear Element"@en .
+                  rdfs:subClassOf :NetElement .
 
 
 ###  http://cdm.ovh/rsm/topology/topology.owl#Port
 :Port rdf:type owl:Class ;
-      rdfs:subClassOf :TopologyObject ;
-      rdfs:label "Port"@en .
+      rdfs:subClassOf :TopologyObject .
 
 
 ###  http://cdm.ovh/rsm/topology/topology.owl#TopologyComponent
 :TopologyComponent rdf:type owl:Class ;
-                   rdfs:subClassOf :TopologyObject ;
-                   rdfs:label "Topology component"@en .
+                   rdfs:subClassOf :TopologyObject .
 
 
 ###  http://cdm.ovh/rsm/topology/topology.owl#TopologyObject
-:TopologyObject rdf:type owl:Class ;
-                rdfs:label "Topology Object"@en .
+:TopologyObject rdf:type owl:Class .
 
 
-###  Generated by the OWL API (version 4.5.24.2023-01-14T21:28:32Z) https://github.com/owlcs/owlapi
+###  Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi
