@@ -5,14 +5,15 @@ from shapely.geometry import Point
 from shapely.wkt import loads, dumps
 from shapely.ops import linemerge
 from collections import Counter
-from typing import Dict, List, Optional, Set
+from typing import Dict, List, Optional
 from Code.Namespaces import *
+import copy
 
-#TODO: chaining does not consider orientation of line strings - to be corrected
+
 def create_nodes(g: Graph) -> Dict[str, List[URIRef]]:
     """
     Creates a dictionary:
-    key = WKT POINTs shared by extremities of linear elements
+    key = WKT POINT shared by extremities of linear elements
     values = URIs of those linear elements, based on the provided RDF graph.
     """
     nodes: Dict[str, List[URIRef]] = {}
@@ -54,44 +55,53 @@ def perform_chaining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]]) -> Graph
     """
     # Prepare a set for elements to be removed and a dict for updating node references
     elements_to_remove: set[URIRef] = set()
-    nodes_updates: Dict[str, List[URIRef]] = {}
+    unprocessed_nodes = copy.deepcopy(nodes_degree_2)
+    processed_nodes_counter = 0
 
     for node_wkt, elements in nodes_degree_2.items():
         geom_x = loads(str(g.value(elements[0], GEO.asWKT)))
         geom_y = loads(str(g.value(elements[1], GEO.asWKT)))
 
         # Chain the geometries
-        geom_z = linemerge([geom_x, geom_y])
+        # Here, directed should be set to False (the default argument), otherwise multi-linestrings
+        # will result when linestrings start of finish with a common point.
+        geom_z = linemerge([geom_x, geom_y], directed=False)
+        del unprocessed_nodes[node_wkt]
 
         if geom_z.is_valid and isinstance(geom_z, LineString):
-            uri_z = URIRef(f"{str(elements[0])}_chained_with_{str(elements[1])}")
+            processed_nodes_counter += 1
+            uri_z = URIRef(f"{str(elements[0])}_chained_with_{str(elements[1]).split('#', 1)[1]}")
 
-            # Add the new chained element Z
+            # Add the new chained element Z to the graph
             g.add((uri_z, RDF.type, RSM_TOPOLOGY.LinearElement))
             g.add((uri_z, GEO.asWKT, Literal(dumps(geom_z), datatype=GEO.wktLiteral)))
 
             # Mark X and Y for removal
             elements_to_remove.update(elements)
 
-            # Prepare updates for nodes referring to X or Y
-            for e in elements:
-                for n_wkt, e_list in nodes_degree_2.items():
-                    if e in e_list:
-                        if n_wkt in nodes_updates:
-                            nodes_updates[n_wkt].append(uri_z)
-                        else:
-                            nodes_updates[n_wkt] = [uri_z for _ in e_list]
+            # Updates references made to X or Y by nodes not yet processed
+            # Note: we are looping through the nodes_degree_2 dict;
+            # here, the values in the nodes_degree_2 dict are altered, but not the keys, which is legal.
+            for chained_element in elements:
+                for n_wkt in unprocessed_nodes:
+                    if chained_element in nodes_degree_2[n_wkt]:
+                        nodes_degree_2[n_wkt].append(uri_z)
+                        nodes_degree_2[n_wkt].remove(chained_element)
+        else:
+            print(f"WARNING: strange things happening at {node_wkt}: chaining was not successful.")
 
     # Remove the marked original elements X and Y from the graph
-    for e in elements_to_remove:
-        g.remove((e, None, None))
+    for chained_element in elements_to_remove:
+        g.remove((chained_element, None, None))
 
     # Update nodes_degree_2 with Z replacing X and Y
-    for n_wkt, new_elements in nodes_updates.items():
+    for n_wkt, new_elements in unprocessed_nodes.items():
         nodes_degree_2[n_wkt] = new_elements
 
     # Remove nodes that were only associated with removed elements
     nodes_degree_2 = {k: v for k, v in nodes_degree_2.items() if not set(v).issubset(elements_to_remove)}
+
+    print(f"{processed_nodes_counter} nodes of degree 2 were removed by chaining the surrounding linestrings")
 
     return g
 
