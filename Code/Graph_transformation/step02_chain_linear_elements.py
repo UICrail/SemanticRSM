@@ -9,9 +9,9 @@ from typing import Dict, List, Optional
 from Code.Namespaces import *
 import copy
 
-
 # string used for expressing the chaining of elements in the chained element URI
-CHAINED_WITH = '_+_'
+CHAINED_WITH = '-'
+
 
 def create_nodes(g: Graph) -> Dict[str, List[URIRef]]:
     """
@@ -74,7 +74,6 @@ def perform_chaining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]]) -> Graph
         if geom_z.is_valid and isinstance(geom_z, LineString):
             processed_nodes_counter += 1
             uri_z = URIRef(f"{str(elements[0])}{CHAINED_WITH}{str(elements[1]).split('#', 1)[1]}")
-
             # Add the new chained element Z to the graph
             g.add((uri_z, RDF.type, RSM_TOPOLOGY.LinearElement))
             g.add((uri_z, GEO.asWKT, Literal(dumps(geom_z), datatype=GEO.wktLiteral)))
@@ -100,9 +99,6 @@ def perform_chaining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]]) -> Graph
     # Update nodes_degree_2 with Z replacing X and Y
     for n_wkt, new_elements in unprocessed_nodes.items():
         nodes_degree_2[n_wkt] = new_elements
-
-    # Remove nodes that were only associated with removed elements
-    nodes_degree_2 = {k: v for k, v in nodes_degree_2.items() if not set(v).issubset(elements_to_remove)}
 
     print(f"{processed_nodes_counter} nodes of degree 2 were removed by chaining the surrounding linestrings")
 
@@ -136,6 +132,10 @@ def chain_linear_elements(input_ttl: str, output_ttl: Optional[str] = None) -> N
     elif output_ttl:
         print("No chaining performed. Original graph will be saved.")
         g.serialize(destination=output_ttl, format='turtle')
+
+
+
+
 
 
 if __name__ == "__main__":

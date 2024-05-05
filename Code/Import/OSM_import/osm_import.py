@@ -26,7 +26,7 @@ def osm_import(osm_file_path: str, short_name: str = ""):
 
     # Process railway lines
     for index, row in railways.iterrows():
-        line_uri = WORK[f"railway_{index}"]
+        line_uri = WORK[f"rwy_{index}"]
         # Convert geometry to WKT
         if isinstance(row.geometry, LineString) or isinstance(row.geometry, Point):
             wkt = row.geometry.wkt
