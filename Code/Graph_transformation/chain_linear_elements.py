@@ -10,6 +10,9 @@ from Code.Namespaces import *
 import copy
 
 
+# string used for expressing the chaining of elements in the chained element URI
+CHAINED_WITH = '_+_'
+
 def create_nodes(g: Graph) -> Dict[str, List[URIRef]]:
     """
     Creates a dictionary:
@@ -70,7 +73,7 @@ def perform_chaining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]]) -> Graph
 
         if geom_z.is_valid and isinstance(geom_z, LineString):
             processed_nodes_counter += 1
-            uri_z = URIRef(f"{str(elements[0])}_chained_with_{str(elements[1]).split('#', 1)[1]}")
+            uri_z = URIRef(f"{str(elements[0])}{CHAINED_WITH}{str(elements[1]).split('#', 1)[1]}")
 
             # Add the new chained element Z to the graph
             g.add((uri_z, RDF.type, RSM_TOPOLOGY.LinearElement))

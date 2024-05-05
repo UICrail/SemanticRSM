@@ -43,3 +43,5 @@ def osm_via_rsm_to_kml(osm_geojson_file, short_name):
 if __name__ == "__main__":
     transform_osm_to_rsm("/Users/airymagnien/PycharmProjects/SemanticRSM/Source_data/OSM/Ventimiglia_Albenga.geojson",
                          "Ventimiglia-Albenga")
+    transform_osm_to_rsm("/Users/airymagnien/PycharmProjects/SemanticRSM/Source_data/OSM/Sankt_Pölten.geojson",
+                         "Sankt_Pölten")
