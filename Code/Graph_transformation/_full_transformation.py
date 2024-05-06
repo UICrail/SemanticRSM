@@ -6,6 +6,7 @@ from Code.Graph_transformation.step02_chain_linear_elements import chain_linear_
 from Code.Import.OSM_import import osm_import
 from Code.Graph_transformation.step01_split_linear_elements import split_linestrings_in_file
 from Graph_transformation.step03_add_ports import add_ports
+from Graph_transformation.step04_port_properties import set_port_connections, set_navigabilities
 
 
 def transform_osm_to_rsm(osm_geojson_path, short_name):
@@ -30,10 +31,22 @@ def transform_osm_to_rsm(osm_geojson_path, short_name):
         "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{}_with_ports.ttl".format(
             short_name))
 
+    set_port_connections(
+        "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{}_with_ports.ttl".format(
+            short_name),
+        "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{}_with_connected_ports.ttl".format(
+            short_name))
+
+    set_navigabilities(
+        "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{}_with_connected_ports.ttl".format(
+            short_name),
+        "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{}_with_navigabilities.ttl".format(
+            short_name))
+
     ttl_to_kml(
         "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{}_with_ports.ttl".format(
             short_name),
-        "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/osm_{}_chained.kml".format(short_name))
+        "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/osm_{}.kml".format(short_name))
 
 
 def osm_via_rsm_to_kml(osm_geojson_file, short_name):
@@ -53,5 +66,5 @@ def osm_via_rsm_to_kml(osm_geojson_file, short_name):
 if __name__ == "__main__":
     transform_osm_to_rsm("/Users/airymagnien/PycharmProjects/SemanticRSM/Source_data/OSM/Ventimiglia_Albenga.geojson",
                          "Ventimiglia-Albenga")
-    #transform_osm_to_rsm("/Users/airymagnien/PycharmProjects/SemanticRSM/Source_data/OSM/Sankt_Pölten.geojson",
+    # transform_osm_to_rsm("/Users/airymagnien/PycharmProjects/SemanticRSM/Source_data/OSM/Sankt_Pölten.geojson",
     #                     "Sankt_Pölten")
