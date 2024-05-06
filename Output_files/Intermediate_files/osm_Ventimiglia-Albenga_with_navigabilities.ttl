@@ -7,8 +7,7 @@
     rsm:azimuth 3.611156e+01 ;
     rsm:connectedWith :rwy_220_part_0_0,
         :rwy_8-rwy_42-rwy_247-rwy_246-rwy_172-rwy_41-rwy_49-rwy_10-rwy_11-rwy_48-rwy_50-rwy_47-rwy_46-rwy_44-rwy_4-rwy_5-rwy_146-rwy_147-rwy_3-rwy_6-rwy_54-rwy_53-rwy_7_0 ;
-    rsm:navigableTo :rwy_220_part_0_1,
-        :rwy_8-rwy_42-rwy_247-rwy_246-rwy_172-rwy_41-rwy_49-rwy_10-rwy_11-rwy_48-rwy_50-rwy_47-rwy_46-rwy_44-rwy_4-rwy_5-rwy_146-rwy_147-rwy_3-rwy_6-rwy_54-rwy_53-rwy_7_1 ;
+    rsm:navigableTo :rwy_8-rwy_42-rwy_247-rwy_246-rwy_172-rwy_41-rwy_49-rwy_10-rwy_11-rwy_48-rwy_50-rwy_47-rwy_46-rwy_44-rwy_4-rwy_5-rwy_146-rwy_147-rwy_3-rwy_6-rwy_54-rwy_53-rwy_7_1 ;
     rsm:onElement :rwy_0-rwy_221 ;
     geo:asWKT "POINT (8.1732348 44.0096755)" .
 
@@ -16,8 +15,7 @@
     rsm:azimuth -1.440546e+02 ;
     rsm:connectedWith :rwy_173-rwy_224-rwy_230-rwy_19-rwy_21-rwy_20-rwy_9-rwy_2-rwy_1-rwy_13-rwy_12-rwy_225_0,
         :rwy_218_part_1_1 ;
-    rsm:navigableTo :rwy_173-rwy_224-rwy_230-rwy_19-rwy_21-rwy_20-rwy_9-rwy_2-rwy_1-rwy_13-rwy_12-rwy_225_1,
-        :rwy_218_part_1_0 ;
+    rsm:navigableTo :rwy_173-rwy_224-rwy_230-rwy_19-rwy_21-rwy_20-rwy_9-rwy_2-rwy_1-rwy_13-rwy_12-rwy_225_1 ;
     rsm:onElement :rwy_0-rwy_221 ;
     geo:asWKT "POINT (8.1675338 44.0058105)" .
 
@@ -25,8 +23,7 @@
     rsm:azimuth -1.35528e+02 ;
     rsm:connectedWith :rwy_139_part_0-rwy_100-rwy_133_0,
         :rwy_93-rwy_110-rwy_111_1 ;
-    rsm:navigableTo :rwy_139_part_0-rwy_100-rwy_133_1,
-        :rwy_93-rwy_110-rwy_111_0 ;
+    rsm:navigableTo :rwy_93-rwy_110-rwy_111_0 ;
     rsm:onElement :rwy_102_part_0 ;
     geo:asWKT "POINT (8.2206006 44.0458833)" .
 
@@ -34,8 +31,7 @@
     rsm:azimuth 4.447197e+01 ;
     rsm:connectedWith :rwy_102_part_1_0,
         :rwy_108-rwy_106-rwy_109_0 ;
-    rsm:navigableTo :rwy_102_part_1_1,
-        :rwy_108-rwy_106-rwy_109_1 ;
+    rsm:navigableTo :rwy_102_part_1_1 ;
     rsm:onElement :rwy_102_part_0 ;
     geo:asWKT "POINT (8.2208613 44.0461402)" .
 
@@ -43,8 +39,7 @@
     rsm:azimuth -1.330745e+02 ;
     rsm:connectedWith :rwy_136_part_0-rwy_103-rwy_141_1,
         :rwy_136_part_1_0 ;
-    rsm:navigableTo :rwy_136_part_0-rwy_103-rwy_141_0,
-        :rwy_136_part_1_1 ;
+    rsm:navigableTo :rwy_136_part_0-rwy_103-rwy_141_0 ;
     rsm:onElement :rwy_104_part_0 ;
     geo:asWKT "POINT (8.2214428 44.0468145)" .
 
@@ -66,10 +61,14 @@
     rsm:azimuth -1.246954e+02 ;
     rsm:connectedWith :rwy_116_part_0_1,
         :rwy_116_part_1_0 ;
-    rsm:navigableTo :rwy_116_part_0_0,
-        :rwy_116_part_1_1 ;
+    rsm:navigableTo :rwy_116_part_0_0 ;
     rsm:onElement :rwy_107 ;
     geo:asWKT "POINT (8.2246668 44.0512948)" .
+
+:rwy_108-rwy_106-rwy_109_1 a rsm:Port ;
+    rsm:azimuth -1.202772e+02 ;
+    rsm:onElement :rwy_108-rwy_106-rwy_109 ;
+    geo:asWKT "POINT (8.2199067 44.044811)" .
 
 :rwy_112_part_0_0 a rsm:Port ;
     rsm:azimuth -1.278842e+02 ;
@@ -80,8 +79,7 @@
     rsm:azimuth 5.256914e+01 ;
     rsm:connectedWith :rwy_112_part_1_0,
         :rwy_118_part_2_1 ;
-    rsm:navigableTo :rwy_112_part_1_1,
-        :rwy_118_part_2_0 ;
+    rsm:navigableTo :rwy_112_part_1_1 ;
     rsm:onElement :rwy_112_part_0 ;
     geo:asWKT "POINT (8.2237253 44.050302)" .
 
@@ -94,10 +92,22 @@
     rsm:azimuth 3.212361e+01 ;
     rsm:connectedWith :rwy_114_part_1_0,
         :rwy_115_1 ;
-    rsm:navigableTo :rwy_114_part_1_1,
-        :rwy_115_0 ;
+    rsm:navigableTo :rwy_114_part_1_1 ;
     rsm:onElement :rwy_114_part_0 ;
     geo:asWKT "POINT (8.2230288 44.0497869)" .
+
+:rwy_115_0 a rsm:Port ;
+    rsm:azimuth -1.291863e+02 ;
+    rsm:onElement :rwy_115 ;
+    geo:asWKT "POINT (8.2218183 44.0486672)" .
+
+:rwy_116_part_1_1 a rsm:Port ;
+    rsm:azimuth 4.888304e+01 ;
+    rsm:connectedWith :rwy_125_part_2_1,
+        :rwy_98-rwy_94-rwy_90-rwy_232-rwy_101-rwy_89_0 ;
+    rsm:navigableTo :rwy_98-rwy_94-rwy_90-rwy_232-rwy_101-rwy_89_1 ;
+    rsm:onElement :rwy_116_part_1 ;
+    geo:asWKT "POINT (8.2249809 44.051656)" .
 
 :rwy_117_0 a rsm:Port ;
     rsm:azimuth -1.294048e+02 ;
@@ -108,17 +118,25 @@
     rsm:azimuth 4.536206e+01 ;
     rsm:connectedWith :rwy_118_part_0_1,
         :rwy_118_part_1_0 ;
-    rsm:navigableTo :rwy_118_part_0_0,
-        :rwy_118_part_1_1 ;
+    rsm:navigableTo :rwy_118_part_1_1 ;
     rsm:onElement :rwy_117 ;
     geo:asWKT "POINT (8.2231889 44.0498393)" .
+
+:rwy_118_part_0_0 a rsm:Port ;
+    rsm:azimuth -1.286976e+02 ;
+    rsm:onElement :rwy_118_part_0 ;
+    geo:asWKT "POINT (8.2220122 44.0485955)" .
+
+:rwy_119_part_0_0 a rsm:Port ;
+    rsm:azimuth -1.3106e+02 ;
+    rsm:onElement :rwy_119_part_0 ;
+    geo:asWKT "POINT (8.2238863 44.0505969)" .
 
 :rwy_120_part_0-rwy_105-rwy_124_0 a rsm:Port ;
     rsm:azimuth -1.18349e+02 ;
     rsm:connectedWith :rwy_45_part_0-rwy_231-rwy_43_1,
         :rwy_45_part_1-rwy_125_part_0-rwy_132_0 ;
-    rsm:navigableTo :rwy_45_part_0-rwy_231-rwy_43_0,
-        :rwy_45_part_1-rwy_125_part_0-rwy_132_1 ;
+    rsm:navigableTo :rwy_45_part_0-rwy_231-rwy_43_0 ;
     rsm:onElement :rwy_120_part_0-rwy_105-rwy_124 ;
     geo:asWKT "POINT (8.2205305 44.0458724)" .
 
@@ -135,8 +153,7 @@
     rsm:azimuth -1.378113e+02 ;
     rsm:connectedWith :rwy_136_part_1_1,
         :rwy_136_part_2_0 ;
-    rsm:navigableTo :rwy_136_part_1_0,
-        :rwy_136_part_2_1 ;
+    rsm:navigableTo :rwy_136_part_1_0 ;
     rsm:onElement :rwy_121_part_0 ;
     geo:asWKT "POINT (8.221711 44.0470458)" .
 
@@ -153,8 +170,7 @@
     rsm:azimuth -1.387063e+02 ;
     rsm:connectedWith :rwy_134_part_1_1,
         :rwy_134_part_2_0 ;
-    rsm:navigableTo :rwy_134_part_1_0,
-        :rwy_134_part_2_1 ;
+    rsm:navigableTo :rwy_134_part_1_0 ;
     rsm:onElement :rwy_123_part_0 ;
     geo:asWKT "POINT (8.2227632 44.0478012)" .
 
@@ -173,7 +189,6 @@
         :rwy_245_part_1_0,
         :rwy_45_part_1-rwy_125_part_0-rwy_132_1 ;
     rsm:navigableTo :rwy_245_part_0_0,
-        :rwy_245_part_1_1,
         :rwy_45_part_1-rwy_125_part_0-rwy_132_0 ;
     rsm:onElement :rwy_125_part_1 ;
     geo:asWKT "POINT (8.2236739 44.0499629)" .
@@ -182,8 +197,7 @@
     rsm:azimuth 5.336806e+01 ;
     rsm:connectedWith :rwy_125_part_2_0,
         :rwy_149_1 ;
-    rsm:navigableTo :rwy_125_part_2_1,
-        :rwy_149_0 ;
+    rsm:navigableTo :rwy_125_part_2_1 ;
     rsm:onElement :rwy_125_part_1 ;
     geo:asWKT "POINT (8.2248314 44.0514543)" .
 
@@ -191,8 +205,7 @@
     rsm:azimuth -1.271701e+02 ;
     rsm:connectedWith :rwy_145_part_0_1,
         :rwy_145_part_1_0 ;
-    rsm:navigableTo :rwy_145_part_0_0,
-        :rwy_145_part_1_1 ;
+    rsm:navigableTo :rwy_145_part_0_0 ;
     rsm:onElement :rwy_126 ;
     geo:asWKT "POINT (8.2225862 44.047674)" .
 
@@ -205,8 +218,7 @@
     rsm:azimuth -1.430879e+02 ;
     rsm:connectedWith :rwy_138_part_0_1,
         :rwy_138_part_1_0 ;
-    rsm:navigableTo :rwy_138_part_0_0,
-        :rwy_138_part_1_1 ;
+    rsm:navigableTo :rwy_138_part_0_0 ;
     rsm:onElement :rwy_134_part_0 ;
     geo:asWKT "POINT (8.2222447 44.0473794)" .
 
@@ -219,12 +231,16 @@
     rsm:onElement :rwy_134_part_0 ;
     geo:asWKT "POINT (8.2224333 44.0475216)" .
 
+:rwy_134_part_2_1 a rsm:Port ;
+    rsm:azimuth 5.158664e+01 ;
+    rsm:onElement :rwy_134_part_2 ;
+    geo:asWKT "POINT (8.2246748 44.0501998)" .
+
 :rwy_135_0 a rsm:Port ;
     rsm:azimuth -1.471535e+02 ;
     rsm:connectedWith :rwy_137_part_0_1,
         :rwy_137_part_1_0 ;
-    rsm:navigableTo :rwy_137_part_0_0,
-        :rwy_137_part_1_1 ;
+    rsm:navigableTo :rwy_137_part_0_0 ;
     rsm:onElement :rwy_135 ;
     geo:asWKT "POINT (8.2229429 44.0478147)" .
 
@@ -233,10 +249,37 @@
     rsm:onElement :rwy_135 ;
     geo:asWKT "POINT (8.2251531 44.0504211)" .
 
-:rwy_148-rwy_95-rwy_233-rwy_99-rwy_96-rwy_97_0 a rsm:Port ;
-    rsm:azimuth 9.277408e+01 ;
-    rsm:onElement :rwy_148-rwy_95-rwy_233-rwy_99-rwy_96-rwy_97 ;
-    geo:asWKT "POINT (8.2250894 44.0619047)" .
+:rwy_136_part_2_1 a rsm:Port ;
+    rsm:azimuth 3.696935e+01 ;
+    rsm:connectedWith :rwy_138_part_0_0,
+        :rwy_142_0 ;
+    rsm:navigableTo :rwy_138_part_0_1,
+        :rwy_142_1 ;
+    rsm:onElement :rwy_136_part_2 ;
+    geo:asWKT "POINT (8.2219229 44.0472059)" .
+
+:rwy_137_part_1_1 a rsm:Port ;
+    rsm:azimuth 5.206737e+01 ;
+    rsm:onElement :rwy_137_part_1 ;
+    geo:asWKT "POINT (8.2251075 44.0504346)" .
+
+:rwy_139_part_0-rwy_100-rwy_133_1 a rsm:Port ;
+    rsm:azimuth 5.223618e+01 ;
+    rsm:connectedWith :rwy_139_part_1_0,
+        :rwy_245_part_1_1 ;
+    rsm:navigableTo :rwy_139_part_1_1 ;
+    rsm:onElement :rwy_139_part_0-rwy_100-rwy_133 ;
+    geo:asWKT "POINT (8.2242233 44.0505021)" .
+
+:rwy_144_1 a rsm:Port ;
+    rsm:azimuth 5.205759e+01 ;
+    rsm:onElement :rwy_144 ;
+    geo:asWKT "POINT (8.2250605 44.0504512)" .
+
+:rwy_145_part_1_1 a rsm:Port ;
+    rsm:azimuth 5.179414e+01 ;
+    rsm:onElement :rwy_145_part_1 ;
+    geo:asWKT "POINT (8.2246239 44.0502152)" .
 
 :rwy_157_part_0_0 a rsm:Port ;
     rsm:azimuth -1.694141e+02 ;
@@ -260,8 +303,7 @@
     rsm:azimuth 8.271282e+00 ;
     rsm:connectedWith :rwy_199_part_0-rwy_157_part_1-rwy_183_1,
         :rwy_199_part_1_0 ;
-    rsm:navigableTo :rwy_199_part_0-rwy_157_part_1-rwy_183_0,
-        :rwy_199_part_1_1 ;
+    rsm:navigableTo :rwy_199_part_1_1 ;
     rsm:onElement :rwy_164_part_0 ;
     geo:asWKT "POINT (8.0355932 43.8981313)" .
 
@@ -269,8 +311,7 @@
     rsm:azimuth -1.72722e+02 ;
     rsm:connectedWith :rwy_164_part_1-rwy_163_part_0-rwy_180_0,
         :rwy_229_0 ;
-    rsm:navigableTo :rwy_164_part_1-rwy_163_part_0-rwy_180_1,
-        :rwy_229_1 ;
+    rsm:navigableTo :rwy_164_part_1-rwy_163_part_0-rwy_180_1 ;
     rsm:onElement :rwy_164_part_0 ;
     geo:asWKT "POINT (8.034211 43.8979476)" .
 
@@ -283,8 +324,7 @@
     rsm:azimuth -1.688572e+02 ;
     rsm:connectedWith :rwy_182_part_0-rwy_178_part_1-rwy_181_1,
         :rwy_182_part_1_0 ;
-    rsm:navigableTo :rwy_182_part_0-rwy_178_part_1-rwy_181_0,
-        :rwy_182_part_1_1 ;
+    rsm:navigableTo :rwy_182_part_0-rwy_178_part_1-rwy_181_0 ;
     rsm:onElement :rwy_175 ;
     geo:asWKT "POINT (8.0335796 43.8976813)" .
 
@@ -297,8 +337,7 @@
     rsm:azimuth 1.121294e+01 ;
     rsm:connectedWith :rwy_178_part_0_1,
         :rwy_182_part_0-rwy_178_part_1-rwy_181_0 ;
-    rsm:navigableTo :rwy_178_part_0_0,
-        :rwy_182_part_0-rwy_178_part_1-rwy_181_1 ;
+    rsm:navigableTo :rwy_182_part_0-rwy_178_part_1-rwy_181_1 ;
     rsm:onElement :rwy_176 ;
     geo:asWKT "POINT (8.024525 43.8960396)" .
 
@@ -320,12 +359,28 @@
     rsm:onElement :rwy_177_part_0 ;
     geo:asWKT "POINT (8.0358996 43.8981468)" .
 
+:rwy_178_part_0_0 a rsm:Port ;
+    rsm:azimuth -1.730243e+02 ;
+    rsm:connectedWith :rwy_179_part_1_1,
+        :rwy_179_part_2_0 ;
+    rsm:navigableTo :rwy_179_part_2_1 ;
+    rsm:onElement :rwy_178_part_0 ;
+    geo:asWKT "POINT (8.0237154 43.8959349)" .
+
+:rwy_179_part_1_0 a rsm:Port ;
+    rsm:azimuth 1.061634e+01 ;
+    rsm:connectedWith :rwy_196_1,
+        :rwy_22-rwy_179_part_0-rwy_28_0 ;
+    rsm:navigableTo :rwy_196_0,
+        :rwy_22-rwy_179_part_0-rwy_28_1 ;
+    rsm:onElement :rwy_179_part_1 ;
+    geo:asWKT "POINT (8.0241807 43.8960224)" .
+
 :rwy_186_0 a rsm:Port ;
     rsm:azimuth 4.707847e+00 ;
     rsm:connectedWith :rwy_57_part_1-rwy_59_part_0_1,
         :rwy_59_part_1_0 ;
-    rsm:navigableTo :rwy_57_part_1-rwy_59_part_0_0,
-        :rwy_59_part_1_1 ;
+    rsm:navigableTo :rwy_59_part_1_1 ;
     rsm:onElement :rwy_186 ;
     geo:asWKT "POINT (7.8616034 43.8455085)" .
 
@@ -333,8 +388,7 @@
     rsm:azimuth -1.752921e+02 ;
     rsm:connectedWith :rwy_188_1,
         :rwy_23_part_0_0 ;
-    rsm:navigableTo :rwy_188_0,
-        :rwy_23_part_0_1 ;
+    rsm:navigableTo :rwy_188_0 ;
     rsm:onElement :rwy_186 ;
     geo:asWKT "POINT (7.8610779 43.8454651)" .
 
@@ -342,8 +396,7 @@
     rsm:azimuth -1.745217e+02 ;
     rsm:connectedWith :rwy_237_part_0_1,
         :rwy_242-rwy_26-rwy_237_part_1-rwy_240_0 ;
-    rsm:navigableTo :rwy_237_part_0_0,
-        :rwy_242-rwy_26-rwy_237_part_1-rwy_240_1 ;
+    rsm:navigableTo :rwy_242-rwy_26-rwy_237_part_1-rwy_240_1 ;
     rsm:onElement :rwy_187 ;
     geo:asWKT "POINT (7.8481355 43.8435835)" .
 
@@ -351,8 +404,7 @@
     rsm:azimuth 5.478282e+00 ;
     rsm:connectedWith :rwy_189_part_0_0,
         :rwy_241-rwy_56-rwy_238-rwy_239_1 ;
-    rsm:navigableTo :rwy_189_part_0_1,
-        :rwy_241-rwy_56-rwy_238-rwy_239_0 ;
+    rsm:navigableTo :rwy_189_part_0_1 ;
     rsm:onElement :rwy_187 ;
     geo:asWKT "POINT (7.8487084 43.8436386)" .
 
@@ -378,8 +430,7 @@
     rsm:azimuth -1.682177e+02 ;
     rsm:connectedWith :rwy_51-rwy_85-rwy_31-rwy_213-rwy_214-rwy_52-rwy_32-rwy_33-rwy_195-rwy_244-rwy_29-rwy_30-rwy_83-rwy_82-rwy_84-rwy_193-rwy_81_0,
         :rwy_59_part_1_1 ;
-    rsm:navigableTo :rwy_51-rwy_85-rwy_31-rwy_213-rwy_214-rwy_52-rwy_32-rwy_33-rwy_195-rwy_244-rwy_29-rwy_30-rwy_83-rwy_82-rwy_84-rwy_193-rwy_81_1,
-        :rwy_59_part_1_0 ;
+    rsm:navigableTo :rwy_59_part_1_0 ;
     rsm:onElement :rwy_190 ;
     geo:asWKT "POINT (7.861871 43.8455474)" .
 
@@ -387,8 +438,7 @@
     rsm:azimuth 1.178225e+01 ;
     rsm:connectedWith :rwy_194_part_0-rwy_170-rwy_171-rwy_152-rwy_151-rwy_161-rwy_174-rwy_14-rwy_55-rwy_15-rwy_24-rwy_162-rwy_155-rwy_160-rwy_23_part_1-rwy_25_0,
         :rwy_23_part_0_1 ;
-    rsm:navigableTo :rwy_194_part_0-rwy_170-rwy_171-rwy_152-rwy_151-rwy_161-rwy_174-rwy_14-rwy_55-rwy_15-rwy_24-rwy_162-rwy_155-rwy_160-rwy_23_part_1-rwy_25_1,
-        :rwy_23_part_0_0 ;
+    rsm:navigableTo :rwy_194_part_0-rwy_170-rwy_171-rwy_152-rwy_151-rwy_161-rwy_174-rwy_14-rwy_55-rwy_15-rwy_24-rwy_162-rwy_155-rwy_160-rwy_23_part_1-rwy_25_1 ;
     rsm:onElement :rwy_190 ;
     geo:asWKT "POINT (7.8623806 43.845654)" .
 
@@ -396,8 +446,7 @@
     rsm:azimuth -1.719003e+02 ;
     rsm:connectedWith :rwy_226_1,
         :rwy_76_1 ;
-    rsm:navigableTo :rwy_226_0,
-        :rwy_76_0 ;
+    rsm:navigableTo :rwy_226_0 ;
     rsm:onElement :rwy_191_part_0 ;
     geo:asWKT "POINT (7.8518692 43.8442174)" .
 
@@ -423,25 +472,32 @@
     rsm:azimuth 1.010576e+01 ;
     rsm:connectedWith :rwy_201-rwy_165-rwy_243-rwy_168-rwy_154-rwy_159-rwy_211-rwy_156-rwy_158-rwy_169-rwy_167-rwy_235-rwy_153-rwy_166_0,
         :rwy_208-rwy_209_1 ;
-    rsm:navigableTo :rwy_208-rwy_209_0 ;
+    rsm:navigableTo :rwy_201-rwy_165-rwy_243-rwy_168-rwy_154-rwy_159-rwy_211-rwy_156-rwy_158-rwy_169-rwy_167-rwy_235-rwy_153-rwy_166_1,
+        :rwy_208-rwy_209_0 ;
     rsm:onElement :rwy_198 ;
     geo:asWKT "POINT (8.0382251 43.8986129)" .
 
-:rwy_201-rwy_165-rwy_243-rwy_168-rwy_154-rwy_159-rwy_211-rwy_156-rwy_158-rwy_169-rwy_167-rwy_235-rwy_153-rwy_166_1 a rsm:Port ;
-    rsm:azimuth 4.43318e+01 ;
-    rsm:connectedWith :rwy_202_0,
-        :rwy_203_0 ;
-    rsm:navigableTo :rwy_202_1,
-        :rwy_203_1 ;
-    rsm:onElement :rwy_201-rwy_165-rwy_243-rwy_168-rwy_154-rwy_159-rwy_211-rwy_156-rwy_158-rwy_169-rwy_167-rwy_235-rwy_153-rwy_166 ;
-    geo:asWKT "POINT (8.1358582 43.9577824)" .
+:rwy_202_1 a rsm:Port ;
+    rsm:azimuth -1.296921e+02 ;
+    rsm:connectedWith :rwy_204_part_0_1,
+        :rwy_38-rwy_27-rwy_34-rwy_35-rwy_36-rwy_212-rwy_37-rwy_217-rwy_216-rwy_204_part_1-rwy_40-rwy_184-rwy_236_1 ;
+    rsm:navigableTo :rwy_38-rwy_27-rwy_34-rwy_35-rwy_36-rwy_212-rwy_37-rwy_217-rwy_216-rwy_204_part_1-rwy_40-rwy_184-rwy_236_0 ;
+    rsm:onElement :rwy_202 ;
+    geo:asWKT "POINT (8.1355287 43.957384)" .
+
+:rwy_204_part_0_0 a rsm:Port ;
+    rsm:azimuth 4.444427e+01 ;
+    rsm:connectedWith :rwy_205_0,
+        :rwy_39-rwy_185-rwy_222_1 ;
+    rsm:navigableTo :rwy_39-rwy_185-rwy_222_0 ;
+    rsm:onElement :rwy_204_part_0 ;
+    geo:asWKT "POINT (8.1365453 43.9583846)" .
 
 :rwy_215_0 a rsm:Port ;
     rsm:azimuth -1.552523e+02 ;
     rsm:connectedWith :rwy_234_part_0-rwy_206-rwy_150-rwy_223_1,
         :rwy_234_part_1_0 ;
-    rsm:navigableTo :rwy_234_part_0-rwy_206-rwy_150-rwy_223_0,
-        :rwy_234_part_1_1 ;
+    rsm:navigableTo :rwy_234_part_0-rwy_206-rwy_150-rwy_223_0 ;
     rsm:onElement :rwy_215 ;
     geo:asWKT "POINT (8.1403279 43.9610904)" .
 
@@ -454,8 +510,7 @@
     rsm:azimuth 4.054438e+01 ;
     rsm:connectedWith :rwy_219_0,
         :rwy_220_part_0_1 ;
-    rsm:navigableTo :rwy_219_1,
-        :rwy_220_part_0_0 ;
+    rsm:navigableTo :rwy_220_part_0_0 ;
     rsm:onElement :rwy_218_part_0-rwy_220_part_1 ;
     geo:asWKT "POINT (8.1730929 44.0095057)" .
 
@@ -463,10 +518,24 @@
     rsm:azimuth -1.524339e+02 ;
     rsm:connectedWith :rwy_218_part_1_0,
         :rwy_219_1 ;
-    rsm:navigableTo :rwy_218_part_1_1,
-        :rwy_219_0 ;
+    rsm:navigableTo :rwy_218_part_1_1 ;
     rsm:onElement :rwy_218_part_0-rwy_220_part_1 ;
     geo:asWKT "POINT (8.1689131 44.0065645)" .
+
+:rwy_228_1 a rsm:Port ;
+    rsm:azimuth -1.71648e+02 ;
+    rsm:onElement :rwy_228 ;
+    geo:asWKT "POINT (8.0250759 43.8963011)" .
+
+:rwy_229_1 a rsm:Port ;
+    rsm:azimuth 9.772189e+00 ;
+    rsm:onElement :rwy_229 ;
+    geo:asWKT "POINT (8.0352971 43.8981249)" .
+
+:rwy_241-rwy_56-rwy_238-rwy_239_0 a rsm:Port ;
+    rsm:azimuth -1.477423e+02 ;
+    rsm:onElement :rwy_241-rwy_56-rwy_238-rwy_239 ;
+    geo:asWKT "POINT (7.7006328 43.7992295)" .
 
 :rwy_60_part_0-rwy_63_part_1_0 a rsm:Port ;
     rsm:azimuth 1.125201e+01 ;
@@ -483,8 +552,7 @@
         :rwy_62_1,
         :rwy_64_part_0_0 ;
     rsm:navigableTo :rwy_60_part_1_1,
-        :rwy_62_0,
-        :rwy_64_part_0_1 ;
+        :rwy_62_0 ;
     rsm:onElement :rwy_60_part_0-rwy_63_part_1 ;
     geo:asWKT "POINT (7.8517752 43.8440374)" .
 
@@ -511,17 +579,20 @@
     rsm:azimuth 1.056915e+01 ;
     rsm:connectedWith :rwy_66_part_0_1,
         :rwy_66_part_1_0 ;
-    rsm:navigableTo :rwy_66_part_0_0,
-        :rwy_66_part_1_1 ;
+    rsm:navigableTo :rwy_66_part_0_0 ;
     rsm:onElement :rwy_65 ;
     geo:asWKT "POINT (7.852875 43.8440258)" .
+
+:rwy_66_part_1_1 a rsm:Port ;
+    rsm:azimuth -1.758278e+02 ;
+    rsm:onElement :rwy_66_part_1 ;
+    geo:asWKT "POINT (7.852077 43.8439565)" .
 
 :rwy_67_0 a rsm:Port ;
     rsm:azimuth -1.716546e+02 ;
     rsm:connectedWith :rwy_68_part_0_1,
         :rwy_68_part_1_0 ;
-    rsm:navigableTo :rwy_68_part_0_0,
-        :rwy_68_part_1_1 ;
+    rsm:navigableTo :rwy_68_part_1_1 ;
     rsm:onElement :rwy_67 ;
     geo:asWKT "POINT (7.8600952 43.8453688)" .
 
@@ -529,6 +600,15 @@
     rsm:azimuth 1.1794e+01 ;
     rsm:onElement :rwy_67 ;
     geo:asWKT "POINT (7.860705 43.8454829)" .
+
+:rwy_68_part_2_1 a rsm:Port ;
+    rsm:azimuth -1.773821e+02 ;
+    rsm:connectedWith :rwy_68_part_3-rwy_75_part_0_0,
+        :rwy_74-rwy_77_part_1_1 ;
+    rsm:navigableTo :rwy_68_part_3-rwy_75_part_0_1,
+        :rwy_74-rwy_77_part_1_0 ;
+    rsm:onElement :rwy_68_part_2 ;
+    geo:asWKT "POINT (7.8592961 43.8453199)" .
 
 :rwy_71_0 a rsm:Port ;
     rsm:azimuth 8.912533e+00 ;
@@ -539,17 +619,29 @@
     rsm:azimuth -1.631298e+02 ;
     rsm:connectedWith :rwy_72_part_0_1,
         :rwy_72_part_1_0 ;
-    rsm:navigableTo :rwy_72_part_0_0,
-        :rwy_72_part_1_1 ;
+    rsm:navigableTo :rwy_72_part_1_1 ;
     rsm:onElement :rwy_71 ;
     geo:asWKT "POINT (7.8535315 43.8446112)" .
+
+:rwy_72_part_0_0 a rsm:Port ;
+    rsm:azimuth 8.500335e+00 ;
+    rsm:onElement :rwy_72_part_0 ;
+    geo:asWKT "POINT (7.8565838 43.8451006)" .
+
+:rwy_73_part_0_1 a rsm:Port ;
+    rsm:azimuth 1.264053e+01 ;
+    rsm:connectedWith :rwy_73_part_1_0,
+        :rwy_77_part_0_0 ;
+    rsm:navigableTo :rwy_73_part_1_1,
+        :rwy_77_part_0_1 ;
+    rsm:onElement :rwy_73_part_0 ;
+    geo:asWKT "POINT (7.8536173 43.8445821)" .
 
 :rwy_78_part_0_0 a rsm:Port ;
     rsm:azimuth -1.576853e+02 ;
     rsm:connectedWith :rwy_80_part_0_1,
         :rwy_80_part_1_0 ;
-    rsm:navigableTo :rwy_80_part_0_0,
-        :rwy_80_part_1_1 ;
+    rsm:navigableTo :rwy_80_part_0_0 ;
     rsm:onElement :rwy_78_part_0 ;
     geo:asWKT "POINT (7.8533203 43.8446352)" .
 
@@ -562,10 +654,15 @@
     rsm:onElement :rwy_78_part_0 ;
     geo:asWKT "POINT (7.8536636 43.8447765)" .
 
-:rwy_98-rwy_94-rwy_90-rwy_232-rwy_101-rwy_89_1 a rsm:Port ;
-    rsm:azimuth 9.292331e+01 ;
-    rsm:onElement :rwy_98-rwy_94-rwy_90-rwy_232-rwy_101-rwy_89 ;
-    geo:asWKT "POINT (8.2250474 44.0619002)" .
+:rwy_80_part_1_1 a rsm:Port ;
+    rsm:azimuth 7.863612e+00 ;
+    rsm:onElement :rwy_80_part_1 ;
+    geo:asWKT "POINT (7.8575816 43.8458008)" .
+
+:rwy_91-rwy_64_part_1-rwy_92_1 a rsm:Port ;
+    rsm:azimuth 8.164419e+00 ;
+    rsm:onElement :rwy_91-rwy_64_part_1-rwy_92 ;
+    geo:asWKT "POINT (7.8583708 43.8448596)" .
 
 :rwy_0-rwy_221 a rsm:LinearElement ;
     rsm:hasPort :rwy_0-rwy_221_0,
@@ -642,8 +739,7 @@
     rsm:azimuth 5.338185e+01 ;
     rsm:connectedWith :rwy_104_part_3_0,
         :rwy_143_part_1_1 ;
-    rsm:navigableTo :rwy_104_part_3_1,
-        :rwy_143_part_1_0 ;
+    rsm:navigableTo :rwy_104_part_3_1 ;
     rsm:onElement :rwy_104_part_2 ;
     geo:asWKT "POINT (8.2239461 44.0499218)" .
 
@@ -665,7 +761,6 @@
         :rwy_130_part_1_1,
         :rwy_130_part_2_0 ;
     rsm:navigableTo :rwy_104_part_4_1,
-        :rwy_130_part_1_0,
         :rwy_130_part_2_1 ;
     rsm:onElement :rwy_104_part_3 ;
     geo:asWKT "POINT (8.2242733 44.0504866)" .
@@ -680,8 +775,7 @@
     rsm:azimuth -1.194592e+02 ;
     rsm:connectedWith :rwy_130_part_1_1,
         :rwy_130_part_2_0 ;
-    rsm:navigableTo :rwy_130_part_1_0,
-        :rwy_130_part_2_1 ;
+    rsm:navigableTo :rwy_130_part_1_0 ;
     rsm:onElement :rwy_104_part_4 ;
     geo:asWKT "POINT (8.2242733 44.0504866)" .
 
@@ -690,7 +784,7 @@
     rsm:connectedWith :rwy_139_part_1_1,
         :rwy_148-rwy_95-rwy_233-rwy_99-rwy_96-rwy_97_1,
         :rwy_149_0 ;
-    rsm:navigableTo :rwy_139_part_1_0,
+    rsm:navigableTo :rwy_148-rwy_95-rwy_233-rwy_99-rwy_96-rwy_97_0,
         :rwy_149_1 ;
     rsm:onElement :rwy_104_part_4 ;
     geo:asWKT "POINT (8.22442 44.0507473)" .
@@ -705,11 +799,6 @@
     rsm:hasPort :rwy_108-rwy_106-rwy_109_0,
         :rwy_108-rwy_106-rwy_109_1 ;
     geo:asWKT "LINESTRING (8.2208612999999993 44.0461402000000035, 8.2206448999999999 44.0458776999999984, 8.2204943999999998 44.0456934999999987, 8.2204362999999994 44.0456173000000035, 8.2202178000000004 44.0453315000000032, 8.2200694999999993 44.0450908999999982, 8.2199066999999992 44.0448110000000028)"^^geo:wktLiteral .
-
-:rwy_108-rwy_106-rwy_109_1 a rsm:Port ;
-    rsm:azimuth -1.202772e+02 ;
-    rsm:onElement :rwy_108-rwy_106-rwy_109 ;
-    geo:asWKT "POINT (8.2199067 44.044811)" .
 
 :rwy_112_part_0 a rsm:LinearElement,
         geo:Geometry ;
@@ -754,8 +843,7 @@
     rsm:azimuth 6.030677e+01 ;
     rsm:connectedWith :rwy_119_part_0_1,
         :rwy_119_part_1_0 ;
-    rsm:navigableTo :rwy_119_part_0_0,
-        :rwy_119_part_1_1 ;
+    rsm:navigableTo :rwy_119_part_1_1 ;
     rsm:onElement :rwy_112_part_2 ;
     geo:asWKT "POINT (8.2249841 44.0518997)" .
 
@@ -769,8 +857,7 @@
     rsm:azimuth 4.649321e+01 ;
     rsm:connectedWith :rwy_116_part_0_0,
         :rwy_120_part_1_1 ;
-    rsm:navigableTo :rwy_116_part_0_1,
-        :rwy_120_part_1_0 ;
+    rsm:navigableTo :rwy_116_part_0_1 ;
     rsm:onElement :rwy_113 ;
     geo:asWKT "POINT (8.2245032 44.0510943)" .
 
@@ -796,8 +883,7 @@
     rsm:azimuth 3.085988e+01 ;
     rsm:connectedWith :rwy_118_part_1_1,
         :rwy_118_part_2_0 ;
-    rsm:navigableTo :rwy_118_part_1_0,
-        :rwy_118_part_2_1 ;
+    rsm:navigableTo :rwy_118_part_2_1 ;
     rsm:onElement :rwy_114_part_1 ;
     geo:asWKT "POINT (8.2234016 44.0500105)" .
 
@@ -806,11 +892,6 @@
     rsm:hasPort :rwy_115_0,
         :rwy_115_1 ;
     geo:asWKT "LINESTRING (8.2218183000000007 44.0486671999999970, 8.2221624000000002 44.0490909000000030, 8.2223340999999994 44.0492895000000004, 8.2224378999999992 44.0494075000000009, 8.2225728000000000 44.0495170000000016, 8.2227435999999994 44.0496387999999968, 8.2230287999999998 44.0497869000000009)"^^geo:wktLiteral .
-
-:rwy_115_0 a rsm:Port ;
-    rsm:azimuth -1.291863e+02 ;
-    rsm:onElement :rwy_115 ;
-    geo:asWKT "POINT (8.2218183 44.0486672)" .
 
 :rwy_116_part_0 a rsm:LinearElement,
         geo:Geometry ;
@@ -824,14 +905,6 @@
         :rwy_116_part_1_1 ;
     geo:asWKT "LINESTRING (8.2246667999999996 44.0512948000000009, 8.2249809000000003 44.0516560000000013)"^^geo:wktLiteral .
 
-:rwy_116_part_1_1 a rsm:Port ;
-    rsm:azimuth 4.888304e+01 ;
-    rsm:connectedWith :rwy_125_part_2_1,
-        :rwy_98-rwy_94-rwy_90-rwy_232-rwy_101-rwy_89_0 ;
-    rsm:navigableTo :rwy_125_part_2_0 ;
-    rsm:onElement :rwy_116_part_1 ;
-    geo:asWKT "POINT (8.2249809 44.051656)" .
-
 :rwy_117 a rsm:LinearElement,
         geo:Geometry ;
     rsm:hasPort :rwy_117_0,
@@ -843,11 +916,6 @@
     rsm:hasPort :rwy_118_part_0_0,
         :rwy_118_part_0_1 ;
     geo:asWKT "LINESTRING (8.2220122000000000 44.0485954999999976, 8.2225371000000003 44.0492532000000026, 8.2227309999999996 44.0494630000000029, 8.2229527999999998 44.0496522999999982, 8.2231889000000002 44.0498393000000021)"^^geo:wktLiteral .
-
-:rwy_118_part_0_0 a rsm:Port ;
-    rsm:azimuth -1.286976e+02 ;
-    rsm:onElement :rwy_118_part_0 ;
-    geo:asWKT "POINT (8.2220122 44.0485955)" .
 
 :rwy_118_part_0_1 a rsm:Port ;
     rsm:azimuth 3.827587e+01 ;
@@ -872,11 +940,6 @@
     rsm:hasPort :rwy_119_part_0_0,
         :rwy_119_part_0_1 ;
     geo:asWKT "LINESTRING (8.2238863000000002 44.0505969000000022, 8.2244334000000006 44.0512273000000008, 8.2245916999999995 44.0514180999999994, 8.2248204999999999 44.0516876000000011, 8.2249841000000004 44.0518996999999999)"^^geo:wktLiteral .
-
-:rwy_119_part_0_0 a rsm:Port ;
-    rsm:azimuth -1.3106e+02 ;
-    rsm:onElement :rwy_119_part_0 ;
-    geo:asWKT "POINT (8.2238863 44.0505969)" .
 
 :rwy_119_part_0_1 a rsm:Port ;
     rsm:azimuth 5.225154e+01 ;
@@ -905,6 +968,12 @@
     rsm:hasPort :rwy_120_part_1_0,
         :rwy_120_part_1_1 ;
     geo:asWKT "LINESTRING (8.2234406999999994 44.0497449000000003, 8.2240821000000004 44.0505544999999969, 8.2245031999999991 44.0510943000000026)"^^geo:wktLiteral .
+
+:rwy_120_part_1_0 a rsm:Port ;
+    rsm:azimuth -1.284925e+02 ;
+    rsm:connectedWith :rwy_245_part_0_0 ;
+    rsm:onElement :rwy_120_part_1 ;
+    geo:asWKT "POINT (8.2234407 44.0497449)" .
 
 :rwy_121_part_0 a rsm:LinearElement,
         geo:Geometry ;
@@ -949,8 +1018,7 @@
     rsm:azimuth 5.574904e+01 ;
     rsm:connectedWith :rwy_128_part_0_1,
         :rwy_128_part_1_0 ;
-    rsm:navigableTo :rwy_128_part_0_0,
-        :rwy_128_part_1_1 ;
+    rsm:navigableTo :rwy_128_part_1_1 ;
     rsm:onElement :rwy_121_part_2 ;
     geo:asWKT "POINT (8.2237414 44.0494325)" .
 
@@ -969,8 +1037,7 @@
     rsm:azimuth 5.17379e+01 ;
     rsm:connectedWith :rwy_130_part_0_1,
         :rwy_130_part_1_0 ;
-    rsm:navigableTo :rwy_130_part_0_0,
-        :rwy_130_part_1_1 ;
+    rsm:navigableTo :rwy_130_part_1_1 ;
     rsm:onElement :rwy_122-rwy_102_part_2-rwy_140 ;
     geo:asWKT "POINT (8.224056 44.050211)" .
 
@@ -1008,6 +1075,12 @@
     rsm:hasPort :rwy_125_part_2_0,
         :rwy_125_part_2_1 ;
     geo:asWKT "LINESTRING (8.2248313999999993 44.0514543000000032, 8.2249809000000003 44.0516560000000013)"^^geo:wktLiteral .
+
+:rwy_125_part_2_0 a rsm:Port ;
+    rsm:azimuth -1.266489e+02 ;
+    rsm:connectedWith :rwy_149_1 ;
+    rsm:onElement :rwy_125_part_2 ;
+    geo:asWKT "POINT (8.2248314 44.0514543)" .
 
 :rwy_126 a rsm:LinearElement,
         geo:Geometry ;
@@ -1093,6 +1166,11 @@
         :rwy_130_part_2_1 ;
     geo:asWKT "LINESTRING (8.2242733000000001 44.0504865999999993, 8.2244208000000008 44.0506851999999967, 8.2245013000000000 44.0507700000000000)"^^geo:wktLiteral .
 
+:rwy_130_part_2_1 a rsm:Port ;
+    rsm:azimuth 4.638258e+01 ;
+    rsm:onElement :rwy_130_part_2 ;
+    geo:asWKT "POINT (8.2245013 44.05077)" .
+
 :rwy_131 a rsm:LinearElement,
         geo:Geometry ;
     rsm:hasPort :rwy_131_0,
@@ -1103,8 +1181,7 @@
     rsm:azimuth 5.942529e+01 ;
     rsm:connectedWith :rwy_143_part_0_1,
         :rwy_143_part_1_0 ;
-    rsm:navigableTo :rwy_143_part_0_0,
-        :rwy_143_part_1_1 ;
+    rsm:navigableTo :rwy_143_part_1_1 ;
     rsm:onElement :rwy_131 ;
     geo:asWKT "POINT (8.2237476 44.0495844)" .
 
@@ -1126,11 +1203,6 @@
         :rwy_134_part_2_1 ;
     geo:asWKT "LINESTRING (8.2227631999999993 44.0478012000000021, 8.2229428999999996 44.0480074999999971, 8.2246748000000007 44.0501998000000015)"^^geo:wktLiteral .
 
-:rwy_134_part_2_1 a rsm:Port ;
-    rsm:azimuth 5.158664e+01 ;
-    rsm:onElement :rwy_134_part_2 ;
-    geo:asWKT "POINT (8.2246748 44.0501998)" .
-
 :rwy_135 a rsm:LinearElement,
         geo:Geometry ;
     rsm:hasPort :rwy_135_0,
@@ -1148,20 +1220,17 @@
         :rwy_136_part_1_1 ;
     geo:asWKT "LINESTRING (8.2214428000000002 44.0468145000000035, 8.2216179000000000 44.0469645000000014, 8.2217110000000009 44.0470457999999994)"^^geo:wktLiteral .
 
+:rwy_136_part_1_1 a rsm:Port ;
+    rsm:azimuth 4.102278e+01 ;
+    rsm:connectedWith :rwy_136_part_2_0 ;
+    rsm:onElement :rwy_136_part_1 ;
+    geo:asWKT "POINT (8.221711 44.0470458)" .
+
 :rwy_136_part_2 a rsm:LinearElement,
         geo:Geometry ;
     rsm:hasPort :rwy_136_part_2_0,
         :rwy_136_part_2_1 ;
     geo:asWKT "LINESTRING (8.2217110000000009 44.0470457999999994, 8.2219228999999991 44.0472059000000016)"^^geo:wktLiteral .
-
-:rwy_136_part_2_1 a rsm:Port ;
-    rsm:azimuth 3.696935e+01 ;
-    rsm:connectedWith :rwy_138_part_0_0,
-        :rwy_142_0 ;
-    rsm:navigableTo :rwy_138_part_0_1,
-        :rwy_142_1 ;
-    rsm:onElement :rwy_136_part_2 ;
-    geo:asWKT "POINT (8.2219229 44.0472059)" .
 
 :rwy_137_part_0 a rsm:LinearElement,
         geo:Geometry ;
@@ -1173,8 +1242,7 @@
     rsm:azimuth -1.495875e+02 ;
     rsm:connectedWith :rwy_138_part_1_1,
         :rwy_144_0 ;
-    rsm:navigableTo :rwy_138_part_1_0,
-        :rwy_144_1 ;
+    rsm:navigableTo :rwy_138_part_1_0 ;
     rsm:onElement :rwy_137_part_0 ;
     geo:asWKT "POINT (8.2225317 44.0475529)" .
 
@@ -1190,11 +1258,6 @@
         :rwy_137_part_1_1 ;
     geo:asWKT "LINESTRING (8.2229428999999996 44.0478147000000035, 8.2230851000000005 44.0479322999999994, 8.2232702000000000 44.0481039000000010, 8.2234464000000003 44.0482969999999980, 8.2236662999999997 44.0485784999999979, 8.2251075000000000 44.0504346000000027)"^^geo:wktLiteral .
 
-:rwy_137_part_1_1 a rsm:Port ;
-    rsm:azimuth 5.206737e+01 ;
-    rsm:onElement :rwy_137_part_1 ;
-    geo:asWKT "POINT (8.2251075 44.0504346)" .
-
 :rwy_138_part_0 a rsm:LinearElement,
         geo:Geometry ;
     rsm:hasPort :rwy_138_part_0_0,
@@ -1207,6 +1270,12 @@
         :rwy_138_part_1_1 ;
     geo:asWKT "LINESTRING (8.2222446999999992 44.0473793999999970, 8.2225316999999993 44.0475528999999995)"^^geo:wktLiteral .
 
+:rwy_138_part_1_1 a rsm:Port ;
+    rsm:azimuth 3.105908e+01 ;
+    rsm:connectedWith :rwy_144_0 ;
+    rsm:onElement :rwy_138_part_1 ;
+    geo:asWKT "POINT (8.2225317 44.0475529)" .
+
 :rwy_139_part_0-rwy_100-rwy_133 a rsm:LinearElement ;
     rsm:hasPort :rwy_139_part_0-rwy_100-rwy_133_0,
         :rwy_139_part_0-rwy_100-rwy_133_1 ;
@@ -1218,20 +1287,17 @@
     rsm:onElement :rwy_139_part_0-rwy_100-rwy_133 ;
     geo:asWKT "POINT (8.2206006 44.0458833)" .
 
-:rwy_139_part_0-rwy_100-rwy_133_1 a rsm:Port ;
-    rsm:azimuth 5.223618e+01 ;
-    rsm:connectedWith :rwy_139_part_1_0,
-        :rwy_245_part_1_1 ;
-    rsm:navigableTo :rwy_139_part_1_1,
-        :rwy_245_part_1_0 ;
-    rsm:onElement :rwy_139_part_0-rwy_100-rwy_133 ;
-    geo:asWKT "POINT (8.2242233 44.0505021)" .
-
 :rwy_139_part_1 a rsm:LinearElement,
         geo:Geometry ;
     rsm:hasPort :rwy_139_part_1_0,
         :rwy_139_part_1_1 ;
     geo:asWKT "LINESTRING (8.2242233000000002 44.0505021000000028, 8.2242832000000003 44.0505795999999989, 8.2244200000000003 44.0507472999999976)"^^geo:wktLiteral .
+
+:rwy_139_part_1_0 a rsm:Port ;
+    rsm:azimuth -1.278048e+02 ;
+    rsm:connectedWith :rwy_245_part_1_1 ;
+    rsm:onElement :rwy_139_part_1 ;
+    geo:asWKT "POINT (8.2242233 44.0505021)" .
 
 :rwy_142 a rsm:LinearElement,
         geo:Geometry ;
@@ -1262,11 +1328,6 @@
         :rwy_144_1 ;
     geo:asWKT "LINESTRING (8.2225316999999993 44.0475528999999995, 8.2226853999999996 44.0476643000000010, 8.2229045999999997 44.0478420999999969, 8.2231334000000000 44.0480421999999976, 8.2232648000000008 44.0481655999999973, 8.2234142000000006 44.0483316999999985, 8.2250604999999997 44.0504511999999977)"^^geo:wktLiteral .
 
-:rwy_144_1 a rsm:Port ;
-    rsm:azimuth 5.205759e+01 ;
-    rsm:onElement :rwy_144 ;
-    geo:asWKT "POINT (8.2250605 44.0504512)" .
-
 :rwy_145_part_0 a rsm:LinearElement,
         geo:Geometry ;
     rsm:hasPort :rwy_145_part_0_0,
@@ -1278,11 +1339,6 @@
     rsm:hasPort :rwy_145_part_1_0,
         :rwy_145_part_1_1 ;
     geo:asWKT "LINESTRING (8.2225862000000003 44.0476740000000007, 8.2227919000000007 44.0478902999999988, 8.2233874000000000 44.0486383000000004, 8.2246238999999992 44.0502151999999967)"^^geo:wktLiteral .
-
-:rwy_145_part_1_1 a rsm:Port ;
-    rsm:azimuth 5.179414e+01 ;
-    rsm:onElement :rwy_145_part_1 ;
-    geo:asWKT "POINT (8.2246239 44.0502152)" .
 
 :rwy_148-rwy_95-rwy_233-rwy_99-rwy_96-rwy_97 a rsm:LinearElement ;
     rsm:hasPort :rwy_148-rwy_95-rwy_233-rwy_99-rwy_96-rwy_97_0,
@@ -1311,8 +1367,7 @@
     rsm:azimuth 1.342916e+01 ;
     rsm:connectedWith :rwy_164_part_1-rwy_163_part_0-rwy_180_1,
         :rwy_228_0 ;
-    rsm:navigableTo :rwy_164_part_1-rwy_163_part_0-rwy_180_0,
-        :rwy_228_1 ;
+    rsm:navigableTo :rwy_164_part_1-rwy_163_part_0-rwy_180_0 ;
     rsm:onElement :rwy_163_part_1 ;
     geo:asWKT "POINT (8.0259395 43.8964398)" .
 
@@ -1377,15 +1432,6 @@
         :rwy_178_part_0_1 ;
     geo:asWKT "LINESTRING (8.0237154000000004 43.8959349000000003, 8.0241047999999999 43.8959826999999976, 8.0245250000000006 43.8960396000000017)"^^geo:wktLiteral .
 
-:rwy_178_part_0_0 a rsm:Port ;
-    rsm:azimuth -1.730243e+02 ;
-    rsm:connectedWith :rwy_179_part_1_1,
-        :rwy_179_part_2_0 ;
-    rsm:navigableTo :rwy_179_part_1_0,
-        :rwy_179_part_2_1 ;
-    rsm:onElement :rwy_178_part_0 ;
-    geo:asWKT "POINT (8.0237154 43.8959349)" .
-
 :rwy_178_part_0_1 a rsm:Port ;
     rsm:azimuth 7.686865e+00 ;
     rsm:connectedWith :rwy_182_part_0-rwy_178_part_1-rwy_181_0 ;
@@ -1397,15 +1443,6 @@
     rsm:hasPort :rwy_179_part_1_0,
         :rwy_179_part_1_1 ;
     geo:asWKT "LINESTRING (8.0241807000000005 43.8960223999999997, 8.0237154000000004 43.8959349000000003)"^^geo:wktLiteral .
-
-:rwy_179_part_1_0 a rsm:Port ;
-    rsm:azimuth 1.061634e+01 ;
-    rsm:connectedWith :rwy_196_1,
-        :rwy_22-rwy_179_part_0-rwy_28_0 ;
-    rsm:navigableTo :rwy_196_0,
-        :rwy_22-rwy_179_part_0-rwy_28_1 ;
-    rsm:onElement :rwy_179_part_1 ;
-    geo:asWKT "POINT (8.0241807 43.8960224)" .
 
 :rwy_179_part_1_1 a rsm:Port ;
     rsm:azimuth -1.693836e+02 ;
@@ -1438,6 +1475,12 @@
     rsm:hasPort :rwy_182_part_1_0,
         :rwy_182_part_1_1 ;
     geo:asWKT "LINESTRING (8.0335795999999995 43.8976813000000021, 8.0342646999999996 43.8978391999999999, 8.0347083000000001 43.8979312000000021)"^^geo:wktLiteral .
+
+:rwy_182_part_1_1 a rsm:Port ;
+    rsm:azimuth 1.16794e+01 ;
+    rsm:connectedWith :rwy_22-rwy_179_part_0-rwy_28_1 ;
+    rsm:onElement :rwy_182_part_1 ;
+    geo:asWKT "POINT (8.0347083 43.8979312)" .
 
 :rwy_186 a rsm:LinearElement,
         geo:Geometry ;
@@ -1551,8 +1594,7 @@
     rsm:azimuth 7.203413e+00 ;
     rsm:connectedWith :rwy_68_part_1_1,
         :rwy_68_part_2_0 ;
-    rsm:navigableTo :rwy_68_part_1_0,
-        :rwy_68_part_2_1 ;
+    rsm:navigableTo :rwy_68_part_1_0 ;
     rsm:onElement :rwy_191_part_1-rwy_70 ;
     geo:asWKT "POINT (7.8600278 43.8453637)" .
 
@@ -1634,6 +1676,14 @@
     rsm:onElement :rwy_201-rwy_165-rwy_243-rwy_168-rwy_154-rwy_159-rwy_211-rwy_156-rwy_158-rwy_169-rwy_167-rwy_235-rwy_153-rwy_166 ;
     geo:asWKT "POINT (8.0382251 43.8986129)" .
 
+:rwy_201-rwy_165-rwy_243-rwy_168-rwy_154-rwy_159-rwy_211-rwy_156-rwy_158-rwy_169-rwy_167-rwy_235-rwy_153-rwy_166_1 a rsm:Port ;
+    rsm:azimuth 4.43318e+01 ;
+    rsm:connectedWith :rwy_202_0,
+        :rwy_203_0 ;
+    rsm:navigableTo :rwy_203_1 ;
+    rsm:onElement :rwy_201-rwy_165-rwy_243-rwy_168-rwy_154-rwy_159-rwy_211-rwy_156-rwy_158-rwy_169-rwy_167-rwy_235-rwy_153-rwy_166 ;
+    geo:asWKT "POINT (8.1358582 43.9577824)" .
+
 :rwy_202 a rsm:LinearElement,
         geo:Geometry ;
     rsm:hasPort :rwy_202_0,
@@ -1645,14 +1695,6 @@
     rsm:connectedWith :rwy_203_0 ;
     rsm:onElement :rwy_202 ;
     geo:asWKT "POINT (8.1358582 43.9577824)" .
-
-:rwy_202_1 a rsm:Port ;
-    rsm:azimuth -1.296921e+02 ;
-    rsm:connectedWith :rwy_204_part_0_1,
-        :rwy_38-rwy_27-rwy_34-rwy_35-rwy_36-rwy_212-rwy_37-rwy_217-rwy_216-rwy_204_part_1-rwy_40-rwy_184-rwy_236_1 ;
-    rsm:navigableTo :rwy_204_part_0_0 ;
-    rsm:onElement :rwy_202 ;
-    geo:asWKT "POINT (8.1355287 43.957384)" .
 
 :rwy_203 a rsm:LinearElement,
         geo:Geometry ;
@@ -1675,15 +1717,6 @@
         :rwy_204_part_0_1 ;
     geo:asWKT "LINESTRING (8.1365452999999999 43.9583846000000023, 8.1355287000000001 43.9573839999999976)"^^geo:wktLiteral .
 
-:rwy_204_part_0_0 a rsm:Port ;
-    rsm:azimuth 4.444427e+01 ;
-    rsm:connectedWith :rwy_205_0,
-        :rwy_39-rwy_185-rwy_222_1 ;
-    rsm:navigableTo :rwy_205_1,
-        :rwy_39-rwy_185-rwy_222_0 ;
-    rsm:onElement :rwy_204_part_0 ;
-    geo:asWKT "POINT (8.1365453 43.9583846)" .
-
 :rwy_204_part_0_1 a rsm:Port ;
     rsm:azimuth -1.355556e+02 ;
     rsm:connectedWith :rwy_38-rwy_27-rwy_34-rwy_35-rwy_36-rwy_212-rwy_37-rwy_217-rwy_216-rwy_204_part_1-rwy_40-rwy_184-rwy_236_1 ;
@@ -1696,6 +1729,12 @@
         :rwy_205_1 ;
     geo:asWKT "LINESTRING (8.1365452999999999 43.9583846000000023, 8.1360919000000003 43.9580114999999978)"^^geo:wktLiteral .
 
+:rwy_205_1 a rsm:Port ;
+    rsm:azimuth -1.406485e+02 ;
+    rsm:connectedWith :rwy_234_part_0-rwy_206-rwy_150-rwy_223_0 ;
+    rsm:onElement :rwy_205 ;
+    geo:asWKT "POINT (8.1360919 43.9580115)" .
+
 :rwy_207-rwy_177_part_1-rwy_210 a rsm:LinearElement ;
     rsm:hasPort :rwy_207-rwy_177_part_1-rwy_210_0,
         :rwy_207-rwy_177_part_1-rwy_210_1 ;
@@ -1705,7 +1744,7 @@
     rsm:azimuth 1.015872e+01 ;
     rsm:connectedWith :rwy_208-rwy_209_0,
         :rwy_38-rwy_27-rwy_34-rwy_35-rwy_36-rwy_212-rwy_37-rwy_217-rwy_216-rwy_204_part_1-rwy_40-rwy_184-rwy_236_0 ;
-    rsm:navigableTo :rwy_208-rwy_209_1 ;
+    rsm:navigableTo :rwy_38-rwy_27-rwy_34-rwy_35-rwy_36-rwy_212-rwy_37-rwy_217-rwy_216-rwy_204_part_1-rwy_40-rwy_184-rwy_236_1 ;
     rsm:onElement :rwy_207-rwy_177_part_1-rwy_210 ;
     geo:asWKT "POINT (8.0391936 43.8987441)" .
 
@@ -1731,11 +1770,23 @@
         :rwy_218_part_1_1 ;
     geo:asWKT "LINESTRING (8.1689130999999993 44.0065645000000032, 8.1685894999999995 44.0063823999999997, 8.1677529999999994 44.0059212000000031, 8.1675337999999993 44.0058105000000026)"^^geo:wktLiteral .
 
+:rwy_218_part_1_0 a rsm:Port ;
+    rsm:azimuth 2.927936e+01 ;
+    rsm:connectedWith :rwy_219_1 ;
+    rsm:onElement :rwy_218_part_1 ;
+    geo:asWKT "POINT (8.1689131 44.0065645)" .
+
 :rwy_219 a rsm:LinearElement,
         geo:Geometry ;
     rsm:hasPort :rwy_219_0,
         :rwy_219_1 ;
     geo:asWKT "LINESTRING (8.1730929000000003 44.0095056999999983, 8.1727401999999998 44.0090615000000014, 8.1725998999999998 44.0089181000000025, 8.1718782000000001 44.0082565000000017, 8.1716200000000008 44.0080455000000015, 8.1712931999999991 44.0078176999999968, 8.1707301999999995 44.0074569000000011, 8.1704565999999996 44.0072870999999992, 8.1701478999999999 44.0071078000000000, 8.1698638999999993 44.0069688000000028, 8.1696703999999993 44.0068742999999998, 8.1693941999999993 44.0067625000000007, 8.1691929999999999 44.0066853000000009, 8.1689130999999993 44.0065645000000032)"^^geo:wktLiteral .
+
+:rwy_219_0 a rsm:Port ;
+    rsm:azimuth 5.144874e+01 ;
+    rsm:connectedWith :rwy_220_part_0_1 ;
+    rsm:onElement :rwy_219 ;
+    geo:asWKT "POINT (8.1730929 44.0095057)" .
 
 :rwy_22-rwy_179_part_0-rwy_28 a rsm:LinearElement ;
     rsm:hasPort :rwy_22-rwy_179_part_0-rwy_28_0,
@@ -1779,8 +1830,7 @@
     rsm:azimuth -1.718237e+02 ;
     rsm:connectedWith :rwy_72_part_3_1,
         :rwy_87_0 ;
-    rsm:navigableTo :rwy_72_part_3_0,
-        :rwy_87_1 ;
+    rsm:navigableTo :rwy_87_1 ;
     rsm:onElement :rwy_227 ;
     geo:asWKT "POINT (7.8509385 43.844082)" .
 
@@ -1796,21 +1846,11 @@
         :rwy_228_1 ;
     geo:asWKT "LINESTRING (8.0259394999999998 43.8964398000000031, 8.0255721999999992 43.8963741999999968, 8.0250758999999992 43.8963011000000023)"^^geo:wktLiteral .
 
-:rwy_228_1 a rsm:Port ;
-    rsm:azimuth -1.71648e+02 ;
-    rsm:onElement :rwy_228 ;
-    geo:asWKT "POINT (8.0250759 43.8963011)" .
-
 :rwy_229 a rsm:LinearElement,
         geo:Geometry ;
     rsm:hasPort :rwy_229_0,
         :rwy_229_1 ;
     geo:asWKT "LINESTRING (8.0342110000000009 43.8979476000000020, 8.0347287999999999 43.8980267000000026, 8.0352970999999993 43.8981248999999991)"^^geo:wktLiteral .
-
-:rwy_229_1 a rsm:Port ;
-    rsm:azimuth 9.772189e+00 ;
-    rsm:onElement :rwy_229 ;
-    geo:asWKT "POINT (8.0352971 43.8981249)" .
 
 :rwy_234_part_0-rwy_206-rwy_150-rwy_223 a rsm:LinearElement ;
     rsm:hasPort :rwy_234_part_0-rwy_206-rwy_150-rwy_223_0,
@@ -1822,6 +1862,12 @@
     rsm:hasPort :rwy_234_part_1_0,
         :rwy_234_part_1_1 ;
     geo:asWKT "LINESTRING (8.1403279000000008 43.9610904000000033, 8.1408173999999995 43.9612655000000032)"^^geo:wktLiteral .
+
+:rwy_234_part_1_1 a rsm:Port ;
+    rsm:azimuth 1.96184e+01 ;
+    rsm:connectedWith :rwy_39-rwy_185-rwy_222_0 ;
+    rsm:onElement :rwy_234_part_1 ;
+    geo:asWKT "POINT (8.1408174 43.9612655)" .
 
 :rwy_237_part_0 a rsm:LinearElement,
         geo:Geometry ;
@@ -1839,11 +1885,6 @@
     rsm:hasPort :rwy_241-rwy_56-rwy_238-rwy_239_0,
         :rwy_241-rwy_56-rwy_238-rwy_239_1 ;
     geo:asWKT "LINESTRING (7.7006328000000002 43.7992295000000027, 7.7012304000000000 43.7996076000000016, 7.7050209000000001 43.8021796000000023, 7.7060741999999998 43.8028485000000032, 7.7070411999999999 43.8033884000000029, 7.7080998000000003 43.8039488000000006, 7.7091184999999998 43.8044380999999987, 7.7098357999999996 43.8047669999999982, 7.7105668999999999 43.8050713000000016, 7.7113566000000002 43.8053667000000004, 7.7125699000000001 43.8057797000000022, 7.7138273999999996 43.8061857000000003, 7.7152395000000000 43.8066024000000027, 7.7726176000000002 43.8228983999999997, 7.7840483000000003 43.8261230999999967, 7.7954813999999999 43.8293467000000021, 7.8398539999999999 43.8417736999999974, 7.8409250000000004 43.8420640000000006, 7.8419530999999996 43.8423305999999968, 7.8431002000000003 43.8426089000000019, 7.8441627000000000 43.8428430000000020, 7.8453781999999999 43.8430800000000005, 7.8465578999999996 43.8432911000000018, 7.8476412000000000 43.8434730999999971, 7.8487083999999996 43.8436385999999985)"^^geo:wktLiteral .
-
-:rwy_241-rwy_56-rwy_238-rwy_239_0 a rsm:Port ;
-    rsm:azimuth -1.477423e+02 ;
-    rsm:onElement :rwy_241-rwy_56-rwy_238-rwy_239 ;
-    geo:asWKT "POINT (7.7006328 43.7992295)" .
 
 :rwy_242-rwy_26-rwy_237_part_1-rwy_240 a rsm:LinearElement ;
     rsm:hasPort :rwy_242-rwy_26-rwy_237_part_1-rwy_240_0,
@@ -1886,8 +1927,7 @@
     rsm:azimuth -1.24942e+02 ;
     rsm:connectedWith :rwy_8-rwy_42-rwy_247-rwy_246-rwy_172-rwy_41-rwy_49-rwy_10-rwy_11-rwy_48-rwy_50-rwy_47-rwy_46-rwy_44-rwy_4-rwy_5-rwy_146-rwy_147-rwy_3-rwy_6-rwy_54-rwy_53-rwy_7_1,
         :rwy_93-rwy_110-rwy_111_0 ;
-    rsm:navigableTo :rwy_8-rwy_42-rwy_247-rwy_246-rwy_172-rwy_41-rwy_49-rwy_10-rwy_11-rwy_48-rwy_50-rwy_47-rwy_46-rwy_44-rwy_4-rwy_5-rwy_146-rwy_147-rwy_3-rwy_6-rwy_54-rwy_53-rwy_7_0,
-        :rwy_93-rwy_110-rwy_111_1 ;
+    rsm:navigableTo :rwy_8-rwy_42-rwy_247-rwy_246-rwy_172-rwy_41-rwy_49-rwy_10-rwy_11-rwy_48-rwy_50-rwy_47-rwy_46-rwy_44-rwy_4-rwy_5-rwy_146-rwy_147-rwy_3-rwy_6-rwy_54-rwy_53-rwy_7_0 ;
     rsm:onElement :rwy_45_part_0-rwy_231-rwy_43 ;
     geo:asWKT "POINT (8.2202177 44.0454164)" .
 
@@ -1922,8 +1962,7 @@
     rsm:azimuth 8.203937e+00 ;
     rsm:connectedWith :rwy_57_part_1-rwy_59_part_0_0,
         :rwy_63_part_0_0 ;
-    rsm:navigableTo :rwy_57_part_1-rwy_59_part_0_1,
-        :rwy_63_part_0_1 ;
+    rsm:navigableTo :rwy_57_part_1-rwy_59_part_0_1 ;
     rsm:onElement :rwy_57_part_0-rwy_58_part_1 ;
     geo:asWKT "POINT (7.8604849 43.8453462)" .
 
@@ -1931,6 +1970,12 @@
     rsm:hasPort :rwy_57_part_1-rwy_59_part_0_0,
         :rwy_57_part_1-rwy_59_part_0_1 ;
     geo:asWKT "LINESTRING (7.8604849000000003 43.8453462000000016, 7.8607981999999996 43.8453914999999981, 7.8616033999999999 43.8455085000000011)"^^geo:wktLiteral .
+
+:rwy_57_part_1-rwy_59_part_0_0 a rsm:Port ;
+    rsm:azimuth -1.717957e+02 ;
+    rsm:connectedWith :rwy_63_part_0_0 ;
+    rsm:onElement :rwy_57_part_1-rwy_59_part_0 ;
+    geo:asWKT "POINT (7.8604849 43.8453462)" .
 
 :rwy_59_part_1 a rsm:LinearElement,
         geo:Geometry ;
@@ -1971,8 +2016,7 @@
     rsm:azimuth 1.8e+02 ;
     rsm:connectedWith :rwy_64_part_0_1,
         :rwy_91-rwy_64_part_1-rwy_92_0 ;
-    rsm:navigableTo :rwy_64_part_0_0,
-        :rwy_91-rwy_64_part_1-rwy_92_1 ;
+    rsm:navigableTo :rwy_64_part_0_0 ;
     rsm:onElement :rwy_61_part_1 ;
     geo:asWKT "POINT (7.8521964 43.844051)" .
 
@@ -1982,11 +2026,22 @@
         :rwy_62_1 ;
     geo:asWKT "LINESTRING (7.8510324000000002 43.8439137000000017, 7.8512072999999996 43.8439353999999994, 7.8514486999999997 43.8439856999999975, 7.8517751999999996 43.8440373999999977)"^^geo:wktLiteral .
 
+:rwy_62_0 a rsm:Port ;
+    rsm:azimuth -1.729472e+02 ;
+    rsm:onElement :rwy_62 ;
+    geo:asWKT "POINT (7.8510324 43.8439137)" .
+
 :rwy_63_part_0 a rsm:LinearElement,
         geo:Geometry ;
     rsm:hasPort :rwy_63_part_0_0,
         :rwy_63_part_0_1 ;
     geo:asWKT "LINESTRING (7.8604849000000003 43.8453462000000016, 7.8601671000000000 43.8452612000000030)"^^geo:wktLiteral .
+
+:rwy_63_part_0_1 a rsm:Port ;
+    rsm:azimuth -1.650666e+02 ;
+    rsm:connectedWith :rwy_86_1 ;
+    rsm:onElement :rwy_63_part_0 ;
+    geo:asWKT "POINT (7.8601671 43.8452612)" .
 
 :rwy_64_part_0 a rsm:LinearElement,
         geo:Geometry ;
@@ -2012,11 +2067,6 @@
         :rwy_66_part_1_1 ;
     geo:asWKT "LINESTRING (7.8528750000000000 43.8440257999999972, 7.8526522999999999 43.8440044999999969, 7.8523626999999996 43.8439774000000000, 7.8520770000000004 43.8439564999999973)"^^geo:wktLiteral .
 
-:rwy_66_part_1_1 a rsm:Port ;
-    rsm:azimuth -1.758278e+02 ;
-    rsm:onElement :rwy_66_part_1 ;
-    geo:asWKT "POINT (7.852077 43.8439565)" .
-
 :rwy_67 a rsm:LinearElement,
         geo:Geometry ;
     rsm:hasPort :rwy_67_0,
@@ -2041,15 +2091,6 @@
         :rwy_68_part_2_1 ;
     geo:asWKT "LINESTRING (7.8600278000000001 43.8453637000000001, 7.8596602999999998 43.8453366000000031, 7.8592960999999999 43.8453198999999998)"^^geo:wktLiteral .
 
-:rwy_68_part_2_1 a rsm:Port ;
-    rsm:azimuth -1.773821e+02 ;
-    rsm:connectedWith :rwy_68_part_3-rwy_75_part_0_0,
-        :rwy_74-rwy_77_part_1_1 ;
-    rsm:navigableTo :rwy_68_part_3-rwy_75_part_0_1,
-        :rwy_74-rwy_77_part_1_0 ;
-    rsm:onElement :rwy_68_part_2 ;
-    geo:asWKT "POINT (7.8592961 43.8453199)" .
-
 :rwy_68_part_3-rwy_75_part_0 a rsm:LinearElement ;
     rsm:hasPort :rwy_68_part_3-rwy_75_part_0_0,
         :rwy_68_part_3-rwy_75_part_0_1 ;
@@ -2065,8 +2106,7 @@
     rsm:azimuth -1.704661e+02 ;
     rsm:connectedWith :rwy_73_part_0_0,
         :rwy_75_part_1_0 ;
-    rsm:navigableTo :rwy_73_part_0_1,
-        :rwy_75_part_1_1 ;
+    rsm:navigableTo :rwy_75_part_1_1 ;
     rsm:onElement :rwy_68_part_3-rwy_75_part_0 ;
     geo:asWKT "POINT (7.8529072 43.8444166)" .
 
@@ -2087,11 +2127,6 @@
         :rwy_72_part_0_1 ;
     geo:asWKT "LINESTRING (7.8565838000000001 43.8451006000000021, 7.8551440000000001 43.8448848000000027, 7.8541113999999999 43.8447377999999972, 7.8538861000000004 43.8446933000000030, 7.8535314999999999 43.8446112000000028)"^^geo:wktLiteral .
 
-:rwy_72_part_0_0 a rsm:Port ;
-    rsm:azimuth 8.500335e+00 ;
-    rsm:onElement :rwy_72_part_0 ;
-    geo:asWKT "POINT (7.8565838 43.8451006)" .
-
 :rwy_72_part_0_1 a rsm:Port ;
     rsm:azimuth -1.669997e+02 ;
     rsm:connectedWith :rwy_72_part_1_0 ;
@@ -2108,8 +2143,7 @@
     rsm:azimuth -1.667443e+02 ;
     rsm:connectedWith :rwy_72_part_2_0,
         :rwy_80_part_0_0 ;
-    rsm:navigableTo :rwy_72_part_2_1,
-        :rwy_80_part_0_1 ;
+    rsm:navigableTo :rwy_72_part_2_1 ;
     rsm:onElement :rwy_72_part_1 ;
     geo:asWKT "POINT (7.8526873 43.8444089)" .
 
@@ -2140,6 +2174,12 @@
         :rwy_72_part_3_1 ;
     geo:asWKT "LINESTRING (7.8524452000000000 43.8443499999999986, 7.8520918000000002 43.8442948000000001, 7.8517564999999996 43.8442482999999967, 7.8514641999999997 43.8441922000000019, 7.8509384999999998 43.8440820000000002)"^^geo:wktLiteral .
 
+:rwy_72_part_3_0 a rsm:Port ;
+    rsm:azimuth 8.853009e+00 ;
+    rsm:connectedWith :rwy_76_0 ;
+    rsm:onElement :rwy_72_part_3 ;
+    geo:asWKT "POINT (7.8524452 43.84435)" .
+
 :rwy_73_part_0 a rsm:LinearElement,
         geo:Geometry ;
     rsm:hasPort :rwy_73_part_0_0,
@@ -2151,15 +2191,6 @@
     rsm:connectedWith :rwy_75_part_1_0 ;
     rsm:onElement :rwy_73_part_0 ;
     geo:asWKT "POINT (7.8529072 43.8444166)" .
-
-:rwy_73_part_0_1 a rsm:Port ;
-    rsm:azimuth 1.264053e+01 ;
-    rsm:connectedWith :rwy_73_part_1_0,
-        :rwy_77_part_0_0 ;
-    rsm:navigableTo :rwy_73_part_1_1,
-        :rwy_77_part_0_1 ;
-    rsm:onElement :rwy_73_part_0 ;
-    geo:asWKT "POINT (7.8536173 43.8445821)" .
 
 :rwy_73_part_1 a rsm:LinearElement,
         geo:Geometry ;
@@ -2179,8 +2210,7 @@
         :rwy_74-rwy_77_part_1_0,
         :rwy_77_part_0_1 ;
     rsm:navigableTo :rwy_73_part_2_1,
-        :rwy_74-rwy_77_part_1_1,
-        :rwy_77_part_0_0 ;
+        :rwy_74-rwy_77_part_1_1 ;
     rsm:onElement :rwy_73_part_1 ;
     geo:asWKT "POINT (7.8583385 43.8452696)" .
 
@@ -2194,8 +2224,7 @@
     rsm:azimuth -1.715987e+02 ;
     rsm:connectedWith :rwy_74-rwy_77_part_1_0,
         :rwy_77_part_0_1 ;
-    rsm:navigableTo :rwy_74-rwy_77_part_1_1,
-        :rwy_77_part_0_0 ;
+    rsm:navigableTo :rwy_77_part_0_0 ;
     rsm:onElement :rwy_73_part_2 ;
     geo:asWKT "POINT (7.8583385 43.8452696)" .
 
@@ -2272,16 +2301,17 @@
         :rwy_80_part_0_1 ;
     geo:asWKT "LINESTRING (7.8526873000000004 43.8444088999999977, 7.8531271000000000 43.8445521000000014, 7.8533203000000000 43.8446351999999990)"^^geo:wktLiteral .
 
+:rwy_80_part_0_1 a rsm:Port ;
+    rsm:azimuth 2.321489e+01 ;
+    rsm:connectedWith :rwy_80_part_1_0 ;
+    rsm:onElement :rwy_80_part_0 ;
+    geo:asWKT "POINT (7.8533203 43.8446352)" .
+
 :rwy_80_part_1 a rsm:LinearElement,
         geo:Geometry ;
     rsm:hasPort :rwy_80_part_1_0,
         :rwy_80_part_1_1 ;
     geo:asWKT "LINESTRING (7.8533203000000000 43.8446351999999990, 7.8540282000000001 43.8449717000000021, 7.8544916999999996 43.8451895999999977, 7.8547712000000001 43.8453006000000016, 7.8550845000000002 43.8454042999999984, 7.8552968999999999 43.8454552999999976, 7.8558119000000000 43.8455463000000023, 7.8570430000000000 43.8457262000000014, 7.8575815999999996 43.8458007999999992)"^^geo:wktLiteral .
-
-:rwy_80_part_1_1 a rsm:Port ;
-    rsm:azimuth 7.863612e+00 ;
-    rsm:onElement :rwy_80_part_1 ;
-    geo:asWKT "POINT (7.8575816 43.8458008)" .
 
 :rwy_86 a rsm:LinearElement,
         geo:Geometry ;
@@ -2310,11 +2340,6 @@
         :rwy_91-rwy_64_part_1-rwy_92_1 ;
     geo:asWKT "LINESTRING (7.8521964000000004 43.8440510000000003, 7.8526121000000000 43.8440731000000028, 7.8530116999999997 43.8440934999999996, 7.8532102000000004 43.8441147999999998, 7.8540818999999997 43.8442425000000000, 7.8548591999999999 43.8443542999999991, 7.8558491999999998 43.8444968000000017, 7.8583708000000003 43.8448595999999995)"^^geo:wktLiteral .
 
-:rwy_91-rwy_64_part_1-rwy_92_1 a rsm:Port ;
-    rsm:azimuth 8.164419e+00 ;
-    rsm:onElement :rwy_91-rwy_64_part_1-rwy_92 ;
-    geo:asWKT "POINT (7.8583708 43.8448596)" .
-
 :rwy_93-rwy_110-rwy_111 a rsm:LinearElement ;
     rsm:hasPort :rwy_93-rwy_110-rwy_111_0,
         :rwy_93-rwy_110-rwy_111_1 ;
@@ -2324,6 +2349,11 @@
     rsm:hasPort :rwy_98-rwy_94-rwy_90-rwy_232-rwy_101-rwy_89_0,
         :rwy_98-rwy_94-rwy_90-rwy_232-rwy_101-rwy_89_1 ;
     geo:asWKT "LINESTRING (8.2249809000000003 44.0516560000000013, 8.2251241000000004 44.0518689000000023, 8.2252384999999997 44.0520703999999981, 8.2253501999999994 44.0522913000000003, 8.2254866000000000 44.0526191000000011, 8.2255751999999998 44.0529302999999999, 8.2256190999999994 44.0532189999999986, 8.2256371999999995 44.0534900999999977, 8.2256345999999994 44.0536846999999980, 8.2256006999999993 44.0541474999999991, 8.2255015999999994 44.0550781999999970, 8.2254237000000003 44.0558089000000024, 8.2253305000000001 44.0566109999999966, 8.2252711000000005 44.0572774999999979, 8.2252004999999997 44.0585307999999998, 8.2251925999999997 44.0587118999999987, 8.2251735999999998 44.0591435999999987, 8.2251308999999999 44.0601421000000002, 8.2251028999999996 44.0608093000000025, 8.2250473999999993 44.0619001999999966)"^^geo:wktLiteral .
+
+:rwy_98-rwy_94-rwy_90-rwy_232-rwy_101-rwy_89_1 a rsm:Port ;
+    rsm:azimuth 9.292331e+01 ;
+    rsm:onElement :rwy_98-rwy_94-rwy_90-rwy_232-rwy_101-rwy_89 ;
+    geo:asWKT "POINT (8.2250474 44.0619002)" .
 
 :rwy_108-rwy_106-rwy_109_0 a rsm:Port ;
     rsm:azimuth 5.0393e+01 ;
@@ -2357,28 +2387,26 @@
     rsm:onElement :rwy_116_part_1 ;
     geo:asWKT "POINT (8.2246668 44.0512948)" .
 
+:rwy_118_part_1_0 a rsm:Port ;
+    rsm:azimuth -1.412748e+02 ;
+    rsm:onElement :rwy_118_part_1 ;
+    geo:asWKT "POINT (8.2231889 44.0498393)" .
+
 :rwy_118_part_1_1 a rsm:Port ;
     rsm:azimuth 3.872516e+01 ;
     rsm:connectedWith :rwy_118_part_2_0 ;
     rsm:onElement :rwy_118_part_1 ;
     geo:asWKT "POINT (8.2234016 44.0500105)" .
 
+:rwy_118_part_2_0 a rsm:Port ;
+    rsm:azimuth -1.406268e+02 ;
+    rsm:onElement :rwy_118_part_2 ;
+    geo:asWKT "POINT (8.2234016 44.0500105)" .
+
 :rwy_119_part_1_0 a rsm:Port ;
     rsm:azimuth -1.188844e+02 ;
     rsm:onElement :rwy_119_part_1 ;
     geo:asWKT "POINT (8.2249841 44.0518997)" .
-
-:rwy_120_part_1_0 a rsm:Port ;
-    rsm:azimuth -1.284925e+02 ;
-    rsm:connectedWith :rwy_245_part_0_0 ;
-    rsm:onElement :rwy_120_part_1 ;
-    geo:asWKT "POINT (8.2234407 44.0497449)" .
-
-:rwy_125_part_2_0 a rsm:Port ;
-    rsm:azimuth -1.266489e+02 ;
-    rsm:connectedWith :rwy_149_1 ;
-    rsm:onElement :rwy_125_part_2 ;
-    geo:asWKT "POINT (8.2248314 44.0514543)" .
 
 :rwy_125_part_2_1 a rsm:Port ;
     rsm:azimuth 5.335106e+01 ;
@@ -2390,6 +2418,11 @@
     rsm:azimuth -1.379296e+02 ;
     rsm:onElement :rwy_127 ;
     geo:asWKT "POINT (8.2230234 44.0480306)" .
+
+:rwy_128_part_0_0 a rsm:Port ;
+    rsm:azimuth -1.391302e+02 ;
+    rsm:onElement :rwy_128_part_0 ;
+    geo:asWKT "POINT (8.2221106 44.0473794)" .
 
 :rwy_128_part_0_1 a rsm:Port ;
     rsm:azimuth 6.331664e+01 ;
@@ -2407,16 +2440,16 @@
     rsm:onElement :rwy_129 ;
     geo:asWKT "POINT (8.2241741 44.0501281)" .
 
+:rwy_130_part_0_0 a rsm:Port ;
+    rsm:azimuth -1.282641e+02 ;
+    rsm:onElement :rwy_130_part_0 ;
+    geo:asWKT "POINT (8.2216439 44.0470304)" .
+
 :rwy_130_part_0_1 a rsm:Port ;
     rsm:azimuth 5.885247e+01 ;
     rsm:connectedWith :rwy_130_part_1_0 ;
     rsm:onElement :rwy_130_part_0 ;
     geo:asWKT "POINT (8.224056 44.050211)" .
-
-:rwy_130_part_2_1 a rsm:Port ;
-    rsm:azimuth 4.638258e+01 ;
-    rsm:onElement :rwy_130_part_2 ;
-    geo:asWKT "POINT (8.2245013 44.05077)" .
 
 :rwy_131_0 a rsm:Port ;
     rsm:azimuth -1.355797e+02 ;
@@ -2446,12 +2479,6 @@
     rsm:onElement :rwy_136_part_0-rwy_103-rwy_141 ;
     geo:asWKT "POINT (8.2214428 44.0468145)" .
 
-:rwy_136_part_1_1 a rsm:Port ;
-    rsm:azimuth 4.102278e+01 ;
-    rsm:connectedWith :rwy_136_part_2_0 ;
-    rsm:onElement :rwy_136_part_1 ;
-    geo:asWKT "POINT (8.221711 44.0470458)" .
-
 :rwy_136_part_2_0 a rsm:Port ;
     rsm:azimuth -1.430306e+02 ;
     rsm:onElement :rwy_136_part_2 ;
@@ -2474,23 +2501,12 @@
     rsm:onElement :rwy_138_part_0 ;
     geo:asWKT "POINT (8.2222447 44.0473794)" .
 
-:rwy_138_part_1_1 a rsm:Port ;
-    rsm:azimuth 3.105908e+01 ;
-    rsm:connectedWith :rwy_144_0 ;
-    rsm:onElement :rwy_138_part_1 ;
-    geo:asWKT "POINT (8.2225317 44.0475529)" .
-
-:rwy_139_part_1_0 a rsm:Port ;
-    rsm:azimuth -1.278048e+02 ;
-    rsm:connectedWith :rwy_245_part_1_1 ;
-    rsm:onElement :rwy_139_part_1 ;
-    geo:asWKT "POINT (8.2242233 44.0505021)" .
-
 :rwy_139_part_1_1 a rsm:Port ;
     rsm:azimuth 5.06889e+01 ;
     rsm:connectedWith :rwy_148-rwy_95-rwy_233-rwy_99-rwy_96-rwy_97_1,
         :rwy_149_0 ;
-    rsm:navigableTo :rwy_149_1 ;
+    rsm:navigableTo :rwy_148-rwy_95-rwy_233-rwy_99-rwy_96-rwy_97_0,
+        :rwy_149_1 ;
     rsm:onElement :rwy_139_part_1 ;
     geo:asWKT "POINT (8.22442 44.0507473)" .
 
@@ -2499,10 +2515,20 @@
     rsm:onElement :rwy_142 ;
     geo:asWKT "POINT (8.2219229 44.0472059)" .
 
+:rwy_143_part_0_0 a rsm:Port ;
+    rsm:azimuth -1.361037e+02 ;
+    rsm:onElement :rwy_143_part_0 ;
+    geo:asWKT "POINT (8.2218942 44.0472845)" .
+
 :rwy_143_part_0_1 a rsm:Port ;
     rsm:azimuth 5.243146e+01 ;
     rsm:connectedWith :rwy_143_part_1_0 ;
     rsm:onElement :rwy_143_part_0 ;
+    geo:asWKT "POINT (8.2237476 44.0495844)" .
+
+:rwy_143_part_1_0 a rsm:Port ;
+    rsm:azimuth -1.205634e+02 ;
+    rsm:onElement :rwy_143_part_1 ;
     geo:asWKT "POINT (8.2237476 44.0495844)" .
 
 :rwy_144_0 a rsm:Port ;
@@ -2520,6 +2546,11 @@
     rsm:azimuth -1.336685e+02 ;
     rsm:onElement :rwy_145_part_1 ;
     geo:asWKT "POINT (8.2225862 44.047674)" .
+
+:rwy_148-rwy_95-rwy_233-rwy_99-rwy_96-rwy_97_0 a rsm:Port ;
+    rsm:azimuth 9.277408e+01 ;
+    rsm:onElement :rwy_148-rwy_95-rwy_233-rwy_99-rwy_96-rwy_97 ;
+    geo:asWKT "POINT (8.2250894 44.0619047)" .
 
 :rwy_148-rwy_95-rwy_233-rwy_99-rwy_96-rwy_97_1 a rsm:Port ;
     rsm:azimuth -1.287251e+02 ;
@@ -2549,12 +2580,6 @@
     rsm:connectedWith :rwy_182_part_1_0 ;
     rsm:onElement :rwy_182_part_0-rwy_178_part_1-rwy_181 ;
     geo:asWKT "POINT (8.0335796 43.8976813)" .
-
-:rwy_182_part_1_1 a rsm:Port ;
-    rsm:azimuth 1.16794e+01 ;
-    rsm:connectedWith :rwy_22-rwy_179_part_0-rwy_28_1 ;
-    rsm:onElement :rwy_182_part_1 ;
-    geo:asWKT "POINT (8.0347083 43.8979312)" .
 
 :rwy_18_part_1-rwy_16-rwy_17_0 a rsm:Port ;
     rsm:azimuth -1.716071e+02 ;
@@ -2598,6 +2623,11 @@
     rsm:onElement :rwy_197 ;
     geo:asWKT "POINT (8.0235279 43.8959004)" .
 
+:rwy_199_part_0-rwy_157_part_1-rwy_183_0 a rsm:Port ;
+    rsm:azimuth -1.698958e+02 ;
+    rsm:onElement :rwy_199_part_0-rwy_157_part_1-rwy_183 ;
+    geo:asWKT "POINT (8.0253079 43.8962885)" .
+
 :rwy_199_part_0-rwy_157_part_1-rwy_183_1 a rsm:Port ;
     rsm:azimuth 1.019791e+01 ;
     rsm:connectedWith :rwy_199_part_1_0 ;
@@ -2627,12 +2657,6 @@
     rsm:onElement :rwy_205 ;
     geo:asWKT "POINT (8.1365453 43.9583846)" .
 
-:rwy_205_1 a rsm:Port ;
-    rsm:azimuth -1.406485e+02 ;
-    rsm:connectedWith :rwy_234_part_0-rwy_206-rwy_150-rwy_223_0 ;
-    rsm:onElement :rwy_205 ;
-    geo:asWKT "POINT (8.1360919 43.9580115)" .
-
 :rwy_207-rwy_177_part_1-rwy_210_0 a rsm:Port ;
     rsm:azimuth -1.69719e+02 ;
     rsm:onElement :rwy_207-rwy_177_part_1-rwy_210 ;
@@ -2644,23 +2668,26 @@
     rsm:onElement :rwy_208-rwy_209 ;
     geo:asWKT "POINT (8.0391936 43.8987441)" .
 
-:rwy_218_part_1_0 a rsm:Port ;
-    rsm:azimuth 2.927936e+01 ;
-    rsm:connectedWith :rwy_219_1 ;
-    rsm:onElement :rwy_218_part_1 ;
-    geo:asWKT "POINT (8.1689131 44.0065645)" .
+:rwy_208-rwy_209_1 a rsm:Port ;
+    rsm:azimuth -1.721837e+02 ;
+    rsm:onElement :rwy_208-rwy_209 ;
+    geo:asWKT "POINT (8.0382251 43.8986129)" .
 
-:rwy_219_0 a rsm:Port ;
-    rsm:azimuth 5.144874e+01 ;
-    rsm:connectedWith :rwy_220_part_0_1 ;
+:rwy_219_1 a rsm:Port ;
+    rsm:azimuth -1.567311e+02 ;
     rsm:onElement :rwy_219 ;
-    geo:asWKT "POINT (8.1730929 44.0095057)" .
+    geo:asWKT "POINT (8.1689131 44.0065645)" .
 
 :rwy_220_part_0_0 a rsm:Port ;
     rsm:azimuth 5.001255e+01 ;
     rsm:connectedWith :rwy_8-rwy_42-rwy_247-rwy_246-rwy_172-rwy_41-rwy_49-rwy_10-rwy_11-rwy_48-rwy_50-rwy_47-rwy_46-rwy_44-rwy_4-rwy_5-rwy_146-rwy_147-rwy_3-rwy_6-rwy_54-rwy_53-rwy_7_0 ;
     rsm:onElement :rwy_220_part_0 ;
     geo:asWKT "POINT (8.1732348 44.0096755)" .
+
+:rwy_220_part_0_1 a rsm:Port ;
+    rsm:azimuth -1.299874e+02 ;
+    rsm:onElement :rwy_220_part_0 ;
+    geo:asWKT "POINT (8.1730929 44.0095057)" .
 
 :rwy_228_0 a rsm:Port ;
     rsm:azimuth 1.009404e+01 ;
@@ -2678,17 +2705,26 @@
     rsm:onElement :rwy_234_part_0-rwy_206-rwy_150-rwy_223 ;
     geo:asWKT "POINT (8.1403279 43.9610904)" .
 
-:rwy_234_part_1_1 a rsm:Port ;
-    rsm:azimuth 1.96184e+01 ;
-    rsm:connectedWith :rwy_39-rwy_185-rwy_222_0 ;
-    rsm:onElement :rwy_234_part_1 ;
-    geo:asWKT "POINT (8.1408174 43.9612655)" .
+:rwy_237_part_0_0 a rsm:Port ;
+    rsm:azimuth 8.33648e+00 ;
+    rsm:onElement :rwy_237_part_0 ;
+    geo:asWKT "POINT (7.8495221 43.8437917)" .
 
 :rwy_237_part_0_1 a rsm:Port ;
     rsm:azimuth -1.712197e+02 ;
     rsm:connectedWith :rwy_242-rwy_26-rwy_237_part_1-rwy_240_0 ;
     rsm:onElement :rwy_237_part_0 ;
     geo:asWKT "POINT (7.8481355 43.8435835)" .
+
+:rwy_23_part_0_0 a rsm:Port ;
+    rsm:azimuth -1.717724e+02 ;
+    rsm:onElement :rwy_23_part_0 ;
+    geo:asWKT "POINT (7.8610779 43.8454651)" .
+
+:rwy_23_part_0_1 a rsm:Port ;
+    rsm:azimuth 8.227567e+00 ;
+    rsm:onElement :rwy_23_part_0 ;
+    geo:asWKT "POINT (7.8623806 43.845654)" .
 
 :rwy_241-rwy_56-rwy_238-rwy_239_1 a rsm:Port ;
     rsm:azimuth 8.790701e+00 ;
@@ -2704,20 +2740,15 @@
     rsm:azimuth 4.29632e+01 ;
     rsm:connectedWith :rwy_245_part_1_0,
         :rwy_45_part_1-rwy_125_part_0-rwy_132_1 ;
-    rsm:navigableTo :rwy_245_part_1_1,
-        :rwy_45_part_1-rwy_125_part_0-rwy_132_0 ;
+    rsm:navigableTo :rwy_245_part_1_1 ;
     rsm:onElement :rwy_245_part_0 ;
     geo:asWKT "POINT (8.2236739 44.0499629)" .
 
-:rwy_38-rwy_27-rwy_34-rwy_35-rwy_36-rwy_212-rwy_37-rwy_217-rwy_216-rwy_204_part_1-rwy_40-rwy_184-rwy_236_0 a rsm:Port ;
-    rsm:azimuth -1.692691e+02 ;
-    rsm:onElement :rwy_38-rwy_27-rwy_34-rwy_35-rwy_36-rwy_212-rwy_37-rwy_217-rwy_216-rwy_204_part_1-rwy_40-rwy_184-rwy_236 ;
-    geo:asWKT "POINT (8.0391936 43.8987441)" .
-
-:rwy_38-rwy_27-rwy_34-rwy_35-rwy_36-rwy_212-rwy_37-rwy_217-rwy_216-rwy_204_part_1-rwy_40-rwy_184-rwy_236_1 a rsm:Port ;
-    rsm:azimuth 4.444579e+01 ;
-    rsm:onElement :rwy_38-rwy_27-rwy_34-rwy_35-rwy_36-rwy_212-rwy_37-rwy_217-rwy_216-rwy_204_part_1-rwy_40-rwy_184-rwy_236 ;
-    geo:asWKT "POINT (8.1355287 43.957384)" .
+:rwy_245_part_1_0 a rsm:Port ;
+    rsm:azimuth -1.356444e+02 ;
+    rsm:connectedWith :rwy_45_part_1-rwy_125_part_0-rwy_132_1 ;
+    rsm:onElement :rwy_245_part_1 ;
+    geo:asWKT "POINT (8.2236739 44.0499629)" .
 
 :rwy_51-rwy_85-rwy_31-rwy_213-rwy_214-rwy_52-rwy_32-rwy_33-rwy_195-rwy_244-rwy_29-rwy_30-rwy_83-rwy_82-rwy_84-rwy_193-rwy_81_0 a rsm:Port ;
     rsm:azimuth -1.717574e+02 ;
@@ -2725,11 +2756,10 @@
     rsm:onElement :rwy_51-rwy_85-rwy_31-rwy_213-rwy_214-rwy_52-rwy_32-rwy_33-rwy_195-rwy_244-rwy_29-rwy_30-rwy_83-rwy_82-rwy_84-rwy_193-rwy_81 ;
     geo:asWKT "POINT (7.861871 43.8455474)" .
 
-:rwy_57_part_1-rwy_59_part_0_0 a rsm:Port ;
-    rsm:azimuth -1.717957e+02 ;
-    rsm:connectedWith :rwy_63_part_0_0 ;
-    rsm:onElement :rwy_57_part_1-rwy_59_part_0 ;
-    geo:asWKT "POINT (7.8604849 43.8453462)" .
+:rwy_51-rwy_85-rwy_31-rwy_213-rwy_214-rwy_52-rwy_32-rwy_33-rwy_195-rwy_244-rwy_29-rwy_30-rwy_83-rwy_82-rwy_84-rwy_193-rwy_81_1 a rsm:Port ;
+    rsm:azimuth 1.055284e+01 ;
+    rsm:onElement :rwy_51-rwy_85-rwy_31-rwy_213-rwy_214-rwy_52-rwy_32-rwy_33-rwy_195-rwy_244-rwy_29-rwy_30-rwy_83-rwy_82-rwy_84-rwy_193-rwy_81 ;
+    geo:asWKT "POINT (8.0235279 43.8959004)" .
 
 :rwy_57_part_1-rwy_59_part_0_1 a rsm:Port ;
     rsm:azimuth 8.244314e+00 ;
@@ -2741,15 +2771,9 @@
     rsm:azimuth 5.446385e+00 ;
     rsm:connectedWith :rwy_62_1,
         :rwy_64_part_0_0 ;
-    rsm:navigableTo :rwy_62_0,
-        :rwy_64_part_0_1 ;
+    rsm:navigableTo :rwy_64_part_0_1 ;
     rsm:onElement :rwy_60_part_1 ;
     geo:asWKT "POINT (7.8517752 43.8440374)" .
-
-:rwy_62_0 a rsm:Port ;
-    rsm:azimuth -1.729472e+02 ;
-    rsm:onElement :rwy_62 ;
-    geo:asWKT "POINT (7.8510324 43.8439137)" .
 
 :rwy_62_1 a rsm:Port ;
     rsm:azimuth 8.972865e+00 ;
@@ -2757,11 +2781,11 @@
     rsm:onElement :rwy_62 ;
     geo:asWKT "POINT (7.8517752 43.8440374)" .
 
-:rwy_63_part_0_1 a rsm:Port ;
-    rsm:azimuth -1.650666e+02 ;
-    rsm:connectedWith :rwy_86_1 ;
-    rsm:onElement :rwy_63_part_0 ;
-    geo:asWKT "POINT (7.8601671 43.8452612)" .
+:rwy_64_part_0_1 a rsm:Port ;
+    rsm:azimuth 1.844144e+00 ;
+    rsm:connectedWith :rwy_91-rwy_64_part_1-rwy_92_0 ;
+    rsm:onElement :rwy_64_part_0 ;
+    geo:asWKT "POINT (7.8521964 43.844051)" .
 
 :rwy_66_part_0_1 a rsm:Port ;
     rsm:azimuth -1.716801e+02 ;
@@ -2773,6 +2797,11 @@
     rsm:azimuth 5.448052e+00 ;
     rsm:onElement :rwy_66_part_1 ;
     geo:asWKT "POINT (7.852875 43.8440258)" .
+
+:rwy_68_part_0_0 a rsm:Port ;
+    rsm:azimuth 4.449609e+00 ;
+    rsm:onElement :rwy_68_part_0 ;
+    geo:asWKT "POINT (7.8607846 43.8454226)" .
 
 :rwy_68_part_0_1 a rsm:Port ;
     rsm:azimuth -1.755504e+02 ;
@@ -2796,17 +2825,16 @@
     rsm:onElement :rwy_72_part_1 ;
     geo:asWKT "POINT (7.8535315 43.8446112)" .
 
-:rwy_72_part_3_0 a rsm:Port ;
-    rsm:azimuth 8.853009e+00 ;
-    rsm:connectedWith :rwy_76_0 ;
-    rsm:onElement :rwy_72_part_3 ;
-    geo:asWKT "POINT (7.8524452 43.84435)" .
-
 :rwy_72_part_3_1 a rsm:Port ;
     rsm:azimuth -1.681933e+02 ;
     rsm:connectedWith :rwy_87_0 ;
     rsm:onElement :rwy_72_part_3 ;
     geo:asWKT "POINT (7.8509385 43.844082)" .
+
+:rwy_76_0 a rsm:Port ;
+    rsm:azimuth 1.292871e+01 ;
+    rsm:onElement :rwy_76 ;
+    geo:asWKT "POINT (7.8524452 43.84435)" .
 
 :rwy_79_0 a rsm:Port ;
     rsm:azimuth -1.623813e+02 ;
@@ -2818,12 +2846,6 @@
     rsm:connectedWith :rwy_93-rwy_110-rwy_111_0 ;
     rsm:onElement :rwy_8-rwy_42-rwy_247-rwy_246-rwy_172-rwy_41-rwy_49-rwy_10-rwy_11-rwy_48-rwy_50-rwy_47-rwy_46-rwy_44-rwy_4-rwy_5-rwy_146-rwy_147-rwy_3-rwy_6-rwy_54-rwy_53-rwy_7 ;
     geo:asWKT "POINT (8.2202177 44.0454164)" .
-
-:rwy_80_part_0_1 a rsm:Port ;
-    rsm:azimuth 2.321489e+01 ;
-    rsm:connectedWith :rwy_80_part_1_0 ;
-    rsm:onElement :rwy_80_part_0 ;
-    geo:asWKT "POINT (7.8533203 43.8446352)" .
 
 :rwy_80_part_1_0 a rsm:Port ;
     rsm:azimuth -1.546388e+02 ;
@@ -2845,20 +2867,15 @@
     rsm:onElement :rwy_91-rwy_64_part_1-rwy_92 ;
     geo:asWKT "POINT (7.8521964 43.844051)" .
 
+:rwy_93-rwy_110-rwy_111_1 a rsm:Port ;
+    rsm:azimuth 4.996312e+01 ;
+    rsm:onElement :rwy_93-rwy_110-rwy_111 ;
+    geo:asWKT "POINT (8.2206006 44.0458833)" .
+
 :rwy_98-rwy_94-rwy_90-rwy_232-rwy_101-rwy_89_0 a rsm:Port ;
     rsm:azimuth -1.240252e+02 ;
     rsm:onElement :rwy_98-rwy_94-rwy_90-rwy_232-rwy_101-rwy_89 ;
     geo:asWKT "POINT (8.2249809 44.051656)" .
-
-:rwy_118_part_1_0 a rsm:Port ;
-    rsm:azimuth -1.412748e+02 ;
-    rsm:onElement :rwy_118_part_1 ;
-    geo:asWKT "POINT (8.2231889 44.0498393)" .
-
-:rwy_118_part_2_0 a rsm:Port ;
-    rsm:azimuth -1.406268e+02 ;
-    rsm:onElement :rwy_118_part_2 ;
-    geo:asWKT "POINT (8.2234016 44.0500105)" .
 
 :rwy_118_part_2_1 a rsm:Port ;
     rsm:azimuth 4.526064e+01 ;
@@ -2870,15 +2887,10 @@
     rsm:onElement :rwy_120_part_1 ;
     geo:asWKT "POINT (8.2245032 44.0510943)" .
 
-:rwy_128_part_0_0 a rsm:Port ;
-    rsm:azimuth -1.391302e+02 ;
-    rsm:onElement :rwy_128_part_0 ;
-    geo:asWKT "POINT (8.2221106 44.0473794)" .
-
-:rwy_130_part_0_0 a rsm:Port ;
-    rsm:azimuth -1.282641e+02 ;
-    rsm:onElement :rwy_130_part_0 ;
-    geo:asWKT "POINT (8.2216439 44.0470304)" .
+:rwy_130_part_1_0 a rsm:Port ;
+    rsm:azimuth -1.283591e+02 ;
+    rsm:onElement :rwy_130_part_1 ;
+    geo:asWKT "POINT (8.224056 44.050211)" .
 
 :rwy_130_part_1_1 a rsm:Port ;
     rsm:azimuth 5.164084e+01 ;
@@ -2906,16 +2918,6 @@
     rsm:onElement :rwy_138_part_1 ;
     geo:asWKT "POINT (8.2222447 44.0473794)" .
 
-:rwy_143_part_0_0 a rsm:Port ;
-    rsm:azimuth -1.361037e+02 ;
-    rsm:onElement :rwy_143_part_0 ;
-    geo:asWKT "POINT (8.2218942 44.0472845)" .
-
-:rwy_143_part_1_0 a rsm:Port ;
-    rsm:azimuth -1.205634e+02 ;
-    rsm:onElement :rwy_143_part_1 ;
-    geo:asWKT "POINT (8.2237476 44.0495844)" .
-
 :rwy_143_part_1_1 a rsm:Port ;
     rsm:azimuth 5.943657e+01 ;
     rsm:onElement :rwy_143_part_1 ;
@@ -2925,6 +2927,11 @@
     rsm:azimuth -1.352013e+02 ;
     rsm:onElement :rwy_145_part_0 ;
     geo:asWKT "POINT (8.2224333 44.0475216)" .
+
+:rwy_149_0 a rsm:Port ;
+    rsm:azimuth -1.220323e+02 ;
+    rsm:onElement :rwy_149 ;
+    geo:asWKT "POINT (8.22442 44.0507473)" .
 
 :rwy_182_part_0-rwy_178_part_1-rwy_181_0 a rsm:Port ;
     rsm:azimuth -1.723704e+02 ;
@@ -2951,11 +2958,6 @@
     rsm:onElement :rwy_197 ;
     geo:asWKT "POINT (8.0226162 43.8957741)" .
 
-:rwy_199_part_0-rwy_157_part_1-rwy_183_0 a rsm:Port ;
-    rsm:azimuth -1.698958e+02 ;
-    rsm:onElement :rwy_199_part_0-rwy_157_part_1-rwy_183 ;
-    geo:asWKT "POINT (8.0253079 43.8962885)" .
-
 :rwy_199_part_1_0 a rsm:Port ;
     rsm:azimuth -1.694421e+02 ;
     rsm:onElement :rwy_199_part_1 ;
@@ -2966,20 +2968,10 @@
     rsm:onElement :rwy_200 ;
     geo:asWKT "POINT (8.0369344 43.8983821)" .
 
-:rwy_208-rwy_209_1 a rsm:Port ;
-    rsm:azimuth -1.721837e+02 ;
-    rsm:onElement :rwy_208-rwy_209 ;
-    geo:asWKT "POINT (8.0382251 43.8986129)" .
-
 :rwy_218_part_1_1 a rsm:Port ;
     rsm:azimuth -1.532886e+02 ;
     rsm:onElement :rwy_218_part_1 ;
     geo:asWKT "POINT (8.1675338 44.0058105)" .
-
-:rwy_219_1 a rsm:Port ;
-    rsm:azimuth -1.567311e+02 ;
-    rsm:onElement :rwy_219 ;
-    geo:asWKT "POINT (8.1689131 44.0065645)" .
 
 :rwy_22-rwy_179_part_0-rwy_28_0 a rsm:Port ;
     rsm:azimuth -1.694447e+02 ;
@@ -2991,11 +2983,6 @@
     rsm:onElement :rwy_22-rwy_179_part_0-rwy_28 ;
     geo:asWKT "POINT (8.0347083 43.8979312)" .
 
-:rwy_220_part_0_1 a rsm:Port ;
-    rsm:azimuth -1.299874e+02 ;
-    rsm:onElement :rwy_220_part_0 ;
-    geo:asWKT "POINT (8.1730929 44.0095057)" .
-
 :rwy_234_part_0-rwy_206-rwy_150-rwy_223_0 a rsm:Port ;
     rsm:azimuth -1.356715e+02 ;
     rsm:onElement :rwy_234_part_0-rwy_206-rwy_150-rwy_223 ;
@@ -3006,31 +2993,25 @@
     rsm:onElement :rwy_234_part_1 ;
     geo:asWKT "POINT (8.1403279 43.9610904)" .
 
-:rwy_237_part_0_0 a rsm:Port ;
-    rsm:azimuth 8.33648e+00 ;
-    rsm:onElement :rwy_237_part_0 ;
-    geo:asWKT "POINT (7.8495221 43.8437917)" .
-
-:rwy_23_part_0_0 a rsm:Port ;
-    rsm:azimuth -1.717724e+02 ;
-    rsm:onElement :rwy_23_part_0 ;
-    geo:asWKT "POINT (7.8610779 43.8454651)" .
-
-:rwy_23_part_0_1 a rsm:Port ;
-    rsm:azimuth 8.227567e+00 ;
-    rsm:onElement :rwy_23_part_0 ;
-    geo:asWKT "POINT (7.8623806 43.845654)" .
-
 :rwy_245_part_0_0 a rsm:Port ;
     rsm:azimuth -1.370368e+02 ;
     rsm:onElement :rwy_245_part_0 ;
     geo:asWKT "POINT (8.2234407 44.0497449)" .
 
-:rwy_245_part_1_0 a rsm:Port ;
-    rsm:azimuth -1.356444e+02 ;
-    rsm:connectedWith :rwy_45_part_1-rwy_125_part_0-rwy_132_1 ;
+:rwy_245_part_1_1 a rsm:Port ;
+    rsm:azimuth 4.435552e+01 ;
     rsm:onElement :rwy_245_part_1 ;
-    geo:asWKT "POINT (8.2236739 44.0499629)" .
+    geo:asWKT "POINT (8.2242233 44.0505021)" .
+
+:rwy_38-rwy_27-rwy_34-rwy_35-rwy_36-rwy_212-rwy_37-rwy_217-rwy_216-rwy_204_part_1-rwy_40-rwy_184-rwy_236_0 a rsm:Port ;
+    rsm:azimuth -1.692691e+02 ;
+    rsm:onElement :rwy_38-rwy_27-rwy_34-rwy_35-rwy_36-rwy_212-rwy_37-rwy_217-rwy_216-rwy_204_part_1-rwy_40-rwy_184-rwy_236 ;
+    geo:asWKT "POINT (8.0391936 43.8987441)" .
+
+:rwy_38-rwy_27-rwy_34-rwy_35-rwy_36-rwy_212-rwy_37-rwy_217-rwy_216-rwy_204_part_1-rwy_40-rwy_184-rwy_236_1 a rsm:Port ;
+    rsm:azimuth 4.444579e+01 ;
+    rsm:onElement :rwy_38-rwy_27-rwy_34-rwy_35-rwy_36-rwy_212-rwy_37-rwy_217-rwy_216-rwy_204_part_1-rwy_40-rwy_184-rwy_236 ;
+    geo:asWKT "POINT (8.1355287 43.957384)" .
 
 :rwy_39-rwy_185-rwy_222_0 a rsm:Port ;
     rsm:azimuth 2.432812e+01 ;
@@ -3042,10 +3023,15 @@
     rsm:onElement :rwy_39-rwy_185-rwy_222 ;
     geo:asWKT "POINT (8.1365453 43.9583846)" .
 
-:rwy_51-rwy_85-rwy_31-rwy_213-rwy_214-rwy_52-rwy_32-rwy_33-rwy_195-rwy_244-rwy_29-rwy_30-rwy_83-rwy_82-rwy_84-rwy_193-rwy_81_1 a rsm:Port ;
-    rsm:azimuth 1.055284e+01 ;
-    rsm:onElement :rwy_51-rwy_85-rwy_31-rwy_213-rwy_214-rwy_52-rwy_32-rwy_33-rwy_195-rwy_244-rwy_29-rwy_30-rwy_83-rwy_82-rwy_84-rwy_193-rwy_81 ;
-    geo:asWKT "POINT (8.0235279 43.8959004)" .
+:rwy_45_part_1-rwy_125_part_0-rwy_132_0 a rsm:Port ;
+    rsm:azimuth -1.251992e+02 ;
+    rsm:onElement :rwy_45_part_1-rwy_125_part_0-rwy_132 ;
+    geo:asWKT "POINT (8.2205305 44.0458724)" .
+
+:rwy_45_part_1-rwy_125_part_0-rwy_132_1 a rsm:Port ;
+    rsm:azimuth 5.168882e+01 ;
+    rsm:onElement :rwy_45_part_1-rwy_125_part_0-rwy_132 ;
+    geo:asWKT "POINT (8.2236739 44.0499629)" .
 
 :rwy_59_part_1_0 a rsm:Port ;
     rsm:azimuth -1.717523e+02 ;
@@ -3067,21 +3053,10 @@
     rsm:onElement :rwy_63_part_0 ;
     geo:asWKT "POINT (7.8604849 43.8453462)" .
 
-:rwy_64_part_0_1 a rsm:Port ;
-    rsm:azimuth 1.844144e+00 ;
-    rsm:connectedWith :rwy_91-rwy_64_part_1-rwy_92_0 ;
-    rsm:onElement :rwy_64_part_0 ;
-    geo:asWKT "POINT (7.8521964 43.844051)" .
-
 :rwy_66_part_0_0 a rsm:Port ;
     rsm:azimuth 8.319935e+00 ;
     rsm:onElement :rwy_66_part_0 ;
     geo:asWKT "POINT (7.8531948 43.8440727)" .
-
-:rwy_68_part_0_0 a rsm:Port ;
-    rsm:azimuth 4.449609e+00 ;
-    rsm:onElement :rwy_68_part_0 ;
-    geo:asWKT "POINT (7.8607846 43.8454226)" .
 
 :rwy_68_part_1_0 a rsm:Port ;
     rsm:azimuth 4.314933e+00 ;
@@ -3104,6 +3079,11 @@
     rsm:onElement :rwy_74-rwy_77_part_1 ;
     geo:asWKT "POINT (7.8583385 43.8452696)" .
 
+:rwy_74-rwy_77_part_1_1 a rsm:Port ;
+    rsm:azimuth 1.093596e+00 ;
+    rsm:onElement :rwy_74-rwy_77_part_1 ;
+    geo:asWKT "POINT (7.8592961 43.8453199)" .
+
 :rwy_75_part_1_0 a rsm:Port ;
     rsm:azimuth 1.385629e+01 ;
     rsm:onElement :rwy_75_part_1 ;
@@ -3114,15 +3094,15 @@
     rsm:onElement :rwy_75_part_1 ;
     geo:asWKT "POINT (7.8523842 43.8442909)" .
 
-:rwy_76_0 a rsm:Port ;
-    rsm:azimuth 1.292871e+01 ;
-    rsm:onElement :rwy_76 ;
-    geo:asWKT "POINT (7.8524452 43.84435)" .
-
 :rwy_76_1 a rsm:Port ;
     rsm:azimuth -1.670713e+02 ;
     rsm:onElement :rwy_76 ;
     geo:asWKT "POINT (7.8518692 43.8442174)" .
+
+:rwy_77_part_0_0 a rsm:Port ;
+    rsm:azimuth -1.664986e+02 ;
+    rsm:onElement :rwy_77_part_0 ;
+    geo:asWKT "POINT (7.8536173 43.8445821)" .
 
 :rwy_8-rwy_42-rwy_247-rwy_246-rwy_172-rwy_41-rwy_49-rwy_10-rwy_11-rwy_48-rwy_50-rwy_47-rwy_46-rwy_44-rwy_4-rwy_5-rwy_146-rwy_147-rwy_3-rwy_6-rwy_54-rwy_53-rwy_7_0 a rsm:Port ;
     rsm:azimuth -1.375808e+02 ;
@@ -3139,55 +3119,15 @@
     rsm:onElement :rwy_93-rwy_110-rwy_111 ;
     geo:asWKT "POINT (8.2202177 44.0454164)" .
 
-:rwy_93-rwy_110-rwy_111_1 a rsm:Port ;
-    rsm:azimuth 4.996312e+01 ;
-    rsm:onElement :rwy_93-rwy_110-rwy_111 ;
-    geo:asWKT "POINT (8.2206006 44.0458833)" .
-
-:rwy_130_part_1_0 a rsm:Port ;
-    rsm:azimuth -1.283591e+02 ;
-    rsm:onElement :rwy_130_part_1 ;
-    geo:asWKT "POINT (8.224056 44.050211)" .
-
-:rwy_149_0 a rsm:Port ;
-    rsm:azimuth -1.220323e+02 ;
-    rsm:onElement :rwy_149 ;
-    geo:asWKT "POINT (8.22442 44.0507473)" .
-
 :rwy_149_1 a rsm:Port ;
     rsm:azimuth 6.027601e+01 ;
     rsm:onElement :rwy_149 ;
     geo:asWKT "POINT (8.2248314 44.0514543)" .
 
-:rwy_245_part_1_1 a rsm:Port ;
-    rsm:azimuth 4.435552e+01 ;
-    rsm:onElement :rwy_245_part_1 ;
-    geo:asWKT "POINT (8.2242233 44.0505021)" .
-
-:rwy_45_part_1-rwy_125_part_0-rwy_132_0 a rsm:Port ;
-    rsm:azimuth -1.251992e+02 ;
-    rsm:onElement :rwy_45_part_1-rwy_125_part_0-rwy_132 ;
-    geo:asWKT "POINT (8.2205305 44.0458724)" .
-
-:rwy_45_part_1-rwy_125_part_0-rwy_132_1 a rsm:Port ;
-    rsm:azimuth 5.168882e+01 ;
-    rsm:onElement :rwy_45_part_1-rwy_125_part_0-rwy_132 ;
-    geo:asWKT "POINT (8.2236739 44.0499629)" .
-
 :rwy_64_part_0_0 a rsm:Port ;
     rsm:azimuth -1.781559e+02 ;
     rsm:onElement :rwy_64_part_0 ;
     geo:asWKT "POINT (7.8517752 43.8440374)" .
-
-:rwy_74-rwy_77_part_1_1 a rsm:Port ;
-    rsm:azimuth 1.093596e+00 ;
-    rsm:onElement :rwy_74-rwy_77_part_1 ;
-    geo:asWKT "POINT (7.8592961 43.8453199)" .
-
-:rwy_77_part_0_0 a rsm:Port ;
-    rsm:azimuth -1.664986e+02 ;
-    rsm:onElement :rwy_77_part_0 ;
-    geo:asWKT "POINT (7.8536173 43.8445821)" .
 
 :rwy_77_part_0_1 a rsm:Port ;
     rsm:azimuth 3.29115e+00 ;

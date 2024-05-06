@@ -84,8 +84,8 @@ def set_navigabilities(input_ttl: str, output_ttl: Optional[str] = None, double_
             for other_port in connected_ports_list:
                 opposite = opposite_port(g, other_port)
                 if opposite:
-                    azimuth1 = float(g.value(other_port, RSM_TOPOLOGY.azimuth))
-                    azimuth2 = float(g.value(opposite, RSM_TOPOLOGY.azimuth))
+                    azimuth1 = float(g.value(port, RSM_TOPOLOGY.azimuth))
+                    azimuth2 = float(g.value(other_port, RSM_TOPOLOGY.azimuth))
                     if possible_navigability(azimuth1, azimuth2):
                         g.add((port, RSM_TOPOLOGY.navigableTo, opposite))
                         navigabilities_count += 1
