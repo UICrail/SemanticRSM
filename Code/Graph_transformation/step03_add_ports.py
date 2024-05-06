@@ -27,8 +27,8 @@ def add_ports(input_ttl: str, output_ttl: Optional[str] = None, with_inverse_pro
         extr0, extr1 = Point(geometry.coords[0]), Point(geometry.coords[-1])
         next0, next1 = Point(geometry.coords[1]), Point(geometry.coords[-2])
         # azimuths (pyproj yields azimuths in the -180 to +180 range)
-        az0 = wgs84_geod.inv(next0.y, next0.x, extr0.y, extr0.x)[0]
-        az1 = wgs84_geod.inv(next1.y, next1.x, extr1.y, extr1.x)[0]
+        az0 = wgs84_geod.inv(next0.x, next0.y, extr0.x, extr0.y)[0]
+        az1 = wgs84_geod.inv(next1.x, next1.y, extr1.x, extr1.y)[0]
         uri0, uri1 = URIRef(str(linear_element) + '_0'), URIRef(str(linear_element) + '_1')
         # Create the two ports
         g.add((URIRef(uri0), RDF.type, RSM_TOPOLOGY.Port))
@@ -37,7 +37,6 @@ def add_ports(input_ttl: str, output_ttl: Optional[str] = None, with_inverse_pro
         g.add((URIRef(uri0), GEO.asWKT, Literal(extr0)))
         g.add((URIRef(uri1), GEO.asWKT, Literal(extr1)))
         # Their azimuth (outward; range -180 to 180 wrt North)
-        # TODO:add azimuth to the properties in the topology ontology
         g.add((URIRef(uri0), RSM_TOPOLOGY.azimuth, Literal(az0)))
         g.add((URIRef(uri1), RSM_TOPOLOGY.azimuth, Literal(az1)))
         # Add the relationship between the linear element and the ports
