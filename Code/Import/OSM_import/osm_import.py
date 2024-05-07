@@ -14,7 +14,7 @@ def osm_import(osm_file_path: str, short_name: str = ""):
     g = rdflib.Graph()
 
     # Bind the namespaces
-    g.bind("geo", GSP)
+    g.bind("gsp", GSP)
     g.bind("rsm", RSM_TOPOLOGY)
     g.bind("", WORK)
 
