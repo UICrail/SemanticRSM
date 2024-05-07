@@ -20,9 +20,9 @@ def set_port_connections(input_ttl: str, output_ttl: Optional[str] = None):
     # Iterate over each port
     connections_count = 0
     for index, port1 in enumerate(list_ports[:-2]):
-        c1 = g.value(port1, GEO.asWKT)
+        c1 = g.value(port1, GSP.asWKT)
         for port2 in list_ports[index + 1:]:
-            c2 = g.value(port2, GEO.asWKT)
+            c2 = g.value(port2, GSP.asWKT)
             if c1 == c2:
                 g.add((port1, RSM_TOPOLOGY.connectedWith, port2))
                 connections_count += 1

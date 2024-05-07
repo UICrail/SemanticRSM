@@ -43,7 +43,7 @@ def parse_turtle_for_linear_element_geometry(file_path: str) -> dict[URIRef, Lin
 
     linestring_dict = {}
     for s, _, o in g.triples((None, RDF.type, RSM_TOPOLOGY.LinearElement)):
-        wkt = g.value(s, GEO.asWKT)
+        wkt = g.value(s, GSP.asWKT)
         if wkt:
             linestring_dict[s] = shapely.wkt.loads(str(wkt))
     return linestring_dict
@@ -144,7 +144,7 @@ def generate_turtle_from_linestrings(modified_linestrings: dict[str, LineString]
     g = rdflib.Graph()
 
     # Bind the namespaces
-    g.bind("geo", GEO)
+    g.bind("geo", GSP)
     g.bind("rsm", RSM_TOPOLOGY)
     g.bind("", WORK)
 
@@ -156,12 +156,12 @@ def generate_turtle_from_linestrings(modified_linestrings: dict[str, LineString]
 
         # Convert the LineString to WKT
         wkt = dumps(linestring)
-        wkt_literal = Literal(wkt, datatype=GEO.wktLiteral)
+        wkt_literal = Literal(wkt, datatype=GSP.wktLiteral)
 
         # Create the triples
         g.add((uri_ref, RDF.type, RSM_TOPOLOGY.LinearElement))  # Type of the element
-        g.add((uri_ref, RDF.type, GEO.Geometry))  # ...also of type: Geometry
-        g.add((uri_ref, GEO.asWKT, wkt_literal))  # Geometry representation using Well-Known Text (WKT)
+        g.add((uri_ref, RDF.type, GSP.Geometry))  # ...also of type: Geometry
+        g.add((uri_ref, GSP.asWKT, wkt_literal))  # Geometry representation using Well-Known Text (WKT)
 
     # Serialize the graph to the Turtle file
     g.serialize(destination=output_file_path, format='turtle')

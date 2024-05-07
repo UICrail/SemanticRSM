@@ -27,7 +27,7 @@ def parse_ttl_to_linestrings(input_ttl: str) -> Dict[URIRef, LineString]:
     g.parse(input_ttl, format="turtle")
 
     elements: Dict[URIRef, LineString] = {}
-    for s, _, o in g.triples((None, GEO.asWKT, None)):
+    for s, _, o in g.triples((None, GSP.asWKT, None)):
         if (s, RDF.type, RSM_TOPOLOGY.LinearElement) in g:
             geom = loads(str(o))
             if isinstance(geom, LineString):

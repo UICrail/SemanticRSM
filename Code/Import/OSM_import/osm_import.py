@@ -14,7 +14,7 @@ def osm_import(osm_file_path: str, short_name: str = ""):
     g = rdflib.Graph()
 
     # Bind the namespaces
-    g.bind("geo", GEO)
+    g.bind("geo", GSP)
     g.bind("rsm", RSM_TOPOLOGY)
     g.bind("", WORK)
 
@@ -34,8 +34,8 @@ def osm_import(osm_file_path: str, short_name: str = ""):
             wkt = str(row.geometry)
 
         g.add((line_uri, RDF.type, RSM_TOPOLOGY.LinearElement))
-        g.add((line_uri, RDF.type, GEO.Geometry))
-        g.add((line_uri, GEO.asWKT, Literal(wkt, datatype=GEO.wktLiteral)))
+        g.add((line_uri, RDF.type, GSP.Geometry))
+        g.add((line_uri, GSP.asWKT, Literal(wkt, datatype=GSP.wktLiteral)))
 
     # Serialize the graph to a Turtle file
     g.serialize(

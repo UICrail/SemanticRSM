@@ -23,7 +23,7 @@ def add_ports(input_ttl: str, output_ttl: Optional[str] = None, with_inverse_pro
 
     for linear_element in g.subjects(RDF.type, RSM_TOPOLOGY.LinearElement):
         # Get extremal coordinates
-        geometry = loads(str(g.value(linear_element, GEO.asWKT)))
+        geometry = loads(str(g.value(linear_element, GSP.asWKT)))
         extr0, extr1 = Point(geometry.coords[0]), Point(geometry.coords[-1])
         next0, next1 = Point(geometry.coords[1]), Point(geometry.coords[-2])
         # azimuths (pyproj yields azimuths in the -180 to +180 range)
@@ -34,8 +34,8 @@ def add_ports(input_ttl: str, output_ttl: Optional[str] = None, with_inverse_pro
         g.add((URIRef(uri0), RDF.type, RSM_TOPOLOGY.Port))
         g.add((URIRef(uri1), RDF.type, RSM_TOPOLOGY.Port))
         # ... their geometry
-        g.add((URIRef(uri0), GEO.asWKT, Literal(extr0)))
-        g.add((URIRef(uri1), GEO.asWKT, Literal(extr1)))
+        g.add((URIRef(uri0), GSP.asWKT, Literal(extr0)))
+        g.add((URIRef(uri1), GSP.asWKT, Literal(extr1)))
         # ... their azimuth (outward azimuth; range -180 to 180 wrt North)
         g.add((URIRef(uri0), RSM_TOPOLOGY.azimuth, Literal(az0)))
         g.add((URIRef(uri1), RSM_TOPOLOGY.azimuth, Literal(az1)))
