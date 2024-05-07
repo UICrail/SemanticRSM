@@ -45,7 +45,7 @@ def possible_navigability(azimuth_1: float, azimuth_2: float) -> bool:
     :param azimuth_2:
     :return: True if navigability is possible, else False
     """
-    small = 30
+    small = 30  # could be set to a much smaller value, given the quality of the geometry in OSM
     diff = azimuth_1 - azimuth_2 - 180
     if abs(diff) > 180:
         diff = 360 - abs(diff)
@@ -73,12 +73,14 @@ def set_navigabilities(input_ttl: str, output_ttl: Optional[str] = None, double_
     navigabilities_count = 0
     # Get all the ports in the graph
     ports = g.subjects(RDF.type, RSM_TOPOLOGY.Port)  # a generator
-    list_ports = list(itertools.islice(ports, None))
-    for port in list_ports:
-        # Get the connected ports
-        connected_ports = g.objects(port, RSM_TOPOLOGY.connectedWith)
-        connected_ports_list = list(connected_ports)
+    for port in list(ports):
+        # Get the connected ports (subjects or objects in the connectedWith property, which is symmetric)
+        directly_connected_ports = set(g.objects(port, RSM_TOPOLOGY.connectedWith))
+        inverse_connected_ports = set(g.subjects(RSM_TOPOLOGY.connectedWith, port))
+        connected_ports_list = list(directly_connected_ports.union(inverse_connected_ports))
         case = len(connected_ports_list)
+        if case == 1:
+            print(f"WARNING: Port {port} has exactly 1 other port connected; should be 0 or >= 2.")
         if case in (2, 3):  # switch, or assumed double-slip crossing
             # TODO: change default assumption from double slip to diamond crossing
             for other_port in connected_ports_list:
@@ -89,6 +91,14 @@ def set_navigabilities(input_ttl: str, output_ttl: Optional[str] = None, double_
                     if possible_navigability(azimuth1, azimuth2):
                         g.add((port, RSM_TOPOLOGY.navigableTo, opposite))
                         navigabilities_count += 1
+                        # We assume all navigabilities to be bi-directional by default.
+                        # Also, connectedTo is a symmetric property but the listed connectedWith properties
+                        # are expressed one way. Consequently, the navigability the other way round is
+                        # expressed below:
+                        opposite = opposite_port(g, port)
+                        if opposite:
+                            g.add((other_port, RSM_TOPOLOGY.navigableTo, opposite))
+                            navigabilities_count += 1
         elif case == 0:  # dead-end
             pass
 

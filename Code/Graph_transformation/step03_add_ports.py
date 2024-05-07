@@ -30,13 +30,13 @@ def add_ports(input_ttl: str, output_ttl: Optional[str] = None, with_inverse_pro
         az0 = wgs84_geod.inv(next0.x, next0.y, extr0.x, extr0.y)[0]
         az1 = wgs84_geod.inv(next1.x, next1.y, extr1.x, extr1.y)[0]
         uri0, uri1 = URIRef(str(linear_element) + '_0'), URIRef(str(linear_element) + '_1')
-        # Create the two ports
+        # Create the two ports...
         g.add((URIRef(uri0), RDF.type, RSM_TOPOLOGY.Port))
         g.add((URIRef(uri1), RDF.type, RSM_TOPOLOGY.Port))
-        # Their geometry
+        # ... their geometry
         g.add((URIRef(uri0), GEO.asWKT, Literal(extr0)))
         g.add((URIRef(uri1), GEO.asWKT, Literal(extr1)))
-        # Their azimuth (outward; range -180 to 180 wrt North)
+        # ... their azimuth (outward azimuth; range -180 to 180 wrt North)
         g.add((URIRef(uri0), RSM_TOPOLOGY.azimuth, Literal(az0)))
         g.add((URIRef(uri1), RSM_TOPOLOGY.azimuth, Literal(az1)))
         # Add the relationship between the linear element and the ports
