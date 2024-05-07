@@ -40,8 +40,8 @@ Other use cases may come from other pieces of EU Law, such as TAF TSI, or from o
  
 ## Data
 * Sample data sets:
-    - based on fictive or real networks;
-    - possibly generated from OpenStreetMap.
+    - based on fictive or real networks, or
+    - generated from OpenStreetMap.
 
 ## Languages
 RDF, [RDF-star](https://www.w3.org/2022/08/rdf-star-wg-charter/), OWL, SHACL (for constraints), SPARQL (for queries), SPARQL-star, Python; possibly SWI Prolog.
