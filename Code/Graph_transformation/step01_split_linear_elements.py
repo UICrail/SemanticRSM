@@ -15,22 +15,28 @@ import rdflib
 from rdflib import RDF, Literal, URIRef
 
 import shapely
-from rdflib.term import Node
+
 from shapely.geometry import LineString
 from shapely.wkt import dumps
 from Code.Namespaces import *
-from Code.Export.export_to_kml import ttl_to_kml
 
 
-def split_linestrings_in_file(file_path: str, short_name: str = ""):
+def split_linestrings_in_file(file_path: str, short_name_: str = "", with_kml: bool = False):
+    """
+    Splits linestrings where they share a common point (except at extremities).
+    :param file_path: input file path
+    :param short_name_: will be used for naming the output ttl file
+    :param with_kml: if True, a kml representation of the ttl file will be generated.
+    :return: None
+    """
     print("splitting the Turtle file: ", file_path)
     linestring_dict = parse_turtle_for_linear_element_geometry(file_path)
     shared_coords = find_shared_intermediate_points(linestring_dict)
     new_elements = split_linestrings(linestring_dict, shared_coords)
     path_to_split = "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/"
-    generate_turtle_from_linestrings(new_elements, path_to_split + f"osm_{short_name}_split.ttl")
-    ttl_to_kml(path_to_split + f"osm_{short_name}_split.ttl", path_to_split + f"osm_{short_name}_split.kml")
-
+    generate_turtle_from_linestrings(new_elements, path_to_split + f"osm_{short_name_}_split.ttl")
+    if with_kml:
+        ttl_to_kml(path_to_split + f"osm_{short_name_}_split.ttl", path_to_split + f"osm_{short_name_}_split.kml")
 
 
 def parse_turtle_for_linear_element_geometry(file_path: str) -> dict[URIRef, LineString]:
@@ -86,13 +92,14 @@ def find_shared_intermediate_points(elements: dict[URIRef, LineString]) -> dict[
     return shared
 
 
-def split_linestrings(linestrings: dict[URIRef, LineString], shared_coords: dict[str, list[URIRef]]):
+def split_linestrings(linestrings: dict[URIRef, LineString], shared_coords: dict[str, list[URIRef]],
+                      verbose: bool = False):
     """
     Split elements at intermediate points in linestrings when these points are shared between two or more elements.
     :param linestrings:
     :param shared_coords:
-
-    :return:
+    :param verbose: if True, each split linestring will be reported
+    :return: None
     """
     linestrings_to_remove = set()
     linestrings_to_add = dict()
@@ -103,7 +110,7 @@ def split_linestrings(linestrings: dict[URIRef, LineString], shared_coords: dict
         for coord, uri_list in shared_coords.items():
             if uri in uri_list:
                 ls_split_at.append(coord)
-        if ls_split_at:  ## test for non-empty list
+        if ls_split_at:  # test for non-empty list
             part_index: int = 0
             tail = ls_coords
             for coord in ls_coords:
@@ -115,7 +122,8 @@ def split_linestrings(linestrings: dict[URIRef, LineString], shared_coords: dict
                     tail = new_tail
             linestrings_to_add[URIRef(f"{uri}_part_{part_index}")] = LineString(tail)
             linestrings_to_remove.add(URIRef(uri))
-            print(f"linestring {uri} was split into {part_index + 1} parts")
+            if verbose:
+                print(f"linestring {uri} was split into {part_index + 1} parts")
 
     # Lastly, remove all split linestrings
     print(f"Split : number of raw linestrings before splitting: {len(linestrings)}")
@@ -144,7 +152,7 @@ def generate_turtle_from_linestrings(modified_linestrings: dict[str, LineString]
     g = rdflib.Graph()
 
     # Bind the namespaces
-    g.bind("geo", GSP)
+    g.bind("gsp", GSP)
     g.bind("rsm", RSM_TOPOLOGY)
     g.bind("", WORK)
 
