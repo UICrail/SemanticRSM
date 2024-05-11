@@ -70,7 +70,6 @@ def set_navigabilities(input_ttl: str, output_ttl: Optional[str] = None, double_
     g.parse(input_ttl, format="turtle")
 
     print("setting the navigabilities between ports")
-    navigabilities_count = 0
     # Get all the ports in the graph
     ports = g.subjects(RDF.type, RSM_TOPOLOGY.Port)  # a generator
     for port in list(ports):
@@ -81,28 +80,47 @@ def set_navigabilities(input_ttl: str, output_ttl: Optional[str] = None, double_
         case = len(connected_ports_list)
         if case == 1:
             print(f"WARNING: Port {port} has exactly 1 other port connected; should be 0 or >= 2.")
-        if case in (2, 3):  # switch, or assumed double-slip crossing
-            # TODO: change default assumption from double slip to diamond crossing
+        elif case ==2 or (case == 3 and double_slip_crossings):  # switch, or assumed double-slip crossing
             for other_port in connected_ports_list:
                 opposite = opposite_port(g, other_port)
                 if opposite:
                     azimuth1 = float(g.value(port, RSM_TOPOLOGY.azimuth))
                     azimuth2 = float(g.value(other_port, RSM_TOPOLOGY.azimuth))
                     if possible_navigability(azimuth1, azimuth2):
-                        g.add((port, RSM_TOPOLOGY.navigableTo, opposite))
-                        navigabilities_count += 1
-                        # We assume all navigabilities to be bi-directional by default.
-                        # Also, connectedTo is a symmetric property but the listed connectedWith properties
-                        # are expressed one way. Consequently, the navigability the other way round is
-                        # expressed below:
-                        opposite = opposite_port(g, port)
-                        if opposite:
-                            g.add((other_port, RSM_TOPOLOGY.navigableTo, opposite))
-                            navigabilities_count += 1
+                        predicate = RSM_TOPOLOGY.navigableTo
+                    else:
+                        predicate = RSM_TOPOLOGY.nonNavigableTo
+                    g.add((port, predicate, opposite))
+                    # We assume all navigabilities to be bi-directional by default.
+                    # Also, connectedTo is a symmetric property but the listed connectedWith properties
+                    # are expressed one way. Consequently, the navigability the other way round is
+                    # expressed below:
+                    other_opposite = opposite_port(g, port)
+                    if other_opposite:
+                        g.add((other_port, predicate, other_opposite))
+        elif case == 3 and not double_slip_crossings:  # assumption: all crossings are diamond crossings
+            # TODO: modify the code below (duplicated from the above)
+            for other_port in connected_ports_list:
+                opposite = opposite_port(g, other_port)
+                if opposite:
+                    azimuth1 = float(g.value(port, RSM_TOPOLOGY.azimuth))
+                    azimuth2 = float(g.value(other_port, RSM_TOPOLOGY.azimuth))
+                    if possible_navigability(azimuth1, azimuth2):
+                        predicate = RSM_TOPOLOGY.navigableTo
+                    else:
+                        predicate = RSM_TOPOLOGY.nonNavigableTo
+                    g.add((port, predicate, opposite))
+                    # We assume all navigabilities to be bi-directional by default.
+                    # Also, connectedTo is a symmetric property but the listed connectedWith properties
+                    # are expressed one way. Consequently, the navigability the other way round is
+                    # expressed below:
+                    other_opposite = opposite_port(g, port)
+                    if other_opposite:
+                        g.add((other_port, predicate, other_opposite))
         elif case == 0:  # dead-end
             pass
-
-    print(f"    {navigabilities_count} navigabilities were set")
+        else:
+            raise ValueError(f"Unexpected case: {case} ports connected to port {port}")
 
     # Output
     if output_ttl:
