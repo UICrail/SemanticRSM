@@ -96,8 +96,8 @@ def split_linestrings(linestrings: dict[URIRef, LineString], shared_coords: dict
                       verbose: bool = False):
     """
     Split elements at intermediate points in linestrings when these points are shared between two or more elements.
-    :param linestrings:
-    :param shared_coords:
+    :param linestrings: -
+    :param shared_coords: -
     :param verbose: if True, each split linestring will be reported
     :return: None
     """
