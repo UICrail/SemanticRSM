@@ -11,7 +11,7 @@ from Code.Namespaces import *
 wgs84_geod = Geod(ellps='WGS84')
 
 
-def add_ports(input_ttl: str, output_ttl: Optional[str] = None, with_inverse_properties:bool=True) -> None:
+def add_ports(input_ttl: str, output_ttl: Optional[str] = None, with_inverse_properties: bool = True) -> None:
     g = Graph()
     g.parse(input_ttl, format='turtle')
 

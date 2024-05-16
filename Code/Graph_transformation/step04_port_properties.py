@@ -80,7 +80,7 @@ def set_navigabilities(input_ttl: str, output_ttl: Optional[str] = None, double_
         case = len(connected_ports_list)
         if case == 1:
             print(f"WARNING: Port {port} has exactly 1 other port connected; should be 0 or >= 2.")
-        elif case ==2 or (case == 3 and double_slip_crossings):  # switch, or assumed double-slip crossing
+        elif case == 2 or (case == 3 and double_slip_crossings):  # switch, or assumed double-slip crossing
             for other_port in connected_ports_list:
                 opposite = opposite_port(g, other_port)
                 if opposite:

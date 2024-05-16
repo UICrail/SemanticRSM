@@ -8,7 +8,7 @@
 @base <http://cdm.ovh/rsm/topology/topology#> .
 
 <http://cdm.ovh/rsm/topology/topology> rdf:type owl:Ontology ;
-                                        owl:versionIRI <http://cdm.ovh/rsm/topology/0.4/topology> ;
+                                        owl:versionIRI <http://cdm.ovh/rsm/topology/0.5/topology> ;
                                         rdfs:comment """Added in this version:
 - non-navigability property"""@en ;
                                         owl:versionInfo 0.5 .
@@ -68,12 +68,11 @@
 ###  http://cdm.ovh/rsm/topology/topology#navigableTo
 :navigableTo rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf :portRelation ;
-             rdf:type owl:TransitiveProperty ;
-             owl:propertyDisjointWith :notNavigableTo .
+             rdf:type owl:TransitiveProperty .
 
 
-###  http://cdm.ovh/rsm/topology/topology#notNavigableTo
-:notNavigableTo rdf:type owl:ObjectProperty ;
+###  http://cdm.ovh/rsm/topology/topology#nonNavigableTo
+:nonNavigableTo rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf :portRelation .
 
 

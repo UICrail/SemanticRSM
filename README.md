@@ -23,13 +23,16 @@ OWL offers possibilities to make RSM both more compact and more expressive, whil
 * Ability to determine paths under constraints using SPARQL and inference engines, even though bespoke code may be recommended for computing efficiency.
 
 ## Design process
-The process considers the RINF use case, with priority to topology (micro level = track level) and geographic referencing. However the design, as previously with RSM, emphasizes generality and avoids ad-hoc solutions.
+The process considers the [RINF](https://uat.ld4rail.fpfis.tech.ec.europa.eu/) use case, with priority to topology (expressed at micro level, 
+or track level) and geographic referencing.
+
+However the design, as previously with RSM, emphasizes generality and avoids ad-hoc solutions.
 
 Other use cases may come from other pieces of EU Law, such as TAF TSI, or from ongoing EU projects.
 
 ## Tools
 * [Protégé](https://protege.stanford.edu/) desktop 5.x for RDF edition, checking, and saving to different formats.
-* [EasyRdf](https://www.easyrdf.org/converter) for format conversion (between RDFXML and Turtle, mostly).
+* [EasyRdf](https://www.easyrdf.org/converter) for format conversion (between RDF/XML and Turtle, mostly).
 * Graphics:
     - Sparx Enterprise Architect (v. 16 or later) for UML diagrams, possibly using the built-in [ODM](https://www.omg.org/odm/) UML profile.
     - Visual Paradigm also for UML diagrams, possibly using the [OntoUML](https://ontouml.org/) profile (linked with the UFO general ontology).
@@ -41,14 +44,14 @@ Other use cases may come from other pieces of EU Law, such as TAF TSI, or from o
 ## Data
 * Sample data sets:
     - based on fictive or real networks, or
-    - generated from OpenStreetMap.
+    - based on OpenStreetMap, using [Overpass Turbo](https://overpass-turbo.eu/).
 
 ## Languages
 RDF, [RDF-star](https://www.w3.org/2022/08/rdf-star-wg-charter/), OWL, SHACL (for constraints), SPARQL (for queries), SPARQL-star, Python; possibly SWI Prolog.
 
 # Documentation
 ## Wiki
-The Wiki documents the design process, esp. main design choices. It is an integrated wiki, accessible via the menu bar.
+The Wiki documents the design process, esp. main design choices. This is an integrated wiki, accessible via the GitHub menu bar.
 
 ## Documentation folder
-Only contains diagrams (class diagrams for instance) and illustrations. Better look into the wiki.
+Only contains diagrams (class diagrams for instance) and illustrations. Full documentation is in the wiki.

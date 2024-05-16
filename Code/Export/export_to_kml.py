@@ -5,26 +5,20 @@ from shapely.geometry import LineString
 from typing import Dict, List
 from Code.Namespaces import *
 
-# Assuming the `build_adjacency_list` and `color_elements` functions are defined as previously
 
-# Example usage
-input_ttl = 'input.ttl'  # Update this path to your Turtle file
-output_kml = 'output.kml'  # Update this path to your desired output KML file
-
-
-def ttl_to_kml(input_ttl, output_kml):
-    elements = parse_ttl_to_linestrings(input_ttl)
+def ttl_to_kml(input_ttl_, output_kml_):
+    elements = parse_ttl_to_linestrings(input_ttl_)
     adjacency_list = build_adjacency_list(elements)
     element_colors = color_elements(adjacency_list)
-    generate_kml_from_elements_and_colors(elements, element_colors, output_kml)
-    print(f"KML file generated: {output_kml}")
+    generate_kml_from_elements_and_colors(elements, element_colors, output_kml_)
+    print(f"KML file generated: {output_kml_}")
 
 
-def parse_ttl_to_linestrings(input_ttl: str) -> Dict[URIRef, LineString]:
+def parse_ttl_to_linestrings(input_ttl_: str) -> Dict[URIRef, LineString]:
     from rdflib import Graph
 
     g = Graph()
-    g.parse(input_ttl, format="turtle")
+    g.parse(input_ttl_, format="turtle")
 
     elements: Dict[URIRef, LineString] = {}
     for s, _, o in g.triples((None, GSP.asWKT, None)):
@@ -36,7 +30,7 @@ def parse_ttl_to_linestrings(input_ttl: str) -> Dict[URIRef, LineString]:
 
 
 def generate_kml_from_elements_and_colors(elements: Dict[URIRef, LineString], colors: Dict[URIRef, str],
-                                          output_kml: str) -> None:
+                                          output_kml_: str) -> None:
     import simplekml
 
     kml = simplekml.Kml()
@@ -44,22 +38,22 @@ def generate_kml_from_elements_and_colors(elements: Dict[URIRef, LineString], co
         linestring = kml.newlinestring(name=str(uri), coords=[(pt[0], pt[1]) for pt in geom.coords])
         linestring.style.linestyle.color = colors[uri]
         linestring.style.linestyle.width = 4  # Adjust width as needed
-    kml.save(output_kml)
+    kml.save(output_kml_)
 
 
 def build_adjacency_list(elements: Dict[URIRef, LineString]) -> Dict[URIRef, List[URIRef]]:
-    adjacency_list = {uri: [] for uri in elements.keys()}
+    adjacency_dict = {uri: [] for uri in elements.keys()}
     endpoints = {}
     for uri, geom in elements.items():
         for point in [geom.coords[0], geom.coords[-1]]:
             if point in endpoints:
                 for adjacent_uri in endpoints[point]:
-                    adjacency_list[uri].append(adjacent_uri)
-                    adjacency_list[adjacent_uri].append(uri)
+                    adjacency_dict[uri].append(adjacent_uri)
+                    adjacency_dict[adjacent_uri].append(uri)
                 endpoints[point].append(uri)
             else:
                 endpoints[point] = [uri]
-    return adjacency_list
+    return adjacency_dict
 
 
 def color_elements(adjacency_list: Dict[URIRef, List[URIRef]]) -> Dict[URIRef, str]:

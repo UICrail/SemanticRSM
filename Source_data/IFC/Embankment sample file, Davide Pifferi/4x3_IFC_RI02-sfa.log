@@ -1,0 +1,85 @@
+NIST STEP File Analyzer and Viewer 5.10 (Thu May 16 16:27:19 CEST 2024)
+
+-----------------------------
+Running Syntax Checker
+Syntax Checker results for: 4x3_IFC_RI02.ifc
+ 4x3_IFC_RI02(34): error: Expecting 8 attributes, found 10 instead.
+The number in parentheses is the line number in the file where the error or warning was detected.
+Syntax Checker results saved to: Z:\PycharmProjects\SemanticRSM\Source_data\IFC\Embankment sample file, Davide Pifferi\4x3_IFC_RI02-sfa-err.log
+See Help > Syntax Checker
+-----------------------------
+
+Opening IFC4X3 file
+ 7067 entities
+ 
+Generating Header worksheet
+Name:  4x3_IFC_RI02
+FileDirectory:  Z:\PycharmProjects\SemanticRSM\Source_data\IFC\Embankment sample file, Davide Pifferi\
+FileDescription:  , ExchangeRequirement[Architecture, Structural, BuildingService]
+FileImplementationLevel:  2;1
+FileTimeStamp:  2024-04-16T16:41:39
+FileAuthor:  User
+FileOrganization:  Organization
+FilePreprocessorVersion:  ODA SDAI 23.9
+FileOriginatingSystem:  
+FileAuthorisation:  
+SchemaName:  IFC4X3  (Use the NIST IFC File Analyzer)
+ 
+Generating STEP Entity worksheets
+IfcApplication (1)
+IfcAxis2Placement3D (100)
+IfcBuildingElementProxy (51)
+IfcCartesianPoint (51)
+IfcCartesianPointList3D (47)
+ **  Reporting IfcCartesianPointList3D 'CoordList' attribute is not supported.
+ **  '???' will appear in spreadsheet for these attribute(s).  See User Guide section 5.4
+IfcCartesianTransformationOperator3DnonUniform (47)
+IfcColourRgb (9)
+IfcConversionBasedUnit (1)
+IfcDimensionalExponents (1)
+IfcDirection (3)
+IfcGeometricRepresentationContext (2)
+IfcGeometricRepresentationSubContext (1)
+IfcIndexedPolygonalFace (1000 of 4436)
+ **  Maximum Rows (1000) exceeded (see More tab)
+IfcLocalPlacement (52)
+IfcMapConversion (1)
+IfcMappedItem (47)
+IfcMeasureWithUnit (1)
+IfcOrganization (2)
+IfcOwnerHistory (1)
+IfcPerson (1)
+IfcPersonAndOrganization (1)
+IfcPolygonalFaceSet (35)
+IfcPresentationLayerAssignment (13)
+IfcProductDefinitionShape (47)
+IfcProject (1)
+IfcProjectedCRS (1)
+IfcPropertySet (305)
+IfcPropertySingleValue (1000 of 1290)
+IfcRelAggregates (1)
+IfcRelContainedInSpatialStructure (1)
+IfcRelDefinesByProperties (305)
+IfcRepresentationMap (47)
+IfcSIUnit (4)
+IfcShapeRepresentation (94)
+IfcSite (1)
+IfcStyledItem (47)
+IfcSurfaceStyle (3)
+IfcSurfaceStyleRendering (3)
+IfcTriangulatedFaceSet (12)
+ **  Reporting IfcTriangulatedFaceSet 'CoordIndex' 'Normals' 'NormalIndex' attributes is not supported.
+IfcUnitAssignment (1)
+ ** The Viewer only works with STEP AP242, AP203, AP214, AP238, and AP209 files.  See Help > Support STEP APs  [x3dFileStart]
+
+Generating Summary worksheet
+Formatting Worksheets
+Processing time: 14.2 seconds
+ 
+Saving Spreadsheet to:
+ Z:\...\IFC\Embankment sample file, Davide Pifferi\4x3_IFC_RI02-sfa.xlsx
+
+Opening Spreadsheet: 4x3_IFC_RI02-sfa.xlsx
+
+Saving Log file to:
+ Z:\PycharmProjects\SemanticRSM\Source_data\IFC\Embankment sample file, Davide Pifferi\4x3_IFC_RI02-sfa.log
