@@ -23,8 +23,10 @@ OWL offers possibilities to make RSM both more compact and more expressive, whil
 * Ability to determine paths under constraints using SPARQL and inference engines, even though bespoke code may be recommended for computing efficiency.
 
 ## Design process
-The process considers the [RINF](https://uat.ld4rail.fpfis.tech.ec.europa.eu/) use case, with priority to topology (expressed at micro level, 
-or track level) and geographic referencing.
+The process considers
+* the [RINF](https://uat.ld4rail.fpfis.tech.ec.europa.eu/) use case, with priority to topology (expressed at micro level, or track level) and geographic referencing.
+* the System Pillar requirements regarding rolling stock modelling (typology)
+* FP5-TRANSF4M-R data requirements regarding the description of the "last mile of infrastructure" and of rolling stock defects.
 
 However the design, as previously with RSM, emphasizes generality and avoids ad-hoc solutions.
 
