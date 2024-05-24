@@ -18,12 +18,15 @@ OWL offers possibilities to make RSM both more compact and more expressive, whil
 * Simplification (not: dumbing down).
 * Separation into small vocabularies (high-cohesion, low-dependency principle) to facilitate ontology management.
 * Improvements:
-    - about topology: navigability as a transitive property, internal navigability in "operational points" (yards, stations), more flexible composition of net elements.
-* Systematic, explicit usage of well-established external vocabularies, where relevant: for instance, SSN ontology, geosparql, w3c time.
+    - about topology:
+        - navigability as a transitive property,
+        - internal navigability in "operational points" (yards, stations),
+        - more flexible composition of net elements.
+* Systematic, explicit usage of well-established external vocabularies, where relevant: SOSA/SSN, GeoSPARQL, w3c time...
 * Ability to determine paths under constraints using SPARQL and inference engines, even though bespoke code may be recommended for computing efficiency.
 
 ## Design process
-The process considers
+The process currently considers
 * the [RINF](https://uat.ld4rail.fpfis.tech.ec.europa.eu/) use case, with priority to topology (expressed at micro level, or track level) and geographic referencing.
 * the System Pillar requirements regarding rolling stock modelling (typology)
 * FP5-TRANSF4M-R data requirements regarding the description of the "last mile of infrastructure" and of rolling stock defects.
