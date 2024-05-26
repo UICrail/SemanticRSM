@@ -7,7 +7,7 @@ This ontology intends to represent "static" __aspects__ of railway rolling stock
 4. payloads : passengers, freight, containers...
 5. performance settings : effort vs. speed curves (traction and braking), resistance to forward movement, mass and rotating mass inertia ...
 
-Currently, aspects 1, 3, 4 are covered by the "rolling stock typology" ontology.
+Currently, aspects 1, 3, 4 are covered by the "rolling stock typology" ontology. See integrated wiki for further explanations.
 
 (under preparation) The above aspects are made available at various business __levels__:
 1. operations planning : "train IC94 is composed of three first-class, one dining, and seven second-class coaches, hauled by an electric locomotive"
