@@ -12,12 +12,11 @@ Not thoroughly checked for exhaustiveness, but looks OK too.
 from typing import List
 
 import rdflib
-from rdflib import RDF, Literal, URIRef
-
 import shapely
-
+from rdflib import RDF, Literal, URIRef
 from shapely.geometry import LineString
 from shapely.wkt import dumps
+
 from Code.Namespaces import *
 
 
@@ -32,9 +31,9 @@ def split_linestrings_in_file(file_path: str, short_name_: str = "", with_kml: b
     print("splitting the Turtle file: ", file_path)
     linestring_dict = parse_turtle_for_linear_element_geometry(file_path)
     shared_coords = find_shared_intermediate_points(linestring_dict)
-    new_elements = split_linestrings(linestring_dict, shared_coords)
+    modified_linestrings = split_linestrings(linestring_dict, shared_coords)
     path_to_split = "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/"
-    generate_turtle_from_linestrings(new_elements, path_to_split + f"osm_{short_name_}_split.ttl")
+    generate_turtle_from_linestrings(file_path, modified_linestrings, path_to_split + f"osm_{short_name_}_split.ttl")
     if with_kml:
         ttl_to_kml(path_to_split + f"osm_{short_name_}_split.ttl", path_to_split + f"osm_{short_name_}_split.kml")
 
@@ -48,8 +47,8 @@ def parse_turtle_for_linear_element_geometry(file_path: str) -> dict[URIRef, Lin
     g.parse(file_path, format="turtle")
 
     linestring_dict = {}
-    for s, _, o in g.triples((None, RDF.type, RSM_TOPOLOGY.LinearElement)):
-        wkt = g.value(s, GSP.asWKT)
+    for s, _, o in g.triples((None, RDF.type, RSM_GEOSPARQL_ADAPTER.Geometry)):
+        wkt = g.value(s, GEOSPARQL.asWKT)
         if wkt:
             linestring_dict[s] = shapely.wkt.loads(str(wkt))
     return linestring_dict
@@ -82,24 +81,24 @@ def find_shared_intermediate_points(elements: dict[URIRef, LineString]) -> dict[
 
     shared = {coord: uris for coord, uris in shared.items() if len(uris) > 1}
 
-    # Then drop the points that correspond to two or more elements joint at their extremity
+    # Then drop the points that correspond to two or more elements joint at their extremities only
     shared = {coord: uris for coord, uris in shared.items() if set(uris) != {'extremity'}}
 
     # Finally, remove the 'extremity' placeholders
-
     shared = {coord: [uri for uri in uris if uri != 'extremity'] for coord, uris in shared.items()}
 
     return shared
 
 
 def split_linestrings(linestrings: dict[URIRef, LineString], shared_coords: dict[str, list[URIRef]],
-                      verbose: bool = False):
+                      verbose: bool = False) -> (dict[URIRef, LineString], set[URIRef]):
     """
     Split elements at intermediate points in linestrings when these points are shared between two or more elements.
-    :param linestrings: -
-    :param shared_coords: -
-    :param verbose: if True, each split linestring will be reported
-    :return: None
+    :param linestrings: original linestrings dictionary
+    :param shared_coords: dict of coordinates shared between two or more linear elements,
+    where the coordinate does not correspond to an extremity in at least one case.
+    :param verbose: if True, each split linestring will be reported.
+    :return: (modified (split) linestrings dictionary, set of linestrings to be suppressed)
     """
     linestrings_to_remove = set()
     linestrings_to_add = dict()
@@ -126,33 +125,30 @@ def split_linestrings(linestrings: dict[URIRef, LineString], shared_coords: dict
                 print(f"linestring {uri} was split into {part_index + 1} parts")
 
     # Lastly, remove all split linestrings
-    print(f"Split : number of raw linestrings before splitting: {len(linestrings)}")
-    for ls in linestrings_to_remove:
-        del linestrings[ls]
-    print(f"Split : number of linestrings to remove: {len(linestrings_to_remove)}")
-    print(f"Split : remaining linestrings: {len(linestrings)}")
-    # ... and add the splits
-    print(f"Split : linestrings to be added: {len(linestrings_to_add)}")
-    for k, v in linestrings_to_add.items():
-        linestrings[k] = v
-    print(f"Split : resulting linestrings: {len(linestrings)}")
+    print("Splitting linestrings, to avoid any branches from inside a Linear Element")
+    print(f"    number of linestrings before splitting: {len(linestrings)}")
+    print(f"    number of linestrings to remove: {len(linestrings_to_remove)}")
+    print(f"    number of linestrings to add: {len(linestrings_to_add)}")
 
-    return linestrings
+    return linestrings_to_add, linestrings_to_remove
 
 
-def generate_turtle_from_linestrings(modified_linestrings: dict[str, LineString], output_file_path: str):
+def generate_turtle_from_linestrings(file_path: str, modified_linestrings: dict[str, LineString],
+                                     output_file_path: str):
+    """
+    Modifies the linear elements according to the split linestrings and stores result in ttl file.
+    :param file_path: turtle file with linear elements and their geometries
+    :param modified_linestrings: dictionary of geometries
+    :param output_file_path: to ttl file
+    :return: None
     """
 
-    :param modified_linestrings:
-    :param output_file_path:
-    :return:
-    """
-
-    # Initialize the RDF graph
+    # Load the RDF graph
     g = rdflib.Graph()
+    g.parse(file_path, format="turtle")
 
     # Bind the namespaces
-    g.bind("gsp", GSP)
+    g.bind("geo", GEOSPARQL)
     g.bind("rsm", RSM_TOPOLOGY)
     g.bind("", WORK)
 
@@ -164,12 +160,12 @@ def generate_turtle_from_linestrings(modified_linestrings: dict[str, LineString]
 
         # Convert the LineString to WKT
         wkt = dumps(linestring)
-        wkt_literal = Literal(wkt, datatype=GSP.wktLiteral)
+        wkt_literal = Literal(wkt, datatype=GEOSPARQL.wktLiteral)
 
         # Create the triples
         g.add((uri_ref, RDF.type, RSM_TOPOLOGY.LinearElement))  # Type of the element
-        g.add((uri_ref, RDF.type, GSP.Geometry))  # ...also of type: Geometry
-        g.add((uri_ref, GSP.asWKT, wkt_literal))  # Geometry representation using Well-Known Text (WKT)
+        g.add((uri_ref, RDF.type, GEOSPARQL.Geometry))  # ...also of type: Geometry
+        g.add((uri_ref, GEOSPARQL.asWKT, wkt_literal))  # Geometry representation using Well-Known Text (WKT)
 
     # Serialize the graph to the Turtle file
     g.serialize(destination=output_file_path, format='turtle')

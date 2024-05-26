@@ -20,7 +20,7 @@ def create_nodes(g: Graph) -> Dict[str, List[URIRef]]:
     values = URIs of those linear elements, based on the provided RDF graph.
     """
     nodes: Dict[str, List[URIRef]] = {}
-    for s, _, o in g.triples((None, GSP.asWKT, None)):
+    for s, _, o in g.triples((None, GEOSPARQL.asWKT, None)):
         if (s, RDF.type, RSM_TOPOLOGY.LinearElement) in g:
             geom = loads(str(o))
             if isinstance(geom, Point):
@@ -62,8 +62,8 @@ def perform_chaining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]]) -> Graph
     processed_nodes_counter = 0
 
     for node_wkt, elements in nodes_degree_2.items():
-        geom_x = loads(str(g.value(elements[0], GSP.asWKT)))
-        geom_y = loads(str(g.value(elements[1], GSP.asWKT)))
+        geom_x = loads(str(g.value(elements[0], GEOSPARQL.asWKT)))
+        geom_y = loads(str(g.value(elements[1], GEOSPARQL.asWKT)))
 
         # Chain the geometries
         # Here, directed should be set to False (the default argument), otherwise multi-linestrings
@@ -76,7 +76,7 @@ def perform_chaining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]]) -> Graph
             uri_z = URIRef(f"{str(elements[0])}{CHAINED_WITH}{str(elements[1]).split('#', 1)[1]}")
             # Add the new chained element Z to the graph
             g.add((uri_z, RDF.type, RSM_TOPOLOGY.LinearElement))
-            g.add((uri_z, GSP.asWKT, Literal(dumps(geom_z), datatype=GSP.wktLiteral)))
+            g.add((uri_z, GEOSPARQL.asWKT, Literal(dumps(geom_z), datatype=GEOSPARQL.wktLiteral)))
 
             # Mark X and Y for removal
             elements_to_remove.update(elements)

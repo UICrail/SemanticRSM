@@ -4,18 +4,33 @@
 
 import geopandas as gpd
 import rdflib
-from rdflib import RDF, Literal
+from rdflib import RDF, Literal, RDFS
 from shapely.geometry import LineString, Point
+
 from Code.Namespaces import *
 
 
-def osm_import(osm_file_path: str, short_name: str = ""):
+def osm_import(osm_file_path: str, short_name: str = "", linear_element_prefix: str = 'rwy',
+               geometry_prefix: str = 'geom', with_properties: bool = True):
+    """
+
+    :param geometry_prefix:
+    :param linear_element_prefix:
+    :param osm_file_path:
+    :param short_name: will be used for the intermediate and final file naming
+    :param with_properties: if False, geometries will not be associated with the linear elements via hasNominalGeometry.
+    In such case, only the URIs will tell which linear element matches which geometry.
+    :return: None (a file is created)
+    """
     # Initialize RDF graph
     g = rdflib.Graph()
 
     # Bind the namespaces
-    g.bind("gsp", GSP)
+    g.bind("geo", GEOSPARQL)
     g.bind("rsm", RSM_TOPOLOGY)
+    g.bind("rdf", RDF)
+    g.bind("rdfs", RDFS)
+    g.bind("rsm", RSM_GEOSPARQL_ADAPTER)
     g.bind("", WORK)
 
     # Load OSM data (assumed to be in GeoJSON format) with GeoPandas
@@ -26,7 +41,8 @@ def osm_import(osm_file_path: str, short_name: str = ""):
 
     # Process railway lines
     for index, row in railways.iterrows():
-        line_uri = WORK[f"rwy_{index}"]
+        line_uri = WORK[f"{linear_element_prefix}_{index}"]
+        geom_uri = WORK[f"{geometry_prefix}_{index}"]
         # Convert geometry to WKT
         if isinstance(row.geometry, LineString) or isinstance(row.geometry, Point):
             wkt = row.geometry.wkt
@@ -34,8 +50,10 @@ def osm_import(osm_file_path: str, short_name: str = ""):
             wkt = str(row.geometry)
 
         g.add((line_uri, RDF.type, RSM_TOPOLOGY.LinearElement))
-        g.add((line_uri, RDF.type, GSP.Geometry))
-        g.add((line_uri, GSP.asWKT, Literal(wkt, datatype=GSP.wktLiteral)))
+        if with_properties:
+            g.add((line_uri, RSM_GEOSPARQL_ADAPTER.hasNominalGeometry, geom_uri))
+        g.add((geom_uri, RDF.type, RSM_GEOSPARQL_ADAPTER.Geometry))
+        g.add((geom_uri, GEOSPARQL.asWKT, Literal(wkt, datatype=GEOSPARQL.wktLiteral)))
 
     # Serialize the graph to a Turtle file
     g.serialize(
