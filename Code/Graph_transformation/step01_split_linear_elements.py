@@ -170,11 +170,11 @@ def generate_turtle_from_linestrings(file_path: str, linestrings_to_add: dict[UR
 
     count_lines, count_geometries = 0, 0
 
-    for geo_uri in linestrings_to_add:
-        index = geo_uri.split('_', 1)[1]
-        line_uri = URIRef('split_element' + '_' + index)
+    for geom_uri in linestrings_to_add:
+        index = geom_uri.split('_', 1)[1]
+        line_uri = URIRef(WORK + 'split_element' + '_' + index)
         g.add((line_uri, RDF.type, RSM_TOPOLOGY.LinearElement))
-        g.add((line_uri, RSM_GEOSPARQL_ADAPTER.hasNominalGeometry, geo_uri))
+        g.add((line_uri, RSM_GEOSPARQL_ADAPTER.hasNominalGeometry, geom_uri))
         count_lines += 1
         count_geometries += 1
     print(f"    Generated {count_lines} linear elements and {count_geometries} nominal geometry properties")
@@ -204,7 +204,6 @@ def generate_turtle_from_linestrings(file_path: str, linestrings_to_add: dict[UR
     # Serialize the graph to the Turtle file
     g.serialize(destination=output_file_path, format='turtle')
     print(f"Generated Turtle file: {output_file_path}")
-    pass
 
 
 if __name__ == "__main__":
