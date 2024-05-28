@@ -51,7 +51,12 @@ Length must be consistent with the chosen Nominal Geometry."""@en .
 
 ###  http://www.opengis.net/ont/geosparql#hasMetricLength
 <http://www.opengis.net/ont/geosparql#hasMetricLength> rdf:type owl:DatatypeProperty ;
-                                                       rdfs:range xsd:double .
+                                                       rdfs:range [ rdf:type rdfs:Datatype ;
+                                                                    owl:onDatatype xsd:double ;
+                                                                    owl:withRestrictions ( [ xsd:minInclusive "0.0"^^xsd:double
+                                                                                           ]
+                                                                                         )
+                                                                  ] .
 
 
 #################################################################

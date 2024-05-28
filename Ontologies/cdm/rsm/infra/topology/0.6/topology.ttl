@@ -4,10 +4,11 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://cdm.ovh/rsm/topology/topology> .
+@base <http://cdm.ovh/rsm/topology/topology#> .
 
 <http://cdm.ovh/rsm/topology/topology> rdf:type owl:Ontology ;
                                         owl:versionIRI <http://cdm.ovh/rsm/topology/0.6/topology> ;
+                                        owl:imports <http://cdm.ovh/rsm/adapters/geosparql_adapter> ;
                                         rdfs:comment "Using GeoSPARQL and SOSA/SSN adapters"@en ;
                                         owl:versionInfo 0.6 .
 

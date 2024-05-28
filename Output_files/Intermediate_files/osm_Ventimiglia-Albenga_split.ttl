@@ -1,1 +1,1931 @@
+@prefix : <http://cdm.ovh/examples/Ventimiglia-Albenga/Ventimiglia-Albenga#> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix rsm: <http://cdm.ovh/rsm/topology/topology#> .
+@prefix rsm1: <http://www.opengis.net/ont/rsm/adapter#> .
+
+:rwy_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_0 .
+
+:rwy_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_1 .
+
+:rwy_10 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_10 .
+
+:rwy_100 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_100 .
+
+:rwy_101 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_101 .
+
+:rwy_103 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_103 .
+
+:rwy_105 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_105 .
+
+:rwy_106 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_106 .
+
+:rwy_107 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_107 .
+
+:rwy_108 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_108 .
+
+:rwy_109 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_109 .
+
+:rwy_11 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_11 .
+
+:rwy_110 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_110 .
+
+:rwy_111 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_111 .
+
+:rwy_113 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_113 .
+
+:rwy_115 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_115 .
+
+:rwy_117 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_117 .
+
+:rwy_12 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_12 .
+
+:rwy_122 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_122 .
+
+:rwy_124 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_124 .
+
+:rwy_126 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_126 .
+
+:rwy_127 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_127 .
+
+:rwy_129 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_129 .
+
+:rwy_13 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_13 .
+
+:rwy_131 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_131 .
+
+:rwy_132 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_132 .
+
+:rwy_133 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_133 .
+
+:rwy_135 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_135 .
+
+:rwy_14 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_14 .
+
+:rwy_140 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_140 .
+
+:rwy_141 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_141 .
+
+:rwy_142 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_142 .
+
+:rwy_144 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_144 .
+
+:rwy_146 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_146 .
+
+:rwy_147 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_147 .
+
+:rwy_148 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_148 .
+
+:rwy_149 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_149 .
+
+:rwy_15 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_15 .
+
+:rwy_150 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_150 .
+
+:rwy_151 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_151 .
+
+:rwy_152 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_152 .
+
+:rwy_153 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_153 .
+
+:rwy_154 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_154 .
+
+:rwy_155 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_155 .
+
+:rwy_156 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_156 .
+
+:rwy_158 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_158 .
+
+:rwy_159 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_159 .
+
+:rwy_16 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_16 .
+
+:rwy_160 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_160 .
+
+:rwy_161 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_161 .
+
+:rwy_162 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_162 .
+
+:rwy_165 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_165 .
+
+:rwy_166 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_166 .
+
+:rwy_167 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_167 .
+
+:rwy_168 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_168 .
+
+:rwy_169 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_169 .
+
+:rwy_17 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_17 .
+
+:rwy_170 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_170 .
+
+:rwy_171 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_171 .
+
+:rwy_172 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_172 .
+
+:rwy_173 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_173 .
+
+:rwy_174 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_174 .
+
+:rwy_175 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_175 .
+
+:rwy_176 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_176 .
+
+:rwy_180 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_180 .
+
+:rwy_181 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_181 .
+
+:rwy_183 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_183 .
+
+:rwy_184 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_184 .
+
+:rwy_185 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_185 .
+
+:rwy_186 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_186 .
+
+:rwy_187 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_187 .
+
+:rwy_188 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_188 .
+
+:rwy_19 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_19 .
+
+:rwy_190 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_190 .
+
+:rwy_192 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_192 .
+
+:rwy_193 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_193 .
+
+:rwy_195 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_195 .
+
+:rwy_196 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_196 .
+
+:rwy_197 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_197 .
+
+:rwy_198 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_198 .
+
+:rwy_2 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_2 .
+
+:rwy_20 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_20 .
+
+:rwy_200 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_200 .
+
+:rwy_201 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_201 .
+
+:rwy_202 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_202 .
+
+:rwy_203 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_203 .
+
+:rwy_205 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_205 .
+
+:rwy_206 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_206 .
+
+:rwy_207 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_207 .
+
+:rwy_208 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_208 .
+
+:rwy_209 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_209 .
+
+:rwy_21 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_21 .
+
+:rwy_210 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_210 .
+
+:rwy_211 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_211 .
+
+:rwy_212 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_212 .
+
+:rwy_213 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_213 .
+
+:rwy_214 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_214 .
+
+:rwy_215 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_215 .
+
+:rwy_216 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_216 .
+
+:rwy_217 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_217 .
+
+:rwy_219 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_219 .
+
+:rwy_22 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_22 .
+
+:rwy_221 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_221 .
+
+:rwy_222 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_222 .
+
+:rwy_223 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_223 .
+
+:rwy_224 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_224 .
+
+:rwy_225 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_225 .
+
+:rwy_226 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_226 .
+
+:rwy_227 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_227 .
+
+:rwy_228 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_228 .
+
+:rwy_229 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_229 .
+
+:rwy_230 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_230 .
+
+:rwy_231 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_231 .
+
+:rwy_232 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_232 .
+
+:rwy_233 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_233 .
+
+:rwy_235 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_235 .
+
+:rwy_236 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_236 .
+
+:rwy_238 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_238 .
+
+:rwy_239 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_239 .
+
+:rwy_24 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_24 .
+
+:rwy_240 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_240 .
+
+:rwy_241 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_241 .
+
+:rwy_242 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_242 .
+
+:rwy_243 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_243 .
+
+:rwy_244 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_244 .
+
+:rwy_246 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_246 .
+
+:rwy_247 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_247 .
+
+:rwy_25 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_25 .
+
+:rwy_26 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_26 .
+
+:rwy_27 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_27 .
+
+:rwy_28 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_28 .
+
+:rwy_29 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_29 .
+
+:rwy_3 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_3 .
+
+:rwy_30 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_30 .
+
+:rwy_31 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_31 .
+
+:rwy_32 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_32 .
+
+:rwy_33 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_33 .
+
+:rwy_34 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_34 .
+
+:rwy_35 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_35 .
+
+:rwy_36 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_36 .
+
+:rwy_37 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_37 .
+
+:rwy_38 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_38 .
+
+:rwy_39 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_39 .
+
+:rwy_4 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_4 .
+
+:rwy_40 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_40 .
+
+:rwy_41 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_41 .
+
+:rwy_42 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_42 .
+
+:rwy_43 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_43 .
+
+:rwy_44 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_44 .
+
+:rwy_46 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_46 .
+
+:rwy_47 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_47 .
+
+:rwy_48 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_48 .
+
+:rwy_49 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_49 .
+
+:rwy_5 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_5 .
+
+:rwy_50 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_50 .
+
+:rwy_51 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_51 .
+
+:rwy_52 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_52 .
+
+:rwy_53 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_53 .
+
+:rwy_54 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_54 .
+
+:rwy_55 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_55 .
+
+:rwy_56 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_56 .
+
+:rwy_6 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_6 .
+
+:rwy_62 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_62 .
+
+:rwy_65 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_65 .
+
+:rwy_67 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_67 .
+
+:rwy_69 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_69 .
+
+:rwy_7 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_7 .
+
+:rwy_70 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_70 .
+
+:rwy_71 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_71 .
+
+:rwy_74 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_74 .
+
+:rwy_76 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_76 .
+
+:rwy_79 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_79 .
+
+:rwy_8 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_8 .
+
+:rwy_81 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_81 .
+
+:rwy_82 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_82 .
+
+:rwy_83 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_83 .
+
+:rwy_84 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_84 .
+
+:rwy_85 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_85 .
+
+:rwy_86 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_86 .
+
+:rwy_87 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_87 .
+
+:rwy_88 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_88 .
+
+:rwy_89 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_89 .
+
+:rwy_9 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_9 .
+
+:rwy_90 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_90 .
+
+:rwy_91 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_91 .
+
+:rwy_92 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_92 .
+
+:rwy_93 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_93 .
+
+:rwy_94 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_94 .
+
+:rwy_95 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_95 .
+
+:rwy_96 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_96 .
+
+:rwy_97 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_97 .
+
+:rwy_98 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_98 .
+
+:rwy_99 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_99 .
+
+<split_element_102_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_102_part_0 .
+
+<split_element_102_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_102_part_1 .
+
+<split_element_102_part_2> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_102_part_2 .
+
+<split_element_104_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_104_part_0 .
+
+<split_element_104_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_104_part_1 .
+
+<split_element_104_part_2> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_104_part_2 .
+
+<split_element_104_part_3> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_104_part_3 .
+
+<split_element_104_part_4> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_104_part_4 .
+
+<split_element_112_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_112_part_0 .
+
+<split_element_112_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_112_part_1 .
+
+<split_element_112_part_2> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_112_part_2 .
+
+<split_element_114_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_114_part_0 .
+
+<split_element_114_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_114_part_1 .
+
+<split_element_116_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_116_part_0 .
+
+<split_element_116_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_116_part_1 .
+
+<split_element_118_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_118_part_0 .
+
+<split_element_118_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_118_part_1 .
+
+<split_element_118_part_2> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_118_part_2 .
+
+<split_element_119_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_119_part_0 .
+
+<split_element_119_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_119_part_1 .
+
+<split_element_120_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_120_part_0 .
+
+<split_element_120_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_120_part_1 .
+
+<split_element_121_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_121_part_0 .
+
+<split_element_121_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_121_part_1 .
+
+<split_element_121_part_2> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_121_part_2 .
+
+<split_element_123_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_123_part_0 .
+
+<split_element_123_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_123_part_1 .
+
+<split_element_125_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_125_part_0 .
+
+<split_element_125_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_125_part_1 .
+
+<split_element_125_part_2> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_125_part_2 .
+
+<split_element_128_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_128_part_0 .
+
+<split_element_128_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_128_part_1 .
+
+<split_element_128_part_2> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_128_part_2 .
+
+<split_element_130_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_130_part_0 .
+
+<split_element_130_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_130_part_1 .
+
+<split_element_130_part_2> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_130_part_2 .
+
+<split_element_134_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_134_part_0 .
+
+<split_element_134_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_134_part_1 .
+
+<split_element_134_part_2> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_134_part_2 .
+
+<split_element_136_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_136_part_0 .
+
+<split_element_136_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_136_part_1 .
+
+<split_element_136_part_2> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_136_part_2 .
+
+<split_element_137_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_137_part_0 .
+
+<split_element_137_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_137_part_1 .
+
+<split_element_138_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_138_part_0 .
+
+<split_element_138_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_138_part_1 .
+
+<split_element_139_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_139_part_0 .
+
+<split_element_139_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_139_part_1 .
+
+<split_element_143_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_143_part_0 .
+
+<split_element_143_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_143_part_1 .
+
+<split_element_145_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_145_part_0 .
+
+<split_element_145_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_145_part_1 .
+
+<split_element_157_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_157_part_0 .
+
+<split_element_157_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_157_part_1 .
+
+<split_element_163_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_163_part_0 .
+
+<split_element_163_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_163_part_1 .
+
+<split_element_164_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_164_part_0 .
+
+<split_element_164_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_164_part_1 .
+
+<split_element_177_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_177_part_0 .
+
+<split_element_177_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_177_part_1 .
+
+<split_element_178_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_178_part_0 .
+
+<split_element_178_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_178_part_1 .
+
+<split_element_179_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_179_part_0 .
+
+<split_element_179_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_179_part_1 .
+
+<split_element_179_part_2> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_179_part_2 .
+
+<split_element_182_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_182_part_0 .
+
+<split_element_182_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_182_part_1 .
+
+<split_element_189_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_189_part_0 .
+
+<split_element_189_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_189_part_1 .
+
+<split_element_18_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_18_part_0 .
+
+<split_element_18_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_18_part_1 .
+
+<split_element_191_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_191_part_0 .
+
+<split_element_191_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_191_part_1 .
+
+<split_element_194_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_194_part_0 .
+
+<split_element_194_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_194_part_1 .
+
+<split_element_199_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_199_part_0 .
+
+<split_element_199_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_199_part_1 .
+
+<split_element_204_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_204_part_0 .
+
+<split_element_204_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_204_part_1 .
+
+<split_element_218_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_218_part_0 .
+
+<split_element_218_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_218_part_1 .
+
+<split_element_220_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_220_part_0 .
+
+<split_element_220_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_220_part_1 .
+
+<split_element_234_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_234_part_0 .
+
+<split_element_234_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_234_part_1 .
+
+<split_element_237_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_237_part_0 .
+
+<split_element_237_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_237_part_1 .
+
+<split_element_23_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_23_part_0 .
+
+<split_element_23_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_23_part_1 .
+
+<split_element_245_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_245_part_0 .
+
+<split_element_245_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_245_part_1 .
+
+<split_element_45_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_45_part_0 .
+
+<split_element_45_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_45_part_1 .
+
+<split_element_57_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_57_part_0 .
+
+<split_element_57_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_57_part_1 .
+
+<split_element_58_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_58_part_0 .
+
+<split_element_58_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_58_part_1 .
+
+<split_element_59_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_59_part_0 .
+
+<split_element_59_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_59_part_1 .
+
+<split_element_60_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_60_part_0 .
+
+<split_element_60_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_60_part_1 .
+
+<split_element_61_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_61_part_0 .
+
+<split_element_61_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_61_part_1 .
+
+<split_element_63_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_63_part_0 .
+
+<split_element_63_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_63_part_1 .
+
+<split_element_64_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_64_part_0 .
+
+<split_element_64_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_64_part_1 .
+
+<split_element_66_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_66_part_0 .
+
+<split_element_66_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_66_part_1 .
+
+<split_element_68_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_68_part_0 .
+
+<split_element_68_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_68_part_1 .
+
+<split_element_68_part_2> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_68_part_2 .
+
+<split_element_68_part_3> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_68_part_3 .
+
+<split_element_72_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_72_part_0 .
+
+<split_element_72_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_72_part_1 .
+
+<split_element_72_part_2> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_72_part_2 .
+
+<split_element_72_part_3> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_72_part_3 .
+
+<split_element_73_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_73_part_0 .
+
+<split_element_73_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_73_part_1 .
+
+<split_element_73_part_2> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_73_part_2 .
+
+<split_element_75_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_75_part_0 .
+
+<split_element_75_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_75_part_1 .
+
+<split_element_77_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_77_part_0 .
+
+<split_element_77_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_77_part_1 .
+
+<split_element_78_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_78_part_0 .
+
+<split_element_78_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_78_part_1 .
+
+<split_element_80_part_0> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_80_part_0 .
+
+<split_element_80_part_1> a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_80_part_1 .
+
+:geom_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1712793 44.0079906, 8.1708202 44.0076808, 8.1702726 44.0073469, 8.1694884 44.0069081, 8.1686621 44.0064746, 8.1677828 44.0059917, 8.1675338 44.0058105)"^^geo:wktLiteral .
+
+:geom_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1634107 43.9941356, 8.1629111 43.992988, 8.1628253 43.9927189, 8.1627902 43.99252, 8.1627213 43.991976, 8.1626732 43.9917011, 8.1626226 43.9913875, 8.1625402 43.9910823, 8.1624151 43.9907594, 8.1618383 43.9898011, 8.1610105 43.9884458, 8.1603868 43.987242, 8.1601195 43.9866204, 8.1597785 43.9854798, 8.1595962 43.9846516, 8.1594307 43.9838061, 8.1592788 43.9830569, 8.159029 43.9822499, 8.1587006 43.981284, 8.1586798 43.981223, 8.1585814 43.9809918, 8.1584192 43.9805451, 8.158291 43.9801857, 8.158114 43.9796501, 8.1579481 43.979042, 8.1578006 43.9785548, 8.1576851 43.9781672, 8.1575373 43.9776888, 8.1571222 43.9763252, 8.1569958 43.9759571, 8.1568554 43.9756443, 8.1565421 43.9750411)"^^geo:wktLiteral .
+
+:geom_10 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2197377 44.044705, 8.2198403 44.0448511, 8.2200558 44.0451837, 8.2202177 44.0454164)"^^geo:wktLiteral .
+
+:geom_100 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2206006 44.0458833, 8.2206891 44.0459951, 8.2208588 44.046203, 8.2211954 44.0466315)"^^geo:wktLiteral .
+
+:geom_101 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2249809 44.051656, 8.2251241 44.0518689, 8.2252385 44.0520704, 8.2253502 44.0522913, 8.2254866 44.0526191, 8.2255752 44.0529303, 8.2256191 44.053219)"^^geo:wktLiteral .
+
+:geom_102_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2206005999999991 44.0458832999999998, 8.2208612999999993 44.0461402000000035)"^^geo:wktLiteral .
+
+:geom_102_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2208612999999993 44.0461402000000035, 8.2209608000000003 44.0462607999999989, 8.2211672999999994 44.0465249000000014)"^^geo:wktLiteral .
+
+:geom_102_part_2 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2211672999999994 44.0465249000000014, 8.2212394000000000 44.0466175000000035)"^^geo:wktLiteral .
+
+:geom_103 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2211673 44.0465249, 8.2212533 44.046613)"^^geo:wktLiteral .
+
+:geom_104_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2214428000000002 44.0468145000000035, 8.2216439000000001 44.0470303999999970)"^^geo:wktLiteral .
+
+:geom_104_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2216439000000001 44.0470303999999970, 8.2218941999999995 44.0472845000000035)"^^geo:wktLiteral .
+
+:geom_104_part_2 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2218941999999995 44.0472845000000035, 8.2220060000000004 44.0474121000000025, 8.2222446999999992 44.0477245000000011, 8.2237019999999994 44.0495920999999981, 8.2239460999999991 44.0499217999999999)"^^geo:wktLiteral .
+
+:geom_104_part_3 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2239460999999991 44.0499217999999999, 8.2239935000000006 44.0500031999999990, 8.2241651999999998 44.0502961999999982, 8.2242000999999991 44.0503675000000001, 8.2242733000000001 44.0504865999999993)"^^geo:wktLiteral .
+
+:geom_104_part_4 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2242733000000001 44.0504865999999993, 8.2244200000000003 44.0507472999999976)"^^geo:wktLiteral .
+
+:geom_105 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2205305 44.0458724, 8.2206193 44.0460376, 8.2207186 44.0462149, 8.2208044 44.0463576, 8.2209653 44.0465735, 8.2210489 44.0466784)"^^geo:wktLiteral .
+
+:geom_106 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2208613 44.0461402, 8.2206449 44.0458777, 8.2204944 44.0456935)"^^geo:wktLiteral .
+
+:geom_107 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2253929 44.0526715, 8.2253615 44.0525709, 8.2252979 44.052399, 8.2251906 44.0521696, 8.225053 44.0519232, 8.2248553 44.0515681, 8.2246668 44.0512948)"^^geo:wktLiteral .
+
+:geom_108 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2204363 44.0456173, 8.2202178 44.0453315, 8.2200695 44.0450909, 8.2199067 44.044811)"^^geo:wktLiteral .
+
+:geom_109 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2204944 44.0456935, 8.2204363 44.0456173)"^^geo:wktLiteral .
+
+:geom_11 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2188267 44.0435349, 8.2196138 44.0445402, 8.2197377 44.044705)"^^geo:wktLiteral .
+
+:geom_110 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2204506 44.0457041, 8.2206006 44.0458833)"^^geo:wktLiteral .
+
+:geom_111 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2203888 44.0456303, 8.2204506 44.0457041)"^^geo:wktLiteral .
+
+:geom_112_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2222985000000008 44.0484166000000030, 8.2232263999999997 44.0496137000000019, 8.2233721000000006 44.0497926000000035, 8.2235321999999993 44.0500321000000028, 8.2236340999999999 44.0501823999999971, 8.2237252999999999 44.0503020000000021)"^^geo:wktLiteral .
+
+:geom_112_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2237252999999999 44.0503020000000021, 8.2238065999999996 44.0503824999999978, 8.2239909999999998 44.0505795999999989)"^^geo:wktLiteral .
+
+:geom_112_part_2 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2239909999999998 44.0505795999999989, 8.2240766999999995 44.0506837000000004, 8.2246246999999997 44.0513580000000005, 8.2248526999999996 44.0516683999999970, 8.2249841000000004 44.0518996999999999)"^^geo:wktLiteral .
+
+:geom_113 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.223991 44.0505796, 8.2242371 44.0508129, 8.2245032 44.0510943)"^^geo:wktLiteral .
+
+:geom_114_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2218584999999997 44.0486497999999997, 8.2223144999999995 44.0492147000000003, 8.2224807999999996 44.0493842999999998, 8.2226523999999994 44.0495328000000015, 8.2228329999999996 44.0496635000000012, 8.2230287999999998 44.0497869000000009)"^^geo:wktLiteral .
+
+:geom_114_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2230287999999998 44.0497869000000009, 8.2234016000000008 44.0500104999999991)"^^geo:wktLiteral .
+
+:geom_115 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2218183 44.0486672, 8.2221624 44.0490909, 8.2223341 44.0492895, 8.2224379 44.0494075, 8.2225728 44.049517, 8.2227436 44.0496388, 8.2230288 44.0497869)"^^geo:wktLiteral .
+
+:geom_116_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2245031999999991 44.0510943000000026, 8.2246667999999996 44.0512948000000009)"^^geo:wktLiteral .
+
+:geom_116_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2246667999999996 44.0512948000000009, 8.2249809000000003 44.0516560000000013)"^^geo:wktLiteral .
+
+:geom_117 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2220658 44.0485646, 8.2225505 44.0491568, 8.222959 44.0496056, 8.2231889 44.0498393)"^^geo:wktLiteral .
+
+:geom_118_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2220122000000000 44.0485954999999976, 8.2225371000000003 44.0492532000000026, 8.2227309999999996 44.0494630000000029, 8.2229527999999998 44.0496522999999982, 8.2231889000000002 44.0498393000000021)"^^geo:wktLiteral .
+
+:geom_118_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2231889000000002 44.0498393000000021, 8.2234016000000008 44.0500104999999991)"^^geo:wktLiteral .
+
+:geom_118_part_2 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2234016000000008 44.0500104999999991, 8.2235938999999991 44.0501689000000027, 8.2237252999999999 44.0503020000000021)"^^geo:wktLiteral .
+
+:geom_119_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2238863000000002 44.0505969000000022, 8.2244334000000006 44.0512273000000008, 8.2245916999999995 44.0514180999999994, 8.2248204999999999 44.0516876000000011, 8.2249841000000004 44.0518996999999999)"^^geo:wktLiteral .
+
+:geom_119_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2249841000000004 44.0518996999999999, 8.2251092999999997 44.0521274999999974, 8.2251960000000004 44.0523044999999982, 8.2252656999999996 44.0524684000000022, 8.2253238999999994 44.0526248999999979, 8.2253399999999992 44.0526769000000016)"^^geo:wktLiteral .
+
+:geom_12 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.165343 44.0034903, 8.1652385 44.0033307)"^^geo:wktLiteral .
+
+:geom_120_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2211762000000004 44.0468402999999995, 8.2215340000000001 44.0473041999999992, 8.2233765999999999 44.0496638999999988, 8.2234406999999994 44.0497449000000003)"^^geo:wktLiteral .
+
+:geom_120_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2234406999999994 44.0497449000000003, 8.2240821000000004 44.0505544999999969, 8.2245031999999991 44.0510943000000026)"^^geo:wktLiteral .
+
+:geom_121_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2217110000000009 44.0470457999999994, 8.2219183000000005 44.0472344000000007)"^^geo:wktLiteral .
+
+:geom_121_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2219183000000005 44.0472344000000007, 8.2221106000000006 44.0473793999999970)"^^geo:wktLiteral .
+
+:geom_121_part_2 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2221106000000006 44.0473793999999970, 8.2222232999999996 44.0475008000000017, 8.2223895999999996 44.0476877999999985, 8.2225620999999993 44.0478975999999989, 8.2234692000000003 44.0490563999999978, 8.2236116999999993 44.0492412999999985, 8.2237413999999998 44.0494325000000018)"^^geo:wktLiteral .
+
+:geom_122 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2213716 44.0467813, 8.2215911 44.0470628, 8.2219746 44.0475544, 8.2230414 44.0489197, 8.224056 44.050211)"^^geo:wktLiteral .
+
+:geom_123_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2227631999999993 44.0478012000000021, 8.2230234000000006 44.0480305999999970)"^^geo:wktLiteral .
+
+:geom_123_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2230234000000006 44.0480305999999970, 8.2231299000000000 44.0481563000000023, 8.2249590999999995 44.0504869999999968)"^^geo:wktLiteral .
+
+:geom_124 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2210489 44.0466784, 8.2211762 44.0468403)"^^geo:wktLiteral .
+
+:geom_125_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2212210999999993 44.0468266999999969, 8.2212847000000000 44.0469107999999991, 8.2215848000000005 44.0472893999999968, 8.2219005999999997 44.0477071999999978, 8.2226528999999999 44.0486643999999998, 8.2233710999999996 44.0495781999999991, 8.2236738999999996 44.0499628999999970)"^^geo:wktLiteral .
+
+:geom_125_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2236738999999996 44.0499628999999970, 8.2236989000000005 44.0499945999999980, 8.2242721999999997 44.0507266999999985, 8.2245454000000002 44.0510682000000031, 8.2248313999999993 44.0514543000000032)"^^geo:wktLiteral .
+
+:geom_125_part_2 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2248313999999993 44.0514543000000032, 8.2249809000000003 44.0516560000000013)"^^geo:wktLiteral .
+
+:geom_126 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2225862 44.047674, 8.2227758 44.047925, 8.2230843 44.0483221, 8.2235947 44.0489772, 8.2237503 44.0492085, 8.2238281 44.0493454, 8.223956 44.0495578, 8.2241008 44.0497641, 8.2242384 44.0499314)"^^geo:wktLiteral .
+
+:geom_127 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2230234 44.0480306, 8.2232192 44.048208, 8.2233748 44.0483892, 8.2237771 44.0488924, 8.2250047 44.0504755)"^^geo:wktLiteral .
+
+:geom_128_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2221106000000006 44.0473793999999970, 8.2223609000000000 44.0475968000000009, 8.2225639000000008 44.0478246999999996, 8.2234283999999995 44.0489290000000011, 8.2235759000000002 44.0491314000000003, 8.2236697999999997 44.0492895000000004, 8.2237413999999998 44.0494325000000018)"^^geo:wktLiteral .
+
+:geom_128_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2237413999999998 44.0494325000000018, 8.2238836000000006 44.0496965999999972, 8.2241277000000004 44.0500552000000027, 8.2241741000000008 44.0501281000000020)"^^geo:wktLiteral .
+
+:geom_128_part_2 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2241741000000008 44.0501281000000020, 8.2242295999999993 44.0502345000000020, 8.2242920999999996 44.0503748000000002, 8.2243590999999991 44.0504981999999998, 8.2244069000000000 44.0505633000000003)"^^geo:wktLiteral .
+
+:geom_129 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2241741 44.0501281, 8.2244172 44.0504778, 8.2244621 44.0505412)"^^geo:wktLiteral .
+
+:geom_13 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1652385 44.0033307, 8.1651174 44.0031308, 8.1649164 44.002755, 8.1647102 44.0023327, 8.1645706 44.0019932, 8.1644632 44.0015938, 8.1643615 44.0011931, 8.1643165 44.0007746, 8.1642547 44.0001665, 8.1642432 43.9998221, 8.1643033 43.9991924, 8.1643591 43.9988419, 8.1643719 43.9977229, 8.1643731 43.9974386, 8.1643801 43.9973351, 8.1643881 43.9972053, 8.1643968 43.9969616, 8.1643814 43.9965801, 8.1643244 43.9961916, 8.1642312 43.9958787, 8.1640636 43.9954271, 8.1639213 43.9951095, 8.1636442 43.9946024, 8.1634107 43.9941356)"^^geo:wktLiteral .
+
+:geom_130_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2216439000000001 44.0470303999999970, 8.2218075000000006 44.0472386000000000, 8.2238065999999996 44.0498080999999999, 8.2239587000000007 44.0500493999999989, 8.2240559999999991 44.0502109999999973)"^^geo:wktLiteral .
+
+:geom_130_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2240559999999991 44.0502109999999973, 8.2242733000000001 44.0504865999999993)"^^geo:wktLiteral .
+
+:geom_130_part_2 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2242733000000001 44.0504865999999993, 8.2244208000000008 44.0506851999999967, 8.2245013000000000 44.0507700000000000)"^^geo:wktLiteral .
+
+:geom_131 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2219183 44.0472344, 8.2220712 44.0473848, 8.2222241 44.0475583, 8.2224118 44.0477761, 8.2233471 44.0489814, 8.2234874 44.0491661, 8.2236001 44.0493338, 8.2237476 44.0495844)"^^geo:wktLiteral .
+
+:geom_132 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2210956 44.0466635, 8.2212211 44.0468267)"^^geo:wktLiteral .
+
+:geom_133 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2211954 44.0466315, 8.2213211 44.0467965)"^^geo:wktLiteral .
+
+:geom_134_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2222446999999992 44.0473793999999970, 8.2224333000000005 44.0475216000000032)"^^geo:wktLiteral .
+
+:geom_134_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2224333000000005 44.0475216000000032, 8.2225835000000007 44.0476353999999972, 8.2227631999999993 44.0478012000000021)"^^geo:wktLiteral .
+
+:geom_134_part_2 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2227631999999993 44.0478012000000021, 8.2229428999999996 44.0480074999999971, 8.2246748000000007 44.0501998000000015)"^^geo:wktLiteral .
+
+:geom_135 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2229429 44.0478147, 8.2232023 44.0479828, 8.223331 44.0481042, 8.223466 44.0482485, 8.2237905 44.0486668, 8.2251531 44.0504211)"^^geo:wktLiteral .
+
+:geom_136_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2214007000000002 44.0467725000000030, 8.2214428000000002 44.0468145000000035)"^^geo:wktLiteral .
+
+:geom_136_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2214428000000002 44.0468145000000035, 8.2216179000000000 44.0469645000000014, 8.2217110000000009 44.0470457999999994)"^^geo:wktLiteral .
+
+:geom_136_part_2 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2217110000000009 44.0470457999999994, 8.2219228999999991 44.0472059000000016)"^^geo:wktLiteral .
+
+:geom_137_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2225316999999993 44.0475528999999995, 8.2227704999999993 44.0476936000000023, 8.2229428999999996 44.0478147000000035)"^^geo:wktLiteral .
+
+:geom_137_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2229428999999996 44.0478147000000035, 8.2230851000000005 44.0479322999999994, 8.2232702000000000 44.0481039000000010, 8.2234464000000003 44.0482969999999980, 8.2236662999999997 44.0485784999999979, 8.2251075000000000 44.0504346000000027)"^^geo:wktLiteral .
+
+:geom_138_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2219228999999991 44.0472059000000016, 8.2222446999999992 44.0473793999999970)"^^geo:wktLiteral .
+
+:geom_138_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2222446999999992 44.0473793999999970, 8.2225316999999993 44.0475528999999995)"^^geo:wktLiteral .
+
+:geom_139_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2213211000000008 44.0467964999999992, 8.2213489000000006 44.0468298999999988, 8.2229072999999993 44.0488290999999990, 8.2233230000000006 44.0493535000000023, 8.2235356999999993 44.0496229999999969, 8.2237495000000003 44.0498952000000017, 8.2240123000000001 44.0502286999999981, 8.2242233000000002 44.0505021000000028)"^^geo:wktLiteral .
+
+:geom_139_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2242233000000002 44.0505021000000028, 8.2242832000000003 44.0505795999999989, 8.2244200000000003 44.0507472999999976)"^^geo:wktLiteral .
+
+:geom_14 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9590924 43.8600055, 7.9595222 43.8602906)"^^geo:wktLiteral .
+
+:geom_140 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2212394 44.0466175, 8.2213716 44.0467813)"^^geo:wktLiteral .
+
+:geom_141 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2212533 44.046613, 8.2214007 44.0467725)"^^geo:wktLiteral .
+
+:geom_142 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2219229 44.0472059, 8.2222697 44.0474503, 8.2224494 44.0475968, 8.222605 44.0477781, 8.2235161 44.0489467, 8.2236779 44.0491854, 8.2238227 44.0494302, 8.2239453 44.0496427, 8.2240614 44.0498042, 8.2242143 44.0499931, 8.2244093 44.0502306)"^^geo:wktLiteral .
+
+:geom_143_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2218941999999995 44.0472845000000035, 8.2220463000000006 44.0474314000000007, 8.2221723000000004 44.0475643999999988, 8.2222822999999998 44.0476936000000023, 8.2231834999999993 44.0488542000000010, 8.2236045999999998 44.0493978000000013, 8.2237475999999994 44.0495844000000005)"^^geo:wktLiteral .
+
+:geom_143_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2237475999999994 44.0495844000000005, 8.2239460999999991 44.0499217999999999)"^^geo:wktLiteral .
+
+:geom_144 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2225317 44.0475529, 8.2226854 44.0476643, 8.2229046 44.0478421, 8.2231334 44.0480422, 8.2232648 44.0481656, 8.2234142 44.0483317, 8.2250605 44.0504512)"^^geo:wktLiteral .
+
+:geom_145_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2224333000000005 44.0475216000000032, 8.2225862000000003 44.0476740000000007)"^^geo:wktLiteral .
+
+:geom_145_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2225862000000003 44.0476740000000007, 8.2227919000000007 44.0478902999999988, 8.2233874000000000 44.0486383000000004, 8.2246238999999992 44.0502151999999967)"^^geo:wktLiteral .
+
+:geom_146 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2104168 44.0365574, 8.210585 44.036665)"^^geo:wktLiteral .
+
+:geom_147 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2078199 44.034848, 8.2095353 44.0360019, 8.2104168 44.0365574)"^^geo:wktLiteral .
+
+:geom_148 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2256721 44.053219, 8.2256305 44.0529676, 8.2255822 44.052744, 8.2254795 44.0524071, 8.2253642 44.0521275, 8.2252086 44.051823, 8.2249599 44.0514255, 8.2246587 44.0510461, 8.22442 44.0507473)"^^geo:wktLiteral .
+
+:geom_149 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.22442 44.0507473, 8.224581 44.0510056, 8.2247231 44.0512639, 8.2248314 44.0514543)"^^geo:wktLiteral .
+
+:geom_15 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9572426 43.8588276, 7.9581567 43.8593851)"^^geo:wktLiteral .
+
+:geom_150 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1360919 43.9580115, 8.1369442 43.958847)"^^geo:wktLiteral .
+
+:geom_151 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9956224 43.8773073, 7.9970406 43.8787855)"^^geo:wktLiteral .
+
+:geom_152 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9970406 43.8787855, 7.9974207 43.8791579)"^^geo:wktLiteral .
+
+:geom_153 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1028114 43.9385563, 8.1033135 43.9387663, 8.1042186 43.9391413)"^^geo:wktLiteral .
+
+:geom_154 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.064335 43.9191454, 8.0646622 43.9194584)"^^geo:wktLiteral .
+
+:geom_155 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9915068 43.8732762, 7.9917224 43.8734404)"^^geo:wktLiteral .
+
+:geom_156 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0711948 43.9241404, 8.0713293 43.9242152)"^^geo:wktLiteral .
+
+:geom_157_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0249815000000009 43.8962272999999996, 8.0253078999999996 43.8962884999999972)"^^geo:wktLiteral .
+
+:geom_157_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0253078999999996 43.8962884999999972, 8.0295252999999995 43.8970424999999977)"^^geo:wktLiteral .
+
+:geom_158 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0650439 43.9198257, 8.0651036 43.9198807, 8.0655252 43.9202693, 8.0659885 43.9206775, 8.0670137 43.9215058, 8.0683558 43.9224584, 8.0696096 43.9232259, 8.0704592 43.9237227, 8.0711948 43.9241404)"^^geo:wktLiteral .
+
+:geom_159 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0461822 43.9006793, 8.0472038 43.9010884, 8.0480925 43.9015039, 8.0490168 43.9019857, 8.0501486 43.9026233, 8.0512266 43.9032647, 8.0521195 43.9038362, 8.0530406 43.904453, 8.053838 43.9050709, 8.0545645 43.9056699, 8.055214 43.9062829, 8.0558604 43.9069373, 8.0565387 43.9076339, 8.0571251 43.9082627, 8.0577557 43.9089854, 8.0583508 43.9097618, 8.0588449 43.9105317, 8.0593301 43.9113784, 8.0598152 43.9123081, 8.0608387 43.9143483, 8.0615493 43.9156209, 8.061877 43.9161579, 8.0621573 43.9165891, 8.0628388 43.9174784, 8.0635936 43.9183745, 8.064335 43.9191454)"^^geo:wktLiteral .
+
+:geom_16 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8591118 43.8451786, 7.8607846 43.8454226)"^^geo:wktLiteral .
+
+:geom_160 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9600042 43.8606401, 7.9619615 43.8620585, 7.9632409 43.8628889, 7.9645563 43.8635971, 7.9658153 43.8641923, 7.9671854 43.8647756, 7.9685798 43.8652929, 7.9699279 43.8657591, 7.9709926 43.8660917, 7.9720136 43.8663785, 7.9732994 43.8667082, 7.9749989 43.867078, 7.9785923 43.867771, 7.9795865 43.8679911, 7.9804537 43.8682177, 7.9820684 43.8686373, 7.9838043 43.8692023, 7.9854786 43.8698524, 7.9870879 43.870603, 7.9883829 43.8712879, 7.9895861 43.8720037, 7.990435 43.8725231, 7.9915068 43.8732762)"^^geo:wktLiteral .
+
+:geom_161 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9943456 43.8759384, 7.9956224 43.8773073)"^^geo:wktLiteral .
+
+:geom_162 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9917224 43.8734404, 7.9926472 43.8742087, 7.9929623 43.8745018, 7.9933445 43.8748813, 7.9943456 43.8759384)"^^geo:wktLiteral .
+
+:geom_163_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0295024999999995 43.8971280000000021, 8.0268365999999993 43.8966489999999965, 8.0264506000000004 43.8965614999999971, 8.0259394999999998 43.8964398000000031)"^^geo:wktLiteral .
+
+:geom_163_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0259394999999998 43.8964398000000031, 8.0253078999999996 43.8962884999999972)"^^geo:wktLiteral .
+
+:geom_164_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0355931999999992 43.8981313000000029, 8.0352209000000006 43.8980770000000007, 8.0342110000000009 43.8979476000000020)"^^geo:wktLiteral .
+
+:geom_164_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0342110000000009 43.8979476000000020, 8.0339962000000007 43.8979209999999966, 8.0334166000000007 43.8978307000000001, 8.0313257999999994 43.8974569000000017, 8.0311173999999994 43.8974193000000028, 8.0299838999999995 43.8972148000000004)"^^geo:wktLiteral .
+
+:geom_165 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0382251 43.8986129, 8.0388744 43.8987309)"^^geo:wktLiteral .
+
+:geom_166 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1025315 43.9384402, 8.1028114 43.9385563)"^^geo:wktLiteral .
+
+:geom_167 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0740676 43.9258176, 8.0760405 43.9269707, 8.0769508 43.9274774, 8.0777729 43.9279143, 8.0792104 43.9286581, 8.0804604 43.9292791, 8.0817463 43.9298725, 8.0832794 43.9305567, 8.0850952 43.9313292, 8.1025315 43.9384402)"^^geo:wktLiteral .
+
+:geom_168 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0646622 43.9194584, 8.0648561 43.9196425, 8.0650439 43.9198257)"^^geo:wktLiteral .
+
+:geom_169 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0727603 43.9250507, 8.0731305 43.925267, 8.0740676 43.9258176)"^^geo:wktLiteral .
+
+:geom_17 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8509698 43.8440037, 7.8513085 43.844049, 7.8517697 43.8441186, 7.8528587 43.8442733, 7.8553138 43.8446339, 7.8572468 43.8449233, 7.8591118 43.8451786)"^^geo:wktLiteral .
+
+:geom_170 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9995918 43.8814392, 8.0000129 43.8818752)"^^geo:wktLiteral .
+
+:geom_171 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9974207 43.8791579, 7.9989914 43.880801, 7.9995918 43.8814392)"^^geo:wktLiteral .
+
+:geom_172 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1758963 44.0111795, 8.1752564 44.0109199, 8.1741866 44.0104228, 8.1736375 44.0100448, 8.1732348 44.0096755)"^^geo:wktLiteral .
+
+:geom_173 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1675338 44.0058105, 8.1674318 44.0057363, 8.1670815 44.0054574, 8.1662665 44.0046571, 8.1659691 44.0043282, 8.1657844 44.0040988, 8.1656541 44.0039292)"^^geo:wktLiteral .
+
+:geom_174 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9595222 43.8602906, 7.9600042 43.8606401)"^^geo:wktLiteral .
+
+:geom_175 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.034482 43.8978383, 8.0343613 43.8978228, 8.0340072 43.8977658, 8.0335796 43.8976813)"^^geo:wktLiteral .
+
+:geom_176 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0235761 43.8957785, 8.0238497 43.8958746, 8.0242198 43.8959789, 8.024525 43.8960396)"^^geo:wktLiteral .
+
+:geom_177_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0347083000000001 43.8979312000000021, 8.0358996000000005 43.8981467999999992)"^^geo:wktLiteral .
+
+:geom_177_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0358996000000005 43.8981467999999992, 8.0382453999999992 43.8985737000000000)"^^geo:wktLiteral .
+
+:geom_178_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0237154000000004 43.8959349000000003, 8.0241047999999999 43.8959826999999976, 8.0245250000000006 43.8960396000000017)"^^geo:wktLiteral .
+
+:geom_178_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0245250000000006 43.8960396000000017, 8.0256843000000000 43.8961954000000034, 8.0260478000000006 43.8962452999999968, 8.0295737000000003 43.8968790999999996)"^^geo:wktLiteral .
+
+:geom_179_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0295348999999998 43.8970004999999972, 8.0254062000000008 43.8962514999999982, 8.0241807000000005 43.8960223999999997)"^^geo:wktLiteral .
+
+:geom_179_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0241807000000005 43.8960223999999997, 8.0237154000000004 43.8959349000000003)"^^geo:wktLiteral .
+
+:geom_179_part_2 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0237154000000004 43.8959349000000003, 8.0235278999999995 43.8959004000000022)"^^geo:wktLiteral .
+
+:geom_180 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0299839 43.8972148, 8.0295025 43.897128)"^^geo:wktLiteral .
+
+:geom_181 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0295737 43.8968791, 8.0300604 43.8969627)"^^geo:wktLiteral .
+
+:geom_182_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0300604000000000 43.8969627000000031, 8.0312268000000007 43.8971753000000007, 8.0319901999999992 43.8973145000000002, 8.0323443000000001 43.8973878999999982, 8.0328861000000007 43.8975154999999972, 8.0335795999999995 43.8976813000000021)"^^geo:wktLiteral .
+
+:geom_182_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0335795999999995 43.8976813000000021, 8.0342646999999996 43.8978391999999999, 8.0347083000000001 43.8979312000000021)"^^geo:wktLiteral .
+
+:geom_183 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0295253 43.8970425, 8.0300143 43.8971291, 8.0311601 43.8973319, 8.0313642 43.897368, 8.0334024 43.8977359)"^^geo:wktLiteral .
+
+:geom_184 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1042454 43.9391006, 8.1033563 43.938732, 8.1028353 43.9385137)"^^geo:wktLiteral .
+
+:geom_185 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1408174 43.9612655, 8.1402816 43.9610224, 8.1398061 43.9608137, 8.1393172 43.9605648, 8.138887 43.9603297, 8.1385106 43.9601084)"^^geo:wktLiteral .
+
+:geom_186 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8616034 43.8455085, 7.8610779 43.8454651)"^^geo:wktLiteral .
+
+:geom_187 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8481355 43.8435835, 7.8487084 43.8436386)"^^geo:wktLiteral .
+
+:geom_188 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8607846 43.8454226, 7.8610779 43.8454651)"^^geo:wktLiteral .
+
+:geom_189_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8487083999999996 43.8436385999999985, 7.8490072000000000 43.8436822999999976)"^^geo:wktLiteral .
+
+:geom_189_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8490072000000000 43.8436822999999976, 7.8509713000000003 43.8439693999999989)"^^geo:wktLiteral .
+
+:geom_18_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8495220999999997 43.8437916999999970, 7.8500344000000002 43.8438652999999974)"^^geo:wktLiteral .
+
+:geom_18_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8500344000000002 43.8438652999999974, 7.8509697999999997 43.8440037000000018)"^^geo:wktLiteral .
+
+:geom_19 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1418741 43.9617421, 8.1410049 43.9613507)"^^geo:wktLiteral .
+
+:geom_190 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.861871 43.8455474, 7.8623806 43.845654)"^^geo:wktLiteral .
+
+:geom_191_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8518692000000003 43.8442173999999980, 7.8523842000000004 43.8442908999999972)"^^geo:wktLiteral .
+
+:geom_191_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8523842000000004 43.8442908999999972, 7.8528884000000003 43.8443662999999972, 7.8536447999999996 43.8444902000000027, 7.8551494000000002 43.8447126000000011, 7.8552738000000000 43.8447305999999983, 7.8571422999999996 43.8450008000000011, 7.8579818000000001 43.8451148999999987, 7.8591110000000004 43.8452580000000012)"^^geo:wktLiteral .
+
+:geom_192 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8495221 43.8437917, 7.8490072 43.8436823)"^^geo:wktLiteral .
+
+:geom_193 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.861871 43.8455474, 7.8673186 43.8463388, 7.8695924 43.846659, 7.8718248 43.8469449, 7.8737178 43.8471829, 7.8741015 43.8472312, 7.874882 43.8473165, 7.876254 43.8474665, 7.9432222 43.8546549, 7.9443112 43.854784, 7.945246 43.8549049, 7.9462813 43.8550708, 7.9473873 43.8552741, 7.948536 43.8555202, 7.9496245 43.8557797, 7.9506196 43.8560432, 7.9516166 43.8563339, 7.9525148 43.8566339, 7.9535533 43.8570061, 7.9545565 43.8574154, 7.9554181 43.8578123, 7.95629 43.8582401)"^^geo:wktLiteral .
+
+:geom_194_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0000128999999998 43.8818752000000032, 8.0051451000000000 43.8873164999999972, 8.0062262999999998 43.8883882000000014, 8.0073582999999999 43.8894329000000027, 8.0079478000000002 43.8899097999999981, 8.0086624000000004 43.8904543000000018, 8.0093712000000004 43.8909395000000018, 8.0100899000000005 43.8913778000000008, 8.0107286999999996 43.8917360000000016, 8.0113851999999994 43.8920929000000015, 8.0121593999999998 43.8924872999999991, 8.0129371999999996 43.8928585000000027, 8.0139528000000002 43.8932988999999978, 8.0149545000000000 43.8936823000000018, 8.0159474999999993 43.8940284999999975, 8.0169020000000000 43.8943403000000032, 8.0187332999999992 43.8948718999999983, 8.0203460000000000 43.8952677999999992, 8.0217759999999991 43.8955989999999971, 8.0226161999999999 43.8957740999999970)"^^geo:wktLiteral .
+
+:geom_194_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0226161999999999 43.8957740999999970, 8.0230829000000004 43.8958713000000031, 8.0249815000000009 43.8962272999999996)"^^geo:wktLiteral .
+
+:geom_195 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0187551 43.8948175, 8.0169575 43.8943022, 8.0160043 43.8939903, 8.0149904 43.8936377, 8.0139983 43.8932536, 8.0129901 43.8928195, 8.0122061 43.8924437, 8.0114578 43.8920638, 8.01083 43.8917237, 8.0101254 43.8913329, 8.0094452 43.8909247, 8.0087179 43.8904301, 8.0080204 43.889896, 8.0074094 43.8894026, 8.0062077 43.8883008, 8.0052266 43.8873192, 8.0000497 43.881855)"^^geo:wktLiteral .
+
+:geom_196 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0249815 43.8962273, 8.0241807 43.8960224)"^^geo:wktLiteral .
+
+:geom_197 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0235279 43.8959004, 8.0230542 43.8958421, 8.0226162 43.8957741)"^^geo:wktLiteral .
+
+:geom_198 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0369344 43.8983821, 8.0382251 43.8986129)"^^geo:wktLiteral .
+
+:geom_199_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0334023999999999 43.8977359000000007, 8.0355931999999992 43.8981313000000029)"^^geo:wktLiteral .
+
+:geom_199_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0355931999999992 43.8981313000000029, 8.0369343999999998 43.8983820999999992)"^^geo:wktLiteral .
+
+:geom_2 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1565421 43.9750411, 8.1555931 43.9732292, 8.1549471 43.9719959, 8.1547141 43.9716187, 8.1544751 43.9712593, 8.1541956 43.9709114, 8.153885 43.9705809, 8.1534913 43.9702574, 8.1530697 43.9699547, 8.1525976 43.9696549, 8.1520753 43.9693546, 8.1505324 43.9685431, 8.1496783 43.9680909, 8.1488564 43.9675674, 8.1482181 43.9670079, 8.1477782 43.9664511, 8.1474746 43.9659137, 8.1472839 43.9654317)"^^geo:wktLiteral .
+
+:geom_20 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1428342 43.9621731, 8.1425787 43.9620568)"^^geo:wktLiteral .
+
+:geom_200 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0369344 43.8983821, 8.0358996 43.8981468)"^^geo:wktLiteral .
+
+:geom_201 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.106577 43.9401185, 8.1140998 43.9432357, 8.1155768 43.9438565, 8.117228 43.9445807, 8.1190879 43.9454247, 8.12096 43.9463903, 8.1228151 43.9473663, 8.1244166 43.9483296, 8.1256839 43.9491498, 8.127068 43.9500721, 8.1284026 43.9510639, 8.1297496 43.9521487, 8.1311149 43.9532872, 8.1326904 43.9546844, 8.1343478 43.9563016, 8.1358582 43.9577824)"^^geo:wktLiteral .
+
+:geom_202 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1358582 43.9577824, 8.1355287 43.957384)"^^geo:wktLiteral .
+
+:geom_203 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1358582 43.9577824, 8.1360919 43.9580115)"^^geo:wktLiteral .
+
+:geom_204_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1365452999999999 43.9583846000000023, 8.1355287000000001 43.9573839999999976)"^^geo:wktLiteral .
+
+:geom_204_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1355287000000001 43.9573839999999976, 8.1344069000000001 43.9562797999999972, 8.1327677000000005 43.9546648000000033, 8.1311915999999993 43.9532621999999975, 8.1298048999999999 43.9521046999999996, 8.1284449999999993 43.9510109000000000, 8.1271201000000008 43.9500285000000019, 8.1257494000000001 43.9491111999999973, 8.1244806999999994 43.9482866999999970, 8.1228902999999999 43.9473360000000000, 8.1209536000000000 43.9463134000000011, 8.1191352999999999 43.9453828999999985, 8.1172850000000007 43.9445448999999968, 8.1156065000000002 43.9438113000000001, 8.1141328000000001 43.9431967000000014, 8.1066026000000004 43.9400813000000028)"^^geo:wktLiteral .
+
+:geom_205 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1365453 43.9583846, 8.1360919 43.9580115)"^^geo:wktLiteral .
+
+:geom_206 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1384491 43.9601335, 8.1388307 43.9603611, 8.1392545 43.9605889, 8.1397631 43.9608503, 8.1402009 43.961045)"^^geo:wktLiteral .
+
+:geom_207 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0388999 43.8986913, 8.0391936 43.8987441)"^^geo:wktLiteral .
+
+:geom_208 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.038896 43.8987053, 8.0382251 43.8986129)"^^geo:wktLiteral .
+
+:geom_209 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0391936 43.8987441, 8.038896 43.8987053)"^^geo:wktLiteral .
+
+:geom_21 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1425787 43.9620568, 8.1418741 43.9617421)"^^geo:wktLiteral .
+
+:geom_210 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0382454 43.8985737, 8.0388999 43.8986913)"^^geo:wktLiteral .
+
+:geom_211 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0713293 43.9242152, 8.0727603 43.9250507)"^^geo:wktLiteral .
+
+:geom_212 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0727951 43.9250198, 8.0713741 43.9241853)"^^geo:wktLiteral .
+
+:geom_213 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9609385 43.8612536, 7.9615653 43.8617172, 7.961973 43.8620073, 7.9627508 43.862514, 7.9634321 43.8629394, 7.9640007 43.863245, 7.9649878 43.8637478, 7.9657656 43.8641191, 7.9667259 43.8645291, 7.9674128 43.8648129, 7.9681764 43.865097, 7.9689105 43.865359, 7.9697256 43.8656431, 7.9702707 43.8658177, 7.9710061 43.8660436, 7.9717295 43.8662517, 7.9725044 43.8664526, 7.9731876 43.8666262, 7.973948 43.8667999, 7.9749463 43.867013, 7.9779919 43.8675972, 7.9791751 43.8678379, 7.9805905 43.8681928, 7.9815888 43.8684559, 7.9825418 43.8687294, 7.9836088 43.8690869, 7.9844652 43.869403, 7.9855129 43.8698168, 7.9863883 43.8702179, 7.9872002 43.8706031, 7.9883992 43.8712464, 7.9896577 43.8719879, 7.9905373 43.8725284, 7.9915597 43.8732425)"^^geo:wktLiteral .
+
+:geom_214 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9609385 43.8612536, 7.9606559 43.861052, 7.9595525 43.8602649)"^^geo:wktLiteral .
+
+:geom_215 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1403279 43.9610904, 8.140904 43.9613569)"^^geo:wktLiteral .
+
+:geom_216 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1025631 43.9384007, 8.1020018 43.9381684, 8.0982762 43.9366445, 8.085703 43.9315181, 8.0844391 43.9309934, 8.0834148 43.9305565, 8.0819812 43.9299194, 8.0806461 43.9293065, 8.0796429 43.9288145, 8.0788403 43.9284085, 8.0779536 43.9279474, 8.0769924 43.9274393, 8.0761624 43.9269801, 8.075531 43.9266143, 8.0741101 43.9257837)"^^geo:wktLiteral .
+
+:geom_217 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0741101 43.9257837, 8.0731638 43.925236)"^^geo:wktLiteral .
+
+:geom_218_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1713549000000008 44.0079007000000004, 8.1711107999999992 44.0077463000000009, 8.1706737999999994 44.0074704000000025, 8.1704589999999993 44.0073451000000020, 8.1701425000000008 44.0071560000000019, 8.1697965000000003 44.0069862000000001, 8.1694911000000001 44.0068491999999978, 8.1691178999999998 44.0066717999999995, 8.1689130999999993 44.0065645000000032)"^^geo:wktLiteral .
+
+:geom_218_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1689130999999993 44.0065645000000032, 8.1685894999999995 44.0063823999999997, 8.1677529999999994 44.0059212000000031, 8.1675337999999993 44.0058105000000026)"^^geo:wktLiteral .
+
+:geom_219 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1730929 44.0095057, 8.1727402 44.0090615, 8.1725999 44.0089181, 8.1718782 44.0082565, 8.17162 44.0080455, 8.1712932 44.0078177, 8.1707302 44.0074569, 8.1704566 44.0072871, 8.1701479 44.0071078, 8.1698639 44.0069688, 8.1696704 44.0068743, 8.1693942 44.0067625, 8.169193 44.0066853, 8.1689131 44.0065645)"^^geo:wktLiteral .
+
+:geom_22 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0300412 43.8970896, 8.0311774 43.8972965, 8.0313894 43.8973351, 8.0347083 43.8979312)"^^geo:wktLiteral .
+
+:geom_220_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1732347999999995 44.0096755000000002, 8.1730929000000003 44.0095056999999983)"^^geo:wktLiteral .
+
+:geom_220_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1730929000000003 44.0095056999999983, 8.1730207999999998 44.0094437999999997, 8.1726291999999994 44.0090289999999982, 8.1723230999999998 44.0087534000000034, 8.1718028000000000 44.0082883999999979, 8.1716204000000001 44.0081264000000019, 8.1713549000000008 44.0079007000000004)"^^geo:wktLiteral .
+
+:geom_221 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1732348 44.0096755, 8.1730567 44.0095451, 8.1724126 44.0089677, 8.1719879 44.0085965, 8.1715579 44.0082345, 8.1712793 44.0079906)"^^geo:wktLiteral .
+
+:geom_222 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1385106 43.9601084, 8.1381407 43.9598549, 8.1377757 43.9595745, 8.1374351 43.9592607, 8.1369925 43.9588248)"^^geo:wktLiteral .
+
+:geom_223 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1369442 43.958847, 8.1374163 43.9593161, 8.1377301 43.9596002, 8.1380895 43.9598875, 8.1384491 43.9601335)"^^geo:wktLiteral .
+
+:geom_224 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1656541 44.0039292, 8.1655937 44.0038434)"^^geo:wktLiteral .
+
+:geom_225 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1655937 44.0038434, 8.165343 44.0034903)"^^geo:wktLiteral .
+
+:geom_226 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8515548 43.8441708, 7.8518692 43.8442174)"^^geo:wktLiteral .
+
+:geom_227 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8509385 43.844082, 7.8515548 43.8441708)"^^geo:wktLiteral .
+
+:geom_228 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0259395 43.8964398, 8.0255722 43.8963742, 8.0250759 43.8963011)"^^geo:wktLiteral .
+
+:geom_229 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.034211 43.8979476, 8.0347288 43.8980267, 8.0352971 43.8981249)"^^geo:wktLiteral .
+
+:geom_230 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1410049 43.9613507, 8.1408174 43.9612655)"^^geo:wktLiteral .
+
+:geom_231 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2202177 44.0454164, 8.2203707 44.0456362)"^^geo:wktLiteral .
+
+:geom_232 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2256346 44.0536847, 8.2256007 44.0541475, 8.2255016 44.0550782)"^^geo:wktLiteral .
+
+:geom_233 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2255504 44.0550813, 8.225627 44.0543502, 8.2256672 44.0539608, 8.2256887 44.0536865)"^^geo:wktLiteral .
+
+:geom_234_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1402009000000000 43.9610449999999986, 8.1403279000000008 43.9610904000000033)"^^geo:wktLiteral .
+
+:geom_234_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1403279000000008 43.9610904000000033, 8.1408173999999995 43.9612655000000032)"^^geo:wktLiteral .
+
+:geom_235 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1042186 43.9391413, 8.106577 43.9401185)"^^geo:wktLiteral .
+
+:geom_236 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1066026 43.9400813, 8.1042454 43.9391006)"^^geo:wktLiteral .
+
+:geom_237_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8495220999999997 43.8437916999999970, 7.8486946000000000 43.8436700999999971, 7.8481354999999997 43.8435835000000012)"^^geo:wktLiteral .
+
+:geom_237_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8481354999999997 43.8435835000000012, 7.8476255000000004 43.8435045000000017, 7.8465391999999996 43.8433216999999971, 7.8453632000000004 43.8431123000000014, 7.8441564000000001 43.8428759000000028, 7.8430831999999997 43.8426382999999973, 7.8419394999999996 43.8423586999999984, 7.8409098999999998 43.8420928999999973, 7.8398396999999997 43.8418017999999989, 7.7954666000000001 43.8293747000000025)"^^geo:wktLiteral .
+
+:geom_238 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.7954814 43.8293467, 7.839854 43.8417737, 7.840925 43.842064, 7.8419531 43.8423306, 7.8431002 43.8426089, 7.8441627 43.842843, 7.8453782 43.84308, 7.8465579 43.8432911, 7.8476412 43.8434731, 7.8487084 43.8436386)"^^geo:wktLiteral .
+
+:geom_239 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.7726176 43.8228984, 7.7840483 43.8261231, 7.7954814 43.8293467)"^^geo:wktLiteral .
+
+:geom_23_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8610778999999997 43.8454650999999984, 7.8623805999999998 43.8456540000000032)"^^geo:wktLiteral .
+
+:geom_23_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8623805999999998 43.8456540000000032, 7.8673288000000001 43.8463715999999977, 7.8695567000000004 43.8466815999999966, 7.8717949999999997 43.8469759999999980, 7.8740791999999997 43.8472574999999978, 7.8762571000000001 43.8474977999999993, 7.9432036999999998 43.8546999000000000, 7.9443032000000002 43.8548277000000013, 7.9452315000000002 43.8549452000000031, 7.9462722000000001 43.8551083999999989, 7.9473589999999996 43.8553123000000014, 7.9485349000000003 43.8555660000000032, 7.9495949000000001 43.8558171000000030, 7.9505695999999997 43.8560727999999997, 7.9515507999999997 43.8563552999999970, 7.9525252000000002 43.8566799000000032, 7.9535117000000000 43.8570333999999988, 7.9545387999999999 43.8574514000000022, 7.9553763999999996 43.8578345000000027, 7.9562635999999998 43.8582727000000006)"^^geo:wktLiteral .
+
+:geom_24 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9569412 43.8586555, 7.9572426 43.8588276)"^^geo:wktLiteral .
+
+:geom_240 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.7954666 43.8293747, 7.7840338 43.8261526, 7.7725866 43.8229261)"^^geo:wktLiteral .
+
+:geom_241 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.7006328 43.7992295, 7.7012304 43.7996076, 7.7050209 43.8021796)"^^geo:wktLiteral .
+
+:geom_242 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.7049702 43.8022166, 7.7011835 43.7996442, 7.700595 43.7992746)"^^geo:wktLiteral .
+
+:geom_243 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0388744 43.8987309, 8.0392627 43.8988046, 8.0396945 43.8988893, 8.0406143 43.8990774, 8.0414039 43.8992566, 8.0422056 43.8994573, 8.0428597 43.899638, 8.0438795 43.8999329, 8.0450983 43.900303, 8.0461822 43.9006793)"^^geo:wktLiteral .
+
+:geom_244 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0235279 43.8959004, 8.0231218 43.8958245, 8.0217923 43.8955493, 8.020385 43.895222, 8.0187551 43.8948175)"^^geo:wktLiteral .
+
+:geom_245_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2234406999999994 44.0497449000000003, 8.2236738999999996 44.0499628999999970)"^^geo:wktLiteral .
+
+:geom_245_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2236738999999996 44.0499628999999970, 8.2242233000000002 44.0505021000000028)"^^geo:wktLiteral .
+
+:geom_246 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1760065 44.0112225, 8.1768821 44.0116535, 8.1772003 44.01186, 8.1779911 44.0125163)"^^geo:wktLiteral .
+
+:geom_247 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1779911 44.0125163, 8.1780485 44.0125639)"^^geo:wktLiteral .
+
+:geom_25 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9562636 43.8582727, 7.9569412 43.8586555)"^^geo:wktLiteral .
+
+:geom_26 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.7725866 43.8229261, 7.7637446 43.8204184, 7.7152084 43.8066514, 7.7142248 43.8063612, 7.7135836 43.8061647, 7.7122339 43.8057293, 7.7112903 43.8054038, 7.7105372 43.8051199, 7.7098148 43.8048216, 7.709048 43.8044774, 7.708028 43.8039846, 7.7071143 43.8034958, 7.7060443 43.8028941, 7.7049702 43.8022166)"^^geo:wktLiteral .
+
+:geom_27 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0391936 43.8987441, 8.0397106 43.8988424, 8.039759 43.8988574, 8.0406408 43.8990319, 8.0414156 43.8992052, 8.0422695 43.8994178, 8.0429869 43.8996157, 8.0444386 43.9000441, 8.0451577 43.9002682, 8.0462173 43.9006357, 8.0472469 43.9010457, 8.0481581 43.9014682, 8.0490844 43.9019478, 8.0501921 43.9025784, 8.0512736 43.9032257, 8.0521834 43.9037966, 8.0530798 43.9044032, 8.0539056 43.9050399, 8.0546337 43.9056408, 8.055285 43.906255, 8.0559389 43.906908, 8.0566414 43.9076372, 8.05726 43.9083089, 8.0578172 43.9089493, 8.0583966 43.9097075, 8.0589228 43.9105077, 8.0594233 43.9113972, 8.0598898 43.9122926, 8.0609101 43.9143363, 8.0616134 43.9156093, 8.0619354 43.9161382, 8.0622071 43.9165579, 8.0629131 43.9174765, 8.0636483 43.9183502, 8.0644291 43.9191526)"^^geo:wktLiteral .
+
+:geom_28 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0300412 43.8970896, 8.0295349 43.8970005)"^^geo:wktLiteral .
+
+:geom_29 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9974733 43.8791376, 7.9991161 43.880848, 7.9996454 43.8814238)"^^geo:wktLiteral .
+
+:geom_3 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1978281 44.0258033, 8.1988551 44.0267357, 8.1991752 44.0270975, 8.1994758 44.0275033, 8.1997154 44.0278011, 8.2000859 44.0282029, 8.2004359 44.0285673, 8.2008266 44.0290738, 8.2011668 44.029609, 8.2016806 44.0303625, 8.2021554 44.0308275, 8.2027958 44.0314391, 8.2029345 44.0315447, 8.2037877 44.0321419)"^^geo:wktLiteral .
+
+:geom_30 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9970996 43.8787563, 7.9974733 43.8791376)"^^geo:wktLiteral .
+
+:geom_31 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9915597 43.8732425, 7.9917727 43.8734246)"^^geo:wktLiteral .
+
+:geom_32 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9956977 43.8772797, 7.9970996 43.8787563)"^^geo:wktLiteral .
+
+:geom_33 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0000497 43.881855, 7.9996454 43.8814238)"^^geo:wktLiteral .
+
+:geom_34 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0647461 43.9194582, 8.0644291 43.9191526)"^^geo:wktLiteral .
+
+:geom_35 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0712277 43.9240979, 8.0704769 43.9236753, 8.0696654 43.9231947, 8.0683869 43.9224105, 8.0668313 43.9212819, 8.0660279 43.9206383, 8.0656268 43.9202767, 8.0651006 43.9197941)"^^geo:wktLiteral .
+
+:geom_36 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0713741 43.9241853, 8.0712277 43.9240979)"^^geo:wktLiteral .
+
+:geom_37 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0731638 43.925236, 8.0727951 43.9250198)"^^geo:wktLiteral .
+
+:geom_38 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.0651006 43.9197941, 8.0647461 43.9194582)"^^geo:wktLiteral .
+
+:geom_39 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1369925 43.9588248, 8.1365453 43.9583846)"^^geo:wktLiteral .
+
+:geom_4 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2037877 44.0321419, 8.2078199 44.034848)"^^geo:wktLiteral .
+
+:geom_40 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1028353 43.9385137, 8.1025631 43.9384007)"^^geo:wktLiteral .
+
+:geom_41 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1758963 44.0111795, 8.1760065 44.0112225)"^^geo:wktLiteral .
+
+:geom_42 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1780485 44.0125639, 8.178663 44.013074, 8.1798716 44.0138096, 8.1801855 44.013957, 8.1806549 44.0141334, 8.1819441 44.0145923, 8.1832066 44.0150274, 8.1833894 44.0150904, 8.1846156 44.0154749, 8.1850715 44.0155889, 8.1865293 44.015933)"^^geo:wktLiteral .
+
+:geom_43 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2203707 44.0456362, 8.2204237 44.0457118)"^^geo:wktLiteral .
+
+:geom_44 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2162382 44.0410049, 8.2164291 44.0411864)"^^geo:wktLiteral .
+
+:geom_45_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2204236999999996 44.0457117999999994, 8.2205305000000006 44.0458724000000004)"^^geo:wktLiteral .
+
+:geom_45_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2205305000000006 44.0458724000000004, 8.2207875000000001 44.0462380999999965, 8.2210105000000002 44.0465481000000025, 8.2210955999999999 44.0466635000000011)"^^geo:wktLiteral .
+
+:geom_46 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2164291 44.0411864, 8.2168274 44.0415614)"^^geo:wktLiteral .
+
+:geom_47 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2168274 44.0415614, 8.2168727 44.0416057)"^^geo:wktLiteral .
+
+:geom_48 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2179554 44.0426107, 8.2180189 44.0426785)"^^geo:wktLiteral .
+
+:geom_49 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2180189 44.0426785, 8.2182299 44.0428758, 8.2185617 44.0432286, 8.2188267 44.0435349)"^^geo:wktLiteral .
+
+:geom_5 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.210585 44.036665, 8.2124346 44.0378182, 8.2132247 44.0383239, 8.2138074 44.0387462, 8.2143343 44.039211, 8.2145278 44.0393841, 8.2154502 44.0402678, 8.2162382 44.0410049)"^^geo:wktLiteral .
+
+:geom_50 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2168727 44.0416057, 8.2175127 44.0421974, 8.2179554 44.0426107)"^^geo:wktLiteral .
+
+:geom_51 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9917727 43.8734246, 7.9925807 43.8740756, 7.992994 43.8744486, 7.9934186 43.8748606, 7.9944051 43.8759275)"^^geo:wktLiteral .
+
+:geom_52 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9944051 43.8759275, 7.9956977 43.8772797)"^^geo:wktLiteral .
+
+:geom_53 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1931136 44.0227199, 8.1936137 44.0231422)"^^geo:wktLiteral .
+
+:geom_54 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1936137 44.0231422, 8.1942625 44.0237157, 8.1949383 44.0241774, 8.1955397 44.0245105)"^^geo:wktLiteral .
+
+:geom_55 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9581567 43.8593851, 7.9590924 43.8600055)"^^geo:wktLiteral .
+
+:geom_56 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.7050209 43.8021796, 7.7060742 43.8028485, 7.7070412 43.8033884, 7.7080998 43.8039488, 7.7091185 43.8044381, 7.7098358 43.804767, 7.7105669 43.8050713, 7.7113566 43.8053667, 7.7125699 43.8057797, 7.7138274 43.8061857, 7.7152395 43.8066024, 7.7726176 43.8228984)"^^geo:wktLiteral .
+
+:geom_57_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8591278999999998 43.8451499999999967, 7.8604849000000003 43.8453462000000016)"^^geo:wktLiteral .
+
+:geom_57_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8604849000000003 43.8453462000000016, 7.8607981999999996 43.8453914999999981)"^^geo:wktLiteral .
+
+:geom_58_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8509713000000003 43.8439693999999989, 7.8510185000000003 43.8439759999999978)"^^geo:wktLiteral .
+
+:geom_58_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8510185000000003 43.8439759999999978, 7.8524921000000001 43.8441830000000010, 7.8538458999999996 43.8443837000000016, 7.8551662000000002 43.8445757000000000, 7.8553233000000002 43.8445986999999988, 7.8565657000000000 43.8447802000000024, 7.8577216999999999 43.8449466000000001, 7.8587302000000001 43.8450916999999976, 7.8591278999999998 43.8451499999999967)"^^geo:wktLiteral .
+
+:geom_59_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8607981999999996 43.8453914999999981, 7.8616033999999999 43.8455085000000011)"^^geo:wktLiteral .
+
+:geom_59_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8616033999999999 43.8455085000000011, 7.8618709999999998 43.8455474000000009)"^^geo:wktLiteral .
+
+:geom_6 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1955397 44.0245105, 8.1968904 44.0251815, 8.1978281 44.0258033)"^^geo:wktLiteral .
+
+:geom_60_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8591268999999997 43.8450804000000005, 7.8582882999999999 43.8449511000000030, 7.8571859000000002 43.8447767999999982, 7.8566675999999998 43.8446968000000012, 7.8553457000000000 43.8445056999999991, 7.8538996000000001 43.8442965999999998, 7.8530519999999999 43.8441709000000017, 7.8527120000000004 43.8441268999999991, 7.8523284999999996 43.8440882000000016, 7.8517751999999996 43.8440373999999977)"^^geo:wktLiteral .
+
+:geom_60_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8517751999999996 43.8440373999999977, 7.8514970000000002 43.8440107999999995, 7.8510185000000003 43.8439759999999978)"^^geo:wktLiteral .
+
+:geom_61_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8539504999999998 43.8441785999999993, 7.8531947999999998 43.8440726999999981)"^^geo:wktLiteral .
+
+:geom_61_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8531947999999998 43.8440726999999981, 7.8529875999999996 43.8440548000000021, 7.8527838000000001 43.8440510000000003, 7.8521964000000004 43.8440510000000003)"^^geo:wktLiteral .
+
+:geom_62 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8510324 43.8439137, 7.8512073 43.8439354, 7.8514487 43.8439857, 7.8517752 43.8440374)"^^geo:wktLiteral .
+
+:geom_63_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8604849000000003 43.8453462000000016, 7.8601671000000000 43.8452612000000030)"^^geo:wktLiteral .
+
+:geom_63_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8601671000000000 43.8452612000000030, 7.8599189999999997 43.8452117000000001, 7.8591268999999997 43.8450804000000005)"^^geo:wktLiteral .
+
+:geom_64_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8517751999999996 43.8440373999999977, 7.8521964000000004 43.8440510000000003)"^^geo:wktLiteral .
+
+:geom_64_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8521964000000004 43.8440510000000003, 7.8526121000000000 43.8440731000000028, 7.8530116999999997 43.8440934999999996, 7.8532102000000004 43.8441147999999998, 7.8540818999999997 43.8442425000000000, 7.8548591999999999 43.8443542999999991)"^^geo:wktLiteral .
+
+:geom_65 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8520801 43.8438966, 7.8522661 43.8439136, 7.8524512 43.8439465, 7.852875 43.8440258)"^^geo:wktLiteral .
+
+:geom_66_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8531947999999998 43.8440726999999981, 7.8528750000000000 43.8440257999999972)"^^geo:wktLiteral .
+
+:geom_66_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8528750000000000 43.8440257999999972, 7.8526522999999999 43.8440044999999969, 7.8523626999999996 43.8439774000000000, 7.8520770000000004 43.8439564999999973)"^^geo:wktLiteral .
+
+:geom_67 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8600952 43.8453688, 7.8603134 43.8454009, 7.860705 43.8454829)"^^geo:wktLiteral .
+
+:geom_68_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8607845999999997 43.8454225999999991, 7.8600951999999999 43.8453688000000028)"^^geo:wktLiteral .
+
+:geom_68_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8600951999999999 43.8453688000000028, 7.8600278000000001 43.8453637000000001)"^^geo:wktLiteral .
+
+:geom_68_part_2 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8600278000000001 43.8453637000000001, 7.8596602999999998 43.8453366000000031, 7.8592960999999999 43.8453198999999998)"^^geo:wktLiteral .
+
+:geom_68_part_3 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8592960999999999 43.8453198999999998, 7.8590996999999998 43.8453001000000029)"^^geo:wktLiteral .
+
+:geom_69 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8500344 43.8438653, 7.8509546 43.8440491)"^^geo:wktLiteral .
+
+:geom_7 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.191335 44.0187917, 8.1915202 44.0194055, 8.1917311 44.0204835, 8.1918385 44.020954, 8.1919915 44.0213331, 8.1923456 44.0219385, 8.1926501 44.0222842, 8.1931136 44.0227199)"^^geo:wktLiteral .
+
+:geom_70 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.859111 43.845258, 7.8594779 43.845294, 7.8600278 43.8453637)"^^geo:wktLiteral .
+
+:geom_71 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8543571 43.8448297, 7.8542401 43.8448113, 7.8541382 43.8447919, 7.8540175 43.844759, 7.8535315 43.8446112)"^^geo:wktLiteral .
+
+:geom_72_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8565838000000001 43.8451006000000021, 7.8551440000000001 43.8448848000000027, 7.8541113999999999 43.8447377999999972, 7.8538861000000004 43.8446933000000030, 7.8535314999999999 43.8446112000000028)"^^geo:wktLiteral .
+
+:geom_72_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8535314999999999 43.8446112000000028, 7.8533141999999998 43.8445570000000018, 7.8526873000000004 43.8444088999999977)"^^geo:wktLiteral .
+
+:geom_72_part_2 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8526873000000004 43.8444088999999977, 7.8524452000000000 43.8443499999999986)"^^geo:wktLiteral .
+
+:geom_72_part_3 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8524452000000000 43.8443499999999986, 7.8520918000000002 43.8442948000000001, 7.8517564999999996 43.8442482999999967, 7.8514641999999997 43.8441922000000019, 7.8509384999999998 43.8440820000000002)"^^geo:wktLiteral .
+
+:geom_73_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8529071999999998 43.8444166000000024, 7.8534060999999999 43.8445346000000029, 7.8536172999999998 43.8445820999999967)"^^geo:wktLiteral .
+
+:geom_73_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8536172999999998 43.8445820999999967, 7.8539101999999996 43.8446275000000014, 7.8546370999999997 43.8447261999999967, 7.8572737000000004 43.8451167999999996, 7.8580671000000004 43.8452320999999969, 7.8583385000000003 43.8452696000000017)"^^geo:wktLiteral .
+
+:geom_73_part_2 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8583385000000003 43.8452696000000017, 7.8589393999999997 43.8453585999999973)"^^geo:wktLiteral .
+
+:geom_74 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8592961 43.8453199, 7.8590976 43.8453161)"^^geo:wktLiteral .
+
+:geom_75_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8590996999999998 43.8453001000000029, 7.8589903000000003 43.8452890000000011, 7.8584861000000004 43.8452212999999986, 7.8575499999999998 43.8450954999999993, 7.8567346000000002 43.8449774999999988, 7.8537923000000003 43.8445500999999993, 7.8530680999999998 43.8444436999999994, 7.8529071999999998 43.8444166000000024)"^^geo:wktLiteral .
+
+:geom_75_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8529071999999998 43.8444166000000024, 7.8526226000000001 43.8443461999999968, 7.8523842000000004 43.8442908999999972)"^^geo:wktLiteral .
+
+:geom_76 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8524452 43.84435, 7.8518692 43.8442174)"^^geo:wktLiteral .
+
+:geom_77_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8536172999999998 43.8445820999999967, 7.8539022000000003 43.8446507000000025, 7.8541059999999998 43.8446894000000000, 7.8543823000000001 43.8447339000000014, 7.8569572000000001 43.8451129999999978, 7.8576867999999997 43.8452192999999966, 7.8579362000000001 43.8452464000000006, 7.8583385000000003 43.8452696000000017)"^^geo:wktLiteral .
+
+:geom_77_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8583385000000003 43.8452696000000017, 7.8588535000000004 43.8453006000000016, 7.8590976000000001 43.8453160999999980)"^^geo:wktLiteral .
+
+:geom_78_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8533203000000000 43.8446351999999990, 7.8536636000000000 43.8447765000000018)"^^geo:wktLiteral .
+
+:geom_78_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8536636000000000 43.8447765000000018, 7.8539246000000000 43.8448762000000016, 7.8541409000000000 43.8449658999999983, 7.8544897000000002 43.8450800999999970, 7.8549214999999997 43.8451711000000017, 7.8576734999999998 43.8455638000000008)"^^geo:wktLiteral .
+
+:geom_79 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8536636 43.8447765, 7.8540765 43.844908, 7.854267 43.8449544, 7.8548142 43.8450859, 7.8555813 43.8452001, 7.8572175 43.8454322, 7.8576896 43.8454999)"^^geo:wktLiteral .
+
+:geom_8 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1865293 44.015933, 8.1876128 44.0162211, 8.1886583 44.0166393, 8.1896969 44.0171334, 8.1901936 44.0174002, 8.1905372 44.0177105, 8.1910919 44.0182948, 8.191335 44.0187917)"^^geo:wktLiteral .
+
+:geom_80_part_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8526873000000004 43.8444088999999977, 7.8531271000000000 43.8445521000000014, 7.8533203000000000 43.8446351999999990)"^^geo:wktLiteral .
+
+:geom_80_part_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8533203000000000 43.8446351999999990, 7.8540282000000001 43.8449717000000021, 7.8544916999999996 43.8451895999999977, 7.8547712000000001 43.8453006000000016, 7.8550845000000002 43.8454042999999984, 7.8552968999999999 43.8454552999999976, 7.8558119000000000 43.8455463000000023, 7.8570430000000000 43.8457262000000014, 7.8575815999999996 43.8458007999999992)"^^geo:wktLiteral .
+
+:geom_81 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.95629 43.8582401, 7.9569714 43.8586255)"^^geo:wktLiteral .
+
+:geom_82 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9572799 43.8588015, 7.9581938 43.8593546)"^^geo:wktLiteral .
+
+:geom_83 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9581938 43.8593546, 7.9591279 43.8599793)"^^geo:wktLiteral .
+
+:geom_84 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9569714 43.8586255, 7.9572799 43.8588015)"^^geo:wktLiteral .
+
+:geom_85 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.9591279 43.8599793, 7.9595525 43.8602649)"^^geo:wktLiteral .
+
+:geom_86 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8607559 43.8453441, 7.8603602 43.845293, 7.8601671 43.8452612)"^^geo:wktLiteral .
+
+:geom_87 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8509385 43.844082, 7.8502948 43.8439563, 7.8500264 43.8439098)"^^geo:wktLiteral .
+
+:geom_88 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8509546 43.8440491, 7.851314 43.8441265, 7.8515548 43.8441708)"^^geo:wktLiteral .
+
+:geom_89 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2256191 44.053219, 8.2256372 44.0534901, 8.2256346 44.0536847)"^^geo:wktLiteral .
+
+:geom_9 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.1472839 43.9654317, 8.1472385 43.9653168, 8.1470972 43.96503, 8.1469033 43.9647173, 8.1466948 43.9644465, 8.1464526 43.964173, 8.1461762 43.9639179, 8.1459284 43.963712, 8.1456676 43.9635208, 8.1453296 43.963321, 8.1450069 43.963156, 8.1446255 43.962973, 8.1428342 43.9621731)"^^geo:wktLiteral .
+
+:geom_90 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2255016 44.0550782, 8.2254237 44.0558089, 8.2253305 44.056611, 8.2252711 44.0572775, 8.2252005 44.0585308)"^^geo:wktLiteral .
+
+:geom_91 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8558492 43.8444968, 7.8583708 43.8448596)"^^geo:wktLiteral .
+
+:geom_92 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (7.8548592 43.8443543, 7.8558492 43.8444968)"^^geo:wktLiteral .
+
+:geom_93 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2202177 44.0454164, 8.2203538 44.0455883, 8.2203888 44.0456303)"^^geo:wktLiteral .
+
+:geom_94 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2252005 44.0585308, 8.2251926 44.0587119)"^^geo:wktLiteral .
+
+:geom_95 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2256887 44.0536865, 8.225686 44.0534442, 8.2256721 44.053219)"^^geo:wktLiteral .
+
+:geom_96 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2252435 44.0587123, 8.2252488 44.0585215)"^^geo:wktLiteral .
+
+:geom_97 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2250894 44.0619047, 8.2252411 44.0587624, 8.2252435 44.0587123)"^^geo:wktLiteral .
+
+:geom_98 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2251926 44.0587119, 8.2251736 44.0591436, 8.2251309 44.0601421, 8.2251029 44.0608093, 8.2250474 44.0619002)"^^geo:wktLiteral .
+
+:geom_99 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (8.2252488 44.0585215, 8.2252837 44.0577871, 8.2253186 44.057311, 8.2253802 44.0565881, 8.2254795 44.0557573, 8.2255504 44.0550813)"^^geo:wktLiteral .
 

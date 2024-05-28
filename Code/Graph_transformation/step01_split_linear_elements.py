@@ -33,7 +33,8 @@ def split_linestrings_in_file(file_path: str, short_name_: str = "", with_kml: b
     shared_coords = find_shared_intermediate_points(linestring_dict)
     modified_linestrings = split_linestrings(linestring_dict, shared_coords)
     path_to_split = "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/"
-    generate_turtle_from_linestrings(file_path, modified_linestrings, path_to_split + f"osm_{short_name_}_split.ttl")
+    generate_turtle_from_linestrings(file_path, modified_linestrings[0], modified_linestrings[1],
+                                     path_to_split + f"osm_{short_name_}_split.ttl")
     if with_kml:
         ttl_to_kml(path_to_split + f"osm_{short_name_}_split.ttl", path_to_split + f"osm_{short_name_}_split.kml")
 
@@ -101,7 +102,7 @@ def split_linestrings(linestrings: dict[URIRef, LineString], shared_coords: dict
     :return: (modified (split) linestrings dictionary, set of linestrings to be suppressed)
     """
     linestrings_to_remove = set()
-    linestrings_to_add = dict()
+    linestrings_to_add = {}
 
     for uri, ls in linestrings.items():
         ls_coords = list(ls.coords)
@@ -133,12 +134,13 @@ def split_linestrings(linestrings: dict[URIRef, LineString], shared_coords: dict
     return linestrings_to_add, linestrings_to_remove
 
 
-def generate_turtle_from_linestrings(file_path: str, modified_linestrings: dict[str, LineString],
-                                     output_file_path: str):
+def generate_turtle_from_linestrings(file_path: str, linestrings_to_add: dict[URIRef, LineString],
+                                     linestrings_to_remove: set[URIRef], output_file_path: str):
     """
     Modifies the linear elements according to the split linestrings and stores result in ttl file.
+    :param linestrings_to_remove:
+    :param linestrings_to_add:
     :param file_path: turtle file with linear elements and their geometries
-    :param modified_linestrings: dictionary of geometries
     :param output_file_path: to ttl file
     :return: None
     """
@@ -150,26 +152,59 @@ def generate_turtle_from_linestrings(file_path: str, modified_linestrings: dict[
     # Bind the namespaces
     g.bind("geo", GEOSPARQL)
     g.bind("rsm", RSM_TOPOLOGY)
+    g.bind("rsm", RSM_GEOSPARQL_ADAPTER)
     g.bind("", WORK)
 
-    for uri, linestring in modified_linestrings.items():
-        # Ensure the geometry is a LineString
-        if not isinstance(linestring, LineString):
-            continue
-        uri_ref = URIRef(uri)
+    # Handle the geometries (linestrings)
 
+    for geom_uri, linestring in linestrings_to_add.items():
         # Convert the LineString to WKT
         wkt = dumps(linestring)
         wkt_literal = Literal(wkt, datatype=GEOSPARQL.wktLiteral)
 
-        # Create the triples
-        g.add((uri_ref, RDF.type, RSM_TOPOLOGY.LinearElement))  # Type of the element
-        g.add((uri_ref, RDF.type, GEOSPARQL.Geometry))  # ...also of type: Geometry
-        g.add((uri_ref, GEOSPARQL.asWKT, wkt_literal))  # Geometry representation using Well-Known Text (WKT)
+        # Create the triples for geometries
+        g.add((geom_uri, RDF.type, RSM_GEOSPARQL_ADAPTER.Geometry))
+        g.add((geom_uri, GEOSPARQL.asWKT, wkt_literal))  # Geometry representation using Well-Known Text (WKT)
+
+    # Handle the features (linear elements)
+
+    count_lines, count_geometries = 0, 0
+
+    for geo_uri in linestrings_to_add:
+        index = geo_uri.split('_', 1)[1]
+        line_uri = URIRef('split_element' + '_' + index)
+        g.add((line_uri, RDF.type, RSM_TOPOLOGY.LinearElement))
+        g.add((line_uri, RSM_GEOSPARQL_ADAPTER.hasNominalGeometry, geo_uri))
+        count_lines += 1
+        count_geometries += 1
+    print(f"    Generated {count_lines} linear elements and {count_geometries} nominal geometry properties")
+
+    lines_to_remove = set()
+
+    count_lines = 0
+    for linestring in linestrings_to_remove:
+        for matching_line in g.subjects(RSM_GEOSPARQL_ADAPTER.hasNominalGeometry, linestring):
+            lines_to_remove.add(matching_line)
+            count_lines += 1
+    print(f"    Number of linear elements remoev (matching the geometries to be removed): {count_lines}")
+
+    count_lines: int = 0
+    for line_to_remove in lines_to_remove:
+        g.remove((line_to_remove, None, None))
+        g.remove((None, None, line_to_remove))
+        count_lines += 1
+    print(f"    Removed {count_lines} linear elements")
+
+    # finally, remove the triples referring to obsolete geometries, if any
+
+    for geo_uri in linestrings_to_remove:
+        g.remove((geo_uri, None, None))
+        g.remove((None, None, geo_uri))
 
     # Serialize the graph to the Turtle file
     g.serialize(destination=output_file_path, format='turtle')
     print(f"Generated Turtle file: {output_file_path}")
+    pass
 
 
 if __name__ == "__main__":

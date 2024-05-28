@@ -43,6 +43,20 @@
                   </set>
                 </value>
               </entry>
+              <entry key="http://www.w3.org/ns/sosa/">
+                <value>
+                  <set>
+                    <option value="urn:tag:lnkd.tech,2023:digest:sha-256/CAD649F7AE1A8B227A90A5C213D9BFE6F7B4DA18981D62181F0264496B9EF172" />
+                  </set>
+                </value>
+              </entry>
+              <entry key="http://www.w3.org/ns/ssn/">
+                <value>
+                  <set>
+                    <option value="urn:tag:lnkd.tech,2023:digest:sha-256/D0E6EC370D5A39B9FE5C05B88552493896192AAAF8CEAC265094F99A1E16A245" />
+                  </set>
+                </value>
+              </entry>
             </map>
           </value>
         </entry>
