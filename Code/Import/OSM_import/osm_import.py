@@ -10,7 +10,7 @@ from shapely.geometry import LineString, Point
 from Code.Namespaces import *
 
 
-def osm_import(osm_file_path: str, short_name: str = "", linear_element_prefix: str = 'rwy',
+def osm_import(osm_file_path: str, short_name: str = "", linear_element_prefix: str = 'line',
                geometry_prefix: str = 'geom', with_properties: bool = True):
     """
 

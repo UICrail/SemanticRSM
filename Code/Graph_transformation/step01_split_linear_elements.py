@@ -172,7 +172,7 @@ def generate_turtle_from_linestrings(file_path: str, linestrings_to_add: dict[UR
 
     for geom_uri in linestrings_to_add:
         index = geom_uri.split('_', 1)[1]
-        line_uri = URIRef(WORK + 'split_element' + '_' + index)
+        line_uri = URIRef(WORK + 'splitline' + '_' + index)
         g.add((line_uri, RDF.type, RSM_TOPOLOGY.LinearElement))
         g.add((line_uri, RSM_GEOSPARQL_ADAPTER.hasNominalGeometry, geom_uri))
         count_lines += 1

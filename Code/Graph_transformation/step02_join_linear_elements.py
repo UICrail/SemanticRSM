@@ -11,8 +11,6 @@ from shapely.wkt import loads, dumps
 from Code.Namespaces import *
 
 
-
-
 def find_nodes(g: Graph) -> Dict[str, List[URIRef]]:
     """
     Creates a dictionary:
@@ -52,30 +50,30 @@ def report_degrees(nodes: dict[str, list[URIRef]]) -> None:
     pass
 
 
-def chain_URIRefs(*URIRefs: URIRef, chain_symbol: str = '-') -> (URIRef, URIRef):
+def join_URIRefs(*URIRefs: URIRef, join_symbol: str = '-') -> (URIRef, URIRef):
     """
     Assumes that all URI bases are the same
-    :param chain_symbol:
+    :param join_symbol:
     :param URIRefs:
     :return:
     """
     if len(URIRefs) < 2:
         raise ValueError(f"ERROR: at least two URI references are required. {str(URIRefs)} falls short.")
     else:
-        geom_base = URIRefs[0].split('#', 1)[0] + '#geometry_'
-        line_base=URIRefs[0].split('#', 1)[0] + '#element_'
+        geom_base = URIRefs[0].split('#', 1)[0] + '#geom_'
+        line_base = URIRefs[0].split('#', 1)[0] + '#jointline_'
         extension = ''
         for uri_ref in URIRefs[0:-1]:
-            extension += uri_ref.split('#', 1)[1] + chain_symbol
-        extension = extension + URIRefs[-1].split('#',1)[1] if URIRefs[-1] is not None else geom_base
+            extension += uri_ref.split('#', 1)[1].split('_',1)[1] + join_symbol
+        extension = extension + URIRefs[-1].split('#', 1)[1].split('_',1)[1] if URIRefs[-1] is not None else geom_base
         geom_result = geom_base + extension
         line_result = line_base + extension
         return URIRef(geom_result), URIRef(line_result)
 
 
-def perform_chaining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]]) -> Graph:
+def perform_joining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]]) -> Graph:
     """
-    Performs chaining on linear elements that meet at nodes with degree 2 and updates references.
+    Performs joining on linear elements that meet at nodes with degree 2 and updates references.
     """
     # Prepare a set for elements to be removed and a dict for updating node references
     lines_to_remove: set[URIRef] = set()
@@ -96,7 +94,7 @@ def perform_chaining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]]) -> Graph
             parse_error_count += 1
             continue
 
-        # Chain the geometries
+        # Join the geometries
         # Here, directed should be set to False (the default argument), otherwise multi-linestrings
         # will result when linestrings start of finish with a common point.
         z_wkt = linemerge([x_wkt, y_wkt], directed=False)
@@ -104,8 +102,8 @@ def perform_chaining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]]) -> Graph
 
         if z_wkt.is_valid:
             processed_nodes_counter += 1
-            geom_uri_z, line_uri_z = chain_URIRefs(x_geom, y_geom)
-            # Add the new chained element Z to the graph
+            geom_uri_z, line_uri_z = join_URIRefs(x_geom, y_geom)
+            # Add the new joint element Z to the graph
             g.add((geom_uri_z, RDF.type, RSM_GEOSPARQL_ADAPTER.Geometry))
             g.add((geom_uri_z, GEOSPARQL.asWKT, Literal(dumps(z_wkt), datatype=GEOSPARQL.wktLiteral)))
 
@@ -120,13 +118,13 @@ def perform_chaining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]]) -> Graph
             # Updates references made to X or Y by nodes not yet processed
             # Note: we are looping through the nodes_degree_2 dict;
             # here, the values in the nodes_degree_2 dict are altered, but not the keys, which is legal.
-            for chained_element in linear_elements:
+            for joint_element in linear_elements:
                 for n_wkt in unprocessed_nodes:
-                    if chained_element in nodes_degree_2[n_wkt]:
+                    if joint_element in nodes_degree_2[n_wkt]:
                         nodes_degree_2[n_wkt].append(geom_uri_z)
-                        nodes_degree_2[n_wkt].remove(chained_element)
+                        nodes_degree_2[n_wkt].remove(joint_element)
         else:
-            print(f"WARNING: strange things happening at {node_wkt}: chaining was not successful.")
+            print(f"WARNING: strange things happening at {node_wkt}: joining was not successful.")
 
     print(f"WARNING: parsing errors around {parse_error_count} nodes")
 
@@ -141,14 +139,14 @@ def perform_chaining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]]) -> Graph
     for n_wkt, new_elements in unprocessed_nodes.items():
         nodes_degree_2[n_wkt] = new_elements
 
-    print(f"{processed_nodes_counter} nodes of degree 2 were removed by chaining the surrounding linestrings")
+    print(f"{processed_nodes_counter} nodes of degree 2 were removed by joining the surrounding linestrings")
 
     return g
 
 
-def chain_linear_elements(input_ttl: str, output_ttl: Optional[str] = None) -> None:
+def join_linear_elements(input_ttl: str, output_ttl: Optional[str] = None) -> None:
     """
-    Chains linear elements based on nodes with degree 2. Updates an RDF graph accordingly and
+    Joins linear elements based on nodes with degree 2. Updates an RDF graph accordingly and
     optionally saves the updated graph to a Turtle file.
     """
     # Create the RDF graph by parsing the input TTL file
@@ -165,18 +163,18 @@ def chain_linear_elements(input_ttl: str, output_ttl: Optional[str] = None) -> N
     nodes_degree_2 = {k: v for k, v in nodes.items() if len(v) == 2}
 
     print(
-        f'Performing the chaining on {len(nodes_degree_2)} nodes of degree 2 (revealing consecutive linear elements):')
-    g_chained = perform_chaining(g, nodes_degree_2)
+        f'Performing the joining on {len(nodes_degree_2)} nodes of degree 2 (revealing consecutive linear elements):')
+    g_joint = perform_joining(g, nodes_degree_2)
 
-    if g_chained and output_ttl:
-        print(f"Chained RDF graph will be saved to: {output_ttl}")
-        g_chained.serialize(destination=output_ttl, format='turtle')
+    if g_joint and output_ttl:
+        print(f"Joint RDF graph will be saved to: {output_ttl}")
+        g_joint.serialize(destination=output_ttl, format='turtle')
     elif output_ttl:
-        print("No chaining performed. Original graph will be saved.")
+        print("No joining performed. Original graph will be saved.")
         g.serialize(destination=output_ttl, format='turtle')
     pass
 
 
 if __name__ == "__main__":
-    chain_linear_elements("/Users/airymagnien/PycharmProjects/SemanticRSM/Intermediate_files/osm_railways_split.ttl",
-                          "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/osm_railways_chained.ttl")
+    join_linear_elements("/Users/airymagnien/PycharmProjects/SemanticRSM/Intermediate_files/osm_railways_split.ttl",
+                         "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/osm_railways_joint.ttl")

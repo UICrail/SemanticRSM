@@ -2,7 +2,7 @@
 Purpose: pick an OSM geojson file and transform it into an RSM-compliant topology.ttl graph
 """
 from Code.Export.export_to_kml import ttl_to_kml
-from Code.Graph_transformation.step02_chain_linear_elements import chain_linear_elements
+from Code.Graph_transformation.step02_join_linear_elements import join_linear_elements
 from Code.Import.OSM_import import osm_import
 from Code.Graph_transformation.step01_split_linear_elements import split_linestrings_in_file
 from Graph_transformation.step03_add_ports import add_ports
@@ -19,14 +19,14 @@ def transform_osm_to_rsm(osm_geojson_path, short_name):
         "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{}_raw.ttl".format(
             short_name), short_name)
 
-    chain_linear_elements(
+    join_linear_elements(
         "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{}_split.ttl".format(
             short_name),
-        "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{}_chained.ttl".format(
+        "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{}_joint.ttl".format(
             short_name))
 
     add_ports(
-        "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{}_chained.ttl".format(
+        "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{}_joint.ttl".format(
             short_name),
         "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{}_with_ports.ttl".format(
             short_name))
