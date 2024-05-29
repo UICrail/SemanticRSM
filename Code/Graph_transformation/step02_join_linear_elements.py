@@ -51,7 +51,7 @@ def report_degrees(nodes: dict[str, list[URIRef]]) -> None:
     pass
 
 
-def join_URIRefs(*urirefs: URIRef, join_symbol: str = '-') -> (URIRef, URIRef):
+def join_uri_refs(*urirefs: URIRef, join_symbol: str = '-') -> (URIRef, URIRef):
     """
     Assumes that all URI bases are the same
     :param join_symbol:
@@ -90,7 +90,7 @@ def perform_joining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]]) -> Graph:
         try:
             x_wkt = loads(str(g.value(x_geom, GEOSPARQL.asWKT)))
             y_wkt = loads(str(g.value(y_geom, GEOSPARQL.asWKT)))
-        except shapely.errors.GEOSException as err:
+        except shapely.errors.GEOSException:
             print(f'WARNING: could not parse geometries surrounding {node_wkt} for WKT data; GEOSException error.')
             parse_error_count += 1
             continue
@@ -103,7 +103,7 @@ def perform_joining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]]) -> Graph:
 
         if z_wkt.is_valid:
             processed_nodes_counter += 1
-            geom_uri_z, line_uri_z = join_URIRefs(x_geom, y_geom)
+            geom_uri_z, line_uri_z = join_uri_refs(x_geom, y_geom)
             # Add the new joint element Z to the graph
             g.add((geom_uri_z, RDF.type, RSM_GEOSPARQL_ADAPTER.Geometry))
             g.add((geom_uri_z, GEOSPARQL.asWKT, Literal(dumps(z_wkt), datatype=GEOSPARQL.wktLiteral)))
@@ -174,7 +174,6 @@ def join_linear_elements(input_ttl: str, output_ttl: Optional[str] = None) -> No
     elif output_ttl:
         print("No joining performed. Original graph will be saved.")
         g.serialize(destination=output_ttl, format='turtle')
-    pass
 
 
 if __name__ == "__main__":

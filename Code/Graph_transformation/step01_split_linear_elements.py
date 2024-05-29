@@ -172,7 +172,7 @@ def generate_turtle_from_linestrings(file_path: str, linestrings_to_add: dict[UR
 
     for geom_uri in linestrings_to_add:
         index = geom_uri.split('_', 1)[1]
-        line_uri = URIRef(WORK + 'splitline' + '_' + index)
+        line_uri = URIRef(WORK + 'split_line' + '_' + index)
         g.add((line_uri, RDF.type, RSM_TOPOLOGY.LinearElement))
         g.add((line_uri, RSM_GEOSPARQL_ADAPTER.hasNominalGeometry, geom_uri))
         count_lines += 1
@@ -186,7 +186,7 @@ def generate_turtle_from_linestrings(file_path: str, linestrings_to_add: dict[UR
         for matching_line in g.subjects(RSM_GEOSPARQL_ADAPTER.hasNominalGeometry, linestring):
             lines_to_remove.add(matching_line)
             count_lines += 1
-    print(f"    Number of linear elements remoev (matching the geometries to be removed): {count_lines}")
+    print(f"    Number of linear elements removed (matching the geometries to be removed): {count_lines}")
 
     count_lines: int = 0
     for line_to_remove in lines_to_remove:

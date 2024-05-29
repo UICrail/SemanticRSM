@@ -17,15 +17,16 @@ def add_ports(input_ttl: str, output_ttl: Optional[str] = None, with_inverse_pro
 
     linear_element_count = len(list(g.subjects(RDF.type, RSM_TOPOLOGY.LinearElement)))
 
-    print(f"Creating ports at the extremities of {linear_element_count} linear elements:")
+    print(f"\nCreating ports at the extremities of {linear_element_count} linear elements:")
 
     counter = 0
 
     for linear_element in g.subjects(RDF.type, RSM_TOPOLOGY.LinearElement):
         # Get extremal coordinates
-        geometry = loads(str(g.value(linear_element, GEOSPARQL.asWKT)))
-        extr0, extr1 = Point(geometry.coords[0]), Point(geometry.coords[-1])
-        next0, next1 = Point(geometry.coords[1]), Point(geometry.coords[-2])
+        geometry = g.value(linear_element, RSM_GEOSPARQL_ADAPTER.hasNominalGeometry)
+        wkt = loads(str(g.value(geometry, GEOSPARQL.asWKT)))
+        extr0, extr1 = Point(wkt.coords[0]), Point(wkt.coords[-1])
+        next0, next1 = Point(wkt.coords[1]), Point(wkt.coords[-2])
         # azimuths (pyproj yields azimuths in the -180 to +180 range)
         az0 = wgs84_geod.inv(next0.x, next0.y, extr0.x, extr0.y)[0]
         az1 = wgs84_geod.inv(next1.x, next1.y, extr1.x, extr1.y)[0]
@@ -47,10 +48,10 @@ def add_ports(input_ttl: str, output_ttl: Optional[str] = None, with_inverse_pro
             g.add((uri1, RSM_TOPOLOGY.onElement, linear_element))
         counter += 1
 
-    print(f"{counter} pairs of ports were created.")
+    print(f"    {counter} pairs of ports were created.")
 
     if linear_element_count != counter:
-        print("WARNING: there seems to be a mismatch above.")
+        print("    WARNING: there seems to be a mismatch above.")
 
     # Output
     if output_ttl:
