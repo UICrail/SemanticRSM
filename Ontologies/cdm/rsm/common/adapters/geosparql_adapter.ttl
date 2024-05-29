@@ -8,7 +8,7 @@
 @base <http://cdm.ovh/rsm/adapters/geosparql_adapter#> .
 
 <http://cdm.ovh/rsm/adapters/geosparql_adapter> rdf:type owl:Ontology ;
-                                                 rdfs:comment "Adapter vocabulary for connecting GeoSPARQL 1.1 with various parts of RSM."@en .
+                                                 rdfs:comment "Adapter vocabulary for connecting various parts of RSM with GeoSPARQL 1.1."@en .
 
 #################################################################
 #    Object Properties
@@ -45,8 +45,15 @@
 :hasNominalMetricLength rdf:type owl:DatatypeProperty ;
                         rdfs:subPropertyOf <http://www.opengis.net/ont/geosparql#hasMetricLength> ;
                         rdfs:domain rsm:LinearElement ;
+                        rdfs:range [ rdf:type rdfs:Datatype ;
+                                     owl:onDatatype xsd:double ;
+                                     owl:withRestrictions ( [ xsd:minInclusive "0.0"^^xsd:double
+                                                            ]
+                                                          )
+                                   ] ;
                         rdfs:comment """Length (in meter) of a Linear Element to be assumed for conversions between linear referencing methods \"absolute\" (distance along) and \"interpolation\" (intrinsic coordinates, with values 0 to 1).
-Length must be consistent with the chosen Nominal Geometry."""@en .
+Length must be consistent with the chosen Nominal Geometry.
+Compared to geo:hasMetricLength, a restriction was applied to the range (non-negative values)."""@en .
 
 
 ###  http://www.opengis.net/ont/geosparql#hasMetricLength

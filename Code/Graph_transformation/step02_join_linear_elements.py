@@ -2,6 +2,7 @@ import copy
 from collections import Counter
 from typing import Dict, List, Optional
 
+import shapely.errors
 from rdflib import Graph, URIRef, Literal
 from rdflib.namespace import RDF
 from shapely.geometry import Point
@@ -50,22 +51,22 @@ def report_degrees(nodes: dict[str, list[URIRef]]) -> None:
     pass
 
 
-def join_URIRefs(*URIRefs: URIRef, join_symbol: str = '-') -> (URIRef, URIRef):
+def join_URIRefs(*urirefs: URIRef, join_symbol: str = '-') -> (URIRef, URIRef):
     """
     Assumes that all URI bases are the same
     :param join_symbol:
-    :param URIRefs:
+    :param urirefs:
     :return:
     """
-    if len(URIRefs) < 2:
-        raise ValueError(f"ERROR: at least two URI references are required. {str(URIRefs)} falls short.")
+    if len(urirefs) < 2:
+        raise ValueError(f"ERROR: at least two URI references are required. {str(urirefs)} falls short.")
     else:
-        geom_base = URIRefs[0].split('#', 1)[0] + '#geom_'
-        line_base = URIRefs[0].split('#', 1)[0] + '#jointline_'
+        geom_base = urirefs[0].split('#', 1)[0] + '#geom_'
+        line_base = urirefs[0].split('#', 1)[0] + '#jointline_'
         extension = ''
-        for uri_ref in URIRefs[0:-1]:
-            extension += uri_ref.split('#', 1)[1].split('_',1)[1] + join_symbol
-        extension = extension + URIRefs[-1].split('#', 1)[1].split('_',1)[1] if URIRefs[-1] is not None else geom_base
+        for uri_ref in urirefs[0:-1]:
+            extension += uri_ref.split('#', 1)[1].split('_', 1)[1] + join_symbol
+        extension = extension + urirefs[-1].split('#', 1)[1].split('_', 1)[1] if urirefs[-1] is not None else geom_base
         geom_result = geom_base + extension
         line_result = line_base + extension
         return URIRef(geom_result), URIRef(line_result)
@@ -89,8 +90,8 @@ def perform_joining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]]) -> Graph:
         try:
             x_wkt = loads(str(g.value(x_geom, GEOSPARQL.asWKT)))
             y_wkt = loads(str(g.value(y_geom, GEOSPARQL.asWKT)))
-        except Exception:
-            print(f'WARNING: could not parse geometries surrounding {node_wkt} for WKT data')
+        except shapely.errors.GEOSException as err:
+            print(f'WARNING: could not parse geometries surrounding {node_wkt} for WKT data; GEOSException error.')
             parse_error_count += 1
             continue
 
@@ -121,12 +122,13 @@ def perform_joining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]]) -> Graph:
             for joint_element in linear_elements:
                 for n_wkt in unprocessed_nodes:
                     if joint_element in nodes_degree_2[n_wkt]:
-                        nodes_degree_2[n_wkt].append(geom_uri_z)
+                        nodes_degree_2[n_wkt].append(line_uri_z)
                         nodes_degree_2[n_wkt].remove(joint_element)
         else:
             print(f"WARNING: strange things happening at {node_wkt}: joining was not successful.")
 
-    print(f"WARNING: parsing errors around {parse_error_count} nodes")
+    if parse_error_count > 0:
+        print(f"WARNING: parsing errors around {parse_error_count} nodes")
 
     # Remove the marked original elements from the graph
     for line in lines_to_remove:
@@ -167,7 +169,7 @@ def join_linear_elements(input_ttl: str, output_ttl: Optional[str] = None) -> No
     g_joint = perform_joining(g, nodes_degree_2)
 
     if g_joint and output_ttl:
-        print(f"Joint RDF graph will be saved to: {output_ttl}")
+        print(f"RDF graph with joint elements will be saved to: {output_ttl}")
         g_joint.serialize(destination=output_ttl, format='turtle')
     elif output_ttl:
         print("No joining performed. Original graph will be saved.")
