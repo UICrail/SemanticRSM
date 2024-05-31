@@ -1,11 +1,11 @@
+from typing import Optional
+
+from pyproj import Geod
 from rdflib import Graph, URIRef, Literal
 from rdflib.namespace import RDF
-from shapely import LineString
 from shapely.geometry import Point
-from shapely.wkt import loads, dumps
-from shapely.ops import linemerge
-from pyproj import Geod
-from typing import Optional
+from shapely.wkt import loads
+
 from Code.Namespaces import *
 
 wgs84_geod = Geod(ellps='WGS84')
@@ -30,7 +30,7 @@ def add_ports(input_ttl: str, output_ttl: Optional[str] = None, with_inverse_pro
         # azimuths (pyproj yields azimuths in the -180 to +180 range)
         az0 = wgs84_geod.inv(next0.x, next0.y, extr0.x, extr0.y)[0]
         az1 = wgs84_geod.inv(next1.x, next1.y, extr1.x, extr1.y)[0]
-        uri0, uri1 = URIRef(str(linear_element) + '_0'), URIRef(str(linear_element) + '_1')
+        uri0, uri1 = URIRef(str(linear_element) + '_port_0'), URIRef(str(linear_element) + '_port_1')
         # Create the two ports...
         g.add((URIRef(uri0), RDF.type, RSM_TOPOLOGY.Port))
         g.add((URIRef(uri1), RDF.type, RSM_TOPOLOGY.Port))

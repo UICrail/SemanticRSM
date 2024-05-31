@@ -1,0 +1,188 @@
+<http://cdm.ovh/rsm/topology/topology> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<http://cdm.ovh/rsm/topology/topology> <http://www.w3.org/2002/07/owl#versionIRI> <http://cdm.ovh/rsm/topology/0.6/topology> .
+<http://cdm.ovh/rsm/topology/topology> <http://www.w3.org/2002/07/owl#imports> <http://cdm.ovh/rsm/adapters/geosparql_adapter> .
+<http://cdm.ovh/rsm/topology/topology> <http://www.w3.org/2000/01/rdf-schema#comment> "Using GeoSPARQL and SOSA/SSN adapters"@en .
+<http://cdm.ovh/rsm/topology/topology> <http://www.w3.org/2002/07/owl#versionInfo> "0.6"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+# 
+# 
+# #################################################################
+# #
+# #    Datatypes
+# #
+# #################################################################
+# 
+# 
+# http://cdm.ovh/rsm/topology/topology#IntrinsicCoordinate
+<http://cdm.ovh/rsm/topology/topology#IntrinsicCoordinate> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Datatype> .
+<http://cdm.ovh/rsm/topology/topology#IntrinsicCoordinate> <http://www.w3.org/2000/01/rdf-schema#comment> "A total order relation along a linear element, usually interpreted as a percentage of its nominal length. Value in [0, 1]."@en .
+# 
+# http://cdm.ovh/rsm/topology/topology#LinearElementLength
+<http://cdm.ovh/rsm/topology/topology#LinearElementLength> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Datatype> .
+<http://cdm.ovh/rsm/topology/topology#LinearElementLength> <http://www.w3.org/2002/07/owl#equivalentClass> <http://www.w3.org/2001/XMLSchema#decimal> .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Object Properties
+# #
+# #################################################################
+# 
+# 
+# http://cdm.ovh/rsm/topology/topology#connectedWith
+<http://cdm.ovh/rsm/topology/topology#connectedWith> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://cdm.ovh/rsm/topology/topology#connectedWith> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://cdm.ovh/rsm/topology/topology#portRelation> .
+<http://cdm.ovh/rsm/topology/topology#connectedWith> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#SymmetricProperty> .
+# 
+# http://cdm.ovh/rsm/topology/topology#hasComponent
+<http://cdm.ovh/rsm/topology/topology#hasComponent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://cdm.ovh/rsm/topology/topology#hasComponent> <http://www.w3.org/2002/07/owl#inverseOf> <http://cdm.ovh/rsm/topology/topology#inElement> .
+<http://cdm.ovh/rsm/topology/topology#hasComponent> <http://www.w3.org/2000/01/rdf-schema#label> "has component"@en .
+# 
+# http://cdm.ovh/rsm/topology/topology#hasPort
+<http://cdm.ovh/rsm/topology/topology#hasPort> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://cdm.ovh/rsm/topology/topology#hasPort> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#InverseFunctionalProperty> .
+<http://cdm.ovh/rsm/topology/topology#hasPort> <http://www.w3.org/2000/01/rdf-schema#domain> <http://cdm.ovh/rsm/topology/topology#NetElement> .
+<http://cdm.ovh/rsm/topology/topology#hasPort> <http://www.w3.org/2000/01/rdf-schema#range> <http://cdm.ovh/rsm/topology/topology#Port> .
+<http://cdm.ovh/rsm/topology/topology#hasPort> <http://www.w3.org/2000/01/rdf-schema#label> "has port"@en .
+# 
+# http://cdm.ovh/rsm/topology/topology#inElement
+<http://cdm.ovh/rsm/topology/topology#inElement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://cdm.ovh/rsm/topology/topology#inElement> <http://www.w3.org/2000/01/rdf-schema#domain> <http://cdm.ovh/rsm/topology/topology#TopologyComponent> .
+<http://cdm.ovh/rsm/topology/topology#inElement> <http://www.w3.org/2000/01/rdf-schema#range> <http://cdm.ovh/rsm/topology/topology#NetElement> .
+<http://cdm.ovh/rsm/topology/topology#inElement> <http://www.w3.org/2000/01/rdf-schema#label> "in Element"@en .
+# 
+# http://cdm.ovh/rsm/topology/topology#navigableFrom
+<http://cdm.ovh/rsm/topology/topology#navigableFrom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://cdm.ovh/rsm/topology/topology#navigableFrom> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://cdm.ovh/rsm/topology/topology#portRelation> .
+<http://cdm.ovh/rsm/topology/topology#navigableFrom> <http://www.w3.org/2002/07/owl#inverseOf> <http://cdm.ovh/rsm/topology/topology#navigableTo> .
+<http://cdm.ovh/rsm/topology/topology#navigableFrom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#TransitiveProperty> .
+# 
+# http://cdm.ovh/rsm/topology/topology#navigableTo
+<http://cdm.ovh/rsm/topology/topology#navigableTo> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://cdm.ovh/rsm/topology/topology#navigableTo> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://cdm.ovh/rsm/topology/topology#portRelation> .
+<http://cdm.ovh/rsm/topology/topology#navigableTo> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#TransitiveProperty> .
+# 
+# http://cdm.ovh/rsm/topology/topology#nonNavigableTo
+<http://cdm.ovh/rsm/topology/topology#nonNavigableTo> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://cdm.ovh/rsm/topology/topology#nonNavigableTo> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://cdm.ovh/rsm/topology/topology#portRelation> .
+# 
+# http://cdm.ovh/rsm/topology/topology#onElement
+<http://cdm.ovh/rsm/topology/topology#onElement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://cdm.ovh/rsm/topology/topology#onElement> <http://www.w3.org/2000/01/rdf-schema#domain> <http://cdm.ovh/rsm/topology/topology#Port> .
+<http://cdm.ovh/rsm/topology/topology#onElement> <http://www.w3.org/2000/01/rdf-schema#range> <http://cdm.ovh/rsm/topology/topology#NetElement> .
+<http://cdm.ovh/rsm/topology/topology#onElement> <http://www.w3.org/2000/01/rdf-schema#label> "on Element"@en .
+# 
+# http://cdm.ovh/rsm/topology/topology#partOf
+<http://cdm.ovh/rsm/topology/topology#partOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://cdm.ovh/rsm/topology/topology#partOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#FunctionalProperty> .
+<http://cdm.ovh/rsm/topology/topology#partOf> <http://www.w3.org/2000/01/rdf-schema#domain> <http://cdm.ovh/rsm/topology/topology#LinearElementPart> .
+<http://cdm.ovh/rsm/topology/topology#partOf> <http://www.w3.org/2000/01/rdf-schema#range> <http://cdm.ovh/rsm/topology/topology#LinearElement> .
+<http://cdm.ovh/rsm/topology/topology#partOf> <http://www.w3.org/2000/01/rdf-schema#label> "part of"@en .
+# 
+# http://cdm.ovh/rsm/topology/topology#portRelation
+<http://cdm.ovh/rsm/topology/topology#portRelation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://cdm.ovh/rsm/topology/topology#portRelation> <http://www.w3.org/2000/01/rdf-schema#domain> <http://cdm.ovh/rsm/topology/topology#Port> .
+<http://cdm.ovh/rsm/topology/topology#portRelation> <http://www.w3.org/2000/01/rdf-schema#range> <http://cdm.ovh/rsm/topology/topology#Port> .
+<http://cdm.ovh/rsm/topology/topology#portRelation> <http://www.w3.org/2000/01/rdf-schema#label> "port relation"@en .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Data properties
+# #
+# #################################################################
+# 
+# 
+# http://cdm.ovh/rsm/topology/topology#azimuth
+<http://cdm.ovh/rsm/topology/topology#azimuth> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://cdm.ovh/rsm/topology/topology#azimuth> <http://www.w3.org/2000/01/rdf-schema#domain> <http://cdm.ovh/rsm/topology/topology#LinearElement> .
+<http://cdm.ovh/rsm/topology/topology#azimuth> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#decimal> .
+<http://cdm.ovh/rsm/topology/topology#azimuth> <http://www.w3.org/2000/01/rdf-schema#comment> "outward azimuth at a port (of a linear element).\n\"outward\" means, seen in the direction of leaving the linear element.\nazimuth value is given with respect to North in a WGS84-based reference system.\nValue is in degrees, in the range [-180, +180] as per rdflib convention, with 0 pointing to North."@en .
+<http://cdm.ovh/rsm/topology/topology#azimuth> <http://www.w3.org/2000/01/rdf-schema#label> "azimuth"@en .
+# 
+# http://cdm.ovh/rsm/topology/topology#endsAt
+<http://cdm.ovh/rsm/topology/topology#endsAt> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://cdm.ovh/rsm/topology/topology#endsAt> <http://www.w3.org/2000/01/rdf-schema#domain> <http://cdm.ovh/rsm/topology/topology#LinearElementPart> .
+<http://cdm.ovh/rsm/topology/topology#endsAt> <http://www.w3.org/2000/01/rdf-schema#range> <http://cdm.ovh/rsm/topology/topology#IntrinsicCoordinate> .
+<http://cdm.ovh/rsm/topology/topology#endsAt> <http://www.w3.org/2000/01/rdf-schema#comment> "ends at"@en .
+# 
+# http://cdm.ovh/rsm/topology/topology#nominalLength
+<http://cdm.ovh/rsm/topology/topology#nominalLength> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://cdm.ovh/rsm/topology/topology#nominalLength> <http://www.w3.org/2000/01/rdf-schema#domain> <http://cdm.ovh/rsm/topology/topology#LinearElement> .
+<http://cdm.ovh/rsm/topology/topology#nominalLength> <http://www.w3.org/2000/01/rdf-schema#range> <http://cdm.ovh/rsm/topology/topology#LinearElementLength> .
+<http://cdm.ovh/rsm/topology/topology#nominalLength> <http://www.w3.org/2000/01/rdf-schema#label> "nominal length"@en .
+# 
+# http://cdm.ovh/rsm/topology/topology#startsAt
+<http://cdm.ovh/rsm/topology/topology#startsAt> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<http://cdm.ovh/rsm/topology/topology#startsAt> <http://www.w3.org/2000/01/rdf-schema#domain> <http://cdm.ovh/rsm/topology/topology#LinearElementPart> .
+<http://cdm.ovh/rsm/topology/topology#startsAt> <http://www.w3.org/2000/01/rdf-schema#range> <http://cdm.ovh/rsm/topology/topology#IntrinsicCoordinate> .
+<http://cdm.ovh/rsm/topology/topology#startsAt> <http://www.w3.org/2000/01/rdf-schema#label> "starts at"@en .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# http://cdm.ovh/rsm/topology/topology#BoundaryElement
+<http://cdm.ovh/rsm/topology/topology#BoundaryElement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cdm.ovh/rsm/topology/topology#BoundaryElement> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cdm.ovh/rsm/topology/topology#NetElement> .
+<http://cdm.ovh/rsm/topology/topology#BoundaryElement> <http://www.w3.org/2002/07/owl#disjointWith> <http://cdm.ovh/rsm/topology/topology#LinearElement> .
+<http://cdm.ovh/rsm/topology/topology#BoundaryElement> <http://www.w3.org/2002/07/owl#disjointWith> <http://cdm.ovh/rsm/topology/topology#NonlinearElement> .
+<http://cdm.ovh/rsm/topology/topology#BoundaryElement> <http://www.w3.org/2000/01/rdf-schema#label> "Boundary Element"@en .
+# 
+# http://cdm.ovh/rsm/topology/topology#LinearElement
+<http://cdm.ovh/rsm/topology/topology#LinearElement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cdm.ovh/rsm/topology/topology#LinearElement> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cdm.ovh/rsm/topology/topology#NetElement> .
+<http://cdm.ovh/rsm/topology/topology#LinearElement> <http://www.w3.org/2002/07/owl#disjointWith> <http://cdm.ovh/rsm/topology/topology#NonlinearElement> .
+<http://cdm.ovh/rsm/topology/topology#LinearElement> <http://www.w3.org/2000/01/rdf-schema#label> "Linear Element"@en .
+# 
+# http://cdm.ovh/rsm/topology/topology#LinearElementPart
+<http://cdm.ovh/rsm/topology/topology#LinearElementPart> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cdm.ovh/rsm/topology/topology#LinearElementPart> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cdm.ovh/rsm/topology/topology#TopologyComponent> .
+<http://cdm.ovh/rsm/topology/topology#LinearElementPart> <http://www.w3.org/2000/01/rdf-schema#label> "Linear Element Part"@en .
+# 
+# http://cdm.ovh/rsm/topology/topology#NetElement
+<http://cdm.ovh/rsm/topology/topology#NetElement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cdm.ovh/rsm/topology/topology#NetElement> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cdm.ovh/rsm/topology/topology#TopologyComponent> .
+<http://cdm.ovh/rsm/topology/topology#NetElement> <http://www.w3.org/2002/07/owl#disjointUnionOf> _:genid3 .
+_:genid3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid2 .
+_:genid2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid1 .
+_:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+_:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://cdm.ovh/rsm/topology/topology#NonlinearElement> .
+_:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://cdm.ovh/rsm/topology/topology#LinearElement> .
+_:genid2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+_:genid3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> <http://cdm.ovh/rsm/topology/topology#BoundaryElement> .
+_:genid3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
+<http://cdm.ovh/rsm/topology/topology#NetElement> <http://www.w3.org/2000/01/rdf-schema#label> "Net Element"@en .
+# 
+# http://cdm.ovh/rsm/topology/topology#NonlinearElement
+<http://cdm.ovh/rsm/topology/topology#NonlinearElement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cdm.ovh/rsm/topology/topology#NonlinearElement> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cdm.ovh/rsm/topology/topology#NetElement> .
+<http://cdm.ovh/rsm/topology/topology#NonlinearElement> <http://www.w3.org/2000/01/rdf-schema#label> "Non Linear Element"@en .
+# 
+# http://cdm.ovh/rsm/topology/topology#Port
+<http://cdm.ovh/rsm/topology/topology#Port> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cdm.ovh/rsm/topology/topology#Port> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cdm.ovh/rsm/topology/topology#TopologyObject> .
+<http://cdm.ovh/rsm/topology/topology#Port> <http://www.w3.org/2000/01/rdf-schema#label> "Port"@en .
+# 
+# http://cdm.ovh/rsm/topology/topology#TopologyComponent
+<http://cdm.ovh/rsm/topology/topology#TopologyComponent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cdm.ovh/rsm/topology/topology#TopologyComponent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://cdm.ovh/rsm/topology/topology#TopologyObject> .
+<http://cdm.ovh/rsm/topology/topology#TopologyComponent> <http://www.w3.org/2000/01/rdf-schema#label> "Topology component"@en .
+# 
+# http://cdm.ovh/rsm/topology/topology#TopologyObject
+<http://cdm.ovh/rsm/topology/topology#TopologyObject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<http://cdm.ovh/rsm/topology/topology#TopologyObject> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.opengis.net/ont/geosparql#Geometry> .
+<http://cdm.ovh/rsm/topology/topology#TopologyObject> <http://www.w3.org/2000/01/rdf-schema#label> "Topology Object"@en .
+# 
+# http://www.opengis.net/ont/geosparql#Geometry
+<http://www.opengis.net/ont/geosparql#Geometry> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+# 
+# Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/

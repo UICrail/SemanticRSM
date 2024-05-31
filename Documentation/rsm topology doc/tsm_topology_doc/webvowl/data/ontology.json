@@ -1,0 +1,678 @@
+{
+  "_comment" : "Created with OWL2VOWL (version 0.3.5), http://vowl.visualdataweb.org",
+  "header" : {
+    "languages" : [ "en", "undefined" ],
+    "baseIris" : [ "http://www.w3.org/1999/02/22-rdf-syntax-ns", "http://cdm.ovh/rsm/topology", "http://www.w3.org/2000/01/rdf-schema", "http://cdm.ovh/rsm/topology/topology", "http://www.w3.org/2001/XMLSchema", "http://cdm.ovh/rsm/adapters/geosparql_adapter", "http://www.opengis.net/ont/geosparql" ],
+    "iri" : "http://cdm.ovh/rsm/topology/topology",
+    "version" : "0.6",
+    "comments" : {
+      "en" : "Using GeoSPARQL and SOSA/SSN adapters"
+    },
+    "other" : {
+      "versionInfo" : [ {
+        "identifier" : "versionInfo",
+        "language" : "undefined",
+        "value" : "0.6",
+        "type" : "label"
+      } ]
+    }
+  },
+  "namespace" : [ ],
+  "class" : [ {
+    "id" : "9",
+    "type" : "owl:Class"
+  }, {
+    "id" : "12",
+    "type" : "owl:Class"
+  }, {
+    "id" : "7",
+    "type" : "owl:Class"
+  }, {
+    "id" : "20",
+    "type" : "owl:Class"
+  }, {
+    "id" : "29",
+    "type" : "owl:Class"
+  }, {
+    "id" : "13",
+    "type" : "owl:Class"
+  }, {
+    "id" : "15",
+    "type" : "owl:Class"
+  }, {
+    "id" : "35",
+    "type" : "owl:Class"
+  }, {
+    "id" : "11",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "27",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "19",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "44",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "1",
+    "type" : "owl:Thing"
+  }, {
+    "id" : "46",
+    "type" : "rdfs:Literal"
+  }, {
+    "id" : "47",
+    "type" : "rdfs:Literal"
+  }, {
+    "id" : "34",
+    "type" : "owl:Class"
+  }, {
+    "id" : "5",
+    "type" : "owl:Class"
+  }, {
+    "id" : "4",
+    "type" : "owl:disjointUnionOf"
+  }, {
+    "id" : "38",
+    "type" : "owl:Class"
+  }, {
+    "id" : "17",
+    "type" : "owl:Class"
+  } ],
+  "classAttribute" : [ {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#LinearElement",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "LinearElement",
+      "en" : "Linear Element"
+    },
+    "id" : "9",
+    "superClasses" : [ "4" ]
+  }, {
+    "iri" : "http://cdm.ovh/rsm/adapters/geosparql_adapter#Geometry",
+    "baseIri" : "http://cdm.ovh/rsm/adapters/geosparql_adapter",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Geometry"
+    },
+    "comment" : {
+      "en" : "A coherent set of direct positions in space. The positions are held within a Spatial Reference System (SRS)."
+    },
+    "attributes" : [ "external" ],
+    "id" : "12",
+    "superClasses" : [ "13" ]
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#TopologyComponent",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "TopologyComponent",
+      "en" : "Topology component"
+    },
+    "subClasses" : [ "4", "15" ],
+    "id" : "7",
+    "superClasses" : [ "17" ]
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology#LinearElement",
+    "baseIri" : "http://cdm.ovh/rsm/topology",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "LinearElement"
+    },
+    "attributes" : [ "external" ],
+    "id" : "20"
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#BoundaryElement",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "BoundaryElement",
+      "en" : "Boundary Element"
+    },
+    "id" : "29",
+    "superClasses" : [ "4" ]
+  }, {
+    "iri" : "http://www.opengis.net/ont/geosparql#Geometry",
+    "baseIri" : "http://www.opengis.net/ont/geosparql",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Geometry"
+    },
+    "subClasses" : [ "12", "17" ],
+    "attributes" : [ "external" ],
+    "id" : "13"
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#LinearElementPart",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "LinearElementPart",
+      "en" : "Linear Element Part"
+    },
+    "id" : "15",
+    "superClasses" : [ "7" ]
+  }, {
+    "iri" : "http://www.opengis.net/ont/geosparql#Feature",
+    "baseIri" : "http://www.opengis.net/ont/geosparql",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Feature"
+    },
+    "subClasses" : [ "34" ],
+    "attributes" : [ "external" ],
+    "id" : "35"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "11",
+    "label" : {
+      "IRI-based" : "decimal"
+    }
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#IntrinsicCoordinate",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "id" : "27",
+    "label" : {
+      "IRI-based" : "IntrinsicCoordinate"
+    }
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#LinearElementLength",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "id" : "19",
+    "label" : {
+      "IRI-based" : "LinearElementLength"
+    }
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#IntrinsicCoordinate",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "id" : "44",
+    "label" : {
+      "IRI-based" : "IntrinsicCoordinate"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2002/07/owl#Thing",
+    "baseIri" : "http://owl2vowl.de",
+    "id" : "1",
+    "label" : {
+      "undefined" : "Thing"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "id" : "46",
+    "label" : {
+      "IRI-based" : "Literal",
+      "undefined" : "Literal"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "id" : "47",
+    "label" : {
+      "IRI-based" : "Literal",
+      "undefined" : "Literal"
+    }
+  }, {
+    "iri" : "http://cdm.ovh/rsm/adapters/geosparql_adapter#Feature",
+    "baseIri" : "http://cdm.ovh/rsm/adapters/geosparql_adapter",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Feature"
+    },
+    "comment" : {
+      "en" : "A discrete spatial phenomenon in the CDM universe of discourse."
+    },
+    "attributes" : [ "external" ],
+    "id" : "34",
+    "superClasses" : [ "35" ]
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#Port",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Port",
+      "en" : "Port"
+    },
+    "id" : "5",
+    "superClasses" : [ "17" ]
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#NetElement",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "instances" : 0,
+    "disjointUnion" : [ "29", "38", "9" ],
+    "label" : {
+      "IRI-based" : "NetElement",
+      "en" : "Net Element"
+    },
+    "subClasses" : [ "29", "38", "9" ],
+    "attributes" : [ "disjointUnion" ],
+    "id" : "4",
+    "superClasses" : [ "7" ]
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#NonlinearElement",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "NonlinearElement",
+      "en" : "Non Linear Element"
+    },
+    "id" : "38",
+    "superClasses" : [ "4" ]
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#TopologyObject",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "TopologyObject",
+      "en" : "Topology Object"
+    },
+    "subClasses" : [ "7", "5" ],
+    "id" : "17",
+    "superClasses" : [ "13" ]
+  } ],
+  "property" : [ {
+    "id" : "0",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "3",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "6",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "8",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "10",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "14",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "16",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "18",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "2",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "23",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "26",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "25",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "28",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "30",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "31",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "32",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "22",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "33",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "36",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "37",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "39",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "40",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "41",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "42",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "24",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "43",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "45",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "48",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "49",
+    "type" : "owl:disjointWith"
+  }, {
+    "id" : "50",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "21",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "51",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "52",
+    "type" : "owl:datatypeProperty"
+  } ],
+  "propertyAttribute" : [ {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#nonNavigableTo",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "range" : "1",
+    "label" : {
+      "IRI-based" : "nonNavigableTo"
+    },
+    "superproperty" : [ "2" ],
+    "domain" : "1",
+    "attributes" : [ "object" ],
+    "id" : "0"
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#hasPort",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "range" : "5",
+    "label" : {
+      "IRI-based" : "hasPort",
+      "en" : "has port"
+    },
+    "domain" : "4",
+    "attributes" : [ "object", "inverse functional" ],
+    "id" : "3"
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#hasComponent",
+    "inverse" : "8",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "range" : "7",
+    "label" : {
+      "IRI-based" : "hasComponent",
+      "en" : "has component"
+    },
+    "domain" : "4",
+    "attributes" : [ "object" ],
+    "id" : "6"
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#inElement",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "range" : "4",
+    "label" : {
+      "IRI-based" : "inElement",
+      "en" : "in Element"
+    },
+    "domain" : "7",
+    "attributes" : [ "object" ],
+    "id" : "8"
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#azimuth",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "range" : "11",
+    "label" : {
+      "IRI-based" : "azimuth",
+      "en" : "azimuth"
+    },
+    "domain" : "9",
+    "comment" : {
+      "en" : "outward azimuth at a port (of a linear element).\n\"outward\" means, seen in the direction of leaving the linear element.\nazimuth value is given with respect to North in a WGS84-based reference system.\nValue is in degrees, in the range [-180, +180] as per rdflib convention, with 0 pointing to North."
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "10"
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#partOf",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "range" : "9",
+    "label" : {
+      "IRI-based" : "partOf",
+      "en" : "part of"
+    },
+    "domain" : "15",
+    "attributes" : [ "object", "functional" ],
+    "id" : "14"
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#connectedWith",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "range" : "1",
+    "label" : {
+      "IRI-based" : "connectedWith"
+    },
+    "superproperty" : [ "2" ],
+    "domain" : "1",
+    "attributes" : [ "object", "symmetric" ],
+    "id" : "16"
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#nominalLength",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "range" : "19",
+    "label" : {
+      "IRI-based" : "nominalLength",
+      "en" : "nominal length"
+    },
+    "domain" : "9",
+    "attributes" : [ "datatype" ],
+    "id" : "18"
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#portRelation",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "range" : "5",
+    "label" : {
+      "IRI-based" : "portRelation",
+      "en" : "port relation"
+    },
+    "domain" : "5",
+    "subproperty" : [ "16", "0", "21", "22" ],
+    "attributes" : [ "object" ],
+    "id" : "2"
+  }, {
+    "iri" : "http://cdm.ovh/rsm/adapters/geosparql_adapter#hasNominalGeometry",
+    "baseIri" : "http://cdm.ovh/rsm/adapters/geosparql_adapter",
+    "range" : "1",
+    "label" : {
+      "IRI-based" : "hasNominalGeometry"
+    },
+    "superproperty" : [ "24", "25" ],
+    "domain" : "1",
+    "comment" : {
+      "en" : "The default Geometry to be used in spatial calculations. It is usually the most detailed Geometry. Takes into account SOSA/SSN viewpoint, i.e. there can be more than one default geometry (e.g. valid at different times)."
+    },
+    "attributes" : [ "object", "external" ],
+    "id" : "23"
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#endsAt",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "range" : "27",
+    "label" : {
+      "IRI-based" : "endsAt"
+    },
+    "domain" : "15",
+    "comment" : {
+      "en" : "ends at"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "26"
+  }, {
+    "iri" : "http://cdm.ovh/rsm/adapters/geosparql_adapter#hasGeometry",
+    "baseIri" : "http://cdm.ovh/rsm/adapters/geosparql_adapter",
+    "range" : "1",
+    "label" : {
+      "IRI-based" : "hasGeometry"
+    },
+    "superproperty" : [ "28" ],
+    "domain" : "1",
+    "subproperty" : [ "23" ],
+    "comment" : {
+      "en" : "A spatial representation for a given Feature. As in GeoSPARQL, a feature can be associated with more than one geometry (valid at different times, or provided by different surveys...)."
+    },
+    "attributes" : [ "object", "external" ],
+    "id" : "25"
+  }, {
+    "iri" : "http://www.opengis.net/ont/geosparql#hasGeometry",
+    "baseIri" : "http://www.opengis.net/ont/geosparql",
+    "range" : "1",
+    "label" : {
+      "IRI-based" : "hasGeometry"
+    },
+    "domain" : "1",
+    "subproperty" : [ "24", "25" ],
+    "attributes" : [ "object", "external" ],
+    "id" : "28"
+  }, {
+    "range" : "17",
+    "domain" : "7",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "30"
+  }, {
+    "range" : "4",
+    "domain" : "9",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "31"
+  }, {
+    "range" : "17",
+    "domain" : "5",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "32"
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#navigableTo",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "range" : "1",
+    "label" : {
+      "IRI-based" : "navigableTo"
+    },
+    "superproperty" : [ "2" ],
+    "domain" : "1",
+    "attributes" : [ "object", "transitive" ],
+    "id" : "22"
+  }, {
+    "range" : "35",
+    "domain" : "34",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "33"
+  }, {
+    "range" : "13",
+    "domain" : "17",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "36"
+  }, {
+    "range" : "4",
+    "domain" : "38",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "37"
+  }, {
+    "range" : "4",
+    "domain" : "29",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "39"
+  }, {
+    "range" : "7",
+    "domain" : "4",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "40"
+  }, {
+    "range" : "13",
+    "domain" : "12",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "41"
+  }, {
+    "range" : "7",
+    "domain" : "15",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "42"
+  }, {
+    "iri" : "http://www.opengis.net/ont/geosparql#hasDefaultGeometry",
+    "baseIri" : "http://www.opengis.net/ont/geosparql",
+    "range" : "1",
+    "label" : {
+      "IRI-based" : "hasDefaultGeometry"
+    },
+    "superproperty" : [ "28" ],
+    "domain" : "1",
+    "subproperty" : [ "23" ],
+    "comment" : {
+      "en" : "The default Geometry to be used in spatial calculations. It is usually the most detailed Geometry."
+    },
+    "attributes" : [ "object", "external" ],
+    "id" : "24"
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#startsAt",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "range" : "44",
+    "label" : {
+      "IRI-based" : "startsAt",
+      "en" : "starts at"
+    },
+    "domain" : "15",
+    "attributes" : [ "datatype" ],
+    "id" : "43"
+  }, {
+    "range" : "38",
+    "domain" : "9",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "45"
+  }, {
+    "range" : "9",
+    "domain" : "29",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "48"
+  }, {
+    "range" : "38",
+    "domain" : "29",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "49"
+  }, {
+    "iri" : "http://cdm.ovh/rsm/adapters/geosparql_adapter#hasNominalMetricLength",
+    "baseIri" : "http://cdm.ovh/rsm/adapters/geosparql_adapter",
+    "range" : "46",
+    "label" : {
+      "IRI-based" : "hasNominalMetricLength"
+    },
+    "domain" : "20",
+    "comment" : {
+      "en" : "Length (in meter) of a Linear Element to be assumed for conversions between linear referencing methods \"absolute\" (distance along) and \"interpolation\" (intrinsic coordinates, with values 0 to 1).\nLength must be consistent with the chosen Nominal Geometry."
+    },
+    "attributes" : [ "external", "datatype" ],
+    "id" : "50"
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#navigableFrom",
+    "inverse" : "22",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "range" : "1",
+    "label" : {
+      "IRI-based" : "navigableFrom"
+    },
+    "superproperty" : [ "2" ],
+    "domain" : "1",
+    "attributes" : [ "object", "transitive" ],
+    "id" : "21"
+  }, {
+    "iri" : "http://cdm.ovh/rsm/topology/topology#onElement",
+    "baseIri" : "http://cdm.ovh/rsm/topology/topology",
+    "range" : "4",
+    "label" : {
+      "IRI-based" : "onElement",
+      "en" : "on Element"
+    },
+    "domain" : "5",
+    "attributes" : [ "object" ],
+    "id" : "51"
+  }, {
+    "iri" : "http://www.opengis.net/ont/geosparql#hasMetricLength",
+    "baseIri" : "http://www.opengis.net/ont/geosparql",
+    "range" : "47",
+    "label" : {
+      "IRI-based" : "hasMetricLength"
+    },
+    "domain" : "1",
+    "attributes" : [ "external", "datatype" ],
+    "id" : "52"
+  } ]
+}

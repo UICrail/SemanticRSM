@@ -1,0 +1,289 @@
+[ {
+  "@id" : "http://cdm.ovh/rsm/topology/topology",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Ontology" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@language" : "en",
+    "@value" : "Using GeoSPARQL and SOSA/SSN adapters"
+  } ],
+  "http://www.w3.org/2002/07/owl#imports" : [ {
+    "@id" : "http://cdm.ovh/rsm/adapters/geosparql_adapter"
+  } ],
+  "http://www.w3.org/2002/07/owl#versionIRI" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/0.6/topology"
+  } ],
+  "http://www.w3.org/2002/07/owl#versionInfo" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "@value" : "0.6"
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#BoundaryElement",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Boundary Element"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#NetElement"
+  } ],
+  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#LinearElement"
+  }, {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#NonlinearElement"
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#IntrinsicCoordinate",
+  "@type" : [ "http://www.w3.org/2000/01/rdf-schema#Datatype" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@language" : "en",
+    "@value" : "A total order relation along a linear element, usually interpreted as a percentage of its nominal length. Value in [0, 1]."
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#LinearElement",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Linear Element"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#NetElement"
+  } ],
+  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#NonlinearElement"
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#LinearElementLength",
+  "@type" : [ "http://www.w3.org/2000/01/rdf-schema#Datatype" ],
+  "http://www.w3.org/2002/07/owl#equivalentClass" : [ {
+    "@id" : "http://www.w3.org/2001/XMLSchema#decimal"
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#LinearElementPart",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Linear Element Part"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#TopologyComponent"
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#NetElement",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Net Element"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#TopologyComponent"
+  } ],
+  "http://www.w3.org/2002/07/owl#disjointUnionOf" : [ {
+    "@list" : [ {
+      "@id" : "http://cdm.ovh/rsm/topology/topology#BoundaryElement"
+    }, {
+      "@id" : "http://cdm.ovh/rsm/topology/topology#LinearElement"
+    }, {
+      "@id" : "http://cdm.ovh/rsm/topology/topology#NonlinearElement"
+    } ]
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#NonlinearElement",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Non Linear Element"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#NetElement"
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#Port",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Port"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#TopologyObject"
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#TopologyComponent",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Topology component"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#TopologyObject"
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#TopologyObject",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "Topology Object"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://www.opengis.net/ont/geosparql#Geometry"
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#azimuth",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@language" : "en",
+    "@value" : "outward azimuth at a port (of a linear element).\n\"outward\" means, seen in the direction of leaving the linear element.\nazimuth value is given with respect to North in a WGS84-based reference system.\nValue is in degrees, in the range [-180, +180] as per rdflib convention, with 0 pointing to North."
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#LinearElement"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "azimuth"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@id" : "http://www.w3.org/2001/XMLSchema#decimal"
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#connectedWith",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty", "http://www.w3.org/2002/07/owl#SymmetricProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#subPropertyOf" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#portRelation"
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#endsAt",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
+    "@language" : "en",
+    "@value" : "ends at"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#LinearElementPart"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#IntrinsicCoordinate"
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#hasComponent",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "has component"
+  } ],
+  "http://www.w3.org/2002/07/owl#inverseOf" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#inElement"
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#hasPort",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty", "http://www.w3.org/2002/07/owl#InverseFunctionalProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#NetElement"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "has port"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#Port"
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#inElement",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#TopologyComponent"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "in Element"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#NetElement"
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#navigableFrom",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty", "http://www.w3.org/2002/07/owl#TransitiveProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#subPropertyOf" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#portRelation"
+  } ],
+  "http://www.w3.org/2002/07/owl#inverseOf" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#navigableTo"
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#navigableTo",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty", "http://www.w3.org/2002/07/owl#TransitiveProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#subPropertyOf" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#portRelation"
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#nominalLength",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#LinearElement"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "nominal length"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#LinearElementLength"
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#nonNavigableTo",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#subPropertyOf" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#portRelation"
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#onElement",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#Port"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "on Element"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#NetElement"
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#partOf",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty", "http://www.w3.org/2002/07/owl#FunctionalProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#LinearElementPart"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "part of"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#LinearElement"
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#portRelation",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#Port"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "port relation"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#Port"
+  } ]
+}, {
+  "@id" : "http://cdm.ovh/rsm/topology/topology#startsAt",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#LinearElementPart"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "starts at"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#range" : [ {
+    "@id" : "http://cdm.ovh/rsm/topology/topology#IntrinsicCoordinate"
+  } ]
+}, {
+  "@id" : "http://www.opengis.net/ont/geosparql#Geometry",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
+} ]

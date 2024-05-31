@@ -1,8 +1,10 @@
 import itertools
-from rdflib import Graph, URIRef, Literal
+from typing import Optional
+
+from rdflib import Graph
 from rdflib.namespace import RDF
 from rdflib.term import Node
-from typing import Optional
+
 from Code.Namespaces import *
 
 
@@ -32,6 +34,7 @@ def set_port_connections(input_ttl: str, output_ttl: Optional[str] = None):
     # Output
     if output_ttl:
         g.serialize(destination=output_ttl, format='turtle')
+        print(f"Ports are now connected. All data saved to {output_ttl}.")
     else:
         print(g.serialize(format='turtle'))
 
@@ -69,7 +72,7 @@ def set_navigabilities(input_ttl: str, output_ttl: Optional[str] = None, double_
     g = Graph()
     g.parse(input_ttl, format="turtle")
 
-    print("setting the navigabilities between ports")
+    print("Setting the navigabilities between ports")
     # Get all the ports in the graph
     ports = g.subjects(RDF.type, RSM_TOPOLOGY.Port)  # a generator
     for port in list(ports):
@@ -91,14 +94,14 @@ def set_navigabilities(input_ttl: str, output_ttl: Optional[str] = None, double_
                     else:
                         predicate = RSM_TOPOLOGY.nonNavigableTo
                     g.add((port, predicate, opposite))
-                    # We assume all navigabilities to be bi-directional by default.
+                    # We assume all navigabilities to be bidirectional by default, and non-navig
                     # Also, connectedTo is a symmetric property but the listed connectedWith properties
                     # are expressed one way. Consequently, the navigability the other way round is
                     # expressed below:
                     other_opposite = opposite_port(g, port)
                     if other_opposite:
                         g.add((other_port, predicate, other_opposite))
-        elif case == 3 and not double_slip_crossings:  # assumption: all crossings are diamond crossings
+        elif case == 3 and not double_slip_crossings:  # assumption: all crossings are diamond crossings by default
             # TODO: modify the code below (duplicated from the above)
             for other_port in connected_ports_list:
                 opposite = opposite_port(g, other_port)
@@ -110,7 +113,7 @@ def set_navigabilities(input_ttl: str, output_ttl: Optional[str] = None, double_
                     else:
                         predicate = RSM_TOPOLOGY.nonNavigableTo
                     g.add((port, predicate, opposite))
-                    # We assume all navigabilities to be bi-directional by default.
+                    # We assume all navigabilities to be bidirectional by default.
                     # Also, connectedTo is a symmetric property but the listed connectedWith properties
                     # are expressed one way. Consequently, the navigability the other way round is
                     # expressed below:
@@ -125,5 +128,6 @@ def set_navigabilities(input_ttl: str, output_ttl: Optional[str] = None, double_
     # Output
     if output_ttl:
         g.serialize(destination=output_ttl, format='turtle')
+        print(f"Navigabilities were determined. All data saved to {output_ttl}.")
     else:
         print(g.serialize(format='turtle'))

@@ -7,25 +7,26 @@ from Code.Namespaces import *
 
 
 def ttl_to_kml(input_ttl_, output_kml_):
-    elements = parse_ttl_to_linestrings(input_ttl_)
+    elements = parse_ttl_linestrings(input_ttl_)
     adjacency_list = build_adjacency_list(elements)
     element_colors = color_elements(adjacency_list)
     generate_kml_from_elements_and_colors(elements, element_colors, output_kml_)
     print(f"KML file generated: {output_kml_}")
 
 
-def parse_ttl_to_linestrings(input_ttl_: str) -> Dict[URIRef, LineString]:
+def parse_ttl_linestrings(input_ttl_: str) -> Dict[URIRef, LineString]:
     from rdflib import Graph
 
     g = Graph()
     g.parse(input_ttl_, format="turtle")
 
     elements: Dict[URIRef, LineString] = {}
-    for s, _, o in g.triples((None, GEOSPARQL.asWKT, None)):
-        if (s, RDF.type, RSM_TOPOLOGY.LinearElement) in g:
-            geom = loads(str(o))
-            if isinstance(geom, LineString):
-                elements[s] = geom
+    for line in g.subjects(RDF.type, RSM_TOPOLOGY.LinearElement):
+        geom = g.value(line, RSM_GEOSPARQL_ADAPTER.hasNominalGeometry)
+        wkt = g.value(geom, GEOSPARQL.asWKT)
+        linestring = loads(str(wkt))
+        if isinstance(linestring, LineString):
+            elements[line] = linestring
     return elements
 
 
