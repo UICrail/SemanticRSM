@@ -18,8 +18,8 @@ Scarpate : escarpments
 Ballast : ballast
 Scotico : ? scraped ground
 Subballast : sublayer
-Supercompattato :
-Pista di servizio : footpath
+Supercompattato : ?
+Pista di servizio : footpath (for staff)
 Fondazioni : foundations
 Elevazione : height, elevation (check)
-Magrone : concrete (with low cement contents)
+Magrone : concrete with low cement contents
