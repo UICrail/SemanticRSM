@@ -2,12 +2,12 @@
 ## Purpose
 This ontology intends to represent "static" __aspects__ of railway rolling stock, independently of each other:
 1. train composition (coarse) : vehicles, vehicle rakes, trainsets... => defined under "rolling stock typology"
-2. rolling stock components : axles, wheels, couplers, brake pads... => in preparation
-3. typology : locomotive, coach, wagon, EMU,... => under "rolling stock typology" 
-4. payloads : passengers, freight, containers... => referenced under "rolling stock typology", to be defined (as property sets) in another vocabulary
-5. performance settings : effort vs. speed curves (traction and braking), resistance to forward movement, mass and rotating mass inertia ... => in preparation
-6. topology : sequence and orientation of vehicles in a formation => in preparation
-7. geometry : "the left axle box of 2nd axle of wagon number 12345678 is 346m from the front of this running train and 45cm above top of rail" => in preparation
+2. train composition (detailed) : sequence and orientation of vehicles in a formation => in preparation
+3. rolling stock components : axles, wheels, couplers, brake pads... => in preparation
+4. typology : locomotive, coach, wagon, EMU,... => defined under "rolling stock typology" 
+5. payloads : passengers, freight, containers... => referenced under "rolling stock typology", to be defined (as property sets) in another vocabulary
+6. performance settings : effort vs. speed curves (traction and braking), resistance to forward movement, mass and rotating mass inertia ... => in preparation
+7. geometry : "the left axle box of 2nd axle of wagon number 12345678 is 346m from the front of this running train and 45cm above top of rail", of interest for en route diagnosis => in preparation
 
 See integrated wiki for further explanations.
 
