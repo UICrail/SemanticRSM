@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="Imports Wizard Entry" name="http://cdm.ovh/rsm/topology/0.6/topology" uri="http://cdm.ovh/rsm/topology/topology"/>
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
+        <uri id="Automatically generated entry, Timestamp=1717347392204" name="http://cdm.ovh/rsm/topology/topology" uri="infra/topology/0.5/topology.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1717347392204" name="http://cdm.ovh/rsm/topology/topology.owl" uri="infra/topology/0.2/topology.rdf"/>
+        <uri id="Automatically generated entry, Timestamp=1717347392204" name="https://raw.githubusercontent.com/UICrail/SemanticRSM/main/Ontologies/ports" uri="common/ports/0.1/ports.rdf"/>
+        <uri id="Automatically generated entry, Timestamp=1717347392204" name="shadowed:http://cdm.ovh/rsm/topology/topology.owl" uri="infra/topology/0.1/topology.rdf"/>
+    </group>
+</catalog>
