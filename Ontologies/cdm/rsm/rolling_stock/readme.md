@@ -1,6 +1,6 @@
 # Rolling stock mockup
 ## Purpose
-This ontology intends to represent "static" __aspects__ of railway rolling stock, independently of each other:
+This ontology intends to represent various __aspects__ of railway rolling stock, independently of each other:
 1. train composition (coarse) : vehicles, vehicle rakes, trainsets... => defined under "rolling stock typology"
 2. train composition (detailed) : sequence and orientation of vehicles in a formation => in preparation
 3. rolling stock components : axles, wheels, couplers, brake pads... => in preparation
