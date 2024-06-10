@@ -10,8 +10,7 @@ def linestring_length(ls) -> float:
     :return: length of linestring, in meter
     """
     line = wkt.loads(ls)
-    total_length = sum(geodesic(line.coords[i], line.coords[i + 1]).m for i in range(len(line.coords) - 1))
-    return total_length
+    return sum(geodesic(line.coords[i], line.coords[i + 1]).m for i in range(len(line.coords) - 1))
 
 
 # usage

@@ -10,6 +10,7 @@ from shapely.ops import linemerge
 from shapely.wkt import loads, dumps
 
 from Code.Namespaces import *
+from Code.Varia.calculate_linestring_length import linestring_length
 
 
 def find_nodes(g: Graph) -> Dict[str, List[URIRef]]:
@@ -142,6 +143,8 @@ def perform_joining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]]) -> Graph:
         nodes_degree_2[n_wkt] = new_elements
 
     print(f"{processed_nodes_counter} nodes of degree 2 were removed by joining the surrounding linestrings")
+    linear_elements, lengths = compute_nominal_metric_lengths(g)
+    print(f"{lengths} nominal lengths of {linear_elements} linear elements were computed")
 
     return g
 
@@ -174,6 +177,19 @@ def join_linear_elements(input_ttl: str, output_ttl: Optional[str] = None) -> No
     elif output_ttl:
         print("No joining performed. Original graph will be saved.")
         g.serialize(destination=output_ttl, format='turtle')
+
+
+def compute_nominal_metric_lengths(g: Graph) -> [int, int]:
+    """Uses the linestrings to determine the nominal length of each linear element, in meter
+    """
+    count_line, count_length = 0, 0
+    for line in g.subjects(RDF.type, RSM_TOPOLOGY.LinearElement):
+        count_line += 1
+        for geom in g.objects(line, RSM_GEOSPARQL_ADAPTER.hasNominalGeometry):
+            length = linestring_length(next(g.objects(geom, GEOSPARQL.asWKT)))
+            g.add((line, RSM_TOPOLOGY.nominalLength, Literal(length)))
+            count_length += 1
+    return count_line, count_length
 
 
 if __name__ == "__main__":
