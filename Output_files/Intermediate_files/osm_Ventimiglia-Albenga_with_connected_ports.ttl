@@ -1,7 +1,7 @@
 @prefix : <http://cdm.ovh/examples/Ventimiglia-Albenga/Ventimiglia-Albenga#> .
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .
 @prefix rsm: <http://cdm.ovh/rsm/topology/topology#> .
-@prefix rsm1: <http://www.opengis.net/ont/rsm/adapter#> .
+@prefix rsm1: <http://cdm.ovh/rsm/adapters/geosparql_adapter#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 :geom_0-221 a rsm1:Geometry ;
@@ -1419,34 +1419,34 @@
     geo:asWKT "POINT (7.8575816 43.8458008)" .
 
 :jointline_0-221 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_0-221 ;
+    rsm1:hasNominalMetricLength 7.644773e+02 ;
     rsm:hasPort :jointline_0-221_port_0,
-        :jointline_0-221_port_1 ;
-    rsm:nominalLength 7.644773e+02 ;
-    rsm1:hasNominalGeometry :geom_0-221 .
+        :jointline_0-221_port_1 .
 
 :jointline_102_part_2-122-140 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_102_part_2-122-140 ;
+    rsm1:hasNominalMetricLength 5.167444e+02 ;
     rsm:hasPort :jointline_102_part_2-122-140_port_0,
-        :jointline_102_part_2-122-140_port_1 ;
-    rsm:nominalLength 5.167444e+02 ;
-    rsm1:hasNominalGeometry :geom_102_part_2-122-140 .
+        :jointline_102_part_2-122-140_port_1 .
 
 :jointline_108-106-109 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_108-106-109 ;
+    rsm1:hasNominalMetricLength 1.809412e+02 ;
     rsm:hasPort :jointline_108-106-109_port_0,
-        :jointline_108-106-109_port_1 ;
-    rsm:nominalLength 1.809412e+02 ;
-    rsm1:hasNominalGeometry :geom_108-106-109 .
+        :jointline_108-106-109_port_1 .
 
 :jointline_120_part_0-105-124 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_120_part_0-105-124 ;
+    rsm1:hasNominalMetricLength 5.35077e+02 ;
     rsm:hasPort :jointline_120_part_0-105-124_port_0,
-        :jointline_120_part_0-105-124_port_1 ;
-    rsm:nominalLength 5.35077e+02 ;
-    rsm1:hasNominalGeometry :geom_120_part_0-105-124 .
+        :jointline_120_part_0-105-124_port_1 .
 
 :jointline_125_part_0-132-45_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_125_part_0-132-45_part_1 ;
+    rsm1:hasNominalMetricLength 5.693012e+02 ;
     rsm:hasPort :jointline_125_part_0-132-45_part_1_port_0,
-        :jointline_125_part_0-132-45_part_1_port_1 ;
-    rsm:nominalLength 5.693012e+02 ;
-    rsm1:hasNominalGeometry :geom_125_part_0-132-45_part_1 .
+        :jointline_125_part_0-132-45_part_1_port_1 .
 
 :jointline_125_part_0-132-45_part_1_port_0 a rsm:Port ;
     rsm:azimuth -1.531199e+02 ;
@@ -1455,10 +1455,10 @@
     geo:asWKT "POINT (8.2205305 44.0458724)" .
 
 :jointline_136_part_0-103-141 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_136_part_0-103-141 ;
+    rsm1:hasNominalMetricLength 4.412586e+01 ;
     rsm:hasPort :jointline_136_part_0-103-141_port_0,
-        :jointline_136_part_0-103-141_port_1 ;
-    rsm:nominalLength 4.412586e+01 ;
-    rsm1:hasNominalGeometry :geom_136_part_0-103-141 .
+        :jointline_136_part_0-103-141_port_1 .
 
 :jointline_136_part_0-103-141_port_0 a rsm:Port ;
     rsm:azimuth -1.448512e+02 ;
@@ -1467,28 +1467,28 @@
     geo:asWKT "POINT (8.2211673 44.0465249)" .
 
 :jointline_139_part_0-100-133 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_139_part_0-100-133 ;
+    rsm1:hasNominalMetricLength 6.477171e+02 ;
     rsm:hasPort :jointline_139_part_0-100-133_port_0,
-        :jointline_139_part_0-100-133_port_1 ;
-    rsm:nominalLength 6.477171e+02 ;
-    rsm1:hasNominalGeometry :geom_139_part_0-100-133 .
+        :jointline_139_part_0-100-133_port_1 .
 
 :jointline_148-95-233-99-96-97 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_148-95-233-99-96-97 ;
+    rsm1:hasNominalMetricLength 1.270363e+03 ;
     rsm:hasPort :jointline_148-95-233-99-96-97_port_0,
-        :jointline_148-95-233-99-96-97_port_1 ;
-    rsm:nominalLength 1.270363e+03 ;
-    rsm1:hasNominalGeometry :geom_148-95-233-99-96-97 .
+        :jointline_148-95-233-99-96-97_port_1 .
 
 :jointline_163_part_0-180-164_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_163_part_0-180-164_part_1 ;
+    rsm1:hasNominalMetricLength 9.299565e+02 ;
     rsm:hasPort :jointline_163_part_0-180-164_part_1_port_0,
-        :jointline_163_part_0-180-164_part_1_port_1 ;
-    rsm:nominalLength 9.299565e+02 ;
-    rsm1:hasNominalGeometry :geom_163_part_0-180-164_part_1 .
+        :jointline_163_part_0-180-164_part_1_port_1 .
 
 :jointline_173-224-230-19-21-20-9-2-1-13-12-225 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_173-224-230-19-21-20-9-2-1-13-12-225 ;
+    rsm1:hasNominalMetricLength 6.078677e+03 ;
     rsm:hasPort :jointline_173-224-230-19-21-20-9-2-1-13-12-225_port_0,
-        :jointline_173-224-230-19-21-20-9-2-1-13-12-225_port_1 ;
-    rsm:nominalLength 6.078677e+03 ;
-    rsm1:hasNominalGeometry :geom_173-224-230-19-21-20-9-2-1-13-12-225 .
+        :jointline_173-224-230-19-21-20-9-2-1-13-12-225_port_1 .
 
 :jointline_173-224-230-19-21-20-9-2-1-13-12-225_port_0 a rsm:Port ;
     rsm:azimuth 4.477567e+01 ;
@@ -1497,52 +1497,52 @@
     geo:asWKT "POINT (8.1675338 44.0058105)" .
 
 :jointline_177_part_1-207-210 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_177_part_1-207-210 ;
+    rsm1:hasNominalMetricLength 3.702055e+02 ;
     rsm:hasPort :jointline_177_part_1-207-210_port_0,
-        :jointline_177_part_1-207-210_port_1 ;
-    rsm:nominalLength 3.702055e+02 ;
-    rsm1:hasNominalGeometry :geom_177_part_1-207-210 .
+        :jointline_177_part_1-207-210_port_1 .
 
 :jointline_179_part_0-22-28 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_179_part_0-22-28 ;
+    rsm1:hasNominalMetricLength 1.183174e+03 ;
     rsm:hasPort :jointline_179_part_0-22-28_port_0,
-        :jointline_179_part_0-22-28_port_1 ;
-    rsm:nominalLength 1.183174e+03 ;
-    rsm1:hasNominalGeometry :geom_179_part_0-22-28 .
+        :jointline_179_part_0-22-28_port_1 .
 
 :jointline_182_part_0-181-178_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_182_part_0-181-178_part_1 ;
+    rsm1:hasNominalMetricLength 1.018013e+03 ;
     rsm:hasPort :jointline_182_part_0-181-178_part_1_port_0,
-        :jointline_182_part_0-181-178_part_1_port_1 ;
-    rsm:nominalLength 1.018013e+03 ;
-    rsm1:hasNominalGeometry :geom_182_part_0-181-178_part_1 .
+        :jointline_182_part_0-181-178_part_1_port_1 .
 
 :jointline_189_part_1-58_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_189_part_1-58_part_0 ;
+    rsm1:hasNominalMetricLength 2.247857e+02 ;
     rsm:hasPort :jointline_189_part_1-58_part_0_port_0,
-        :jointline_189_part_1-58_part_0_port_1 ;
-    rsm:nominalLength 2.247857e+02 ;
-    rsm1:hasNominalGeometry :geom_189_part_1-58_part_0 .
+        :jointline_189_part_1-58_part_0_port_1 .
 
 :jointline_18_part_1-16-17 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_18_part_1-16-17 ;
+    rsm1:hasNominalMetricLength 1.201272e+03 ;
     rsm:hasPort :jointline_18_part_1-16-17_port_0,
-        :jointline_18_part_1-16-17_port_1 ;
-    rsm:nominalLength 1.201272e+03 ;
-    rsm1:hasNominalGeometry :geom_18_part_1-16-17 .
+        :jointline_18_part_1-16-17_port_1 .
 
 :jointline_199_part_0-183-157_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_199_part_0-183-157_part_1 ;
+    rsm1:hasNominalMetricLength 1.15551e+03 ;
     rsm:hasPort :jointline_199_part_0-183-157_part_1_port_0,
-        :jointline_199_part_0-183-157_part_1_port_1 ;
-    rsm:nominalLength 1.15551e+03 ;
-    rsm1:hasNominalGeometry :geom_199_part_0-183-157_part_1 .
+        :jointline_199_part_0-183-157_part_1_port_1 .
 
 :jointline_201-165-243-168-154-159-211-156-158-169-167-235-153-166 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_201-165-243-168-154-159-211-156-158-169-167-235-153-166 ;
+    rsm1:hasNominalMetricLength 1.28977e+04 ;
     rsm:hasPort :jointline_201-165-243-168-154-159-211-156-158-169-167-235-153-166_port_0,
-        :jointline_201-165-243-168-154-159-211-156-158-169-167-235-153-166_port_1 ;
-    rsm:nominalLength 1.28977e+04 ;
-    rsm1:hasNominalGeometry :geom_201-165-243-168-154-159-211-156-158-169-167-235-153-166 .
+        :jointline_201-165-243-168-154-159-211-156-158-169-167-235-153-166_port_1 .
 
 :jointline_208-209 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_208-209 ;
+    rsm1:hasNominalMetricLength 1.080848e+02 ;
     rsm:hasPort :jointline_208-209_port_0,
-        :jointline_208-209_port_1 ;
-    rsm:nominalLength 1.080848e+02 ;
-    rsm1:hasNominalGeometry :geom_208-209 .
+        :jointline_208-209_port_1 .
 
 :jointline_208-209_port_0 a rsm:Port ;
     rsm:azimuth 7.9779e+01 ;
@@ -1557,46 +1557,46 @@
     geo:asWKT "POINT (8.0382251 43.8986129)" .
 
 :jointline_218_part_0-220_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_218_part_0-220_part_1 ;
+    rsm1:hasNominalMetricLength 5.6945e+02 ;
     rsm:hasPort :jointline_218_part_0-220_part_1_port_0,
-        :jointline_218_part_0-220_part_1_port_1 ;
-    rsm:nominalLength 5.6945e+02 ;
-    rsm1:hasNominalGeometry :geom_218_part_0-220_part_1 .
+        :jointline_218_part_0-220_part_1_port_1 .
 
 :jointline_234_part_0-206-150-223 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_234_part_0-206-150-223 ;
+    rsm1:hasNominalMetricLength 5.842711e+02 ;
     rsm:hasPort :jointline_234_part_0-206-150-223_port_0,
-        :jointline_234_part_0-206-150-223_port_1 ;
-    rsm:nominalLength 5.842711e+02 ;
-    rsm1:hasNominalGeometry :geom_234_part_0-206-150-223 .
+        :jointline_234_part_0-206-150-223_port_1 .
 
 :jointline_23_part_1-25-194_part_0-170-171-152-151-161-174-14-55-15-24-162-155-160 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_23_part_1-25-194_part_0-170-171-152-151-161-174-14-55-15-24-162-155-160 ;
+    rsm1:hasNominalMetricLength 1.912609e+04 ;
     rsm:hasPort :jointline_23_part_1-25-194_part_0-170-171-152-151-161-174-14-55-15-24-162-155-160_port_0,
-        :jointline_23_part_1-25-194_part_0-170-171-152-151-161-174-14-55-15-24-162-155-160_port_1 ;
-    rsm:nominalLength 1.912609e+04 ;
-    rsm1:hasNominalGeometry :geom_23_part_1-25-194_part_0-170-171-152-151-161-174-14-55-15-24-162-155-160 .
+        :jointline_23_part_1-25-194_part_0-170-171-152-151-161-174-14-55-15-24-162-155-160_port_1 .
 
 :jointline_241-56-238-239 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_241-56-238-239 ;
+    rsm1:hasNominalMetricLength 1.713929e+04 ;
     rsm:hasPort :jointline_241-56-238-239_port_0,
-        :jointline_241-56-238-239_port_1 ;
-    rsm:nominalLength 1.713929e+04 ;
-    rsm1:hasNominalGeometry :geom_241-56-238-239 .
+        :jointline_241-56-238-239_port_1 .
 
 :jointline_242-26-240-237_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_242-26-240-237_part_1 ;
+    rsm1:hasNominalMetricLength 1.707892e+04 ;
     rsm:hasPort :jointline_242-26-240-237_part_1_port_0,
-        :jointline_242-26-240-237_part_1_port_1 ;
-    rsm:nominalLength 1.707892e+04 ;
-    rsm1:hasNominalGeometry :geom_242-26-240-237_part_1 .
+        :jointline_242-26-240-237_part_1_port_1 .
 
 :jointline_38-27-34-35-204_part_1-36-212-37-217-216-40-184-236 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_38-27-34-35-204_part_1-36-212-37-217-216-40-184-236 ;
+    rsm1:hasNominalMetricLength 1.273765e+04 ;
     rsm:hasPort :jointline_38-27-34-35-204_part_1-36-212-37-217-216-40-184-236_port_0,
-        :jointline_38-27-34-35-204_part_1-36-212-37-217-216-40-184-236_port_1 ;
-    rsm:nominalLength 1.273765e+04 ;
-    rsm1:hasNominalGeometry :geom_38-27-34-35-204_part_1-36-212-37-217-216-40-184-236 .
+        :jointline_38-27-34-35-204_part_1-36-212-37-217-216-40-184-236_port_1 .
 
 :jointline_39-185-222 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_39-185-222 ;
+    rsm1:hasNominalMetricLength 5.748604e+02 ;
     rsm:hasPort :jointline_39-185-222_port_0,
-        :jointline_39-185-222_port_1 ;
-    rsm:nominalLength 5.748604e+02 ;
-    rsm1:hasNominalGeometry :geom_39-185-222 .
+        :jointline_39-185-222_port_1 .
 
 :jointline_39-185-222_port_0 a rsm:Port ;
     rsm:azimuth 5.786562e+01 ;
@@ -1605,22 +1605,22 @@
     geo:asWKT "POINT (8.1408174 43.9612655)" .
 
 :jointline_45_part_0-231-43 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_45_part_0-231-43 ;
+    rsm1:hasNominalMetricLength 6.100517e+01 ;
     rsm:hasPort :jointline_45_part_0-231-43_port_0,
-        :jointline_45_part_0-231-43_port_1 ;
-    rsm:nominalLength 6.100517e+01 ;
-    rsm1:hasNominalGeometry :geom_45_part_0-231-43 .
+        :jointline_45_part_0-231-43_port_1 .
 
 :jointline_51-85-31-213-214-52-32-33-195-244-29-30-83-82-84-193-81 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_51-85-31-213-214-52-32-33-195-244-29-30-83-82-84-193-81 ;
+    rsm1:hasNominalMetricLength 1.928485e+04 ;
     rsm:hasPort :jointline_51-85-31-213-214-52-32-33-195-244-29-30-83-82-84-193-81_port_0,
-        :jointline_51-85-31-213-214-52-32-33-195-244-29-30-83-82-84-193-81_port_1 ;
-    rsm:nominalLength 1.928485e+04 ;
-    rsm1:hasNominalGeometry :geom_51-85-31-213-214-52-32-33-195-244-29-30-83-82-84-193-81 .
+        :jointline_51-85-31-213-214-52-32-33-195-244-29-30-83-82-84-193-81_port_1 .
 
 :jointline_57_part_0-58_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_57_part_0-58_part_1 ;
+    rsm1:hasNominalMetricLength 1.057788e+03 ;
     rsm:hasPort :jointline_57_part_0-58_part_1_port_0,
-        :jointline_57_part_0-58_part_1_port_1 ;
-    rsm:nominalLength 1.057788e+03 ;
-    rsm1:hasNominalGeometry :geom_57_part_0-58_part_1 .
+        :jointline_57_part_0-58_part_1_port_1 .
 
 :jointline_57_part_0-58_part_1_port_0 a rsm:Port ;
     rsm:azimuth -1.009833e+02 ;
@@ -1629,10 +1629,10 @@
     geo:asWKT "POINT (7.8510185 43.843976)" .
 
 :jointline_57_part_1-59_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_57_part_1-59_part_0 ;
+    rsm1:hasNominalMetricLength 1.249887e+02 ;
     rsm:hasPort :jointline_57_part_1-59_part_0_port_0,
-        :jointline_57_part_1-59_part_0_port_1 ;
-    rsm:nominalLength 1.249887e+02 ;
-    rsm1:hasNominalGeometry :geom_57_part_1-59_part_0 .
+        :jointline_57_part_1-59_part_0_port_1 .
 
 :jointline_57_part_1-59_part_0_port_0 a rsm:Port ;
     rsm:azimuth -1.012978e+02 ;
@@ -1641,28 +1641,28 @@
     geo:asWKT "POINT (7.8604849 43.8453462)" .
 
 :jointline_60_part_0-63_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_60_part_0-63_part_1 ;
+    rsm1:hasNominalMetricLength 9.38066e+02 ;
     rsm:hasPort :jointline_60_part_0-63_part_1_port_0,
-        :jointline_60_part_0-63_part_1_port_1 ;
-    rsm:nominalLength 9.38066e+02 ;
-    rsm1:hasNominalGeometry :geom_60_part_0-63_part_1 .
+        :jointline_60_part_0-63_part_1_port_1 .
 
 :jointline_64_part_1-91-92 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_64_part_1-91-92 ;
+    rsm1:hasNominalMetricLength 6.889854e+02 ;
     rsm:hasPort :jointline_64_part_1-91-92_port_0,
-        :jointline_64_part_1-91-92_port_1 ;
-    rsm:nominalLength 6.889854e+02 ;
-    rsm1:hasNominalGeometry :geom_64_part_1-91-92 .
+        :jointline_64_part_1-91-92_port_1 .
 
 :jointline_68_part_3-75_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_68_part_3-75_part_0 ;
+    rsm1:hasNominalMetricLength 7.136091e+02 ;
     rsm:hasPort :jointline_68_part_3-75_part_0_port_0,
-        :jointline_68_part_3-75_part_0_port_1 ;
-    rsm:nominalLength 7.136091e+02 ;
-    rsm1:hasNominalGeometry :geom_68_part_3-75_part_0 .
+        :jointline_68_part_3-75_part_0_port_1 .
 
 :jointline_69-88 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_69-88 ;
+    rsm1:hasNominalMetricLength 1.714983e+02 ;
     rsm:hasPort :jointline_69-88_port_0,
-        :jointline_69-88_port_1 ;
-    rsm:nominalLength 1.714983e+02 ;
-    rsm1:hasNominalGeometry :geom_69-88 .
+        :jointline_69-88_port_1 .
 
 :jointline_69-88_port_0 a rsm:Port ;
     rsm:azimuth -1.054279e+02 ;
@@ -1671,16 +1671,16 @@
     geo:asWKT "POINT (7.8500344 43.8438653)" .
 
 :jointline_70-191_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_70-191_part_1 ;
+    rsm1:hasNominalMetricLength 8.536665e+02 ;
     rsm:hasPort :jointline_70-191_part_1_port_0,
-        :jointline_70-191_part_1_port_1 ;
-    rsm:nominalLength 8.536665e+02 ;
-    rsm1:hasNominalGeometry :geom_70-191_part_1 .
+        :jointline_70-191_part_1_port_1 .
 
 :jointline_74-77_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_74-77_part_1 ;
+    rsm1:hasNominalMetricLength 1.060664e+02 ;
     rsm:hasPort :jointline_74-77_part_1_port_0,
-        :jointline_74-77_part_1_port_1 ;
-    rsm:nominalLength 1.060664e+02 ;
-    rsm1:hasNominalGeometry :geom_74-77_part_1 .
+        :jointline_74-77_part_1_port_1 .
 
 :jointline_74-77_part_1_port_1 a rsm:Port ;
     rsm:azimuth 8.848476e+01 ;
@@ -1689,10 +1689,10 @@
     geo:asWKT "POINT (7.8592961 43.8453199)" .
 
 :jointline_8-42-247-246-172-41-49-10-11-48-50-47-46-44-4-5-146-147-3-6-54-53-7 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_8-42-247-246-172-41-49-10-11-48-50-47-46-44-4-5-146-147-3-6-54-53-7 ;
+    rsm1:hasNominalMetricLength 6.713641e+03 ;
     rsm:hasPort :jointline_8-42-247-246-172-41-49-10-11-48-50-47-46-44-4-5-146-147-3-6-54-53-7_port_0,
-        :jointline_8-42-247-246-172-41-49-10-11-48-50-47-46-44-4-5-146-147-3-6-54-53-7_port_1 ;
-    rsm:nominalLength 6.713641e+03 ;
-    rsm1:hasNominalGeometry :geom_8-42-247-246-172-41-49-10-11-48-50-47-46-44-4-5-146-147-3-6-54-53-7 .
+        :jointline_8-42-247-246-172-41-49-10-11-48-50-47-46-44-4-5-146-147-3-6-54-53-7_port_1 .
 
 :jointline_8-42-247-246-172-41-49-10-11-48-50-47-46-44-4-5-146-147-3-6-54-53-7_port_0 a rsm:Port ;
     rsm:azimuth -1.417971e+02 ;
@@ -1707,10 +1707,10 @@
     geo:asWKT "POINT (8.2202177 44.0454164)" .
 
 :jointline_93-110-111 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_93-110-111 ;
+    rsm1:hasNominalMetricLength 6.663792e+01 ;
     rsm:hasPort :jointline_93-110-111_port_0,
-        :jointline_93-110-111_port_1 ;
-    rsm:nominalLength 6.663792e+01 ;
-    rsm1:hasNominalGeometry :geom_93-110-111 .
+        :jointline_93-110-111_port_1 .
 
 :jointline_93-110-111_port_1 a rsm:Port ;
     rsm:azimuth 3.112168e+01 ;
@@ -1719,82 +1719,82 @@
     geo:asWKT "POINT (8.2206006 44.0458833)" .
 
 :jointline_98-94-90-232-101-89 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_98-94-90-232-101-89 ;
+    rsm1:hasNominalMetricLength 1.147396e+03 ;
     rsm:hasPort :jointline_98-94-90-232-101-89_port_0,
-        :jointline_98-94-90-232-101-89_port_1 ;
-    rsm:nominalLength 1.147396e+03 ;
-    rsm1:hasNominalGeometry :geom_98-94-90-232-101-89 .
+        :jointline_98-94-90-232-101-89_port_1 .
 
 :line_107 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_107 ;
+    rsm1:hasNominalMetricLength 1.723117e+02 ;
     rsm:hasPort :line_107_port_0,
-        :line_107_port_1 ;
-    rsm:nominalLength 1.723117e+02 ;
-    rsm1:hasNominalGeometry :geom_107 .
+        :line_107_port_1 .
 
 :line_113 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_113 ;
+    rsm1:hasNominalMetricLength 8.01864e+01 ;
     rsm:hasPort :line_113_port_0,
-        :line_113_port_1 ;
-    rsm:nominalLength 8.01864e+01 ;
-    rsm1:hasNominalGeometry :geom_113 .
+        :line_113_port_1 .
 
 :line_115 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_115 ;
+    rsm1:hasNominalMetricLength 1.844206e+02 ;
     rsm:hasPort :line_115_port_0,
-        :line_115_port_1 ;
-    rsm:nominalLength 1.844206e+02 ;
-    rsm1:hasNominalGeometry :geom_115 .
+        :line_115_port_1 .
 
 :line_117 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_117 ;
+    rsm1:hasNominalMetricLength 1.87615e+02 ;
     rsm:hasPort :line_117_port_0,
-        :line_117_port_1 ;
-    rsm:nominalLength 1.87615e+02 ;
-    rsm1:hasNominalGeometry :geom_117 .
+        :line_117_port_1 .
 
 :line_126 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_126 ;
+    rsm1:hasNominalMetricLength 3.089946e+02 ;
     rsm:hasPort :line_126_port_0,
-        :line_126_port_1 ;
-    rsm:nominalLength 3.089946e+02 ;
-    rsm1:hasNominalGeometry :geom_126 .
+        :line_126_port_1 .
 
 :line_127 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_127 ;
+    rsm1:hasNominalMetricLength 3.476593e+02 ;
     rsm:hasPort :line_127_port_0,
-        :line_127_port_1 ;
-    rsm:nominalLength 3.476593e+02 ;
-    rsm1:hasNominalGeometry :geom_127 .
+        :line_127_port_1 .
 
 :line_129 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_129 ;
+    rsm1:hasNominalMetricLength 5.555454e+01 ;
     rsm:hasPort :line_129_port_0,
-        :line_129_port_1 ;
-    rsm:nominalLength 5.555454e+01 ;
-    rsm1:hasNominalGeometry :geom_129 .
+        :line_129_port_1 .
 
 :line_131 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_131 ;
+    rsm1:hasNominalMetricLength 3.292155e+02 ;
     rsm:hasPort :line_131_port_0,
-        :line_131_port_1 ;
-    rsm:nominalLength 3.292155e+02 ;
-    rsm1:hasNominalGeometry :geom_131 .
+        :line_131_port_1 .
 
 :line_135 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_135 ;
+    rsm1:hasNominalMetricLength 3.790025e+02 ;
     rsm:hasPort :line_135_port_0,
-        :line_135_port_1 ;
-    rsm:nominalLength 3.790025e+02 ;
-    rsm1:hasNominalGeometry :geom_135 .
+        :line_135_port_1 .
 
 :line_142 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_142 ;
+    rsm1:hasNominalMetricLength 4.352418e+02 ;
     rsm:hasPort :line_142_port_0,
-        :line_142_port_1 ;
-    rsm:nominalLength 4.352418e+02 ;
-    rsm1:hasNominalGeometry :geom_142 .
+        :line_142_port_1 .
 
 :line_144 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_144 ;
+    rsm1:hasNominalMetricLength 4.263783e+02 ;
     rsm:hasPort :line_144_port_0,
-        :line_144_port_1 ;
-    rsm:nominalLength 4.263783e+02 ;
-    rsm1:hasNominalGeometry :geom_144 .
+        :line_144_port_1 .
 
 :line_149 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_149 ;
+    rsm1:hasNominalMetricLength 9.02394e+01 ;
     rsm:hasPort :line_149_port_0,
-        :line_149_port_1 ;
-    rsm:nominalLength 9.02394e+01 ;
-    rsm1:hasNominalGeometry :geom_149 .
+        :line_149_port_1 .
 
 :line_149_port_0 a rsm:Port ;
     rsm:azimuth -1.557939e+02 ;
@@ -1804,10 +1804,10 @@
     geo:asWKT "POINT (8.22442 44.0507473)" .
 
 :line_175 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_175 ;
+    rsm1:hasNominalMetricLength 1.013202e+02 ;
     rsm:hasPort :line_175_port_0,
-        :line_175_port_1 ;
-    rsm:nominalLength 1.013202e+02 ;
-    rsm1:hasNominalGeometry :geom_175 .
+        :line_175_port_1 .
 
 :line_175_port_1 a rsm:Port ;
     rsm:azimuth -1.052849e+02 ;
@@ -1816,10 +1816,10 @@
     geo:asWKT "POINT (8.0335796 43.8976813)" .
 
 :line_176 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_176 ;
+    rsm1:hasNominalMetricLength 1.089864e+02 ;
     rsm:hasPort :line_176_port_0,
-        :line_176_port_1 ;
-    rsm:nominalLength 1.089864e+02 ;
-    rsm1:hasNominalGeometry :geom_176 .
+        :line_176_port_1 .
 
 :line_176_port_1 a rsm:Port ;
     rsm:azimuth 7.462161e+01 ;
@@ -1828,10 +1828,10 @@
     geo:asWKT "POINT (8.024525 43.8960396)" .
 
 :line_186 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_186 ;
+    rsm1:hasNominalMetricLength 5.831444e+01 ;
     rsm:hasPort :line_186_port_0,
-        :line_186_port_1 ;
-    rsm:nominalLength 5.831444e+01 ;
-    rsm1:hasNominalGeometry :geom_186 .
+        :line_186_port_1 .
 
 :line_186_port_0 a rsm:Port ;
     rsm:azimuth 8.348978e+01 ;
@@ -1840,10 +1840,10 @@
     geo:asWKT "POINT (7.8616034 43.8455085)" .
 
 :line_187 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_187 ;
+    rsm1:hasNominalMetricLength 6.365059e+01 ;
     rsm:hasPort :line_187_port_0,
-        :line_187_port_1 ;
-    rsm:nominalLength 6.365059e+01 ;
-    rsm1:hasNominalGeometry :geom_187 .
+        :line_187_port_1 .
 
 :line_187_port_0 a rsm:Port ;
     rsm:azimuth -9.756923e+01 ;
@@ -1858,10 +1858,10 @@
     geo:asWKT "POINT (7.8487084 43.8436386)" .
 
 :line_188 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_188 ;
+    rsm1:hasNominalMetricLength 3.277439e+01 ;
     rsm:hasPort :line_188_port_0,
-        :line_188_port_1 ;
-    rsm:nominalLength 3.277439e+01 ;
-    rsm1:hasNominalGeometry :geom_188 .
+        :line_188_port_1 .
 
 :line_188_port_0 a rsm:Port ;
     rsm:azimuth -1.013216e+02 ;
@@ -1876,10 +1876,10 @@
     geo:asWKT "POINT (7.8610779 43.8454651)" .
 
 :line_190 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_190 ;
+    rsm1:hasNominalMetricLength 5.757225e+01 ;
     rsm:hasPort :line_190_port_0,
-        :line_190_port_1 ;
-    rsm:nominalLength 5.757225e+01 ;
-    rsm1:hasNominalGeometry :geom_190 .
+        :line_190_port_1 .
 
 :line_190_port_0 a rsm:Port ;
     rsm:azimuth -1.061208e+02 ;
@@ -1894,10 +1894,10 @@
     geo:asWKT "POINT (7.8623806 43.845654)" .
 
 :line_192 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_192 ;
+    rsm1:hasNominalMetricLength 5.820943e+01 ;
     rsm:hasPort :line_192_port_0,
-        :line_192_port_1 ;
-    rsm:nominalLength 5.820943e+01 ;
-    rsm1:hasNominalGeometry :geom_192 .
+        :line_192_port_1 .
 
 :line_192_port_1 a rsm:Port ;
     rsm:azimuth -1.063601e+02 ;
@@ -1906,10 +1906,10 @@
     geo:asWKT "POINT (7.8490072 43.8436823)" .
 
 :line_196 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_196 ;
+    rsm1:hasNominalMetricLength 9.140017e+01 ;
     rsm:hasPort :line_196_port_0,
-        :line_196_port_1 ;
-    rsm:nominalLength 9.140017e+01 ;
-    rsm1:hasNominalGeometry :geom_196 .
+        :line_196_port_1 .
 
 :line_196_port_1 a rsm:Port ;
     rsm:azimuth -1.094856e+02 ;
@@ -1918,10 +1918,10 @@
     geo:asWKT "POINT (8.0241807 43.8960224)" .
 
 :line_197 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_197 ;
+    rsm1:hasNominalMetricLength 1.017996e+02 ;
     rsm:hasPort :line_197_port_0,
-        :line_197_port_1 ;
-    rsm:nominalLength 1.017996e+02 ;
-    rsm1:hasNominalGeometry :geom_197 .
+        :line_197_port_1 .
 
 :line_197_port_0 a rsm:Port ;
     rsm:azimuth 8.03408e+01 ;
@@ -1936,16 +1936,16 @@
     geo:asWKT "POINT (8.0226162 43.8957741)" .
 
 :line_198 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_198 ;
+    rsm1:hasNominalMetricLength 1.449958e+02 ;
     rsm:hasPort :line_198_port_0,
-        :line_198_port_1 ;
-    rsm:nominalLength 1.449958e+02 ;
-    rsm1:hasNominalGeometry :geom_198 .
+        :line_198_port_1 .
 
 :line_200 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_200 ;
+    rsm1:hasNominalMetricLength 1.173472e+02 ;
     rsm:hasPort :line_200_port_0,
-        :line_200_port_1 ;
-    rsm:nominalLength 1.173472e+02 ;
-    rsm1:hasNominalGeometry :geom_200 .
+        :line_200_port_1 .
 
 :line_200_port_0 a rsm:Port ;
     rsm:azimuth 7.254315e+01 ;
@@ -1960,10 +1960,10 @@
     geo:asWKT "POINT (8.0358996 43.8981468)" .
 
 :line_202 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_202 ;
+    rsm1:hasNominalMetricLength 5.705916e+01 ;
     rsm:hasPort :line_202_port_0,
-        :line_202_port_1 ;
-    rsm:nominalLength 5.705916e+01 ;
-    rsm1:hasNominalGeometry :geom_202 .
+        :line_202_port_1 .
 
 :line_202_port_0 a rsm:Port ;
     rsm:azimuth 3.085568e+01 ;
@@ -1978,10 +1978,10 @@
     geo:asWKT "POINT (8.1355287 43.957384)" .
 
 :line_203 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_203 ;
+    rsm1:hasNominalMetricLength 3.613189e+01 ;
     rsm:hasPort :line_203_port_0,
-        :line_203_port_1 ;
-    rsm:nominalLength 3.613189e+01 ;
-    rsm1:hasNominalGeometry :geom_203 .
+        :line_203_port_1 .
 
 :line_203_port_1 a rsm:Port ;
     rsm:azimuth 3.638523e+01 ;
@@ -1990,10 +1990,10 @@
     geo:asWKT "POINT (8.1360919 43.9580115)" .
 
 :line_205 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_205 ;
+    rsm1:hasNominalMetricLength 6.484718e+01 ;
     rsm:hasPort :line_205_port_0,
-        :line_205_port_1 ;
-    rsm:nominalLength 6.484718e+01 ;
-    rsm1:hasNominalGeometry :geom_205 .
+        :line_205_port_1 .
 
 :line_205_port_0 a rsm:Port ;
     rsm:azimuth 4.127746e+01 ;
@@ -2002,10 +2002,10 @@
     geo:asWKT "POINT (8.1365453 43.9583846)" .
 
 :line_215 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_215 ;
+    rsm1:hasNominalMetricLength 7.015794e+01 ;
     rsm:hasPort :line_215_port_0,
-        :line_215_port_1 ;
-    rsm:nominalLength 7.015794e+01 ;
-    rsm1:hasNominalGeometry :geom_215 .
+        :line_215_port_1 .
 
 :line_215_port_0 a rsm:Port ;
     rsm:azimuth -1.226363e+02 ;
@@ -2014,10 +2014,10 @@
     geo:asWKT "POINT (8.1403279 43.9610904)" .
 
 :line_219 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_219 ;
+    rsm1:hasNominalMetricLength 5.717734e+02 ;
     rsm:hasPort :line_219_port_0,
-        :line_219_port_1 ;
-    rsm:nominalLength 5.717734e+02 ;
-    rsm1:hasNominalGeometry :geom_219 .
+        :line_219_port_1 .
 
 :line_219_port_0 a rsm:Port ;
     rsm:azimuth 2.981542e+01 ;
@@ -2032,10 +2032,10 @@
     geo:asWKT "POINT (8.1689131 44.0065645)" .
 
 :line_226 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_226 ;
+    rsm1:hasNominalMetricLength 3.51488e+01 ;
     rsm:hasPort :line_226_port_0,
-        :line_226_port_1 ;
-    rsm:nominalLength 3.51488e+01 ;
-    rsm1:hasNominalGeometry :geom_226 .
+        :line_226_port_1 .
 
 :line_226_port_0 a rsm:Port ;
     rsm:azimuth -1.015736e+02 ;
@@ -2044,16 +2044,16 @@
     geo:asWKT "POINT (7.8515548 43.8441708)" .
 
 :line_227 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_227 ;
+    rsm1:hasNominalMetricLength 6.885964e+01 ;
     rsm:hasPort :line_227_port_0,
-        :line_227_port_1 ;
-    rsm:nominalLength 6.885964e+01 ;
-    rsm1:hasNominalGeometry :geom_227 .
+        :line_227_port_1 .
 
 :line_228 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_228 ;
+    rsm1:hasNominalMetricLength 9.673766e+01 ;
     rsm:hasPort :line_228_port_0,
-        :line_228_port_1 ;
-    rsm:nominalLength 9.673766e+01 ;
-    rsm1:hasNominalGeometry :geom_228 .
+        :line_228_port_1 .
 
 :line_228_port_0 a rsm:Port ;
     rsm:azimuth 7.61262e+01 ;
@@ -2062,10 +2062,10 @@
     geo:asWKT "POINT (8.0259395 43.8964398)" .
 
 :line_229 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_229 ;
+    rsm1:hasNominalMetricLength 1.217037e+02 ;
     rsm:hasPort :line_229_port_0,
-        :line_229_port_1 ;
-    rsm:nominalLength 1.217037e+02 ;
-    rsm1:hasNominalGeometry :geom_229 .
+        :line_229_port_1 .
 
 :line_229_port_0 a rsm:Port ;
     rsm:azimuth -1.019287e+02 ;
@@ -2074,10 +2074,10 @@
     geo:asWKT "POINT (8.034211 43.8979476)" .
 
 :line_62 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_62 ;
+    rsm1:hasNominalMetricLength 8.331502e+01 ;
     rsm:hasPort :line_62_port_0,
-        :line_62_port_1 ;
-    rsm:nominalLength 8.331502e+01 ;
-    rsm1:hasNominalGeometry :geom_62 .
+        :line_62_port_1 .
 
 :line_62_port_1 a rsm:Port ;
     rsm:azimuth 7.765896e+01 ;
@@ -2087,28 +2087,28 @@
     geo:asWKT "POINT (7.8517752 43.8440374)" .
 
 :line_65 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_65 ;
+    rsm1:hasNominalMetricLength 8.912519e+01 ;
     rsm:hasPort :line_65_port_0,
-        :line_65_port_1 ;
-    rsm:nominalLength 8.912519e+01 ;
-    rsm1:hasNominalGeometry :geom_65 .
+        :line_65_port_1 .
 
 :line_67 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_67 ;
+    rsm1:hasNominalMetricLength 6.863315e+01 ;
     rsm:hasPort :line_67_port_0,
-        :line_67_port_1 ;
-    rsm:nominalLength 6.863315e+01 ;
-    rsm1:hasNominalGeometry :geom_67 .
+        :line_67_port_1 .
 
 :line_71 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_71 ;
+    rsm1:hasNominalMetricLength 9.456811e+01 ;
     rsm:hasPort :line_71_port_0,
-        :line_71_port_1 ;
-    rsm:nominalLength 9.456811e+01 ;
-    rsm1:hasNominalGeometry :geom_71 .
+        :line_71_port_1 .
 
 :line_76 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_76 ;
+    rsm1:hasNominalMetricLength 6.535964e+01 ;
     rsm:hasPort :line_76_port_0,
-        :line_76_port_1 ;
-    rsm:nominalLength 6.535964e+01 ;
-    rsm1:hasNominalGeometry :geom_76 .
+        :line_76_port_1 .
 
 :line_76_port_1 a rsm:Port ;
     rsm:azimuth -1.076444e+02 ;
@@ -2117,16 +2117,16 @@
     geo:asWKT "POINT (7.8518692 43.8442174)" .
 
 :line_79 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_79 ;
+    rsm1:hasNominalMetricLength 4.53091e+02 ;
     rsm:hasPort :line_79_port_0,
-        :line_79_port_1 ;
-    rsm:nominalLength 4.53091e+02 ;
-    rsm1:hasNominalGeometry :geom_79 .
+        :line_79_port_1 .
 
 :line_86 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_86 ;
+    rsm1:hasNominalMetricLength 6.576573e+01 ;
     rsm:hasPort :line_86_port_0,
-        :line_86_port_1 ;
-    rsm:nominalLength 6.576573e+01 ;
-    rsm1:hasNominalGeometry :geom_86 .
+        :line_86_port_1 .
 
 :line_86_port_1 a rsm:Port ;
     rsm:azimuth -1.028189e+02 ;
@@ -2135,10 +2135,10 @@
     geo:asWKT "POINT (7.8601671 43.8452612)" .
 
 :line_87 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_87 ;
+    rsm1:hasNominalMetricLength 1.026506e+02 ;
     rsm:hasPort :line_87_port_0,
-        :line_87_port_1 ;
-    rsm:nominalLength 1.026506e+02 ;
-    rsm1:hasNominalGeometry :geom_87 .
+        :line_87_port_1 .
 
 :line_87_port_0 a rsm:Port ;
     rsm:azimuth 7.490031e+01 ;
@@ -2147,10 +2147,10 @@
     geo:asWKT "POINT (7.8509385 43.844082)" .
 
 :split_line_102_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_102_part_0 ;
+    rsm1:hasNominalMetricLength 4.040487e+01 ;
     rsm:hasPort :split_line_102_part_0_port_0,
-        :split_line_102_part_0_port_1 ;
-    rsm:nominalLength 4.040487e+01 ;
-    rsm1:hasNominalGeometry :geom_102_part_0 .
+        :split_line_102_part_0_port_1 .
 
 :split_line_102_part_0_port_1 a rsm:Port ;
     rsm:azimuth 3.62023e+01 ;
@@ -2159,16 +2159,16 @@
     geo:asWKT "POINT (8.2208613 44.0461402)" .
 
 :split_line_102_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_102_part_1 ;
+    rsm1:hasNominalMetricLength 5.424446e+01 ;
     rsm:hasPort :split_line_102_part_1_port_0,
-        :split_line_102_part_1_port_1 ;
-    rsm:nominalLength 5.424446e+01 ;
-    rsm1:hasNominalGeometry :geom_102_part_1 .
+        :split_line_102_part_1_port_1 .
 
 :split_line_104_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_104_part_0 ;
+    rsm1:hasNominalMetricLength 3.25662e+01 ;
     rsm:hasPort :split_line_104_part_0_port_0,
-        :split_line_104_part_0_port_1 ;
-    rsm:nominalLength 3.25662e+01 ;
-    rsm1:hasNominalGeometry :geom_104_part_0 .
+        :split_line_104_part_0_port_1 .
 
 :split_line_104_part_0_port_0 a rsm:Port ;
     rsm:azimuth -1.461055e+02 ;
@@ -2177,10 +2177,10 @@
     geo:asWKT "POINT (8.2214428 44.0468145)" .
 
 :split_line_104_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_104_part_1 ;
+    rsm1:hasNominalMetricLength 3.937226e+01 ;
     rsm:hasPort :split_line_104_part_1_port_0,
-        :split_line_104_part_1_port_1 ;
-    rsm:nominalLength 3.937226e+01 ;
-    rsm1:hasNominalGeometry :geom_104_part_1 .
+        :split_line_104_part_1_port_1 .
 
 :split_line_104_part_1_port_0 a rsm:Port ;
     rsm:azimuth -1.446067e+02 ;
@@ -2189,10 +2189,10 @@
     geo:asWKT "POINT (8.2216439 44.0470304)" .
 
 :split_line_104_part_2 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_104_part_2 ;
+    rsm1:hasNominalMetricLength 3.687449e+02 ;
     rsm:hasPort :split_line_104_part_2_port_0,
-        :split_line_104_part_2_port_1 ;
-    rsm:nominalLength 3.687449e+02 ;
-    rsm1:hasNominalGeometry :geom_104_part_2 .
+        :split_line_104_part_2_port_1 .
 
 :split_line_104_part_2_port_0 a rsm:Port ;
     rsm:azimuth -1.477088e+02 ;
@@ -2201,10 +2201,10 @@
     geo:asWKT "POINT (8.2218942 44.0472845)" .
 
 :split_line_104_part_3 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_104_part_3 ;
+    rsm1:hasNominalMetricLength 7.201477e+01 ;
     rsm:hasPort :split_line_104_part_3_port_0,
-        :split_line_104_part_3_port_1 ;
-    rsm:nominalLength 7.201477e+01 ;
-    rsm1:hasNominalGeometry :geom_104_part_3 .
+        :split_line_104_part_3_port_1 .
 
 :split_line_104_part_3_port_0 a rsm:Port ;
     rsm:azimuth -1.572184e+02 ;
@@ -2213,10 +2213,10 @@
     geo:asWKT "POINT (8.2239461 44.0499218)" .
 
 :split_line_104_part_4 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_104_part_4 ;
+    rsm1:hasNominalMetricLength 3.29899e+01 ;
     rsm:hasPort :split_line_104_part_4_port_0,
-        :split_line_104_part_4_port_1 ;
-    rsm:nominalLength 3.29899e+01 ;
-    rsm1:hasNominalGeometry :geom_104_part_4 .
+        :split_line_104_part_4_port_1 .
 
 :split_line_104_part_4_port_0 a rsm:Port ;
     rsm:azimuth -1.579104e+02 ;
@@ -2226,16 +2226,16 @@
     geo:asWKT "POINT (8.2242733 44.0504866)" .
 
 :split_line_112_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_112_part_0 ;
+    rsm1:hasNominalMetricLength 2.609846e+02 ;
     rsm:hasPort :split_line_112_part_0_port_0,
-        :split_line_112_part_0_port_1 ;
-    rsm:nominalLength 2.609846e+02 ;
-    rsm1:hasNominalGeometry :geom_112_part_0 .
+        :split_line_112_part_0_port_1 .
 
 :split_line_112_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_112_part_1 ;
+    rsm1:hasNominalMetricLength 4.242175e+01 ;
     rsm:hasPort :split_line_112_part_1_port_0,
-        :split_line_112_part_1_port_1 ;
-    rsm:nominalLength 4.242175e+01 ;
-    rsm1:hasNominalGeometry :geom_112_part_1 .
+        :split_line_112_part_1_port_1 .
 
 :split_line_112_part_1_port_0 a rsm:Port ;
     rsm:azimuth -1.439304e+02 ;
@@ -2250,16 +2250,16 @@
     geo:asWKT "POINT (8.223991 44.0505796)" .
 
 :split_line_112_part_2 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_112_part_2 ;
+    rsm1:hasNominalMetricLength 1.825889e+02 ;
     rsm:hasPort :split_line_112_part_2_port_0,
-        :split_line_112_part_2_port_1 ;
-    rsm:nominalLength 1.825889e+02 ;
-    rsm1:hasNominalGeometry :geom_112_part_2 .
+        :split_line_112_part_2_port_1 .
 
 :split_line_114_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_114_part_0 ;
+    rsm1:hasNominalMetricLength 1.815806e+02 ;
     rsm:hasPort :split_line_114_part_0_port_0,
-        :split_line_114_part_0_port_1 ;
-    rsm:nominalLength 1.815806e+02 ;
-    rsm1:hasNominalGeometry :geom_114_part_0 .
+        :split_line_114_part_0_port_1 .
 
 :split_line_114_part_0_port_1 a rsm:Port ;
     rsm:azimuth 4.885223e+01 ;
@@ -2268,16 +2268,16 @@
     geo:asWKT "POINT (8.2230288 44.0497869)" .
 
 :split_line_114_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_114_part_1 ;
+    rsm1:hasNominalMetricLength 4.803052e+01 ;
     rsm:hasPort :split_line_114_part_1_port_0,
-        :split_line_114_part_1_port_1 ;
-    rsm:nominalLength 4.803052e+01 ;
-    rsm1:hasNominalGeometry :geom_114_part_1 .
+        :split_line_114_part_1_port_1 .
 
 :split_line_116_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_116_part_0 ;
+    rsm1:hasNominalMetricLength 2.855549e+01 ;
     rsm:hasPort :split_line_116_part_0_port_0,
-        :split_line_116_part_0_port_1 ;
-    rsm:nominalLength 2.855549e+01 ;
-    rsm1:hasNominalGeometry :geom_116_part_0 .
+        :split_line_116_part_0_port_1 .
 
 :split_line_116_part_0_port_0 a rsm:Port ;
     rsm:azimuth -1.495237e+02 ;
@@ -2292,10 +2292,10 @@
     geo:asWKT "POINT (8.2246668 44.0512948)" .
 
 :split_line_116_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_116_part_1 ;
+    rsm1:hasNominalMetricLength 5.282638e+01 ;
     rsm:hasPort :split_line_116_part_1_port_0,
-        :split_line_116_part_1_port_1 ;
-    rsm:nominalLength 5.282638e+01 ;
-    rsm1:hasNominalGeometry :geom_116_part_1 .
+        :split_line_116_part_1_port_1 .
 
 :split_line_116_part_1_port_1 a rsm:Port ;
     rsm:azimuth 3.209466e+01 ;
@@ -2304,10 +2304,10 @@
     geo:asWKT "POINT (8.2249809 44.051656)" .
 
 :split_line_118_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_118_part_0 ;
+    rsm1:hasNominalMetricLength 1.898451e+02 ;
     rsm:hasPort :split_line_118_part_0_port_0,
-        :split_line_118_part_0_port_1 ;
-    rsm:nominalLength 1.898451e+02 ;
-    rsm1:hasNominalGeometry :geom_118_part_0 .
+        :split_line_118_part_0_port_1 .
 
 :split_line_118_part_0_port_1 a rsm:Port ;
     rsm:azimuth 4.232129e+01 ;
@@ -2316,10 +2316,10 @@
     geo:asWKT "POINT (8.2231889 44.0498393)" .
 
 :split_line_118_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_118_part_1 ;
+    rsm1:hasNominalMetricLength 3.015293e+01 ;
     rsm:hasPort :split_line_118_part_1_port_0,
-        :split_line_118_part_1_port_1 ;
-    rsm:nominalLength 3.015293e+01 ;
-    rsm1:hasNominalGeometry :geom_118_part_1 .
+        :split_line_118_part_1_port_1 .
 
 :split_line_118_part_1_port_1 a rsm:Port ;
     rsm:azimuth 4.186246e+01 ;
@@ -2328,16 +2328,16 @@
     geo:asWKT "POINT (8.2234016 44.0500105)" .
 
 :split_line_118_part_2 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_118_part_2 ;
+    rsm1:hasNominalMetricLength 4.815835e+01 ;
     rsm:hasPort :split_line_118_part_2_port_0,
-        :split_line_118_part_2_port_1 ;
-    rsm:nominalLength 4.815835e+01 ;
-    rsm1:hasNominalGeometry :geom_118_part_2 .
+        :split_line_118_part_2_port_1 .
 
 :split_line_119_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_119_part_0 ;
+    rsm1:hasNominalMetricLength 1.88045e+02 ;
     rsm:hasPort :split_line_119_part_0_port_0,
-        :split_line_119_part_0_port_1 ;
-    rsm:nominalLength 1.88045e+02 ;
-    rsm1:hasNominalGeometry :geom_119_part_0 .
+        :split_line_119_part_0_port_1 .
 
 :split_line_119_part_0_port_1 a rsm:Port ;
     rsm:azimuth 2.908699e+01 ;
@@ -2346,16 +2346,16 @@
     geo:asWKT "POINT (8.2249841 44.0518997)" .
 
 :split_line_119_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_119_part_1 ;
+    rsm1:hasNominalMetricLength 9.44383e+01 ;
     rsm:hasPort :split_line_119_part_1_port_0,
-        :split_line_119_part_1_port_1 ;
-    rsm:nominalLength 9.44383e+01 ;
-    rsm1:hasNominalGeometry :geom_119_part_1 .
+        :split_line_119_part_1_port_1 .
 
 :split_line_120_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_120_part_1 ;
+    rsm1:hasNominalMetricLength 1.895116e+02 ;
     rsm:hasPort :split_line_120_part_1_port_0,
-        :split_line_120_part_1_port_1 ;
-    rsm:nominalLength 1.895116e+02 ;
-    rsm1:hasNominalGeometry :geom_120_part_1 .
+        :split_line_120_part_1_port_1 .
 
 :split_line_120_part_1_port_0 a rsm:Port ;
     rsm:azimuth -1.502565e+02 ;
@@ -2364,10 +2364,10 @@
     geo:asWKT "POINT (8.2234407 44.0497449)" .
 
 :split_line_121_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_121_part_0 ;
+    rsm1:hasNominalMetricLength 3.094293e+01 ;
     rsm:hasPort :split_line_121_part_0_port_0,
-        :split_line_121_part_0_port_1 ;
-    rsm:nominalLength 3.094293e+01 ;
-    rsm1:hasNominalGeometry :geom_121_part_0 .
+        :split_line_121_part_0_port_1 .
 
 :split_line_121_part_0_port_1 a rsm:Port ;
     rsm:azimuth 3.840681e+01 ;
@@ -2376,16 +2376,16 @@
     geo:asWKT "POINT (8.2219183 44.0472344)" .
 
 :split_line_121_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_121_part_1 ;
+    rsm1:hasNominalMetricLength 2.660015e+01 ;
     rsm:hasPort :split_line_121_part_1_port_0,
-        :split_line_121_part_1_port_1 ;
-    rsm:nominalLength 2.660015e+01 ;
-    rsm1:hasNominalGeometry :geom_121_part_1 .
+        :split_line_121_part_1_port_1 .
 
 :split_line_121_part_2 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_121_part_2 ;
+    rsm1:hasNominalMetricLength 2.894966e+02 ;
     rsm:hasPort :split_line_121_part_2_port_0,
-        :split_line_121_part_2_port_1 ;
-    rsm:nominalLength 2.894966e+02 ;
-    rsm1:hasNominalGeometry :geom_121_part_2 .
+        :split_line_121_part_2_port_1 .
 
 :split_line_121_part_2_port_0 a rsm:Port ;
     rsm:azimuth -1.461946e+02 ;
@@ -2394,10 +2394,10 @@
     geo:asWKT "POINT (8.2221106 44.0473794)" .
 
 :split_line_123_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_123_part_0 ;
+    rsm1:hasNominalMetricLength 3.830151e+01 ;
     rsm:hasPort :split_line_123_part_0_port_0,
-        :split_line_123_part_0_port_1 ;
-    rsm:nominalLength 3.830151e+01 ;
-    rsm1:hasNominalGeometry :geom_123_part_0 .
+        :split_line_123_part_0_port_1 .
 
 :split_line_123_part_0_port_1 a rsm:Port ;
     rsm:azimuth 3.928651e+01 ;
@@ -2406,16 +2406,16 @@
     geo:asWKT "POINT (8.2230234 44.0480306)" .
 
 :split_line_123_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_123_part_1 ;
+    rsm1:hasNominalMetricLength 3.450972e+02 ;
     rsm:hasPort :split_line_123_part_1_port_0,
-        :split_line_123_part_1_port_1 ;
-    rsm:nominalLength 3.450972e+02 ;
-    rsm1:hasNominalGeometry :geom_123_part_1 .
+        :split_line_123_part_1_port_1 .
 
 :split_line_125_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_125_part_1 ;
+    rsm1:hasNominalMetricLength 2.083249e+02 ;
     rsm:hasPort :split_line_125_part_1_port_0,
-        :split_line_125_part_1_port_1 ;
-    rsm:nominalLength 2.083249e+02 ;
-    rsm1:hasNominalGeometry :geom_125_part_1 .
+        :split_line_125_part_1_port_1 .
 
 :split_line_125_part_1_port_0 a rsm:Port ;
     rsm:azimuth -1.503689e+02 ;
@@ -2431,16 +2431,16 @@
     geo:asWKT "POINT (8.2248314 44.0514543)" .
 
 :split_line_125_part_2 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_125_part_2 ;
+    rsm1:hasNominalMetricLength 2.769973e+01 ;
     rsm:hasPort :split_line_125_part_2_port_0,
-        :split_line_125_part_2_port_1 ;
-    rsm:nominalLength 2.769973e+01 ;
-    rsm1:hasNominalGeometry :geom_125_part_2 .
+        :split_line_125_part_2_port_1 .
 
 :split_line_128_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_128_part_0 ;
+    rsm1:hasNominalMetricLength 2.905819e+02 ;
     rsm:hasPort :split_line_128_part_0_port_0,
-        :split_line_128_part_0_port_1 ;
-    rsm:nominalLength 2.905819e+02 ;
-    rsm1:hasNominalGeometry :geom_128_part_0 .
+        :split_line_128_part_0_port_1 .
 
 :split_line_128_part_0_port_1 a rsm:Port ;
     rsm:azimuth 1.985595e+01 ;
@@ -2449,10 +2449,10 @@
     geo:asWKT "POINT (8.2237414 44.0494325)" .
 
 :split_line_128_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_128_part_1 ;
+    rsm1:hasNominalMetricLength 9.046239e+01 ;
     rsm:hasPort :split_line_128_part_1_port_0,
-        :split_line_128_part_1_port_1 ;
-    rsm:nominalLength 9.046239e+01 ;
-    rsm1:hasNominalGeometry :geom_128_part_1 .
+        :split_line_128_part_1_port_1 .
 
 :split_line_128_part_1_port_1 a rsm:Port ;
     rsm:azimuth 2.465782e+01 ;
@@ -2461,16 +2461,16 @@
     geo:asWKT "POINT (8.2241741 44.0501281)" .
 
 :split_line_128_part_2 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_128_part_2 ;
+    rsm1:hasNominalMetricLength 5.45618e+01 ;
     rsm:hasPort :split_line_128_part_2_port_0,
-        :split_line_128_part_2_port_1 ;
-    rsm:nominalLength 5.45618e+01 ;
-    rsm1:hasNominalGeometry :geom_128_part_2 .
+        :split_line_128_part_2_port_1 .
 
 :split_line_130_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_130_part_0 ;
+    rsm1:hasNominalMetricLength 4.406997e+02 ;
     rsm:hasPort :split_line_130_part_0_port_0,
-        :split_line_130_part_0_port_1 ;
-    rsm:nominalLength 4.406997e+02 ;
-    rsm1:hasNominalGeometry :geom_130_part_0 .
+        :split_line_130_part_0_port_1 .
 
 :split_line_130_part_0_port_1 a rsm:Port ;
     rsm:azimuth 2.347324e+01 ;
@@ -2479,28 +2479,28 @@
     geo:asWKT "POINT (8.224056 44.050211)" .
 
 :split_line_130_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_130_part_1 ;
+    rsm1:hasNominalMetricLength 3.872569e+01 ;
     rsm:hasPort :split_line_130_part_1_port_0,
-        :split_line_130_part_1_port_1 ;
-    rsm:nominalLength 3.872569e+01 ;
-    rsm1:hasNominalGeometry :geom_130_part_1 .
+        :split_line_130_part_1_port_1 .
 
 :split_line_130_part_2 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_130_part_2 ;
+    rsm1:hasNominalMetricLength 4.019968e+01 ;
     rsm:hasPort :split_line_130_part_2_port_0,
-        :split_line_130_part_2_port_1 ;
-    rsm:nominalLength 4.019968e+01 ;
-    rsm1:hasNominalGeometry :geom_130_part_2 .
+        :split_line_130_part_2_port_1 .
 
 :split_line_134_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_134_part_0 ;
+    rsm1:hasNominalMetricLength 2.608767e+01 ;
     rsm:hasPort :split_line_134_part_0_port_0,
-        :split_line_134_part_0_port_1 ;
-    rsm:nominalLength 2.608767e+01 ;
-    rsm1:hasNominalGeometry :geom_134_part_0 .
+        :split_line_134_part_0_port_1 .
 
 :split_line_134_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_134_part_1 ;
+    rsm1:hasNominalMetricLength 4.780747e+01 ;
     rsm:hasPort :split_line_134_part_1_port_0,
-        :split_line_134_part_1_port_1 ;
-    rsm:nominalLength 4.780747e+01 ;
-    rsm1:hasNominalGeometry :geom_134_part_1 .
+        :split_line_134_part_1_port_1 .
 
 :split_line_134_part_1_port_0 a rsm:Port ;
     rsm:azimuth -1.364095e+02 ;
@@ -2515,16 +2515,16 @@
     geo:asWKT "POINT (8.2227632 44.0478012)" .
 
 :split_line_134_part_2 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_134_part_2 ;
+    rsm1:hasNominalMetricLength 3.384736e+02 ;
     rsm:hasPort :split_line_134_part_2_port_0,
-        :split_line_134_part_2_port_1 ;
-    rsm:nominalLength 3.384736e+02 ;
-    rsm1:hasNominalGeometry :geom_134_part_2 .
+        :split_line_134_part_2_port_1 .
 
 :split_line_136_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_136_part_1 ;
+    rsm1:hasNominalMetricLength 3.91072e+01 ;
     rsm:hasPort :split_line_136_part_1_port_0,
-        :split_line_136_part_1_port_1 ;
-    rsm:nominalLength 3.91072e+01 ;
-    rsm1:hasNominalGeometry :geom_136_part_1 .
+        :split_line_136_part_1_port_1 .
 
 :split_line_136_part_1_port_1 a rsm:Port ;
     rsm:azimuth 3.955527e+01 ;
@@ -2533,10 +2533,10 @@
     geo:asWKT "POINT (8.221711 44.0470458)" .
 
 :split_line_136_part_2 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_136_part_2 ;
+    rsm1:hasNominalMetricLength 2.933261e+01 ;
     rsm:hasPort :split_line_136_part_2_port_0,
-        :split_line_136_part_2_port_1 ;
-    rsm:nominalLength 2.933261e+01 ;
-    rsm1:hasNominalGeometry :geom_136_part_2 .
+        :split_line_136_part_2_port_1 .
 
 :split_line_136_part_2_port_1 a rsm:Port ;
     rsm:azimuth 4.367043e+01 ;
@@ -2545,10 +2545,10 @@
     geo:asWKT "POINT (8.2219229 44.0472059)" .
 
 :split_line_137_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_137_part_0 ;
+    rsm1:hasNominalMetricLength 5.389636e+01 ;
     rsm:hasPort :split_line_137_part_0_port_0,
-        :split_line_137_part_0_port_1 ;
-    rsm:nominalLength 5.389636e+01 ;
-    rsm1:hasNominalGeometry :geom_137_part_0 .
+        :split_line_137_part_0_port_1 .
 
 :split_line_137_part_0_port_0 a rsm:Port ;
     rsm:azimuth -1.292451e+02 ;
@@ -2563,16 +2563,16 @@
     geo:asWKT "POINT (8.2229429 44.0478147)" .
 
 :split_line_137_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_137_part_1 ;
+    rsm1:hasNominalMetricLength 3.757977e+02 ;
     rsm:hasPort :split_line_137_part_1_port_0,
-        :split_line_137_part_1_port_1 ;
-    rsm:nominalLength 3.757977e+02 ;
-    rsm1:hasNominalGeometry :geom_137_part_1 .
+        :split_line_137_part_1_port_1 .
 
 :split_line_138_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_138_part_0 ;
+    rsm1:hasNominalMetricLength 4.039932e+01 ;
     rsm:hasPort :split_line_138_part_0_port_0,
-        :split_line_138_part_0_port_1 ;
-    rsm:nominalLength 4.039932e+01 ;
-    rsm1:hasNominalGeometry :geom_138_part_0 .
+        :split_line_138_part_0_port_1 .
 
 :split_line_138_part_0_port_1 a rsm:Port ;
     rsm:azimuth 5.322145e+01 ;
@@ -2581,16 +2581,16 @@
     geo:asWKT "POINT (8.2222447 44.0473794)" .
 
 :split_line_138_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_138_part_1 ;
+    rsm1:hasNominalMetricLength 3.705348e+01 ;
     rsm:hasPort :split_line_138_part_1_port_0,
-        :split_line_138_part_1_port_1 ;
-    rsm:nominalLength 3.705348e+01 ;
-    rsm1:hasNominalGeometry :geom_138_part_1 .
+        :split_line_138_part_1_port_1 .
 
 :split_line_139_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_139_part_1 ;
+    rsm1:hasNominalMetricLength 3.468911e+01 ;
     rsm:hasPort :split_line_139_part_1_port_0,
-        :split_line_139_part_1_port_1 ;
-    rsm:nominalLength 3.468911e+01 ;
-    rsm1:hasNominalGeometry :geom_139_part_1 .
+        :split_line_139_part_1_port_1 .
 
 :split_line_139_part_1_port_0 a rsm:Port ;
     rsm:azimuth -1.508629e+02 ;
@@ -2599,10 +2599,10 @@
     geo:asWKT "POINT (8.2242233 44.0505021)" .
 
 :split_line_143_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_143_part_0 ;
+    rsm1:hasNominalMetricLength 3.262349e+02 ;
     rsm:hasPort :split_line_143_part_0_port_0,
-        :split_line_143_part_0_port_1 ;
-    rsm:nominalLength 3.262349e+02 ;
-    rsm1:hasNominalGeometry :geom_143_part_0 .
+        :split_line_143_part_0_port_1 .
 
 :split_line_143_part_0_port_1 a rsm:Port ;
     rsm:azimuth 2.893026e+01 ;
@@ -2611,16 +2611,16 @@
     geo:asWKT "POINT (8.2237476 44.0495844)" .
 
 :split_line_143_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_143_part_1 ;
+    rsm1:hasNominalMetricLength 4.317378e+01 ;
     rsm:hasPort :split_line_143_part_1_port_0,
-        :split_line_143_part_1_port_1 ;
-    rsm:nominalLength 4.317378e+01 ;
-    rsm1:hasNominalGeometry :geom_143_part_1 .
+        :split_line_143_part_1_port_1 .
 
 :split_line_145_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_145_part_0 ;
+    rsm1:hasNominalMetricLength 2.383115e+01 ;
     rsm:hasPort :split_line_145_part_0_port_0,
-        :split_line_145_part_0_port_1 ;
-    rsm:nominalLength 2.383115e+01 ;
-    rsm1:hasNominalGeometry :geom_145_part_0 .
+        :split_line_145_part_0_port_1 .
 
 :split_line_145_part_0_port_1 a rsm:Port ;
     rsm:azimuth 3.589063e+01 ;
@@ -2629,16 +2629,16 @@
     geo:asWKT "POINT (8.2225862 44.047674)" .
 
 :split_line_145_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_145_part_1 ;
+    rsm1:hasNominalMetricLength 3.59556e+02 ;
     rsm:hasPort :split_line_145_part_1_port_0,
-        :split_line_145_part_1_port_1 ;
-    rsm:nominalLength 3.59556e+02 ;
-    rsm1:hasNominalGeometry :geom_145_part_1 .
+        :split_line_145_part_1_port_1 .
 
 :split_line_157_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_157_part_0 ;
+    rsm1:hasNominalMetricLength 3.672352e+01 ;
     rsm:hasPort :split_line_157_part_0_port_0,
-        :split_line_157_part_0_port_1 ;
-    rsm:nominalLength 3.672352e+01 ;
-    rsm1:hasNominalGeometry :geom_157_part_0 .
+        :split_line_157_part_0_port_1 .
 
 :split_line_157_part_0_port_0 a rsm:Port ;
     rsm:azimuth -1.045362e+02 ;
@@ -2653,16 +2653,16 @@
     geo:asWKT "POINT (8.0253079 43.8962885)" .
 
 :split_line_163_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_163_part_1 ;
+    rsm1:hasNominalMetricLength 7.181599e+01 ;
     rsm:hasPort :split_line_163_part_1_port_0,
-        :split_line_163_part_1_port_1 ;
-    rsm:nominalLength 7.181599e+01 ;
-    rsm1:hasNominalGeometry :geom_163_part_1 .
+        :split_line_163_part_1_port_1 .
 
 :split_line_164_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_164_part_0 ;
+    rsm1:hasNominalMetricLength 1.542057e+02 ;
     rsm:hasPort :split_line_164_part_0_port_0,
-        :split_line_164_part_0_port_1 ;
-    rsm:nominalLength 1.542057e+02 ;
-    rsm1:hasNominalGeometry :geom_164_part_0 .
+        :split_line_164_part_0_port_1 .
 
 :split_line_164_part_0_port_0 a rsm:Port ;
     rsm:azimuth 7.859618e+01 ;
@@ -2671,10 +2671,10 @@
     geo:asWKT "POINT (8.0355932 43.8981313)" .
 
 :split_line_177_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_177_part_0 ;
+    rsm1:hasNominalMetricLength 1.338794e+02 ;
     rsm:hasPort :split_line_177_part_0_port_0,
-        :split_line_177_part_0_port_1 ;
-    rsm:nominalLength 1.338794e+02 ;
-    rsm1:hasNominalGeometry :geom_177_part_0 .
+        :split_line_177_part_0_port_1 .
 
 :split_line_177_part_0_port_0 a rsm:Port ;
     rsm:azimuth -1.040511e+02 ;
@@ -2683,16 +2683,16 @@
     geo:asWKT "POINT (8.0347083 43.8979312)" .
 
 :split_line_178_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_178_part_0 ;
+    rsm1:hasNominalMetricLength 9.028101e+01 ;
     rsm:hasPort :split_line_178_part_0_port_0,
-        :split_line_178_part_0_port_1 ;
-    rsm:nominalLength 9.028101e+01 ;
-    rsm1:hasNominalGeometry :geom_178_part_0 .
+        :split_line_178_part_0_port_1 .
 
 :split_line_179_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_179_part_1 ;
+    rsm1:hasNominalMetricLength 5.235647e+01 ;
     rsm:hasPort :split_line_179_part_1_port_0,
-        :split_line_179_part_1_port_1 ;
-    rsm:nominalLength 5.235647e+01 ;
-    rsm1:hasNominalGeometry :geom_179_part_1 .
+        :split_line_179_part_1_port_1 .
 
 :split_line_179_part_1_port_1 a rsm:Port ;
     rsm:azimuth -1.04577e+02 ;
@@ -2701,28 +2701,28 @@
     geo:asWKT "POINT (8.0237154 43.8959349)" .
 
 :split_line_179_part_2 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_179_part_2 ;
+    rsm1:hasNominalMetricLength 2.108261e+01 ;
     rsm:hasPort :split_line_179_part_2_port_0,
-        :split_line_179_part_2_port_1 ;
-    rsm:nominalLength 2.108261e+01 ;
-    rsm1:hasNominalGeometry :geom_179_part_2 .
+        :split_line_179_part_2_port_1 .
 
 :split_line_182_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_182_part_1 ;
+    rsm1:hasNominalMetricLength 1.278405e+02 ;
     rsm:hasPort :split_line_182_part_1_port_0,
-        :split_line_182_part_1_port_1 ;
-    rsm:nominalLength 1.278405e+02 ;
-    rsm1:hasNominalGeometry :geom_182_part_1 .
+        :split_line_182_part_1_port_1 .
 
 :split_line_189_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_189_part_0 ;
+    rsm1:hasNominalMetricLength 3.339536e+01 ;
     rsm:hasPort :split_line_189_part_0_port_0,
-        :split_line_189_part_0_port_1 ;
-    rsm:nominalLength 3.339536e+01 ;
-    rsm1:hasNominalGeometry :geom_189_part_0 .
+        :split_line_189_part_0_port_1 .
 
 :split_line_18_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_18_part_0 ;
+    rsm1:hasNominalMetricLength 5.723627e+01 ;
     rsm:hasPort :split_line_18_part_0_port_0,
-        :split_line_18_part_0_port_1 ;
-    rsm:nominalLength 5.723627e+01 ;
-    rsm1:hasNominalGeometry :geom_18_part_0 .
+        :split_line_18_part_0_port_1 .
 
 :split_line_18_part_0_port_0 a rsm:Port ;
     rsm:azimuth -1.012271e+02 ;
@@ -2731,10 +2731,10 @@
     geo:asWKT "POINT (7.8495221 43.8437917)" .
 
 :split_line_191_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_191_part_0 ;
+    rsm1:hasNominalMetricLength 5.753032e+01 ;
     rsm:hasPort :split_line_191_part_0_port_0,
-        :split_line_191_part_0_port_1 ;
-    rsm:nominalLength 5.753032e+01 ;
-    rsm1:hasNominalGeometry :geom_191_part_0 .
+        :split_line_191_part_0_port_1 .
 
 :split_line_191_part_0_port_1 a rsm:Port ;
     rsm:azimuth 7.884467e+01 ;
@@ -2743,88 +2743,88 @@
     geo:asWKT "POINT (7.8523842 43.8442909)" .
 
 :split_line_194_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_194_part_1 ;
+    rsm1:hasNominalMetricLength 2.663288e+02 ;
     rsm:hasPort :split_line_194_part_1_port_0,
-        :split_line_194_part_1_port_1 ;
-    rsm:nominalLength 2.663288e+02 ;
-    rsm1:hasNominalGeometry :geom_194_part_1 .
+        :split_line_194_part_1_port_1 .
 
 :split_line_199_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_199_part_1 ;
+    rsm1:hasNominalMetricLength 1.508858e+02 ;
     rsm:hasPort :split_line_199_part_1_port_0,
-        :split_line_199_part_1_port_1 ;
-    rsm:nominalLength 1.508858e+02 ;
-    rsm1:hasNominalGeometry :geom_199_part_1 .
+        :split_line_199_part_1_port_1 .
 
 :split_line_204_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_204_part_0 ;
+    rsm1:hasNominalMetricLength 1.574836e+02 ;
     rsm:hasPort :split_line_204_part_0_port_0,
-        :split_line_204_part_0_port_1 ;
-    rsm:nominalLength 1.574836e+02 ;
-    rsm1:hasNominalGeometry :geom_204_part_0 .
+        :split_line_204_part_0_port_1 .
 
 :split_line_218_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_218_part_1 ;
+    rsm1:hasNominalMetricLength 1.73725e+02 ;
     rsm:hasPort :split_line_218_part_1_port_0,
-        :split_line_218_part_1_port_1 ;
-    rsm:nominalLength 1.73725e+02 ;
-    rsm1:hasNominalGeometry :geom_218_part_1 .
+        :split_line_218_part_1_port_1 .
 
 :split_line_220_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_220_part_0 ;
+    rsm1:hasNominalMetricLength 2.442141e+01 ;
     rsm:hasPort :split_line_220_part_0_port_0,
-        :split_line_220_part_0_port_1 ;
-    rsm:nominalLength 2.442141e+01 ;
-    rsm1:hasNominalGeometry :geom_220_part_0 .
+        :split_line_220_part_0_port_1 .
 
 :split_line_234_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_234_part_1 ;
+    rsm1:hasNominalMetricLength 5.747336e+01 ;
     rsm:hasPort :split_line_234_part_1_port_0,
-        :split_line_234_part_1_port_1 ;
-    rsm:nominalLength 5.747336e+01 ;
-    rsm1:hasNominalGeometry :geom_234_part_1 .
+        :split_line_234_part_1_port_1 .
 
 :split_line_237_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_237_part_0 ;
+    rsm1:hasNominalMetricLength 1.550616e+02 ;
     rsm:hasPort :split_line_237_part_0_port_0,
-        :split_line_237_part_0_port_1 ;
-    rsm:nominalLength 1.550616e+02 ;
-    rsm1:hasNominalGeometry :geom_237_part_0 .
+        :split_line_237_part_0_port_1 .
 
 :split_line_23_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_23_part_0 ;
+    rsm1:hasNominalMetricLength 1.455705e+02 ;
     rsm:hasPort :split_line_23_part_0_port_0,
-        :split_line_23_part_0_port_1 ;
-    rsm:nominalLength 1.455705e+02 ;
-    rsm1:hasNominalGeometry :geom_23_part_0 .
+        :split_line_23_part_0_port_1 .
 
 :split_line_245_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_245_part_0 ;
+    rsm1:hasNominalMetricLength 3.524395e+01 ;
     rsm:hasPort :split_line_245_part_0_port_0,
-        :split_line_245_part_0_port_1 ;
-    rsm:nominalLength 3.524395e+01 ;
-    rsm1:hasNominalGeometry :geom_245_part_0 .
+        :split_line_245_part_0_port_1 .
 
 :split_line_245_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_245_part_1 ;
+    rsm1:hasNominalMetricLength 8.498001e+01 ;
     rsm:hasPort :split_line_245_part_1_port_0,
-        :split_line_245_part_1_port_1 ;
-    rsm:nominalLength 8.498001e+01 ;
-    rsm1:hasNominalGeometry :geom_245_part_1 .
+        :split_line_245_part_1_port_1 .
 
 :split_line_59_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_59_part_1 ;
+    rsm1:hasNominalMetricLength 2.990454e+01 ;
     rsm:hasPort :split_line_59_part_1_port_0,
-        :split_line_59_part_1_port_1 ;
-    rsm:nominalLength 2.990454e+01 ;
-    rsm1:hasNominalGeometry :geom_59_part_1 .
+        :split_line_59_part_1_port_1 .
 
 :split_line_60_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_60_part_1 ;
+    rsm1:hasNominalMetricLength 8.396575e+01 ;
     rsm:hasPort :split_line_60_part_1_port_0,
-        :split_line_60_part_1_port_1 ;
-    rsm:nominalLength 8.396575e+01 ;
-    rsm1:hasNominalGeometry :geom_60_part_1 .
+        :split_line_60_part_1_port_1 .
 
 :split_line_61_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_61_part_0 ;
+    rsm1:hasNominalMetricLength 8.43887e+01 ;
     rsm:hasPort :split_line_61_part_0_port_0,
-        :split_line_61_part_0_port_1 ;
-    rsm:nominalLength 8.43887e+01 ;
-    rsm1:hasNominalGeometry :geom_61_part_0 .
+        :split_line_61_part_0_port_1 .
 
 :split_line_61_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_61_part_1 ;
+    rsm1:hasNominalMetricLength 1.105068e+02 ;
     rsm:hasPort :split_line_61_part_1_port_0,
-        :split_line_61_part_1_port_1 ;
-    rsm:nominalLength 1.105068e+02 ;
-    rsm1:hasNominalGeometry :geom_61_part_1 .
+        :split_line_61_part_1_port_1 .
 
 :split_line_61_part_1_port_0 a rsm:Port ;
     rsm:azimuth 8.319312e+01 ;
@@ -2839,22 +2839,22 @@
     geo:asWKT "POINT (7.8521964 43.844051)" .
 
 :split_line_63_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_63_part_0 ;
+    rsm1:hasNominalMetricLength 3.637565e+01 ;
     rsm:hasPort :split_line_63_part_0_port_0,
-        :split_line_63_part_0_port_1 ;
-    rsm:nominalLength 3.637565e+01 ;
-    rsm1:hasNominalGeometry :geom_63_part_0 .
+        :split_line_63_part_0_port_1 .
 
 :split_line_64_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_64_part_0 ;
+    rsm1:hasNominalMetricLength 4.660675e+01 ;
     rsm:hasPort :split_line_64_part_0_port_0,
-        :split_line_64_part_0_port_1 ;
-    rsm:nominalLength 4.660675e+01 ;
-    rsm1:hasNominalGeometry :geom_64_part_0 .
+        :split_line_64_part_0_port_1 .
 
 :split_line_66_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_66_part_0 ;
+    rsm1:hasNominalMetricLength 3.574448e+01 ;
     rsm:hasPort :split_line_66_part_0_port_0,
-        :split_line_66_part_0_port_1 ;
-    rsm:nominalLength 3.574448e+01 ;
-    rsm1:hasNominalGeometry :geom_66_part_0 .
+        :split_line_66_part_0_port_1 .
 
 :split_line_66_part_0_port_1 a rsm:Port ;
     rsm:azimuth -1.014546e+02 ;
@@ -2863,16 +2863,16 @@
     geo:asWKT "POINT (7.852875 43.8440258)" .
 
 :split_line_66_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_66_part_1 ;
+    rsm1:hasNominalMetricLength 8.858967e+01 ;
     rsm:hasPort :split_line_66_part_1_port_0,
-        :split_line_66_part_1_port_1 ;
-    rsm:nominalLength 8.858967e+01 ;
-    rsm1:hasNominalGeometry :geom_66_part_1 .
+        :split_line_66_part_1_port_1 .
 
 :split_line_68_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_68_part_0 ;
+    rsm1:hasNominalMetricLength 7.647472e+01 ;
     rsm:hasPort :split_line_68_part_0_port_0,
-        :split_line_68_part_0_port_1 ;
-    rsm:nominalLength 7.647472e+01 ;
-    rsm1:hasNominalGeometry :geom_68_part_0 .
+        :split_line_68_part_0_port_1 .
 
 :split_line_68_part_0_port_1 a rsm:Port ;
     rsm:azimuth -9.615403e+01 ;
@@ -2881,10 +2881,10 @@
     geo:asWKT "POINT (7.8600952 43.8453688)" .
 
 :split_line_68_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_68_part_1 ;
+    rsm1:hasNominalMetricLength 7.475294e+00 ;
     rsm:hasPort :split_line_68_part_1_port_0,
-        :split_line_68_part_1_port_1 ;
-    rsm:nominalLength 7.475294e+00 ;
-    rsm1:hasNominalGeometry :geom_68_part_1 .
+        :split_line_68_part_1_port_1 .
 
 :split_line_68_part_1_port_1 a rsm:Port ;
     rsm:azimuth -9.596861e+01 ;
@@ -2893,16 +2893,16 @@
     geo:asWKT "POINT (7.8600278 43.8453637)" .
 
 :split_line_68_part_2 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_68_part_2 ;
+    rsm1:hasNominalMetricLength 8.107421e+01 ;
     rsm:hasPort :split_line_68_part_2_port_0,
-        :split_line_68_part_2_port_1 ;
-    rsm:nominalLength 8.107421e+01 ;
-    rsm1:hasNominalGeometry :geom_68_part_2 .
+        :split_line_68_part_2_port_1 .
 
 :split_line_72_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_72_part_0 ;
+    rsm1:hasNominalMetricLength 3.41993e+02 ;
     rsm:hasPort :split_line_72_part_0_port_0,
-        :split_line_72_part_0_port_1 ;
-    rsm:nominalLength 3.41993e+02 ;
-    rsm1:hasNominalGeometry :geom_72_part_0 .
+        :split_line_72_part_0_port_1 .
 
 :split_line_72_part_0_port_1 a rsm:Port ;
     rsm:azimuth -1.077394e+02 ;
@@ -2911,16 +2911,16 @@
     geo:asWKT "POINT (7.8535315 43.8446112)" .
 
 :split_line_72_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_72_part_1 ;
+    rsm1:hasNominalMetricLength 9.599431e+01 ;
     rsm:hasPort :split_line_72_part_1_port_0,
-        :split_line_72_part_1_port_1 ;
-    rsm:nominalLength 9.599431e+01 ;
-    rsm1:hasNominalGeometry :geom_72_part_1 .
+        :split_line_72_part_1_port_1 .
 
 :split_line_72_part_2 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_72_part_2 ;
+    rsm1:hasNominalMetricLength 2.755171e+01 ;
     rsm:hasPort :split_line_72_part_2_port_0,
-        :split_line_72_part_2_port_1 ;
-    rsm:nominalLength 2.755171e+01 ;
-    rsm1:hasNominalGeometry :geom_72_part_2 .
+        :split_line_72_part_2_port_1 .
 
 :split_line_72_part_2_port_0 a rsm:Port ;
     rsm:azimuth 7.141995e+01 ;
@@ -2935,16 +2935,16 @@
     geo:asWKT "POINT (7.8524452 43.84435)" .
 
 :split_line_72_part_3 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_72_part_3 ;
+    rsm1:hasNominalMetricLength 1.69301e+02 ;
     rsm:hasPort :split_line_72_part_3_port_0,
-        :split_line_72_part_3_port_1 ;
-    rsm:nominalLength 1.69301e+02 ;
-    rsm1:hasNominalGeometry :geom_72_part_3 .
+        :split_line_72_part_3_port_1 .
 
 :split_line_73_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_73_part_0 ;
+    rsm1:hasNominalMetricLength 8.062756e+01 ;
     rsm:hasPort :split_line_73_part_0_port_0,
-        :split_line_73_part_0_port_1 ;
-    rsm:nominalLength 8.062756e+01 ;
-    rsm1:hasNominalGeometry :geom_73_part_0 .
+        :split_line_73_part_0_port_1 .
 
 :split_line_73_part_0_port_0 a rsm:Port ;
     rsm:azimuth -1.080971e+02 ;
@@ -2953,10 +2953,10 @@
     geo:asWKT "POINT (7.8529072 43.8444166)" .
 
 :split_line_73_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_73_part_1 ;
+    rsm1:hasNominalMetricLength 5.27624e+02 ;
     rsm:hasPort :split_line_73_part_1_port_0,
-        :split_line_73_part_1_port_1 ;
-    rsm:nominalLength 5.27624e+02 ;
-    rsm1:hasNominalGeometry :geom_73_part_1 .
+        :split_line_73_part_1_port_1 .
 
 :split_line_73_part_1_port_0 a rsm:Port ;
     rsm:azimuth -1.02088e+02 ;
@@ -2972,28 +2972,28 @@
     geo:asWKT "POINT (7.8583385 43.8452696)" .
 
 :split_line_73_part_2 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_73_part_2 ;
+    rsm1:hasNominalMetricLength 6.717744e+01 ;
     rsm:hasPort :split_line_73_part_2_port_0,
-        :split_line_73_part_2_port_1 ;
-    rsm:nominalLength 6.717744e+01 ;
-    rsm1:hasNominalGeometry :geom_73_part_2 .
+        :split_line_73_part_2_port_1 .
 
 :split_line_75_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_75_part_1 ;
+    rsm1:hasNominalMetricLength 5.948073e+01 ;
     rsm:hasPort :split_line_75_part_1_port_0,
-        :split_line_75_part_1_port_1 ;
-    rsm:nominalLength 5.948073e+01 ;
-    rsm1:hasNominalGeometry :geom_75_part_1 .
+        :split_line_75_part_1_port_1 .
 
 :split_line_77_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_77_part_0 ;
+    rsm1:hasNominalMetricLength 5.279635e+02 ;
     rsm:hasPort :split_line_77_part_0_port_0,
-        :split_line_77_part_0_port_1 ;
-    rsm:nominalLength 5.279635e+02 ;
-    rsm1:hasNominalGeometry :geom_77_part_0 .
+        :split_line_77_part_0_port_1 .
 
 :split_line_78_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_78_part_0 ;
+    rsm1:hasNominalMetricLength 4.104071e+01 ;
     rsm:hasPort :split_line_78_part_0_port_0,
-        :split_line_78_part_0_port_1 ;
-    rsm:nominalLength 4.104071e+01 ;
-    rsm1:hasNominalGeometry :geom_78_part_0 .
+        :split_line_78_part_0_port_1 .
 
 :split_line_78_part_0_port_1 a rsm:Port ;
     rsm:azimuth 6.037313e+01 ;
@@ -3002,16 +3002,16 @@
     geo:asWKT "POINT (7.8536636 43.8447765)" .
 
 :split_line_78_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_78_part_1 ;
+    rsm1:hasNominalMetricLength 4.535755e+02 ;
     rsm:hasPort :split_line_78_part_1_port_0,
-        :split_line_78_part_1_port_1 ;
-    rsm:nominalLength 4.535755e+02 ;
-    rsm1:hasNominalGeometry :geom_78_part_1 .
+        :split_line_78_part_1_port_1 .
 
 :split_line_80_part_0 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_80_part_0 ;
+    rsm1:hasNominalMetricLength 7.438861e+01 ;
     rsm:hasPort :split_line_80_part_0_port_0,
-        :split_line_80_part_0_port_1 ;
-    rsm:nominalLength 7.438861e+01 ;
-    rsm1:hasNominalGeometry :geom_80_part_0 .
+        :split_line_80_part_0_port_1 .
 
 :split_line_80_part_0_port_1 a rsm:Port ;
     rsm:azimuth 5.927693e+01 ;
@@ -3020,10 +3020,10 @@
     geo:asWKT "POINT (7.8533203 43.8446352)" .
 
 :split_line_80_part_1 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_80_part_1 ;
+    rsm1:hasNominalMetricLength 4.927003e+02 ;
     rsm:hasPort :split_line_80_part_1_port_0,
-        :split_line_80_part_1_port_1 ;
-    rsm:nominalLength 4.927003e+02 ;
-    rsm1:hasNominalGeometry :geom_80_part_1 .
+        :split_line_80_part_1_port_1 .
 
 :jointline_38-27-34-35-204_part_1-36-212-37-217-216-40-184-236_port_0 a rsm:Port ;
     rsm:azimuth -1.047322e+02 ;

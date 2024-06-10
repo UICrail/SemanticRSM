@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
+        <uri id="Automatically generated entry, Timestamp=1718039226052" name="http://cdm.ovh/rsm/topology/topology" uri="0.5/topology.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1718039226052" name="http://cdm.ovh/rsm/topology/topology.owl" uri="0.2/topology.rdf"/>
+        <uri id="Automatically generated entry, Timestamp=1718039226052" name="shadowed:http://cdm.ovh/rsm/topology/topology.owl" uri="0.1/topology.rdf"/>
+    </group>
+</catalog>

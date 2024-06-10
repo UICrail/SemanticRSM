@@ -187,7 +187,7 @@ def compute_nominal_metric_lengths(g: Graph) -> [int, int]:
         count_line += 1
         for geom in g.objects(line, RSM_GEOSPARQL_ADAPTER.hasNominalGeometry):
             length = linestring_length(next(g.objects(geom, GEOSPARQL.asWKT)))
-            g.add((line, RSM_TOPOLOGY.nominalLength, Literal(length)))
+            g.add((line, RSM_GEOSPARQL_ADAPTER.hasNominalMetricLength, Literal(length)))
             count_length += 1
     return count_line, count_length
 
