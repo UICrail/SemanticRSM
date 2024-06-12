@@ -4,27 +4,14 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://cdm.ovh/rsm/topology/topology#> .
+@base <http://cdm.ovh/rsm/topology/topology> .
 
 <http://cdm.ovh/rsm/topology/topology> rdf:type owl:Ontology ;
                                         owl:versionIRI <http://cdm.ovh/rsm/topology/0.7/topology> ;
                                         owl:imports <http://cdm.ovh/rsm/adapters/geosparql_adapter> ;
-                                        rdfs:comment "former nominalLength data property removed, as it is now in the geosparql adapter."@en ;
+                                        rdfs:comment """former nominalLength data property removed, as it is now provided by the geosparql adapter (hasNominalMetricLength).
+Datatypes LinearElementLength and IntrinsicCoordinate also removed."""@en ;
                                         owl:versionInfo 0.7 .
-
-#################################################################
-#    Datatypes
-#################################################################
-
-###  http://cdm.ovh/rsm/topology/topology#IntrinsicCoordinate
-:IntrinsicCoordinate rdf:type rdfs:Datatype ;
-                     rdfs:comment "A total order relation along a linear element, usually interpreted as a percentage of its nominal length. Value in [0, 1]."@en .
-
-
-###  http://cdm.ovh/rsm/topology/topology#LinearElementLength
-:LinearElementLength rdf:type rdfs:Datatype ;
-                     owl:equivalentClass xsd:decimal .
-
 
 #################################################################
 #    Object Properties
@@ -104,25 +91,49 @@
 ###  http://cdm.ovh/rsm/topology/topology#azimuth
 :azimuth rdf:type owl:DatatypeProperty ;
          rdfs:domain :LinearElement ;
-         rdfs:range xsd:decimal ;
+         rdfs:range [ rdf:type rdfs:Datatype ;
+                      owl:onDatatype xsd:decimal ;
+                      owl:withRestrictions ( [ xsd:minInclusive -180.0
+                                             ]
+                                             [ xsd:maxInclusive 180.0
+                                             ]
+                                           )
+                    ] ;
          rdfs:comment """outward azimuth at a port (of a linear element).
 \"outward\" means, seen in the direction of leaving the linear element.
 azimuth value is given with respect to North in a WGS84-based reference system.
-Value is in degrees, in the range [-180, +180] as per rdflib convention, with 0 pointing to North."""@en ;
+Expected value is in degrees, in the range [-180, +180] as per rdflib convention, with 0 pointing to North."""@en ;
          rdfs:label "azimuth"@en .
 
 
 ###  http://cdm.ovh/rsm/topology/topology#endsAt
 :endsAt rdf:type owl:DatatypeProperty ;
         rdfs:domain :LinearElementPart ;
-        rdfs:range :IntrinsicCoordinate ;
-        rdfs:comment "ends at"@en .
+        rdfs:range [ rdf:type rdfs:Datatype ;
+                     owl:onDatatype xsd:decimal ;
+                     owl:withRestrictions ( [ xsd:minInclusive 0.0
+                                            ]
+                                            [ xsd:maxInclusive 1.0
+                                            ]
+                                          )
+                   ] ;
+        rdfs:comment """intrinsic coordinate of the linear element referenced by property \"partOf\" , at which the element part ends.
+Note: endsAt value may be greater or smaller than startsAt value; there is no imposed order."""@en ;
+        rdfs:label "ends at"@en .
 
 
 ###  http://cdm.ovh/rsm/topology/topology#startsAt
 :startsAt rdf:type owl:DatatypeProperty ;
           rdfs:domain :LinearElementPart ;
-          rdfs:range :IntrinsicCoordinate ;
+          rdfs:range [ rdf:type rdfs:Datatype ;
+                       owl:onDatatype xsd:decimal ;
+                       owl:withRestrictions ( [ xsd:minInclusive 0.0
+                                              ]
+                                              [ xsd:maxInclusive 1.0
+                                              ]
+                                            )
+                     ] ;
+          rdfs:comment "intrinsic coordinate of the linear element referenced by property \"partOf\" , from which the element part starts."@en ;
           rdfs:label "starts at"@en .
 
 
@@ -148,7 +159,7 @@ Value is in degrees, in the range [-180, +180] as per rdflib convention, with 0 
 ###  http://cdm.ovh/rsm/topology/topology#LinearElementPart
 :LinearElementPart rdf:type owl:Class ;
                    rdfs:subClassOf :TopologyComponent ;
-                   rdfs:label "Linear Element Part"@en .
+                   rdfs:label "Linear element part"@en .
 
 
 ###  http://cdm.ovh/rsm/topology/topology#NetElement
@@ -158,7 +169,7 @@ Value is in degrees, in the range [-180, +180] as per rdflib convention, with 0 
                                   :LinearElement
                                   :NonlinearElement
                                 ) ;
-            rdfs:label "Net Element"@en .
+            rdfs:label "Net element"@en .
 
 
 ###  http://cdm.ovh/rsm/topology/topology#NonlinearElement
@@ -182,11 +193,21 @@ Value is in degrees, in the range [-180, +180] as per rdflib convention, with 0 
 ###  http://cdm.ovh/rsm/topology/topology#TopologyObject
 :TopologyObject rdf:type owl:Class ;
                 rdfs:subClassOf <http://www.opengis.net/ont/geosparql#Geometry> ;
-                rdfs:label "Topology Object"@en .
+                rdfs:label "Topology object"@en .
 
 
 ###  http://www.opengis.net/ont/geosparql#Geometry
 <http://www.opengis.net/ont/geosparql#Geometry> rdf:type owl:Class .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+<http://cdm.ovh/rsm/adapters/geosparql_adapter#hasNominalMetricLength> rdfs:label "has nominal metric length"@en .
+
+
+<http://www.opengis.net/ont/geosparql#hasMetricLength> rdfs:label "has metric length"@en .
 
 
 ###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
