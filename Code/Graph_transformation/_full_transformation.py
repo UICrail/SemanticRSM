@@ -6,7 +6,7 @@ from Code.Graph_transformation.step02_join_linear_elements import join_linear_el
 from Code.Import.OSM_import import osm_import
 from Code.Graph_transformation.step01_split_linear_elements import split_linestrings_in_file
 from Graph_transformation.step03_add_ports import add_ports
-from Graph_transformation.step04_port_properties import set_port_connections, set_navigabilities
+from Graph_transformation.step04_add_port_properties import set_port_connections, set_navigabilities
 
 
 def transform_osm_to_rsm(osm_geojson_path, short_name):
@@ -41,7 +41,8 @@ def transform_osm_to_rsm(osm_geojson_path, short_name):
         "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{}_with_connected_ports.ttl".format(
             short_name),
         "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{}_with_navigabilities.ttl".format(
-            short_name))
+            short_name),
+        double_slip_crossings=False)
 
     ttl_to_kml(
         "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{}_with_ports.ttl".format(
