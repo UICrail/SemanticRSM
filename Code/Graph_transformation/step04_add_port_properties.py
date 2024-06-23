@@ -138,8 +138,8 @@ def set_navigabilities(input_ttl: str, output_ttl: Optional[str] = None, double_
                     print(f'**** ERROR: no opposite port to {other_port} on same linear element')
                 # Determine which other_port corresponds to the smallest deviation angle.
                 # Navigability will only be possible with its opposite
-                lowest_deviation_index = deviation_angles.index(min(deviation_angles))
-                lowest_deviation_angle = deviation_angles[lowest_deviation_index]
+            lowest_deviation_index = deviation_angles.index(min(deviation_angles))
+            lowest_deviation_angle = deviation_angles[lowest_deviation_index]
             for index, other_port in enumerate(connected_ports_list):
                 opposite = get_opposite_port(g, other_port)
                 other_opposite = get_opposite_port(g, port)
