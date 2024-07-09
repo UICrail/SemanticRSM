@@ -12,11 +12,11 @@ from sd1_topology_import import TopologyGraph
 SD1_NAMESPACE = Namespace("http://example.org/scheibenberg/")
 
 
-def create_bindings(_sd1_graph: Graph):
-    _sd1_graph.bind('qudt', QUDT_NAMESPACE)
-    _sd1_graph.bind('rsm', RSM_TOPOLOGY_NAMESPACE)
-    _sd1_graph.bind('unit', UNIT_NAMESPACE)
-    _sd1_graph.bind('', SD1_NAMESPACE)
+def create_bindings(a_graph: Graph):
+    a_graph.bind('qudt', QUDT_NAMESPACE)
+    a_graph.bind('rsm', RSM_TOPOLOGY_NAMESPACE)
+    a_graph.bind('unit', UNIT_NAMESPACE)
+    a_graph.bind('', SD1_NAMESPACE)
 
 
 def get_infra_dict_from_xml(path: str) -> dict:
@@ -78,21 +78,21 @@ def generate_connections_from_track_edge_links(infra_dict: dict, topology_graph:
         topology_graph.add_connection(trackedge_a, position_on_a, trackedge_b, position_on_b, SD1_NAMESPACE)
 
 
-def generate_navigabilities_at_simple_points(_infra_dict: dict, _topology_graph: TopologyGraph):
+def generate_navigabilities_at_simple_points(infra_dict: dict, topology_graph: TopologyGraph):
     """in the SD1 model, navigabilities are documented, inter alia, by simple points associated with
     two track edges links (left and right, for the through and the diverted track).
     In the sample file (Scheibenberg), there are no crossings nor slip crossings."""
-    simple_point_dict = get_simple_points(_infra_dict)
+    simple_point_dict = get_simple_points(infra_dict)
     for simple_point in simple_point_dict:
         # each simple point will refer to 2 track edge links, hence 4 track edges,
         # two of which will be identical, thus designating the incoming track.
         # the other two are the "left" and "right" outgoing tracks, that we do not further differentiate.
-        teA, startOfA_int, teB, startOfB_int = get_trackedges_from_link(_infra_dict, simple_point['@pointLeft'])
-        teC, startOfC_int, teD, startOfD_int = get_trackedges_from_link(_infra_dict, simple_point['@pointRight'])
+        teA, startOfA_int, teB, startOfB_int = get_trackedges_from_link(infra_dict, simple_point['@pointLeft'])
+        teC, startOfC_int, teD, startOfD_int = get_trackedges_from_link(infra_dict, simple_point['@pointRight'])
         te_list = [(teA, startOfA_int), (teB, startOfB_int), (teC, startOfC_int), (teD, startOfD_int)]
         # find the incoming track edge (the one that occurs in both links) by using Counter()
         te_dict = Counter(te_list)
-        _topology_graph.set_navigabilities_at_simplePoint(te_dict)
+        topology_graph.set_navigabilities_at_simplePoint(te_dict)
 
 
 #######################################################################################################################
