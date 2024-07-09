@@ -50,41 +50,32 @@ def get_simple_points(_infra_dict: dict) -> list:
 def get_trackedges_from_link(infra_dict: dict, link: str) -> (str, int, str, int):
     links_dict = get_trackedge_link_dict(infra_dict)
     link_info = links_dict[link]
-    start_flags = {True: 0, False: 1}
+    start_flags = {'true': 0, 'false': 1}
     teA = link_info['@trackEdgeA']
-    start_of_A = start_flags[link_info['@startOfA']]
+    position_on_A = start_flags[link_info['@startOfA']]
     teB = link_info['@trackEdgeB']
-    start_of_B = start_flags[link_info['@startOfB']]
-    return teA, start_of_A, teB, start_of_B
+    position_on_B = start_flags[link_info['@startOfB']]
+    return teA, position_on_A, teB, position_on_B
 
 
-def generate_linear_elements_from_track_edges(_infra_dict: dict, _topology_graph: TopologyGraph):
-    trackedges = get_trackedges(_infra_dict)
+def generate_linear_elements_from_track_edges(infra_dict: dict, topology_graph: TopologyGraph):
+    trackedges = get_trackedges(infra_dict)
     for trackedge in trackedges:
         sd1id = trackedge['@id']
         length = trackedge['@length']
         unit_repr = 'qudt'
-        _topology_graph.add_trackedge_as_linearelement(sd1id, length, SD1_NAMESPACE, unit_repr)
-    _topology_graph.create_ports()
+        topology_graph.add_trackedge_as_linearelement(sd1id, length, SD1_NAMESPACE, unit_repr)
+    topology_graph.create_ports()
 
 
-def generate_connections_from_track_edge_links(_infra_dict: dict, _topology_graph: TopologyGraph):
-    trackedge_links = get_trackedge_links(_infra_dict)
+def generate_connections_from_track_edge_links(infra_dict: dict, topology_graph: TopologyGraph):
+    trackedge_links = get_trackedge_links(infra_dict)
     for trackedge_link in trackedge_links:
         trackedge_a = trackedge_link['@trackEdgeA']
         trackedge_b = trackedge_link['@trackEdgeB']
         position_on_a = 0 if trackedge_link['@startOfA'] == "true" else 1
         position_on_b = 0 if trackedge_link['@startOfB'] == "true" else 1
-        _topology_graph.add_connection(trackedge_a, position_on_a, trackedge_b, position_on_b, SD1_NAMESPACE)
-
-
-def get_trackedges_from_link(_infra_dict: dict, _link: str) -> (str, int, str, int):
-    links_dict = get_trackedge_link_dict(_infra_dict)
-    teA = links_dict[_link]['@trackEdgeA']
-    startOfA_int = 0 if links_dict[_link]['@startOfA'] else 1
-    teB = links_dict[_link]['@trackEdgeB']
-    startOfB_int = 0 if links_dict[_link]['@startOfB'] else 1
-    return teA, startOfA_int, teB, startOfB_int
+        topology_graph.add_connection(trackedge_a, position_on_a, trackedge_b, position_on_b, SD1_NAMESPACE)
 
 
 def generate_navigabilities_at_simple_points(_infra_dict: dict, _topology_graph: TopologyGraph):
