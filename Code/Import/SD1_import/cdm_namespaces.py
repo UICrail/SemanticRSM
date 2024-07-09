@@ -21,7 +21,7 @@ UNIT_NAMESPACE = Namespace('http://qudt.org/vocab/unit/')
 URI_RESERVED_CHARACTERS = {'[': '%5B', ']': '%5D', '(': '%28', ')': '%29', '>': '%3F'}
 
 
-def create_uri(sd1_identifier: str, uri_namespace: str) -> URIRef:
+def create_uri(sd1_identifier: str, uri_namespace: str = '') -> URIRef:
     """Creates a URIRef from a SD1 identifier."""
     sd1_identifier = replace_strings(sd1_identifier, URI_RESERVED_CHARACTERS)
     if not _is_valid_uri(sd1_identifier):

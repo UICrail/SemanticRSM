@@ -2,7 +2,7 @@ import rdflib
 from rdflib import BNode, URIRef, RDF, XSD, Literal
 from rdflib.term import Node
 
-from auxiliary import millimeters_to_meters
+from auxiliary import millimeters_to_meters, rotate
 from cdm_namespaces import QUDT_NAMESPACE, UNIT_NAMESPACE, RSM_TOPOLOGY_NAMESPACE, UNIT_REPRESENTATION, create_uri
 
 
@@ -59,8 +59,29 @@ class TopologyGraph:
         port_b = create_uri(trackedge_b, _namespace) + '_port_' + str(position_on_b)
         self.add_triple(port_a, RSM_TOPOLOGY_NAMESPACE.connectedWith, port_b)
 
-    def set_navigabilities_at_simplePoint(self, te_dict) -> None:
-        pass
+    def set_navigabilities_at_simplePoint(self, te_dict: dict, namespace: str) -> None:
+        incoming = None
+        for te, count in te_dict.items():
+            if count == 2:
+                incoming = te
+                break
+        if incoming:
+            del te_dict[incoming]  # keep the two outgoing tracks
+        else:
+            raise LookupError(
+                f'WARNING: no incoming track found where a point is supposed to be. Involved track elements are: {te_dict}')
 
+        # express the 2 X 2 navigabilities from the incoming track, and 2 non-navigabilities between outgoing tracks
+        incoming_port_uri = create_uri(incoming[0] + '_port_' + str(incoming[1]), namespace)
+        incoming_opposite_port_uri = create_uri(incoming[0] + '_port_' + str(1 - incoming[1]), namespace)
+        outgoing_ports = list(te_dict.keys())
+        for te, te2 in zip(outgoing_ports, rotate(outgoing_ports, 1)):
+            # reminder: use opposite port to express (non-)navigability !
+            outgoing_opposite_port_uri = create_uri(te[0] + '_port_' + str(1 - te[1]), namespace)
+            self.add_triple(incoming_port_uri, RSM_TOPOLOGY_NAMESPACE.navigableTo, outgoing_opposite_port_uri)
+            outgoing_port_uri = create_uri(te[0] + '_port_' + str(te[1]), namespace)
+            self.add_triple(outgoing_port_uri, RSM_TOPOLOGY_NAMESPACE.navigableTo, incoming_opposite_port_uri)
+            self.add_triple(create_uri(te[0] + '_port_' + str(te[1]), namespace), RSM_TOPOLOGY_NAMESPACE.nonNavigableTo,
+                            create_uri(te2[0] + '_port_' + str(1 - te2[1]), namespace))
 
-
+        return

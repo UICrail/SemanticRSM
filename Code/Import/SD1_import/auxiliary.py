@@ -20,3 +20,7 @@ def replace_strings(input_string: str, string_mapping: dict, reverse_mapping: bo
         input_string = input_string.replace((original if not reverse_mapping else replacement),
                                             (replacement if not reverse_mapping else original))
     return input_string
+
+
+def rotate(l: list, shift: int) -> list:
+    return l[shift:] + l[:shift]

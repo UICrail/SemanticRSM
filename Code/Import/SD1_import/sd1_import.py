@@ -48,14 +48,15 @@ def get_simple_points(_infra_dict: dict) -> list:
 
 
 def get_trackedges_from_link(infra_dict: dict, link_id: str) -> (str, int, str, int):
+    """returns track edge identifiers and position on trackedges (0 is startOfX = 'true')"""
     links_dict = get_trackedge_link_dict(infra_dict)
     link_info = links_dict[link_id]
     position_flags = {'true': 0, 'false': 1}
     teA = link_info['@trackEdgeA']
-    position_on_A = position_flags[link_info['@startOfA']]
+    position_on_a = position_flags[link_info['@startOfA']]
     teB = link_info['@trackEdgeB']
-    position_on_B = position_flags[link_info['@startOfB']]
-    return teA, position_on_A, teB, position_on_B
+    position_on_b = position_flags[link_info['@startOfB']]
+    return teA, position_on_a, teB, position_on_b
 
 
 def generate_linear_elements_from_track_edges(infra_dict: dict, topology_graph: TopologyGraph):
@@ -92,7 +93,7 @@ def generate_navigabilities_at_simple_points(infra_dict: dict, topology_graph: T
         te_list = [(teA, startOfA_int), (teB, startOfB_int), (teC, startOfC_int), (teD, startOfD_int)]
         # find the incoming track edge (the one that occurs in both links) by using Counter()
         te_dict = Counter(te_list)
-        topology_graph.set_navigabilities_at_simplePoint(te_dict)
+        topology_graph.set_navigabilities_at_simplePoint(te_dict, SD1_NAMESPACE)
 
 
 #######################################################################################################################
