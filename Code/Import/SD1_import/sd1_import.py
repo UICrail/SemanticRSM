@@ -47,24 +47,24 @@ def get_simple_points(_infra_dict: dict) -> list:
     return _infra_dict['ns0:functionalAreas']['ns0:functionalArea']['ns0:simplePoints']['ns0:simplePoint']
 
 
-def get_trackedges_from_link(infra_dict: dict, link: str) -> (str, int, str, int):
+def get_trackedges_from_link(infra_dict: dict, link_id: str) -> (str, int, str, int):
     links_dict = get_trackedge_link_dict(infra_dict)
-    link_info = links_dict[link]
-    start_flags = {'true': 0, 'false': 1}
+    link_info = links_dict[link_id]
+    position_flags = {'true': 0, 'false': 1}
     teA = link_info['@trackEdgeA']
-    position_on_A = start_flags[link_info['@startOfA']]
+    position_on_A = position_flags[link_info['@startOfA']]
     teB = link_info['@trackEdgeB']
-    position_on_B = start_flags[link_info['@startOfB']]
+    position_on_B = position_flags[link_info['@startOfB']]
     return teA, position_on_A, teB, position_on_B
 
 
 def generate_linear_elements_from_track_edges(infra_dict: dict, topology_graph: TopologyGraph):
     trackedges = get_trackedges(infra_dict)
     for trackedge in trackedges:
-        sd1id = trackedge['@id']
+        sd1_id = trackedge['@id']
         length = trackedge['@length']
         unit_repr = 'qudt'
-        topology_graph.add_trackedge_as_linearelement(sd1id, length, SD1_NAMESPACE, unit_repr)
+        topology_graph.add_trackedge_as_linearelement(sd1_id, length, SD1_NAMESPACE, unit_repr)
     topology_graph.create_ports()
 
 
