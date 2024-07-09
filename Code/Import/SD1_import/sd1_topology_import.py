@@ -16,28 +16,28 @@ class TopologyGraph:
             'none': self.add_length_without_unit
         }
 
-    def add_triple(self, subj: Node, predicate: Node, obj: Node):
+    def add_triple(self, subj: Node, predicate: Node, obj: Node) -> None:
         self._graph.add((subj, predicate, obj))
 
-    def add_qudt_value_node(self, some_value: str, subject: URIRef, datatype=XSD.decimal):
+    def add_qudt_value_node(self, some_value: str, subject: URIRef, datatype=XSD.decimal) -> None:
         value_node = BNode()
         self.add_triple(value_node, RDF.type, QUDT_NAMESPACE.QuantityValue)
         self.add_triple(value_node, QUDT_NAMESPACE.numericValue, Literal(some_value, datatype=datatype))
         self.add_triple(value_node, QUDT_NAMESPACE.unit, UNIT_NAMESPACE.M)
         self.add_triple(subject, RSM_TOPOLOGY_NAMESPACE.hasNominalMetricLength, value_node)
 
-    def add_qudt_length_and_unit(self, length: str, subject: URIRef):
+    def add_qudt_length_and_unit(self, length: str, subject: URIRef) -> None:
         self.add_qudt_value_node(length, subject)
 
-    def add_ucum_length_and_unit(self, length: str, subject: URIRef):
+    def add_ucum_length_and_unit(self, length: str, subject: URIRef) -> None:
         self.add_triple(subject, RSM_TOPOLOGY_NAMESPACE.hasNominalMetricLength,
                         Literal(length + ' m', datatype=XSD.string))
 
-    def add_length_without_unit(self, length: str, subject: URIRef):
+    def add_length_without_unit(self, length: str, subject: URIRef) -> None:
         self.add_triple(subject, RSM_TOPOLOGY_NAMESPACE.hasNominalMetricLength, Literal(length, datatype=XSD.decimal))
 
     def add_trackedge_as_linearelement(self, sd1id: str, length: str, namespace: str,
-                                       unit_repr: UNIT_REPRESENTATION = 'none'):
+                                       unit_repr: UNIT_REPRESENTATION = 'none') -> None:
         subject = create_uri(sd1id, namespace)
         length_in_meter = millimeters_to_meters(length)
         self.add_triple(subject, RDF.type, RSM_TOPOLOGY_NAMESPACE.LinearElement)
@@ -53,11 +53,14 @@ class TopologyGraph:
             self.add_triple(linear_element, RSM_TOPOLOGY_NAMESPACE.hasPort, port_0)
             self.add_triple(linear_element, RSM_TOPOLOGY_NAMESPACE.hasPort, port_1)
 
-    def add_connection(self, trackedge_a: str, position_on_a: int, trackedge_b: str, position_on_b: int, _namespace: str):
+    def add_connection(self, trackedge_a: str, position_on_a: int, trackedge_b: str, position_on_b: int,
+                       _namespace: str) -> None:
         port_a = create_uri(trackedge_a, _namespace) + '_port_' + str(position_on_a)
         port_b = create_uri(trackedge_b, _namespace) + '_port_' + str(position_on_b)
         self.add_triple(port_a, RSM_TOPOLOGY_NAMESPACE.connectedWith, port_b)
 
-    def add_connexity(self):
-        """called trackEdgeLink in SD1 model"""
+    def set_navigabilities_at_simplePoint(self, te_dict) -> None:
         pass
+
+
+

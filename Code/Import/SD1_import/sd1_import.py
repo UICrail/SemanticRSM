@@ -1,4 +1,5 @@
 import xml.etree.ElementTree as Et
+from collections import Counter
 
 import xmltodict
 from rdflib import Graph
@@ -11,6 +12,13 @@ from sd1_topology_import import TopologyGraph
 SD1_NAMESPACE = Namespace("http://example.org/scheibenberg/")
 
 
+def create_bindings(_sd1_graph: Graph):
+    _sd1_graph.bind('qudt', QUDT_NAMESPACE)
+    _sd1_graph.bind('rsm', RSM_TOPOLOGY_NAMESPACE)
+    _sd1_graph.bind('unit', UNIT_NAMESPACE)
+    _sd1_graph.bind('', SD1_NAMESPACE)
+
+
 def get_infra_dict_from_xml(path: str) -> dict:
     # Et.register_namespace(prefix = "", uri=SD1_NAMESPACE)
     xml_data = Et.parse(path).getroot()
@@ -19,16 +27,40 @@ def get_infra_dict_from_xml(path: str) -> dict:
     return infra_dict
 
 
-def create_bindings(_sd1_graph: Graph):
-    _sd1_graph.bind('qudt', QUDT_NAMESPACE)
-    _sd1_graph.bind('rsm', RSM_TOPOLOGY_NAMESPACE)
-    _sd1_graph.bind('unit', UNIT_NAMESPACE)
-    _sd1_graph.bind('', SD1_NAMESPACE)
+def get_trackedges(infra_dict: dict) -> list:
+    return infra_dict['ns0:topoAreas']['ns0:topoArea']['ns0:trackEdges']['ns0:trackEdge']
+
+
+def get_trackedge_dict(infra_dict: dict) -> dict:
+    return {link['@id']: link for link in get_trackedges(infra_dict)}
+
+
+def get_trackedge_links(_infra_dict: dict) -> list:
+    return _infra_dict['ns0:topoAreas']['ns0:topoArea']['ns0:trackEdgeLinks']['ns0:trackEdgeLink']
+
+
+def get_trackedge_link_dict(infra_dict: dict) -> dict:
+    return {link['@id']: link for link in get_trackedge_links(infra_dict)}
+
+
+def get_simple_points(_infra_dict: dict) -> list:
+    return _infra_dict['ns0:functionalAreas']['ns0:functionalArea']['ns0:simplePoints']['ns0:simplePoint']
+
+
+def get_trackedges_from_link(infra_dict: dict, link: str) -> (str, int, str, int):
+    links_dict = get_trackedge_link_dict(infra_dict)
+    link_info = links_dict[link]
+    start_flags = {True: 0, False: 1}
+    teA = link_info['@trackEdgeA']
+    start_of_A = start_flags[link_info['@startOfA']]
+    teB = link_info['@trackEdgeB']
+    start_of_B = start_flags[link_info['@startOfB']]
+    return teA, start_of_A, teB, start_of_B
 
 
 def generate_linear_elements_from_track_edges(_infra_dict: dict, _topology_graph: TopologyGraph):
-    trackedge_dict = _infra_dict['ns0:topoAreas']['ns0:topoArea']['ns0:trackEdges']['ns0:trackEdge']
-    for trackedge in trackedge_dict:
+    trackedges = get_trackedges(_infra_dict)
+    for trackedge in trackedges:
         sd1id = trackedge['@id']
         length = trackedge['@length']
         unit_repr = 'qudt'
@@ -37,8 +69,8 @@ def generate_linear_elements_from_track_edges(_infra_dict: dict, _topology_graph
 
 
 def generate_connections_from_track_edge_links(_infra_dict: dict, _topology_graph: TopologyGraph):
-    trackedge_link_dict = _infra_dict['ns0:topoAreas']['ns0:topoArea']['ns0:trackEdgeLinks']['ns0:trackEdgeLink']
-    for trackedge_link in trackedge_link_dict:
+    trackedge_links = get_trackedge_links(_infra_dict)
+    for trackedge_link in trackedge_links:
         trackedge_a = trackedge_link['@trackEdgeA']
         trackedge_b = trackedge_link['@trackEdgeB']
         position_on_a = 0 if trackedge_link['@startOfA'] == "true" else 1
@@ -46,17 +78,37 @@ def generate_connections_from_track_edge_links(_infra_dict: dict, _topology_grap
         _topology_graph.add_connection(trackedge_a, position_on_a, trackedge_b, position_on_b, SD1_NAMESPACE)
 
 
+def get_trackedges_from_link(_infra_dict: dict, _link: str) -> (str, int, str, int):
+    links_dict = get_trackedge_link_dict(_infra_dict)
+    teA = links_dict[_link]['@trackEdgeA']
+    startOfA_int = 0 if links_dict[_link]['@startOfA'] else 1
+    teB = links_dict[_link]['@trackEdgeB']
+    startOfB_int = 0 if links_dict[_link]['@startOfB'] else 1
+    return teA, startOfA_int, teB, startOfB_int
+
+
 def generate_navigabilities_at_simple_points(_infra_dict: dict, _topology_graph: TopologyGraph):
-    simple_point_dict = _infra_dict['ns0:functionalAreas']['ns0:functionalArea']['ns0:simplePoints'][
-        'ns0:simplePoint']
+    """in the SD1 model, navigabilities are documented, inter alia, by simple points associated with
+    two track edges links (left and right, for the through and the diverted track).
+    In the sample file (Scheibenberg), there are no crossings nor slip crossings."""
+    simple_point_dict = get_simple_points(_infra_dict)
     for simple_point in simple_point_dict:
-        point_left = simple_point['@pointLeft']
-        point_right = simple_point['@pointRight']
+        # each simple point will refer to 2 track edge links, hence 4 track edges,
+        # two of which will be identical, thus designating the incoming track.
+        # the other two are the "left" and "right" outgoing tracks, that we do not further differentiate.
+        teA, startOfA_int, teB, startOfB_int = get_trackedges_from_link(_infra_dict, simple_point['@pointLeft'])
+        teC, startOfC_int, teD, startOfD_int = get_trackedges_from_link(_infra_dict, simple_point['@pointRight'])
+        te_list = [(teA, startOfA_int), (teB, startOfB_int), (teC, startOfC_int), (teD, startOfD_int)]
+        # find the incoming track edge (the one that occurs in both links) by using Counter()
+        te_dict = Counter(te_list)
+        _topology_graph.set_navigabilities_at_simplePoint(te_dict)
 
 
 #######################################################################################################################
 # Main routine
 #######################################################################################################################
+
+
 def import_sd1_infra_data(infrastructure_path: str):
     sd1_infra_dict = get_infra_dict_from_xml(infrastructure_path)
 
