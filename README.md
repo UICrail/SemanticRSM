@@ -52,7 +52,7 @@ Other use cases may come from other pieces of EU Law, such as TAF TSI, or from o
     - based on OpenStreetMap, using [Overpass Turbo](https://overpass-turbo.eu/).
 
 ## Languages
-RDF, [RDF-star](https://www.w3.org/2022/08/rdf-star-wg-charter/), OWL, SHACL (for constraints), SPARQL (for queries), SPARQL-star, Python; possibly SWI Prolog.
+RDF, [RDF-star](https://www.w3.org/2022/08/rdf-star-wg-charter/), OWL, SHACL (for constraints), SPARQL (for queries), SPARQL-star, Python; some SWI Prolog (for demo purposes).
 
 # Documentation
 ## Wiki
