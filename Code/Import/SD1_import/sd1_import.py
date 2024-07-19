@@ -3,19 +3,21 @@ from collections import Counter
 
 import xmltodict
 from rdflib import Graph
-from rdflib import Namespace
 
+from Import.SD1_import.cdm_namespaces import SD1_NAMESPACE, IFC_ADAPTER_NAMESPACE
+from Import.SD1_import.sd1_alignment_import import AlignmentGraph
 from Source_data.data_folders import data_root
-from cdm_namespaces import RSM_TOPOLOGY_NAMESPACE, QUDT_NAMESPACE, UNIT_NAMESPACE
+from cdm_namespaces import RSM_TOPOLOGY_NAMESPACE, QUDT_NAMESPACE, UNIT_NAMESPACE, GEOSPARQL_NAMESPACE, IFC_NAMESPACE
 from sd1_topology_import import TopologyGraph
-
-SD1_NAMESPACE = Namespace("http://example.org/scheibenberg/")
 
 
 def create_bindings(a_graph: Graph):
     a_graph.bind('qudt', QUDT_NAMESPACE)
     a_graph.bind('rsm', RSM_TOPOLOGY_NAMESPACE)
     a_graph.bind('unit', UNIT_NAMESPACE)
+    a_graph.bind('geosparql', GEOSPARQL_NAMESPACE)
+    a_graph.bind('ífc', IFC_NAMESPACE)
+    a_graph.bind('ifc_adapter', IFC_ADAPTER_NAMESPACE)
     a_graph.bind('', SD1_NAMESPACE)
 
 
@@ -45,6 +47,10 @@ def get_trackedge_link_dict(infra_dict: dict) -> dict:
 
 def get_simple_points(_infra_dict: dict) -> list:
     return _infra_dict['ns0:functionalAreas']['ns0:functionalArea']['ns0:simplePoints']['ns0:simplePoint']
+
+
+def get_horizontal_alignment(_infra_dict: dict) -> list:
+    return _infra_dict['ns0:geometryAreas']['ns0:geometryArea']['ns0:trackEdgeGeometries']['ns0:trackEdgeGeometry']
 
 
 def get_trackedges_from_link(infra_dict: dict, link_id: str) -> (str, int, str, int):
@@ -96,6 +102,11 @@ def generate_navigabilities_at_simple_points(infra_dict: dict, topology_graph: T
         topology_graph.set_navigabilities_at_simplePoint(te_dict, SD1_NAMESPACE)
 
 
+def generate_horizontal_alignment(infra_dict: dict, topology_graph: AlignmentGraph):
+    """The SD1 model closely follows IfcAlignment"""
+    pass
+
+
 #######################################################################################################################
 # Main routine
 #######################################################################################################################
@@ -111,6 +122,9 @@ def import_sd1_infra_data(infrastructure_path: str):
     generate_linear_elements_from_track_edges(sd1_infra_dict, topology_graph)
     generate_connections_from_track_edge_links(sd1_infra_dict, topology_graph)
     generate_navigabilities_at_simple_points(sd1_infra_dict, topology_graph)
+
+    alignment_graph = AlignmentGraph(sd1_graph, sd1_infra_dict)
+    alignment_graph.generate_alignments()
 
 
 if __name__ == '__main__':

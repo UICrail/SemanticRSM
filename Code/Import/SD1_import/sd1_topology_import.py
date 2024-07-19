@@ -1,23 +1,20 @@
 import rdflib
 from rdflib import BNode, URIRef, RDF, XSD, Literal
-from rdflib.term import Node
 
-from auxiliary import millimeters_to_meters, rotate
+from Import.SD1_import.helper_classes import SubGraph
 from cdm_namespaces import QUDT_NAMESPACE, UNIT_NAMESPACE, RSM_TOPOLOGY_NAMESPACE, UNIT_REPRESENTATION, create_uri
+from helper_functions import millimeters_to_meters, rotate
 
 
-class TopologyGraph:
+class TopologyGraph(SubGraph):
 
     def __init__(self, graph: rdflib.Graph):
-        self._graph = graph
+        super().__init__(graph)
         self.express_length_and_unit = {
             'ucum': self.add_ucum_length_and_unit,
             'qudt': self.add_qudt_length_and_unit,
             'none': self.add_length_without_unit
         }
-
-    def add_triple(self, subj: Node, predicate: Node, obj: Node) -> None:
-        self._graph.add((subj, predicate, obj))
 
     def add_qudt_value_node(self, some_value: str, subject: URIRef, datatype=XSD.decimal) -> None:
         value_node = BNode()

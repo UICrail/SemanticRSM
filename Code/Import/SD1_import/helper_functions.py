@@ -1,3 +1,6 @@
+import datetime
+
+
 def millimeters_to_meters(some_length_in_integer_mm: str) -> str:
     """
     From string expressing lengths in integer millimeter, to string expressing the same in meters (decimal notation)
@@ -24,3 +27,15 @@ def replace_strings(input_string: str, string_mapping: dict, reverse_mapping: bo
 
 def rotate(l: list, shift: int) -> list:
     return l[shift:] + l[:shift]
+
+def timestamp_from_date(date:str) -> int:
+    """returns number of seconds elapsed since 1/1/1970 00:00:00 UTC+0, as defined in IEEE Std 1003.1.
+    :param date: 'YYYY-MM-DD', assumed to be in UTC+0
+    :return: integer number of seconds, conforming IfcTimeStamp definition"""
+    #TODO: use explicit timezone info (in the present version, local timezone is assumed)
+    year, month, day = [int(x) for x in date.split('-')]
+    this_date = datetime.datetime(year, month, day)
+    return int(this_date.timestamp())
+
+
+
