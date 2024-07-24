@@ -36,6 +36,13 @@
         <entry key="https://lov.linkeddata.es/dataset/lov/">
           <value>
             <map>
+              <entry key="http://qudt.org/schema/qudt">
+                <value>
+                  <set>
+                    <option value="urn:tag:lnkd.tech,2023:digest:sha-256/1470F67991C12E485D0D21FC0A89033E267ECE008BEBAC13738B9547A045BA1F" />
+                  </set>
+                </value>
+              </entry>
               <entry key="http://www.opengis.net/ont/geosparql">
                 <value>
                   <set>

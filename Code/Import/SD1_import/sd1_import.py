@@ -102,28 +102,25 @@ def generate_navigabilities_at_simple_points(infra_dict: dict, topology_graph: T
         topology_graph.set_navigabilities_at_simplePoint(te_dict, SD1_NAMESPACE)
 
 
-def generate_horizontal_alignment(infra_dict: dict, topology_graph: AlignmentGraph):
-    """The SD1 model closely follows IfcAlignment"""
-    pass
-
-
 #######################################################################################################################
 # Main routine
 #######################################################################################################################
 
 
-def import_sd1_infra_data(infrastructure_path: str):
+def import_sd1_infra_data(infrastructure_path: str, origin_easting: float, origin_northing: float):
     sd1_infra_dict = get_infra_dict_from_xml(infrastructure_path)
 
     # RSM import statement; not used
     # sd1_graph.add((URIRef(SD1_NAMESPACE), OWL.imports, URIRef(RSM_TOPOLOGY_NAMESPACE)))
+
+    # TODO: grid reference system should be in the signature too. For the time being, we assume EPSG:25833 to be always valid.
 
     topology_graph = TopologyGraph(sd1_graph)
     generate_linear_elements_from_track_edges(sd1_infra_dict, topology_graph)
     generate_connections_from_track_edge_links(sd1_infra_dict, topology_graph)
     generate_navigabilities_at_simple_points(sd1_infra_dict, topology_graph)
 
-    alignment_graph = AlignmentGraph(sd1_graph, sd1_infra_dict)
+    alignment_graph = AlignmentGraph(sd1_graph, sd1_infra_dict, origin_easting, origin_northing)
     alignment_graph.generate_alignments()
 
 
@@ -131,5 +128,8 @@ if __name__ == '__main__':
     sd1_graph = Graph()
     create_bindings(sd1_graph)
     infra_path = data_root + "/scheibenberg/infra_v0.4.2.xml"
-    import_sd1_infra_data(infra_path)
-    sd1_graph.print()
+    # Position of Scheibenberg in EPSG:25833 (ETRS89 / UTM zone 33N); see https://epsg.io/25833
+    scheibenberg_easting = 351807.813258
+    scheibenberg_northing = 5600586.321098
+    import_sd1_infra_data(infra_path, scheibenberg_easting, scheibenberg_northing)
+    sd1_graph.serialize('scheibenberg.ttl')
