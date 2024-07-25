@@ -113,10 +113,6 @@ def set_navigabilities(input_ttl: str, output_ttl: Optional[str] = None, double_
                     else:
                         predicate = RSM_TOPOLOGY.nonNavigableTo
                     g.add((port, predicate, opposite))
-                    # We assume all navigabilities to be bidirectional by default.
-                    # Also, connectedTo is a symmetric property but the listed connectedWith properties
-                    # are expressed one way. Consequently, the navigability the other way round is
-                    # expressed below:
                     other_opposite = opposite_port(g, port)
                     if other_opposite:
                         g.add((other_port, predicate, other_opposite))
