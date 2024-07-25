@@ -10,8 +10,8 @@ from cdm_namespaces import IFC_NAMESPACE, SD1_NAMESPACE, IFC_ADAPTER_NAMESPACE, 
 class AlignmentGraph(SubGraph):
     def __init__(self, graph: rdflib.Graph, infra_dict: dict, origin_easting: float, origin_northing: float):
         super().__init__(graph)
+        self._trackedge_length_dict = {}  # key: URIRef, value: float, in millimeter
         self.infra_dict = infra_dict
-        self.trackedge_length_dict = self.get_trackedge_length_dict()  # key: URIRef, value: float, in millimeter
         self.IfcRelNests_IfcAlignment: BNode | None = None  # links IfcAlignmentHorizontal etc. to IfcAlignment
         self.IfcRelNests_IfcAlignmentSegment: BNode | None = None  # links segments to IfcAlignmentHorizontal
         # attributes for IfcRelNests instances, extracted from geometryArea
@@ -20,13 +20,18 @@ class AlignmentGraph(SubGraph):
         self.OriginGridCoordinates = (origin_easting, origin_northing)
 
     @property
-    def trackedge_geometry_list(self):
-        return self.infra_dict['ns0:geometryAreas']['ns0:geometryArea']['ns0:trackEdgeGeometries'][
-            'ns0:trackEdgeGeometry']
+    def trackedge_length_dict(self):
+        if not self._trackedge_length_dict:
+            self._trackedge_length_dict = self.compute_trackedge_length_dict()
+        return self._trackedge_length_dict
 
     @property
     def geometry_area(self):
         return self.infra_dict['ns0:geometryAreas']['ns0:geometryArea']
+
+    @property
+    def trackedge_geometry_list(self):
+        return self.geometry_area['ns0:trackEdgeGeometries']['ns0:trackEdgeGeometry']
 
     @property
     def trackedge_geometry_area_id(self):
@@ -34,21 +39,20 @@ class AlignmentGraph(SubGraph):
 
     @property
     def is_3D(self):
-        return True if self.infra_dict['ns0:geometryAreas']['ns0:geometryArea']['@alignment3d'] == 'true' else False
+        return True if self.geometry_area['@alignment3d'] == 'true' else False
 
     @property
     def trackedge_geometry_dict(self):
         """has four items, keys being: @id, ns0:horizontalAlignment, ns0:verticalAlignment, ns0:cantPoints"""
         return {trackedge['@id']: trackedge for trackedge in self.trackedge_geometry_list}
 
-    def get_trackedge_length_dict(self) -> dict:
+    def compute_trackedge_length_dict(self) -> dict:
         trackedge_list = self.infra_dict['ns0:topoAreas']['ns0:topoArea']['ns0:trackEdges']['ns0:trackEdge']
-        self.trackedge_length_dict = {}
-        for trackedge in trackedge_list:
-            self.trackedge_length_dict[create_uri(trackedge['@id'], SD1_NAMESPACE)] = float(trackedge['@length'])
-        return self.trackedge_length_dict
+        trackedge_length_dict = {create_uri(trackedge['@id'], SD1_NAMESPACE): float(trackedge['@length']) for trackedge
+                                 in trackedge_list}
+        return trackedge_length_dict
 
-    def generate_alignments(self):
+    def generate_context_info(self):
         self.RelNestName = 'geometry_area_' + self.trackedge_geometry_area_id
         # this one will be targeted by many properties:
         self.OwnerHistory = create_uri('alignment-data-last-owned-by', SD1_NAMESPACE)
@@ -61,10 +65,11 @@ class AlignmentGraph(SubGraph):
         self.add_triple(owning_user, RDF.type, IFC_NAMESPACE.IfcPersonAndOrganization)
         self.add_triple(self.OwnerHistory, IFC_NAMESPACE.owningUser_IfcOwnerHistory, owning_user)
 
+    def generate_alignments(self):
         for trackedge, trackedge_geometry_dict in self.trackedge_geometry_dict.items():
             self.generate_alignment(create_uri(trackedge, SD1_NAMESPACE), trackedge_geometry_dict, self.is_3D)
 
-    def generate_alignment(self, trackedge_uri: URIRef, geometry_dict: dict, is_3d: bool = False):
+    def generate_alignment(self, trackedge_uri: URIRef, trackedge_geometry_dict: dict, is_3d: bool = False):
         # create IfcAlignment instance (NOT as a blank node, conforming IFC)
         this_alignment_uri = create_uri(extract_identifier(trackedge_uri) + '_alignment', SD1_NAMESPACE)
         self.add_triple(this_alignment_uri, RDF.type, IFC_NAMESPACE.IfcAlignment)
@@ -90,7 +95,7 @@ class AlignmentGraph(SubGraph):
         self.add_triple(this_horizontal_alignment_uri, RDF.type, IFC_NAMESPACE.IfcAlignmentHorizontal)
         self.add_triple(nest_uri, IFC_NAMESPACE.relatedObjects_IfcRelNests, this_horizontal_alignment_uri)
 
-        horizontal_geometry_list = geometry_dict['ns0:horizontalAlignment']['ns0:horizontalAlignmentItem']
+        horizontal_geometry_list = trackedge_geometry_dict['ns0:horizontalAlignment']['ns0:horizontalAlignmentItem']
         if not isinstance(horizontal_geometry_list, list):  # case of a single dict instead of a list of >1 dict
             horizontal_geometry_list = [horizontal_geometry_list]
 
@@ -149,8 +154,8 @@ class AlignmentGraph(SubGraph):
             previous_segment_params_uri = segment_params_uri
             previous_pos = pos
 
-        # deal with last segment, linking it to an empty object (as per IFC)
-        # TODO: IFC alignment suggests to use zero-length element instead, not telling why. Check.
+        # finally, deal with last segment, linking it to an empty object (as per IFC)
+        # TODO: IFC alignment suggests to use zero-length element instead, not telling why. Check. Maybe that's to have the StartPoint of that last element acting as an endpoint to the segment chain...
         empty_obj = BNode()
         self.add_triple(empty_obj, RDF.type, IFC_NAMESPACE.IfcObjectDefinition_EmptyList)
         self.add_triple(previous_segment_uri, IFC_NAMESPACE.hasNext, empty_obj)
@@ -195,13 +200,8 @@ class AlignmentGraph(SubGraph):
         self.add_triple(node, IFC_NAMESPACE.startPoint_IfcAlignmentHorizontalSegment,
                         Literal("to be calculated", datatype=XSD.string))
 
-    def generate_cartesian_point(self, node: BNode, longitude: float, latitude: float, target_epsg: str = "3034"):
+    def generate_cartesian_point(self, point_node: BNode, easting: float, northing: float):
         """Assume SD1 geo coords use WGS84 or ETRS89 (deemed equivalent here).
         Not used for the time being, as no (lon, lat) coordinates could be found in the SD1 sample data"""
-        import pyproj
-        crs_4326 = pyproj.CRS("WGS84")
-        target_crs = pyproj.CRS(f"EPSG:{target_epsg}")
-        crs_transformer = pyproj.Transformer.from_crs(crs_4326, target_crs, always_xy=True)
-        x, y = crs_transformer.transform(longitude, latitude)
-        self.add_triple(node, IFC_NAMESPACE.coordinates_IfcCartesianPoint,
-                        Literal(f'POINT({x} {y})', datatype=IFC_NAMESPACE.IfcCartesianPoint))
+        self.add_triple(point_node, RDF.type, IFC_NAMESPACE.IfcCartesianPoint)
+        self.add_triple(point_node, IFC_NAMESPACE.coordinates_IfcCartesianPoint, Literal(f'({easting},  {northing})'))

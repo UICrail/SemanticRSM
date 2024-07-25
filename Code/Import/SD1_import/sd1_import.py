@@ -121,6 +121,7 @@ def import_sd1_infra_data(infrastructure_path: str, origin_easting: float, origi
     generate_navigabilities_at_simple_points(sd1_infra_dict, topology_graph)
 
     alignment_graph = AlignmentGraph(sd1_graph, sd1_infra_dict, origin_easting, origin_northing)
+    alignment_graph.generate_context_info()
     alignment_graph.generate_alignments()
 
 
