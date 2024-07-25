@@ -29,6 +29,13 @@ def get_infra_dict_from_xml(path: str) -> dict:
     return infra_dict
 
 
+def get_map_dict_from_xml(path: str) -> dict:
+    xml_data = Et.parse(path).getroot()
+    xml_string = Et.tostring(xml_data, encoding="utf-8", method="xml")  # needed to avoid invalid token error
+    map_dict = xmltodict.parse(xml_string)['ns0:mapMgmt']['ns0:mapAreas']['ns0:mapArea']
+    return map_dict
+
+
 def get_trackedges(infra_dict: dict) -> list:
     return infra_dict['ns0:topoAreas']['ns0:topoArea']['ns0:trackEdges']['ns0:trackEdge']
 
@@ -107,8 +114,9 @@ def generate_navigabilities_at_simple_points(infra_dict: dict, topology_graph: T
 #######################################################################################################################
 
 
-def import_sd1_infra_data(infrastructure_path: str, origin_easting: float, origin_northing: float):
+def import_sd1_infra_data(infrastructure_path: str, map_path: str):
     sd1_infra_dict = get_infra_dict_from_xml(infrastructure_path)
+    sd1_map_dict = get_map_dict_from_xml(map_path)
 
     # RSM import statement; not used
     # sd1_graph.add((URIRef(SD1_NAMESPACE), OWL.imports, URIRef(RSM_TOPOLOGY_NAMESPACE)))
@@ -120,8 +128,8 @@ def import_sd1_infra_data(infrastructure_path: str, origin_easting: float, origi
     generate_connections_from_track_edge_links(sd1_infra_dict, topology_graph)
     generate_navigabilities_at_simple_points(sd1_infra_dict, topology_graph)
 
-    alignment_graph = AlignmentGraph(sd1_graph, sd1_infra_dict, origin_easting, origin_northing)
-    alignment_graph.generate_context_info()
+    alignment_graph = AlignmentGraph(sd1_graph, sd1_infra_dict, sd1_map_dict)
+    alignment_graph.get_context_info()
     alignment_graph.generate_alignments()
 
 
@@ -129,8 +137,9 @@ if __name__ == '__main__':
     sd1_graph = Graph()
     create_bindings(sd1_graph)
     infra_path = data_root + "/scheibenberg/infra_v0.4.2.xml"
+    map_path = data_root + "/scheibenberg/map_v0.4.2.xml"
     # Position of Scheibenberg in EPSG:25833 (ETRS89 / UTM zone 33N); see https://epsg.io/25833
-    scheibenberg_easting = 351807.813258
-    scheibenberg_northing = 5600586.321098
-    import_sd1_infra_data(infra_path, scheibenberg_easting, scheibenberg_northing)
+    # scheibenberg_easting = 351807.813258
+    # scheibenberg_northing = 5600586.321098
+    import_sd1_infra_data(infra_path, map_path)
     sd1_graph.serialize('scheibenberg.ttl')
