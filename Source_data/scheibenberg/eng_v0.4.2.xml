@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<engArea xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="3c301633-c819-423d-b783-19c7ff48780e"
+  defaultSleepersType="unknownSleepersType" xmlns="https://erju.org/eng"
+  xsi:schemaLocation="https://erju.org/eng eng.xsd">
+  <simplePoints>
+    <simplePoint id="W1" tipShift="0" bladeLength="0">
+      <foulingPoints>
+        <foulingPoint ref="W1 Fouling Point Left" />
+        <foulingPoint ref="W1 Fouling Point Right" />
+      </foulingPoints>
+    </simplePoint>
+    <simplePoint id="W6" tipShift="0" bladeLength="0">
+      <foulingPoints>
+        <foulingPoint ref="W6 Fouling Point Left" />
+        <foulingPoint ref="W6 Fouling Point Right" />
+      </foulingPoints>
+    </simplePoint>
+    <simplePoint id="W7" tipShift="0" bladeLength="0">
+      <foulingPoints>
+        <foulingPoint ref="W7 Fouling Point Left" />
+        <foulingPoint ref="W7 Fouling Point Right" />
+      </foulingPoints>
+    </simplePoint>
+    <simplePoint id="W9" tipShift="0" bladeLength="0">
+      <foulingPoints>
+        <foulingPoint ref="W9 Fouling Point Left" />
+        <foulingPoint ref="W9 Fouling Point Right" />
+      </foulingPoints>
+    </simplePoint>
+    <simplePoint id="W10" tipShift="0" bladeLength="0">
+      <foulingPoints>
+        <foulingPoint ref="W10 Fouling Point Left" />
+        <foulingPoint ref="W10 Fouling Point Right" />
+      </foulingPoints>
+    </simplePoint>
+    <simplePoint id="W21" tipShift="0" bladeLength="0">
+      <foulingPoints>
+        <foulingPoint ref="W21 Fouling Point Left" />
+        <foulingPoint ref="W21 Fouling Point Right" />
+      </foulingPoints>
+    </simplePoint>
+    <simplePoint id="W22" tipShift="0" bladeLength="0">
+      <foulingPoints>
+        <foulingPoint ref="W22 Fouling Point Left" />
+        <foulingPoint ref="W22 Fouling Point Right" />
+      </foulingPoints>
+    </simplePoint>
+    <simplePoint id="W11" tipShift="0" bladeLength="0">
+      <foulingPoints>
+        <foulingPoint ref="W11 Fouling Point Left" />
+        <foulingPoint ref="W11 Fouling Point Right" />
+      </foulingPoints>
+    </simplePoint>
+  </simplePoints>
+  <foulingPoints>
+    <foulingPoint id="W1 Fouling Point Left" name="W1 Fouling Point Left" clearancePoint="0">
+      <spotLocation trackEdge="[([Main],10470.643)-&gt;([Main],10822.043)]" pos="44645"
+      />
+    </foulingPoint>
+    <foulingPoint id="W1 Fouling Point Right" name="W1 Fouling Point Right" clearancePoint="0">
+      <spotLocation trackEdge="[([3],0.000)-&gt;([3],518.233)]" pos="44682"
+      />
+    </foulingPoint>
+    <foulingPoint id="W6 Fouling Point Left" name="W6 Fouling Point Left" clearancePoint="0">
+      <spotLocation trackEdge="[([6-1],0.000)-&gt;([6-1],36.217)]" pos="31593"
+      />
+    </foulingPoint>
+    <foulingPoint id="W6 Fouling Point Right" name="W6 Fouling Point Right" clearancePoint="0">
+      <spotLocation trackEdge="[([1],217.828)-&gt;([1],388.653)]" pos="31593"
+      />
+    </foulingPoint>
+    <foulingPoint id="W7 Fouling Point Left" name="W7 Fouling Point Left" clearancePoint="0">
+      <spotLocation trackEdge="[([6-1],0.000)-&gt;([6-1],36.217)]" pos="4625"
+      />
+    </foulingPoint>
+    <foulingPoint id="W7 Fouling Point Right" name="W7 Fouling Point Right" clearancePoint="0">
+      <spotLocation trackEdge="[([6],0.000)-&gt;([6],118.521)]" pos="86929"
+      />
+    </foulingPoint>
+    <foulingPoint id="W9 Fouling Point Left" name="W9 Fouling Point Left" clearancePoint="0">
+      <spotLocation trackEdge="[([1],217.828)-&gt;([1],388.653)]" pos="90977"
+      />
+    </foulingPoint>
+    <foulingPoint id="W9 Fouling Point Right" name="W9 Fouling Point Right" clearancePoint="0">
+      <spotLocation trackEdge="[([6],118.521)-&gt;([6],254.457)]" pos="55129"
+      />
+    </foulingPoint>
+    <foulingPoint id="W10 Fouling Point Left" name="W10 Fouling Point Left" clearancePoint="0">
+      <spotLocation trackEdge="[([Main],10470.643)-&gt;([Main],10822.043)]" pos="319437"
+      />
+    </foulingPoint>
+    <foulingPoint id="W10 Fouling Point Right" name="W10 Fouling Point Right" clearancePoint="0">
+      <spotLocation trackEdge="[([6],254.457)-&gt;([6],295.524)]" pos="8996"
+      />
+    </foulingPoint>
+    <foulingPoint id="W21 Fouling Point Left" name="W21 Fouling Point Left" clearancePoint="0">
+      <spotLocation trackEdge="[([3],518.233)-&gt;([3],1394.082)]" pos="31971"
+      />
+    </foulingPoint>
+    <foulingPoint id="W21 Fouling Point Right" name="W21 Fouling Point Right" clearancePoint="0">
+      <spotLocation trackEdge="[([21],0.000)-&gt;([21],109.560)]" pos="27969"
+      />
+    </foulingPoint>
+    <foulingPoint id="W22 Fouling Point Left" name="W22 Fouling Point Left" clearancePoint="0">
+      <spotLocation trackEdge="[([21],109.560)-&gt;([21],6366.940)]" pos="32575"
+      />
+    </foulingPoint>
+    <foulingPoint id="W22 Fouling Point Right" name="W22 Fouling Point Right" clearancePoint="0">
+      <spotLocation trackEdge="[([22],0.000)-&gt;([22],2757.878)]" pos="32575"
+      />
+    </foulingPoint>
+    <foulingPoint id="W11 Fouling Point Left" name="W11 Fouling Point Left" clearancePoint="0">
+      <spotLocation trackEdge="[([3],518.233)-&gt;([3],1394.082)]" pos="819338"
+      />
+    </foulingPoint>
+    <foulingPoint id="W11 Fouling Point Right" name="W11 Fouling Point Right" clearancePoint="0">
+      <spotLocation trackEdge="[([Main],10822.043)-&gt;([Main],11846.159)]" pos="971642"
+      />
+    </foulingPoint>
+    <foulingPoint id="b68590d9-95af-49e3-84fd-21e91a1a9545" name="Prb.fest. BufferStop"
+      clearancePoint="0">
+      <spotLocation trackEdge="[([6],0.000)-&gt;([6],118.521)]" pos="4000"
+      />
+    </foulingPoint>
+    <foulingPoint id="5ce79d55-b2e9-4396-8d19-311c67d61af1" name="Prb.fest. BufferStop"
+      clearancePoint="0">
+      <spotLocation trackEdge="[([1],0.000)-&gt;([1],217.828)]" pos="42"
+      />
+    </foulingPoint>
+    <foulingPoint id="d62e0253-a1ca-48f0-a0ca-b28c5e0e1fe0" name="Prb.fest. BufferStop"
+      clearancePoint="0">
+      <spotLocation trackEdge="[([22],0.000)-&gt;([22],2757.878)]" pos="2757878"
+      />
+    </foulingPoint>
+    <foulingPoint id="56bd742e-5b79-468c-b9e2-38089c406b49" name="Prb.fest. BufferStop"
+      clearancePoint="0">
+      <spotLocation trackEdge="[([21],109.560)-&gt;([21],6366.940)]" pos="6257380"
+      />
+    </foulingPoint>
+  </foulingPoints>
+</engArea>
