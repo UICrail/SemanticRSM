@@ -49,10 +49,11 @@ Other use cases may come from other pieces of EU Law, such as TAF TSI, or from o
 ## Data
 * Sample data sets:
     - based on fictive or real networks, or
-    - based on OpenStreetMap, using [Overpass Turbo](https://overpass-turbo.eu/).
+    - based on OpenStreetMap, using [Overpass Turbo](https://overpass-turbo.eu/), or
+    - from actual sample sets (e.g. Scheibenberg test line).
 
 ## Languages
-RDF, [RDF-star](https://www.w3.org/2022/08/rdf-star-wg-charter/), OWL, SHACL (for constraints), SPARQL (for queries), SPARQL-star, Python; possibly SWI Prolog.
+RDF, [RDF-star](https://www.w3.org/2022/08/rdf-star-wg-charter/), OWL, SHACL (for constraints), SPARQL (for queries), SPARQL-star, Python; some SWI Prolog (for demo purposes).
 
 # Documentation
 ## Wiki
