@@ -214,10 +214,7 @@ class AlignmentGraph(SubGraph):
                         Literal(radius / 1000, datatype=XSD.decimal))
         self.add_triple(node, IFC_NAMESPACE.endRadiusOfCurvature_IfcAlignmentHorizontalSegment,
                         Literal(radius / 1000, datatype=XSD.decimal))
-        if start is None:
-            self.add_triple(node, IFC_NAMESPACE.startPoint_IfcAlignmentHorizontalSegment,
-                            Literal("not available in source file", datatype=XSD.string))
-        else:
+        if start is not None:
             self.add_triple(node, IFC_NAMESPACE.startPoint_IfcAlignmentHorizontalSegment, Literal(start))
 
     def generate_cartesian_point(self, point_node: BNode, easting: float, northing: float, epsg_code: str = ''):

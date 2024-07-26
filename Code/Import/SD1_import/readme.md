@@ -19,6 +19,6 @@ The import is rather uneventful, as the CCS/TMS data model borrows many elements
 * CCS/TMS track edges are equivalent to CDM/RSM linear elements at micro level
 * CCS/TMS geometry (not to be confused with: sampled geometry) matches IFC Alignment classes pretty well
 
-On the other hand, CCS/TMS elements are "packaged" differently, for instance:
+On the other hand, CCS/TMS elements are "packaged" differently; for instance:
 * Nearly all IFC Alignment information can be found in the infrastructure / geometry area, except for the track edge element start (and end) coordinates that are in the map area
 * Nearly all CDM/RSM topology information can be found in infrastructure / topo area, except for the navigabilities that are stored in infra / functional area / simple point, slip crossings, crossings area

@@ -67,7 +67,41 @@ def azimuth_to_direction(azimuth: float, longitude: float = None, latitude: floa
     return 90 - azimuth
 
 
+def delta_x_delta_y(initial_direction: float, arc_length: float, arc_radius: float) -> tuple[float, float]:
+    """In a cartesian coordinate system, assuming a circular arc of radius arc_radius (negative if turning clockwise),
+    and an initial direction (positive if turning counterclockwise), and an arc length (always positive), this
+    function will return the X- and Y- projection of the chord.
+    :param initial_direction: signed initial direction in degrees
+    :param arc_length: arc length in meter (>0)
+    :param arc_radius: signed arc radius in meter
+    :return: X- and Y- projection of the chord"""
+    assert arc_length > 0, "Arc length must be positive"
+    arc_angle_rd = arc_length / arc_radius  # in radian
+    chord_length = 2 * abs(arc_radius * numpy.sin(arc_angle_rd / 2))
+    initial_direction_rd = initial_direction * numpy.pi / 180
+    delta_x = float(chord_length * numpy.cos(initial_direction_rd + arc_angle_rd / 2))
+    delta_y = float(chord_length * numpy.sin(initial_direction_rd + arc_angle_rd / 2))
+    return delta_x, delta_y
+
+
+def arc_end_coords(start_coords: tuple[float, float], initial_direction: float, arc_length: float, arc_radius: float) -> \
+        tuple[float, float]:
+    dx, dy = delta_x_delta_y(initial_direction, arc_length, arc_radius)
+    return start_coords[0] + dx, start_coords[1] + dycs
+
+
 if __name__ == '__main__':
-    lat = 50.541454  # Scheibenberg
-    lon = 12.912986  # ditto
-    print(grid_convergence(lat, lon))  # returns 0.447, apparently counted clockwise form true North in degrees
+    def test_convergence_angle():
+        lat = 50.541454  # Scheibenberg
+        lon = 12.912986  # ditto
+        print(grid_convergence(lat, lon))  # returns 0.447, apparently counted clockwise form true North in degrees
+
+
+    def test_delta_x_delta_y():
+        initial_direction = 45
+        arc_length = (2 * numpy.pi * 3.41) * 27.97 / 360
+        arc_radius = -3.41
+        print(delta_x_delta_y(initial_direction, arc_length, arc_radius))
+
+
+    test_delta_x_delta_y()
