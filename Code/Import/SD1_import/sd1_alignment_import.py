@@ -1,9 +1,10 @@
+import numpy as np
 import rdflib
 from rdflib import RDF, BNode, XSD
 from rdflib.term import URIRef, Literal
 
 from Import.SD1_import.helper_classes import SubGraph
-from Import.SD1_import.helper_functions import timestamp_from_date, azimuth_to_direction
+from Import.SD1_import.helper_functions import timestamp_from_date, azimuth_to_direction, arc_end_coords
 from cdm_namespaces import IFC_NAMESPACE, SD1_NAMESPACE, IFC_ADAPTER_NAMESPACE, create_uri, extract_identifier
 
 
@@ -113,7 +114,7 @@ class AlignmentGraph(SubGraph):
             self.generate_vertical_alignment()
 
     def generate_horizontal_alignment(self, alignment_uri: URIRef, segment_geometry_list: list[dict],
-                                      trackedge_length: float, start_coords: tuple[float, float]):
+                                      trackedge_length: float, start: tuple[float, float]):
         """Creates the IFC alignment segments and their parameters, corresponding to one track edge (linear element)"""
         # TODO: split into general part (usable also by vertical alignment) and specific part (to horizontal align.)
 
@@ -130,44 +131,57 @@ class AlignmentGraph(SubGraph):
 
         # create the IfcAlignmentSegments and their parameters
         index = 1  # starts with 1, following SD1 conventions
-        previous_segment_uri = None
-        previous_segment_params_uri = None
-        previous_pos = None
+        previous_segment_uri, previous_segment_params_uri = None, None
+        previous_pos, previous_start_coords, previous_azimuth, previous_segment_length = None, None, None, None
+        previous_radius = None
+
         for segment_geometry in segment_geometry_list:
+            # Create segment individual
             segment_uri = create_uri(extract_identifier(alignment_uri) + f'_segment_{index}', SD1_NAMESPACE)
             self.add_triple(segment_uri, RDF.type, IFC_NAMESPACE.IfcAlignmentSegment)
             self.add_triple(segment_nest_uri, IFC_NAMESPACE.relatedObjects_IfcRelNests, segment_uri)
-            # adjoin design params segment
-            segment_params_uri = BNode()
-            self.add_triple(segment_params_uri, RDF.type, IFC_NAMESPACE.IfcAlignmentSegmentHorizontal)
-            self.add_triple(segment_uri, IFC_NAMESPACE.designParameters_IfcAlignmentSegment, segment_params_uri)
-            # first segment start is identical with trackedge start
-            if index == 1:
-                start=start_coords
-            else:
-                #TODO: insert computation of start of next segment = end of previous
-                start = None
-            if 'ns0:line' in segment_geometry.keys():
-                # straight line case
-                pos = self.handle_line_case(segment_params_uri, segment_geometry, start)
-            elif 'ns0:arc' in segment_geometry.keys():
-                # circular arc case
-                pos = self.handle_arc_case(segment_params_uri, segment_geometry, start)
-            else:
-                raise f'ERROR: geometry variant not yet implemented: {next(iter(segment_geometry))}'
-            # add link (segments are a linked list)
+
+            # Link from previous segment (in IFC, segments are compounded into a linked list)
             if previous_segment_uri is not None:
                 self.add_triple(previous_segment_uri, IFC_NAMESPACE.hasNext, segment_uri)
+
+            # Adjoin design params segment
+            segment_params_uri = BNode()
+            self.add_triple(segment_params_uri, RDF.type, IFC_NAMESPACE.IfcAlignmentHorizontalSegment)
+            self.add_triple(segment_uri, IFC_NAMESPACE.designParameters_IfcAlignmentSegment, segment_params_uri)
+
+            # Handle the various IFC predefined types for segments
+            # TODO: complete the handling of all predefined segment types
+            if 'ns0:line' in segment_geometry.keys():
+                pos, azimuth, radius = self.handle_line_case(segment_params_uri, segment_geometry, start)
+            elif 'ns0:arc' in segment_geometry.keys():
+                pos, azimuth, radius = self.handle_arc_case(segment_params_uri, segment_geometry, start)
+            else:
+                raise f'ERROR: geometry variant not yet implemented: {next(iter(segment_geometry))}'
+
             # assign segment length to previous segment
             if previous_pos is not None:
                 previous_segment_length = (pos - previous_pos) / 1000.0  # in meter
                 self.add_triple(previous_segment_params_uri, IFC_NAMESPACE.segmentLength_IfcAlignmentHorizontalSegment,
                                 Literal(previous_segment_length, datatype=XSD.decimal))
+
+            # first segment start is identical with trackedge start, otherwise needs to be computed
+            if index == 1:
+                start_coords = np.array(start)
+            else:
+                start_coords = arc_end_coords(previous_start_coords, azimuth_to_direction(previous_azimuth),
+                                              previous_segment_length, previous_radius)
+            self.add_triple(segment_params_uri, IFC_NAMESPACE.startPoint_IfcAlignmentHorizontalSegment,
+                            Literal(start_coords))
+
             # prepare next loop
             index += 1
             previous_segment_uri = segment_uri
             previous_segment_params_uri = segment_params_uri
             previous_pos = pos
+            previous_radius = radius
+            previous_start_coords = start_coords
+            previous_azimuth = azimuth
 
         # finally, deal with last segment, linking it to an empty object (as per IFC)
         # TODO: IFC alignment suggests to use zero-length element instead, not telling why. Check. Maybe that's to have the StartPoint of that last element acting as an endpoint to the segment chain...
@@ -179,21 +193,21 @@ class AlignmentGraph(SubGraph):
         self.add_triple(previous_segment_params_uri, IFC_NAMESPACE.segmentLength_IfcAlignmentHorizontalSegment,
                         Literal(length_of_last_segment, datatype=XSD.decimal))
 
-    def handle_line_case(self, segment_params_uri, segment_geometry, start) -> float:
+    def handle_line_case(self, segment_params_uri, segment_geometry, start) -> tuple[float, float, float]:
         """returns the position (expressed in the SD1 linear referencing system) of the start of segment"""
         pos = float(segment_geometry['ns0:line']['@pos'])
         azimuth = float(segment_geometry['ns0:line']['@azimuth']) / 1000.0
         self.add_triple(segment_params_uri, IFC_NAMESPACE.predefinedType_IfcActionRequest, IFC_NAMESPACE.LINE)
         self.generate_alignment_parameter_segment_horizontal(segment_params_uri, azimuth, radius=0, start=start)
-        return pos
+        return pos, azimuth, 0
 
-    def handle_arc_case(self, segment_params_uri, segment_geometry, start) -> float:
+    def handle_arc_case(self, segment_params_uri, segment_geometry, start) -> tuple[float, float, float]:
         pos = float(segment_geometry['ns0:arc']['@pos'])
         azimuth = float(segment_geometry['ns0:arc']['@azimuth']) / 1000.0
         radius = float(segment_geometry['ns0:arc']['@radius'])
         self.add_triple(segment_params_uri, IFC_NAMESPACE.predefinedType_IfcActionRequest, IFC_NAMESPACE.CIRCULARARC)
         self.generate_alignment_parameter_segment_horizontal(segment_params_uri, azimuth, radius, start=start)
-        return pos
+        return pos, azimuth, radius
 
     def generate_vertical_alignment(self):
         # currently no data, so we leave that empty
@@ -214,8 +228,6 @@ class AlignmentGraph(SubGraph):
                         Literal(radius / 1000, datatype=XSD.decimal))
         self.add_triple(node, IFC_NAMESPACE.endRadiusOfCurvature_IfcAlignmentHorizontalSegment,
                         Literal(radius / 1000, datatype=XSD.decimal))
-        if start is not None:
-            self.add_triple(node, IFC_NAMESPACE.startPoint_IfcAlignmentHorizontalSegment, Literal(start))
 
     def generate_cartesian_point(self, point_node: BNode, easting: float, northing: float, epsg_code: str = ''):
         """"""
