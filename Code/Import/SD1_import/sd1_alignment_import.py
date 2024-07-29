@@ -165,7 +165,7 @@ class AlignmentGraph(SubGraph):
                 self.add_triple(previous_segment_params_uri, IFC_NAMESPACE.segmentLength_IfcAlignmentHorizontalSegment,
                                 Literal(previous_segment_length, datatype=XSD.decimal))
 
-            # first segment start is identical with trackedge start, otherwise needs to be computed
+            # first segment start point is identical with trackedge start point, otherwise needs to be computed
             if index == 1:
                 start_coords = np.array(start)
             else:
@@ -174,7 +174,7 @@ class AlignmentGraph(SubGraph):
             self.add_triple(segment_params_uri, IFC_NAMESPACE.startPoint_IfcAlignmentHorizontalSegment,
                             Literal(start_coords))
 
-            # prepare next loop
+            # prepare next loop iteration
             index += 1
             previous_segment_uri = segment_uri
             previous_segment_params_uri = segment_params_uri
@@ -183,22 +183,21 @@ class AlignmentGraph(SubGraph):
             previous_start_coords = start_coords
             previous_azimuth = azimuth
 
-        # finally, deal with last segment, linking it to an empty object (as per IFC)
-        # TODO: IFC alignment suggests to use zero-length element instead, not telling why. Check. Maybe that's to have the StartPoint of that last element acting as an endpoint to the segment chain...
-        empty_obj = BNode()
-        self.add_triple(empty_obj, RDF.type, IFC_NAMESPACE.IfcObjectDefinition_EmptyList)
-        self.add_triple(previous_segment_uri, IFC_NAMESPACE.hasNext, empty_obj)
-        # add length of last segment
-        length_of_last_segment = (trackedge_length - previous_pos) / 1000  # in meter
+        # create one last segment with zero length and finish the linked list
+        length_of_last_non_zero_segment = (trackedge_length - previous_pos) / 1000  # in meter
         self.add_triple(previous_segment_params_uri, IFC_NAMESPACE.segmentLength_IfcAlignmentHorizontalSegment,
-                        Literal(length_of_last_segment, datatype=XSD.decimal))
+                        Literal(length_of_last_non_zero_segment, datatype=XSD.decimal))
+        self.add_triple(previous_segment_uri, IFC_NAMESPACE.hasNext, IFC_NAMESPACE.IfcObjectDefinition_EmptyList)
+        previous_end_coords = arc_end_coords(previous_start_coords, azimuth_to_direction(previous_azimuth),
+                                             length_of_last_non_zero_segment, previous_radius)
+        self.finish_alignment(alignment_uri, previous_segment_uri, previous_end_coords, previous_azimuth)
 
     def handle_line_case(self, segment_params_uri, segment_geometry, start) -> tuple[float, float, float]:
         """returns the position (expressed in the SD1 linear referencing system) of the start of segment"""
         pos = float(segment_geometry['ns0:line']['@pos'])
         azimuth = float(segment_geometry['ns0:line']['@azimuth']) / 1000.0
         self.add_triple(segment_params_uri, IFC_NAMESPACE.predefinedType_IfcActionRequest, IFC_NAMESPACE.LINE)
-        self.generate_alignment_parameter_segment_horizontal(segment_params_uri, azimuth, radius=0, start=start)
+        self.generate_alignment_parameter_segment_horizontal(segment_params_uri, azimuth, radius=0)
         return pos, azimuth, 0
 
     def handle_arc_case(self, segment_params_uri, segment_geometry, start) -> tuple[float, float, float]:
@@ -206,7 +205,7 @@ class AlignmentGraph(SubGraph):
         azimuth = float(segment_geometry['ns0:arc']['@azimuth']) / 1000.0
         radius = float(segment_geometry['ns0:arc']['@radius'])
         self.add_triple(segment_params_uri, IFC_NAMESPACE.predefinedType_IfcActionRequest, IFC_NAMESPACE.CIRCULARARC)
-        self.generate_alignment_parameter_segment_horizontal(segment_params_uri, azimuth, radius, start=start)
+        self.generate_alignment_parameter_segment_horizontal(segment_params_uri, azimuth, radius)
         return pos, azimuth, radius
 
     def generate_vertical_alignment(self):
@@ -214,10 +213,8 @@ class AlignmentGraph(SubGraph):
         # TODO: write code for generating vertical alignment
         pass
 
-    def generate_alignment_parameter_segment_horizontal(self, node: BNode, azimuth: float, radius: float = 0.0,
-                                                        start: tuple[float, float] | None = None):
+    def generate_alignment_parameter_segment_horizontal(self, node: BNode, azimuth: float, radius: float = 0.0):
         """Applicable to lines and circular arcs. Copies args from SD1 source and infers the rest.
-        :param start:
         :param node: blank node for segment parameters
         :param azimuth: azimuth angle in degrees (WRT true North)
         :param radius: (start) radius of curvature in mm (check sign; IFC convention is <0 for clockwise turn, 0 for infinity)"""
@@ -244,3 +241,32 @@ class AlignmentGraph(SubGraph):
             if coord_list:
                 result = (float(coord_list[0]['@x']), float(coord_list[0]['@y']))
         return result
+
+    def finish_alignment(self, alignment_uri, previous_segment_uri, previous_end_coords, previous_end_azimuth):
+        # add zero length segment in order to record the end position of the previous "real" segment
+        zero_length_segment_uri = create_uri(extract_identifier(alignment_uri) + '_zero_length_segment', SD1_NAMESPACE)
+        self.add_triple(zero_length_segment_uri, RDF.type, IFC_NAMESPACE.IfcAlignmentSegment)
+
+        # associate parameters node
+        zero_length_segment_horizontal_params = BNode()
+        self.add_triple(zero_length_segment_horizontal_params, RDF.type, IFC_NAMESPACE.IfcAlignmentHorizontalSegment)
+        self.add_triple(zero_length_segment_uri, IFC_NAMESPACE.designParameters_IfcAlignmentSegment,
+                        zero_length_segment_horizontal_params)
+
+        # parameters values
+        self.add_triple(zero_length_segment_horizontal_params, IFC_NAMESPACE.startPoint_IfcAlignmentHorizontalSegment,
+                        Literal(previous_end_coords))
+        self.add_triple(zero_length_segment_horizontal_params,
+                        IFC_NAMESPACE.segmentLength_IfcAlignmentHorizontalSegment, Literal(0, datatype=XSD.decimal))
+        self.add_triple(zero_length_segment_horizontal_params,
+                        IFC_NAMESPACE.predefinedType_IfcAlignmentHorizontalSegment, IFC_NAMESPACE.LINE)
+        self.generate_alignment_parameter_segment_horizontal(zero_length_segment_horizontal_params,
+                                                             previous_end_azimuth, radius=0)
+
+        # link previous segment with zero-length segment
+        self.add_triple(previous_segment_uri, IFC_NAMESPACE.hasNext, zero_length_segment_uri)
+
+        # finally, link last, zero-length element with an empty object (as per IFC)
+        empty_obj = BNode()
+        self.add_triple(empty_obj, RDF.type, IFC_NAMESPACE.IfcObjectDefinition_EmptyList)
+        self.add_triple(zero_length_segment_uri, IFC_NAMESPACE.hasNext, empty_obj)

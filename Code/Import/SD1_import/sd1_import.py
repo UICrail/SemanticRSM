@@ -16,7 +16,7 @@ def create_bindings(a_graph: Graph):
     a_graph.bind('rsm', RSM_TOPOLOGY_NAMESPACE)
     a_graph.bind('unit', UNIT_NAMESPACE)
     a_graph.bind('geosparql', GEOSPARQL_NAMESPACE)
-    a_graph.bind('ífc', IFC_NAMESPACE)
+    a_graph.bind('ifc', IFC_NAMESPACE)
     a_graph.bind('ifc_adapter', IFC_ADAPTER_NAMESPACE)
     a_graph.bind('', SD1_NAMESPACE)
 
