@@ -1,21 +1,23 @@
-from rdflib import URIRef
-from rdflib.namespace import RDF, Namespace
+from rdflib import URIRef, Graph
+from rdflib.namespace import RDF
 from shapely.wkt import loads
 from shapely.geometry import LineString
 from typing import Dict, List
 from Code.Namespaces import *
 
 
-def ttl_to_kml(input_ttl_, output_kml_):
+def wkt_to_kml(input_ttl_, output_kml_):
     elements = parse_ttl_linestrings(input_ttl_)
-    adjacency_list = build_adjacency_list(elements)
-    element_colors = color_elements(adjacency_list)
-    generate_kml_from_elements_and_colors(elements, element_colors, output_kml_)
-    print(f"KML file generated: {output_kml_}")
+    if elements:
+        adjacency_list = build_adjacency_list(elements)
+        element_colors = color_elements(adjacency_list)
+        generate_kml_from_elements_and_colors(elements, element_colors, output_kml_)
+        print(f"KML file generated: {output_kml_}")
 
 
 def parse_ttl_linestrings(input_ttl_: str) -> Dict[URIRef, LineString]:
-    from rdflib import Graph
+    VALID_TYPES = ['POINT', 'LINESTRING', 'POLYGON', 'MULTIPOINT', 'MULTILINESTRING', 'MULTIPOLYGON',
+                   'GEOMETRYCOLLECTION']
 
     g = Graph()
     g.parse(input_ttl_, format="turtle")
@@ -24,9 +26,15 @@ def parse_ttl_linestrings(input_ttl_: str) -> Dict[URIRef, LineString]:
     for line in g.subjects(RDF.type, RSM_TOPOLOGY.LinearElement):
         geom = g.value(line, RSM_GEOSPARQL_ADAPTER.hasNominalGeometry)
         wkt = g.value(geom, GEOSPARQL.asWKT)
-        linestring = loads(str(wkt))
-        if isinstance(linestring, LineString):
-            elements[line] = linestring
+        if wkt is not None:
+            linestring = loads(str(wkt))
+            if any(type_ in str(wkt) for type_ in VALID_TYPES):
+                if isinstance(linestring, LineString):
+                    elements[line] = linestring
+            else:
+                print('INFO: no valid wkt types were found')
+        else:
+            print('INFO: no wkt information could be found')
     return elements
 
 

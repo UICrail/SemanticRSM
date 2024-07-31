@@ -94,8 +94,11 @@ def delta_x_delta_y(initial_direction: float, arc_length: float, arc_radius: flo
 def arc_end_coords(start_coords: np.array, initial_direction: float, arc_length: float,
                    arc_radius: float = 0) -> np.array:
     """This function is valid for circular arcs and straight lines (where radius of curvature is 0 by convention)."""
-    delta = delta_x_delta_y(initial_direction, arc_length, arc_radius)
-    return start_coords + delta
+    if arc_length == 0:
+        return start_coords
+    else:
+        delta = delta_x_delta_y(initial_direction, arc_length, arc_radius)
+        return start_coords + delta
 
 
 if __name__ == '__main__':

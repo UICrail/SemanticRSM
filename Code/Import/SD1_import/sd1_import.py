@@ -4,6 +4,8 @@ from collections import Counter
 import xmltodict
 from rdflib import Graph
 
+from Export.export_ifcAlignment_to_kml import alignment_to_kml
+from Export.export_wkt_to_kml import wkt_to_kml
 from Import.SD1_import.cdm_namespaces import SD1_NAMESPACE, IFC_ADAPTER_NAMESPACE
 from Import.SD1_import.sd1_alignment_import import AlignmentGraph
 from Source_data.data_folders import data_root
@@ -138,8 +140,9 @@ if __name__ == '__main__':
     create_bindings(sd1_graph)
     infra_path = data_root + "/scheibenberg/infra_v0.4.2.xml"
     map_path = data_root + "/scheibenberg/map_v0.4.2.xml"
-    # Position of Scheibenberg in EPSG:25833 (ETRS89 / UTM zone 33N); see https://epsg.io/25833
-    # scheibenberg_easting = 351807.813258
-    # scheibenberg_northing = 5600586.321098
+    # SD1 seems to use EPSG:31468 (a Gauss-Krüger projection, based on Bessel 1841 ellipsoid)
     import_sd1_infra_data(infra_path, map_path)
     sd1_graph.serialize('scheibenberg.ttl')
+    wkt_to_kml('scheibenberg.ttl', 'scheibenberg_from_wkt.kml')
+    alignment_to_kml('scheibenberg.ttl', 'scheibenberg_alignment_export_from_CDM_IFC.kml')
+

@@ -207,7 +207,7 @@ def generate_turtle_from_linestrings(file_path: str, linestrings_to_add: dict[UR
 
 
 if __name__ == "__main__":
-    from Code.Export.export_to_kml import ttl_to_kml
+    from Code.Export.export_wkt_to_kml import ttl_to_kml
 
     short_name = "Ventimiglia-Albenga"
 
