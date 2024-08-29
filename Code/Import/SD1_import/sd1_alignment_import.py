@@ -1,3 +1,5 @@
+"""import the track alignment information of the CCS/TMS (SD1) model using IFC Alignment in its RDF/OWL version"""
+
 import numpy as np
 import rdflib
 from rdflib import RDF, BNode, XSD
@@ -6,6 +8,7 @@ from rdflib.term import URIRef, Literal
 from Import.SD1_import.helper_classes import SubGraph
 from Import.SD1_import.helper_functions import timestamp_from_date, azimuth_to_direction, arc_end_coords
 from cdm_namespaces import IFC_NAMESPACE, SD1_NAMESPACE, IFC_ADAPTER_NAMESPACE, create_uri, extract_identifier
+from sd1_keys import *
 
 
 class AlignmentGraph(SubGraph):
@@ -13,7 +16,7 @@ class AlignmentGraph(SubGraph):
         super().__init__(graph)
         self._trackedge_length_dict = {}  # key: URIRef, value: float, in millimeter
         self.infra_dict = infra_dict
-        self.trackedge_projection_list = map_dict['ns0:trackEdgeProjections']['ns0:trackEdgeProjection']
+        self.trackedge_projection_list = map_dict[TRACK_EDGE_PROJECTIONS_KEY][TRACK_EDGE_PROJECTION_KEY]
         self.IfcRelNests_IfcAlignment: BNode | None = None  # links IfcAlignmentHorizontal etc. to IfcAlignment
         self.IfcRelNests_IfcAlignmentSegment: BNode | None = None  # links segments to IfcAlignmentHorizontal
         # attributes for IfcRelNests instances, extracted from geometryArea
@@ -28,11 +31,11 @@ class AlignmentGraph(SubGraph):
 
     @property
     def geometry_area(self):
-        return self.infra_dict['ns0:geometryAreas']['ns0:geometryArea']
+        return self.infra_dict[GEOMETRY_AREAS_KEY][GEOMETRY_AREA_KEY]
 
     @property
     def trackedge_geometry_list(self):
-        return self.geometry_area['ns0:trackEdgeGeometries']['ns0:trackEdgeGeometry']
+        return self.geometry_area[TRACK_EDGE_GEOMETRIES_KEY][TRACK_EDGE_GEOMETRY_KEY]
 
     @property
     def trackedge_geometry_area_id(self):
@@ -40,7 +43,7 @@ class AlignmentGraph(SubGraph):
 
     @property
     def is_3D(self):
-        return True if self.geometry_area['@alignment3d'] == 'true' else False
+        return True if self.geometry_area[ALIGNMENT_3D_KEY] == 'true' else False
 
     @property
     def trackedge_geometry_dict(self):
@@ -53,7 +56,7 @@ class AlignmentGraph(SubGraph):
                 self.trackedge_projection_list}
 
     def compute_trackedge_length_dict(self) -> dict:
-        trackedge_list = self.infra_dict['ns0:topoAreas']['ns0:topoArea']['ns0:trackEdges']['ns0:trackEdge']
+        trackedge_list = self.infra_dict[TOPO_AREAS_KEY][TOPO_AREA_KEY][TRACK_EDGES_KEY][TRACK_EDGE_KEY]
         trackedge_length_dict = {create_uri(trackedge['@id'], SD1_NAMESPACE): float(trackedge['@length']) for trackedge
                                  in trackedge_list}
         return trackedge_length_dict
@@ -62,8 +65,11 @@ class AlignmentGraph(SubGraph):
         self.RelNestName = 'geometry_area_' + self.trackedge_geometry_area_id
         # this one will be targeted by many properties:
         self.OwnerHistory = create_uri('alignment-data-last-owned-by', SD1_NAMESPACE)
+        self._add_owner_history_triples()
+
+    def _add_owner_history_triples(self):
         self.add_triple(self.OwnerHistory, RDF.type, IFC_NAMESPACE.IfcOwnerHistory)
-        creation_date = self.infra_dict['ns0:geometryAreas']['ns0:geometryArea']['@versionTimestamp']
+        creation_date = self.infra_dict[GEOMETRY_AREAS_KEY][GEOMETRY_AREA_KEY]['@versionTimestamp']
         creation_timestamp = timestamp_from_date(creation_date)
         self.add_triple(self.OwnerHistory, IFC_NAMESPACE.CreationDate_IfcOwnerHistory,
                         Literal(creation_timestamp, datatype=XSD.integer))
@@ -79,6 +85,7 @@ class AlignmentGraph(SubGraph):
         """Creates the IFC alignment corresponding to the given track edge (linear element at micro level)"""
         # create IfcAlignment instance (NOT as a blank node, conforming IFC)
         this_alignment_uri = create_uri(extract_identifier(trackedge_uri) + '_alignment', SD1_NAMESPACE)
+
         self.add_triple(this_alignment_uri, RDF.type, IFC_NAMESPACE.IfcAlignment)
 
         # link alignment with track edge (RSM linear element in the graph)
@@ -102,7 +109,7 @@ class AlignmentGraph(SubGraph):
         self.add_triple(this_horizontal_alignment_uri, RDF.type, IFC_NAMESPACE.IfcAlignmentHorizontal)
         self.add_triple(nest_uri, IFC_NAMESPACE.relatedObjects_IfcRelNests, this_horizontal_alignment_uri)
 
-        horizontal_geometry_list = trackedge_geometry_dict['ns0:horizontalAlignment']['ns0:horizontalAlignmentItem']
+        horizontal_geometry_list = trackedge_geometry_dict[HORIZONTAL_ALIGNMENT_KEY][HORIZONTAL_ALIGNMENT_ITEM_KEY]
         if not isinstance(horizontal_geometry_list, list):  # case of a single dict instead of a list of >1 dict
             horizontal_geometry_list = [horizontal_geometry_list]
 
@@ -237,7 +244,7 @@ class AlignmentGraph(SubGraph):
         # get track edge ID back
         trackedge_sd1id = extract_identifier(trackedge_uriref)
         if (coords := self.trackedge_projection_dict.get(trackedge_sd1id)) is not None:
-            coord_list = coords['ns0:coordinates']['ns0:coordinate']
+            coord_list = coords[COORDINATES_KEY][COORDINATE_KEY]
             if coord_list:
                 result = (float(coord_list[0]['@x']), float(coord_list[0]['@y']))
         return result
@@ -270,3 +277,13 @@ class AlignmentGraph(SubGraph):
         empty_obj = BNode()
         self.add_triple(empty_obj, RDF.type, IFC_NAMESPACE.IfcObjectDefinition_EmptyList)
         self.add_triple(zero_length_segment_uri, IFC_NAMESPACE.hasNext, empty_obj)
+
+    def export_as_enz(self, out_path: str, comma_separated=True):
+        """export the alignment as an ENZ file (Easting, Northing, Z) for further processing, e.g. in AUTOCAD
+        or Civil 3D.
+        The ENZ file consists in a sequence of points delimiting the alignment segments.
+        On that basis, applications such as Civil 3D (Autodesk) or Bentley OpenRail Designer may compute
+        the best fit alignment (using straight lines, arcs, and spirals = transition curves).
+        ENZ files are text files: <easting><sep><northing><sep><altitude><line break>... where <sep> is a user-defined
+        separator, and easting etc. values are expressed as floats."""
+        pass

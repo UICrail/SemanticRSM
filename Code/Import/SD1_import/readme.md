@@ -6,7 +6,7 @@ Valid for CCS/TMS model version 0.4.2 (July 2024)
 * infra.xml
   * topo area: done
   * geometry area: done
-  * sampled geometry area: probably not for CDM (application-specific, derived data)
+  * sampled geometry area: probably not for CDM (application-specific, derived data with unpublished, vendor-specific derivation rules)
   * functional area: used for deriving navigabilities. To be done: instantiation of net entities (switches, crossings)
   * properties area: TBD
   * track usage area: TBD
@@ -17,7 +17,7 @@ Valid for CCS/TMS model version 0.4.2 (July 2024)
 # Comments
 The import is rather uneventful, as the CCS/TMS data model borrows many elements from CDM models. Examples:
 * CCS/TMS track edges are equivalent to CDM/RSM linear elements at micro level
-* CCS/TMS geometry (not to be confused with: sampled geometry) matches IFC Alignment classes pretty well
+* CCS/TMS geometry (not to be confused with: sampled geometry) matches IFC Alignment classes pretty well. The provided sample data are however questionable.
 
 On the other hand, CCS/TMS elements are "packaged" differently; for instance:
 * Nearly all IFC Alignment information can be found in the infrastructure / geometry area, except for the track edge element start (and end) coordinates that are in the map area
