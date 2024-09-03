@@ -1,4 +1,5 @@
-"""import the track alignment information of the CCS/TMS (SD1) model using IFC Alignment in its RDF/OWL version"""
+"""import the track alignment information of the CCS/TMS (SD1) model using IFC Alignment in its RDF/OWL version.
+One IfcAlignment instance is created for each single Linear Element (this is not imposed by IFC, but a RSM)."""
 
 import numpy as np
 import rdflib
@@ -14,7 +15,7 @@ from sd1_keys import *
 class AlignmentGraph(SubGraph):
     def __init__(self, graph: rdflib.Graph, infra_dict: dict, map_dict: dict):
         super().__init__(graph)
-        self._trackedge_length_dict = {}  # key: URIRef, value: float, in millimeter
+        self._trackedge_length_dict = {}  # key: URIRef, value: float, in millimeter (as per SD1 model definition)
         self.infra_dict = infra_dict
         self.trackedge_projection_list = map_dict[TRACK_EDGE_PROJECTIONS_KEY][TRACK_EDGE_PROJECTION_KEY]
         self.IfcRelNests_IfcAlignment: BNode | None = None  # links IfcAlignmentHorizontal etc. to IfcAlignment
@@ -110,7 +111,7 @@ class AlignmentGraph(SubGraph):
         self.add_triple(nest_uri, IFC_NAMESPACE.relatedObjects_IfcRelNests, this_horizontal_alignment_uri)
 
         horizontal_geometry_list = trackedge_geometry_dict[HORIZONTAL_ALIGNMENT_KEY][HORIZONTAL_ALIGNMENT_ITEM_KEY]
-        if not isinstance(horizontal_geometry_list, list):  # case of a single dict instead of a list of >1 dict
+        if not isinstance(horizontal_geometry_list, list):  # case of a single dict instead of a list of dicts
             horizontal_geometry_list = [horizontal_geometry_list]
 
         trackedge_length = self.trackedge_length_dict[trackedge_uri]
