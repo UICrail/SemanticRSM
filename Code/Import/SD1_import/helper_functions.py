@@ -1,6 +1,7 @@
 import datetime
 
 import numpy
+import numpy as np
 
 
 def millimeters_to_meters(some_length_in_integer_mm: str) -> str:
@@ -67,7 +68,52 @@ def azimuth_to_direction(azimuth: float, longitude: float = None, latitude: floa
     return 90 - azimuth
 
 
+def delta_x_delta_y(initial_direction: float, arc_length: float, arc_radius: float = 0) -> np.array:
+    """In a cartesian coordinate system, assuming a circular arc of radius arc_radius (negative if turning clockwise),
+    and an initial direction (positive counterclockwise from X axis), and an arc length (always positive), this
+    function will return the X- and Y- projection of the chord.
+    This function is valid for circular arcs and straight lines (where radius of curvature is 0 by convention)
+    :param initial_direction: signed initial direction in degrees
+    :param arc_length: arc length in meter (>0)
+    :param arc_radius: signed arc radius in meter; special case: 0 means straight segment
+    :return: X- and Y- projection of the chord"""
+    assert arc_length > 0, "Arc length must be positive"
+    initial_direction_rd = initial_direction * numpy.pi / 180
+    if arc_radius == 0:
+        delta_x = float(arc_length * numpy.cos(initial_direction_rd))
+        delta_y = float(arc_length * numpy.sin(initial_direction_rd))
+    else:
+        arc_angle_rd = arc_length / arc_radius  # in radian
+        chord_length = 2 * abs(arc_radius * numpy.sin(arc_angle_rd / 2))
+        chord_angle = initial_direction_rd + arc_angle_rd / 2
+        delta_x = float(chord_length * numpy.cos(chord_angle))
+        delta_y = float(chord_length * numpy.sin(chord_angle))
+    return np.array((delta_x, delta_y))
+
+
+def arc_end_coords(start_coords: np.array, initial_direction: float, arc_length: float,
+                   arc_radius: float = 0) -> np.array:
+    """This function is valid for circular arcs and straight lines (where radius of curvature is 0 by convention)."""
+    if arc_length == 0:
+        return start_coords
+    else:
+        delta = delta_x_delta_y(initial_direction, arc_length, arc_radius)
+        return start_coords + delta
+
+
 if __name__ == '__main__':
-    lat = 50.541454  # Scheibenberg
-    lon = 12.912986  # ditto
-    print(grid_convergence(lat, lon))  # returns 0.447, apparently counted clockwise form true North in degrees
+    def test_convergence_angle():
+        lat = 50.541454  # Scheibenberg (town)
+        lon = 12.912986  # ditto
+        print(grid_convergence(lat, lon))  # returns 0.447, apparently counted clockwise form true North in degrees
+
+
+    def test_delta_x_delta_y():
+        """see geometry drawing : file 240728...png"""
+        initial_direction = 45
+        arc_length = (2 * numpy.pi * 3.41) * 27.97 / 360
+        arc_radius = -3.41
+        print(delta_x_delta_y(initial_direction, arc_length, arc_radius))
+
+
+    test_delta_x_delta_y()

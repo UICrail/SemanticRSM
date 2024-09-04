@@ -1,7 +1,7 @@
 """
 Purpose: pick an OSM geojson file and transform it into an RSM-compliant topology.ttl graph
 """
-from Code.Export.export_to_kml import ttl_to_kml
+from Code.Export.export_wkt_to_kml import ttl_to_kml
 from Code.Graph_transformation.step02_join_linear_elements import join_linear_elements
 from Code.Import.OSM_import import osm_import
 from Code.Graph_transformation.step01_split_linear_elements import split_linestrings_in_file

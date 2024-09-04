@@ -4,6 +4,8 @@ from collections import Counter
 import xmltodict
 from rdflib import Graph
 
+from Export.export_ifcAlignment_to_kml import alignment_to_kml
+from Export.export_wkt_to_kml import wkt_to_kml
 from Import.SD1_import.cdm_namespaces import SD1_NAMESPACE, IFC_ADAPTER_NAMESPACE
 from Import.SD1_import.sd1_alignment_import import AlignmentGraph
 from Source_data.data_folders import data_root
@@ -16,7 +18,7 @@ def create_bindings(a_graph: Graph):
     a_graph.bind('rsm', RSM_TOPOLOGY_NAMESPACE)
     a_graph.bind('unit', UNIT_NAMESPACE)
     a_graph.bind('geosparql', GEOSPARQL_NAMESPACE)
-    a_graph.bind('ífc', IFC_NAMESPACE)
+    a_graph.bind('ifc', IFC_NAMESPACE)
     a_graph.bind('ifc_adapter', IFC_ADAPTER_NAMESPACE)
     a_graph.bind('', SD1_NAMESPACE)
 
@@ -27,6 +29,13 @@ def get_infra_dict_from_xml(path: str) -> dict:
     xml_string = Et.tostring(xml_data, encoding="utf-8", method="xml")  # needed to avoid invalid token error
     infra_dict = xmltodict.parse(xml_string)['ns0:infrastructure']
     return infra_dict
+
+
+def get_map_dict_from_xml(path: str) -> dict:
+    xml_data = Et.parse(path).getroot()
+    xml_string = Et.tostring(xml_data, encoding="utf-8", method="xml")  # needed to avoid invalid token error
+    map_dict = xmltodict.parse(xml_string)['ns0:mapMgmt']['ns0:mapAreas']['ns0:mapArea']
+    return map_dict
 
 
 def get_trackedges(infra_dict: dict) -> list:
@@ -107,8 +116,9 @@ def generate_navigabilities_at_simple_points(infra_dict: dict, topology_graph: T
 #######################################################################################################################
 
 
-def import_sd1_infra_data(infrastructure_path: str, origin_easting: float, origin_northing: float):
+def import_sd1_infra_data(infrastructure_path: str, map_path: str):
     sd1_infra_dict = get_infra_dict_from_xml(infrastructure_path)
+    sd1_map_dict = get_map_dict_from_xml(map_path)
 
     # RSM import statement; not used
     # sd1_graph.add((URIRef(SD1_NAMESPACE), OWL.imports, URIRef(RSM_TOPOLOGY_NAMESPACE)))
@@ -120,8 +130,8 @@ def import_sd1_infra_data(infrastructure_path: str, origin_easting: float, origi
     generate_connections_from_track_edge_links(sd1_infra_dict, topology_graph)
     generate_navigabilities_at_simple_points(sd1_infra_dict, topology_graph)
 
-    alignment_graph = AlignmentGraph(sd1_graph, sd1_infra_dict, origin_easting, origin_northing)
-    alignment_graph.generate_context_info()
+    alignment_graph = AlignmentGraph(sd1_graph, sd1_infra_dict, sd1_map_dict)
+    alignment_graph.get_context_info()
     alignment_graph.generate_alignments()
 
 
@@ -129,8 +139,10 @@ if __name__ == '__main__':
     sd1_graph = Graph()
     create_bindings(sd1_graph)
     infra_path = data_root + "/scheibenberg/infra_v0.4.2.xml"
-    # Position of Scheibenberg in EPSG:25833 (ETRS89 / UTM zone 33N); see https://epsg.io/25833
-    scheibenberg_easting = 351807.813258
-    scheibenberg_northing = 5600586.321098
-    import_sd1_infra_data(infra_path, scheibenberg_easting, scheibenberg_northing)
+    map_path = data_root + "/scheibenberg/map_v0.4.2.xml"
+    # SD1 seems to use EPSG:31468 (a Gauss-Krüger projection, based on Bessel 1841 ellipsoid)
+    import_sd1_infra_data(infra_path, map_path)
     sd1_graph.serialize('scheibenberg.ttl')
+    wkt_to_kml('scheibenberg.ttl', 'scheibenberg_from_wkt.kml')
+    alignment_to_kml('scheibenberg.ttl', 'scheibenberg_alignment_export_from_CDM_IFC.kml')
+

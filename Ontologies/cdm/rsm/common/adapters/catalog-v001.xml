@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="Imports Wizard Entry" name="https://w3id.org/ifc/IFC4X3_ADD2#" uri="http://cdm.ovh/ifc/IfcOWL43ADD2.ttl"/>
+    <uri id="Imports Wizard Entry" name="http://cdm.ovh/rsm/topology/0.7/topology" uri="http://cdm.ovh/rsm/topology/topology#"/>
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base=""/>
 </catalog>

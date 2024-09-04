@@ -3,7 +3,7 @@ from enum import Enum
 from rdflib import Namespace, URIRef
 from rdflib.term import _is_valid_uri
 
-from helper_functions import replace_strings
+from Code.Import.SD1_import.helper_functions import replace_strings
 
 # CDM members
 
