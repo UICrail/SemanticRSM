@@ -22,7 +22,7 @@ OWL offers possibilities to make RSM both more compact and more expressive, whil
         - navigability as a transitive property,
         - internal navigability in non-linear elements such as "operational points" (yards, stations),
         - more flexible composition of net elements.
-* Systematic, explicit usage of well-established external vocabularies, where relevant: SOSA/SSN, GeoSPARQL, w3c time...
+* Systematic, explicit usage of well-established external vocabularies, where relevant: SOSA/SSN, GeoSPARQL, systems of units ontologies, w3c time...
 * Ability to determine paths under constraints using SPARQL and inference engines, even though bespoke code may be recommended for computing efficiency.
 
 ## Design process
