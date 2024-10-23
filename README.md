@@ -62,4 +62,4 @@ RDF, [RDF-star](https://www.w3.org/2022/08/rdf-star-wg-charter/), OWL, SHACL (fo
 The Wiki documents the design process, esp. main design choices. This is an integrated wiki, accessible via the GitHub menu bar.
 
 ## Documentation folder
-Only contains diagrams (class diagrams for instance) and illustrations for use by the wiki and in other repositories. Full documentation is in the wiki...
+Only contains diagrams (class diagrams for instance) and illustrations for use by the wiki and in other repositories. Full documentation is in the wiki.
