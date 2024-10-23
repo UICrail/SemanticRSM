@@ -14,7 +14,7 @@ However, the expressiveness of OWL differs from UML class diagrams.
 OWL offers possibilities to make RSM both more compact and more expressive, while remaining compatible with former, UML-based versions. The present repository summarizes the re-casting efforts.
 
 ## Design goals
-* Backward compatibility ("easy" automated transformations).
+* Backward compatibility ("easy" automated transformation of data provided under previous versions of the model).
 * Simplification (not: dumbing down).
 * Separation into small vocabularies (high-cohesion, low-dependency principle) to facilitate ontology management.
 * Improvements:
