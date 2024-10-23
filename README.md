@@ -30,7 +30,7 @@ The process currently considers:
 * the [RINF](https://uat.ld4rail.fpfis.tech.ec.europa.eu/) use case, with priority to topology (expressed at micro level, or track level) and geographic referencing.
 * the System Pillar requirements regarding rolling stock modelling (typology)
 * FP5-TRANSF4M-R data requirements regarding the description of the "last mile of infrastructure" and of rolling stock defects.
-* Any relevant FP!-MOTIONAL works.
+* Any relevant FPx-MOTIONAL works.
 
 However the design, as previously with RSM, emphasizes generality and usability, while avoiding ad-hoc solutions.
 
