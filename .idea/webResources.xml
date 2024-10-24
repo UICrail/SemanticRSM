@@ -6,6 +6,7 @@
         <entryData>
           <resourceRoots>
             <path value="file://$PROJECT_DIR$/Source_data" />
+            <path value="file://$PROJECT_DIR$/Ontologies" />
           </resourceRoots>
         </entryData>
       </entry>
