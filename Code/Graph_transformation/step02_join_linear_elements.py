@@ -11,6 +11,7 @@ from shapely.wkt import loads, dumps
 
 from Code.Namespaces import *
 from Code.Varia.calculate_linestring_length import linestring_length
+from Code.Graph_transformation.step01_split_linear_elements import parse_turtle_for_labels
 
 
 def find_nodes(g: Graph) -> Dict[str, List[URIRef]]:
@@ -55,8 +56,8 @@ def report_degrees(nodes: dict[str, list[URIRef]]) -> None:
 def join_uri_refs(*urirefs: URIRef, join_symbol: str = '-') -> (URIRef, URIRef):
     """
     Assumes that all URI bases are the same
-    :param join_symbol:
-    :param urirefs:
+    :param join_symbol: symbol used to concatenate the URIs of the joint elements
+    :param urirefs: URI refs for the geometry and the linear element
     :return:
     """
     if len(urirefs) < 2:
@@ -73,7 +74,16 @@ def join_uri_refs(*urirefs: URIRef, join_symbol: str = '-') -> (URIRef, URIRef):
         return URIRef(geom_result), URIRef(line_result)
 
 
-def perform_joining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]]) -> Graph:
+def merge_labels(linear_elements: List[URIRef], labels: dict, separator: str = '_') -> str:
+    label_x, label_y = labels.get(linear_elements[0], ''), labels.get(linear_elements[1], '')
+    if label_x == label_y:
+        label_z = label_x
+    else:
+        label_z = label_x + separator + label_y
+    return label_z
+
+
+def perform_joining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]], labels: dict) -> Graph:
     """
     Performs joining on linear elements that meet at nodes with degree 2 and updates references.
     """
@@ -82,7 +92,6 @@ def perform_joining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]]) -> Graph:
     geometries_to_remove: set[URIRef] = set()
     unprocessed_nodes = copy.deepcopy(nodes_degree_2)
     processed_nodes_counter = 0
-
     parse_error_count = 0
 
     for node_wkt, linear_elements in nodes_degree_2.items():
@@ -112,6 +121,11 @@ def perform_joining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]]) -> Graph:
             # Add the corresponding linear element
             g.add((line_uri_z, RDF.type, RSM_TOPOLOGY.LinearElement))
             g.add((line_uri_z, RSM_GEOSPARQL_ADAPTER.hasNominalGeometry, geom_uri_z))
+
+            # Add the label, obtained by concatenating labels except if they are identical
+            # note: by default, labels are empty strings
+            label_z = merge_labels(linear_elements, labels)
+            g.add((line_uri_z, RDFS.label, Literal(label_z)))
 
             # Mark linear elements and geometries for removal
             lines_to_remove.update(linear_elements)
@@ -167,9 +181,14 @@ def join_linear_elements(input_ttl: str, output_ttl: Optional[str] = None) -> No
     # Update the nodes dictionary to keep only nodes with degree 2
     nodes_degree_2 = {k: v for k, v in nodes.items() if len(v) == 2}
 
+    # create the label dictionary
+    labels_dict = parse_turtle_for_labels(input_ttl)
+
+    # Perform the joining
+
     print(
-        f'Performing the joining on {len(nodes_degree_2)} nodes of degree 2 (revealing consecutive linear elements):')
-    g_joint = perform_joining(g, nodes_degree_2)
+        f'Performing the joining on {len(nodes_degree_2)} nodes of degree 2 (= joining consecutive linear elements):')
+    g_joint = perform_joining(g, nodes_degree_2, labels_dict)
 
     if g_joint and output_ttl:
         print(f"RDF graph with joint elements will be saved to: {output_ttl}")

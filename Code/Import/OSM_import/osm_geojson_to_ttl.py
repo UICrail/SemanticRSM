@@ -10,28 +10,37 @@ from shapely.geometry import LineString, Point
 from Code.Namespaces import *
 
 
-def osm_import(osm_file_path: str, short_name: str = "", linear_element_prefix: str = 'line',
-               geometry_prefix: str = 'geom', with_properties: bool = True):
-    """
-
-    :param geometry_prefix:
-    :param linear_element_prefix:
-    :param osm_file_path:
-    :param short_name: will be used for the intermediate and final file naming
-    :param with_properties: if False, geometries will not be associated with the linear elements via hasNominalGeometry.
-    In such case, only the URIs will tell which linear element matches which geometry.
-    :return: None (a file is created)
-    """
-    # Initialize RDF graph
+def initialize_rdf_graph():
     g = rdflib.Graph()
-
-    # Bind the namespaces
     g.bind("geo", GEOSPARQL)
     g.bind("rsm", RSM_TOPOLOGY)
     g.bind("rdf", RDF)
     g.bind("rdfs", RDFS)
     g.bind("rsm", RSM_GEOSPARQL_ADAPTER)
     g.bind("", WORK)
+    return g
+
+
+def process_geometry(row):
+    if isinstance(row.geometry, (LineString, Point)):
+        return row.geometry.wkt
+    return str(row.geometry)
+
+
+def osm_import(osm_file_path: str, short_name: str = "", linear_element_prefix: str = 'line',
+               geometry_prefix: str = 'geom', with_geometry: bool = True):
+    """
+
+    :param geometry_prefix:
+    :param linear_element_prefix:
+    :param osm_file_path:
+    :param short_name: will be used for the intermediate and final file naming
+    :param with_geometry: if False, geometries will not be associated with the linear elements via hasNominalGeometry.
+    In such case, only the URIs will tell which linear element matches which geometry.
+    :return: None (a file is created)
+    """
+    # Initialize RDF graph
+    graph = initialize_rdf_graph()
 
     # Load OSM data (assumed to be in GeoJSON format) with GeoPandas
     gdf = gpd.read_file(osm_file_path)
@@ -44,18 +53,17 @@ def osm_import(osm_file_path: str, short_name: str = "", linear_element_prefix: 
         line_uri = WORK[f"{linear_element_prefix}_{index}"]
         geom_uri = WORK[f"{geometry_prefix}_{index}"]
         # Convert geometry to WKT
-        if isinstance(row.geometry, LineString) or isinstance(row.geometry, Point):
-            wkt = row.geometry.wkt
-        else:
-            wkt = str(row.geometry)
+        wkt = process_geometry(row)
 
-        g.add((line_uri, RDF.type, RSM_TOPOLOGY.LinearElement))
-        if with_properties:
-            g.add((line_uri, RSM_GEOSPARQL_ADAPTER.hasNominalGeometry, geom_uri))
-        g.add((geom_uri, RDF.type, RSM_GEOSPARQL_ADAPTER.Geometry))
-        g.add((geom_uri, GEOSPARQL.asWKT, Literal(wkt, datatype=GEOSPARQL.wktLiteral)))
+        graph.add((line_uri, RDF.type, RSM_TOPOLOGY.LinearElement))
+
+        if label := row.get('label'):
+            graph.add((line_uri, RDFS.label, Literal(label)))
+        if with_geometry:
+            graph.add((line_uri, RSM_GEOSPARQL_ADAPTER.hasNominalGeometry, geom_uri))
+            graph.add((geom_uri, RDF.type, RSM_GEOSPARQL_ADAPTER.Geometry))
+            graph.add((geom_uri, GEOSPARQL.asWKT, Literal(wkt, datatype=GEOSPARQL.wktLiteral)))
 
     # Serialize the graph to a Turtle file
-    g.serialize(
-        destination=f'/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{short_name}_raw.ttl',
-        format='turtle')
+    output_file_path = f'/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{short_name}_raw.ttl'
+    graph.serialize(destination=output_file_path, format='turtle')

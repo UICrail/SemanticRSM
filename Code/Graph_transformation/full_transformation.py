@@ -3,7 +3,7 @@ Purpose: pick an OSM geojson file and transform it into an RSM-compliant topolog
 """
 from Code.Export.export_wkt_to_kml import ttl_to_kml
 from Code.Graph_transformation.step02_join_linear_elements import join_linear_elements
-from Code.Import.OSM_import import osm_import
+from Code.Import.OSM_import.osm_geojson_to_ttl import osm_import
 from Code.Graph_transformation.step01_split_linear_elements import split_linestrings_in_file
 from Graph_transformation.step03_add_ports import add_ports
 from Graph_transformation.step04_add_port_properties import set_port_connections, set_navigabilities
@@ -13,7 +13,7 @@ def transform_osm_to_rsm(osm_geojson_path, short_name):
     print("reading the OSM file: ", osm_geojson_path)
 
     # Read the OSM geojson file
-    osm_import.osm_import(osm_geojson_path, short_name)
+    osm_import(osm_geojson_path, short_name)
     # Split the linear elements if needed
     split_linestrings_in_file(
         "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{}_raw.ttl".format(
@@ -42,7 +42,7 @@ def transform_osm_to_rsm(osm_geojson_path, short_name):
             short_name),
         "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{}_with_navigabilities.ttl".format(
             short_name),
-        double_slip_crossings=False)
+        double_slip_crossings=True)
 
     ttl_to_kml(
         "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{}_with_ports.ttl".format(

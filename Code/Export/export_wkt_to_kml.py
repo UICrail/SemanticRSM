@@ -6,7 +6,7 @@ from typing import Dict, List
 from Code.Namespaces import *
 
 
-def wkt_to_kml(input_ttl_, output_kml_):
+def ttl_to_kml(input_ttl_, output_kml_):
     elements = parse_ttl_linestrings(input_ttl_)
     if elements:
         adjacency_list = build_adjacency_list(elements)
@@ -26,6 +26,7 @@ def parse_ttl_linestrings(input_ttl_: str) -> Dict[URIRef, LineString]:
     for line in g.subjects(RDF.type, RSM_TOPOLOGY.LinearElement):
         geom = g.value(line, RSM_GEOSPARQL_ADAPTER.hasNominalGeometry)
         wkt = g.value(geom, GEOSPARQL.asWKT)
+
         if wkt is not None:
             linestring = loads(str(wkt))
             if any(type_ in str(wkt) for type_ in VALID_TYPES):

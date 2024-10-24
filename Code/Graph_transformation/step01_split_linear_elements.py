@@ -30,11 +30,12 @@ def split_linestrings_in_file(file_path: str, short_name_: str = "", with_kml: b
     """
     print("splitting the Turtle file: ", file_path)
     linestring_dict = parse_turtle_for_linear_element_geometry(file_path)
+    label_dict = parse_turtle_for_labels(file_path)
     shared_coords = find_shared_intermediate_points(linestring_dict)
     modified_linestrings = split_linestrings(linestring_dict, shared_coords)
     path_to_split = "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/"
     generate_turtle_from_linestrings(file_path, modified_linestrings[0], modified_linestrings[1],
-                                     path_to_split + f"osm_{short_name_}_split.ttl")
+                                     path_to_split + f"osm_{short_name_}_split.ttl", label_dict)
     if with_kml:
         ttl_to_kml(path_to_split + f"osm_{short_name_}_split.ttl", path_to_split + f"osm_{short_name_}_split.kml")
 
@@ -52,7 +53,17 @@ def parse_turtle_for_linear_element_geometry(file_path: str) -> dict[URIRef, Lin
         wkt = g.value(s, GEOSPARQL.asWKT)
         if wkt:
             linestring_dict[s] = shapely.wkt.loads(str(wkt))
+        # TODO: this looks unnecessarily awkward.
     return linestring_dict
+
+
+def parse_turtle_for_labels(file_path: str) -> dict[URIRef, Literal]:
+    g = rdflib.Graph()
+    g.parse(file_path, format="turtle")
+    label_dict = {}
+    for s, _, o in g.triples((None, RDFS.label, None)):
+        label_dict[s] = o
+    return label_dict
 
 
 # checked 1/5/2024
@@ -135,9 +146,10 @@ def split_linestrings(linestrings: dict[URIRef, LineString], shared_coords: dict
 
 
 def generate_turtle_from_linestrings(file_path: str, linestrings_to_add: dict[URIRef, LineString],
-                                     linestrings_to_remove: set[URIRef], output_file_path: str):
+                                     linestrings_to_remove: set[URIRef], output_file_path: str, label_dict: dict = None):
     """
     Modifies the linear elements according to the split linestrings and stores result in ttl file.
+    :param label_dict: dictionary of labels key = linear element URI ref, value = Literal
     :param linestrings_to_remove:
     :param linestrings_to_add:
     :param file_path: turtle file with linear elements and their geometries
@@ -175,10 +187,12 @@ def generate_turtle_from_linestrings(file_path: str, linestrings_to_add: dict[UR
         line_uri = URIRef(WORK + 'split_line' + '_' + index)
         g.add((line_uri, RDF.type, RSM_TOPOLOGY.LinearElement))
         g.add((line_uri, RSM_GEOSPARQL_ADAPTER.hasNominalGeometry, geom_uri))
+        if label_dict.get(line_uri):
+            g.add((line_uri, RDFS.label, label_dict[line_uri]))
         count_lines += 1
         count_geometries += 1
-    print(f"    Generated {count_lines} linear elements and {count_geometries} nominal geometry properties")
 
+    print(f"    Generated {count_lines} linear elements and {count_geometries} nominal geometry properties")
     lines_to_remove = set()
 
     count_lines = 0
