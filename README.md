@@ -42,14 +42,14 @@ Other important concepts may come from other pieces of EU Law, such as TAF TSI, 
 * Graphics:
     - Sparx Enterprise Architect (v. 16 or later) for UML diagrams, possibly using the built-in [ODM](https://www.omg.org/odm/) UML profile.
     - Visual Paradigm also for UML diagrams (most illustrations come from Visual Paradigm).
-    - Draw.io for hand-drawn graphics.
+    - [Draw.io](https://draw.io/) for hand-drawn graphics.
     - Some diagrams (in the Wiki) were generated from extended markdown using [Mermaid](https://github.com/mermaid-js/mermaid) scripts, or
     - from ttl files using [OntoMermaid](https://github.com/floresbakker/OntoMermaid), a Python program returning a Mermaid script.
-    - from IFC Step files, using OpenIFCViewer.
+    - from IFC Step files, using [OpenIFCViewer](https://openifcviewer.com/).
  As Sparx Enterprise Architect and Visual Paradigm are paid applications, copies of the diagrams are also provided in PNG.
  
 ## Data
-* Sample data sets:
+* [Sample data sets](https://github.com/UICrail/SemanticRSM/tree/main/Source_data):
     - based on fictive or real networks, or
     - based on OpenStreetMap, using [Overpass Turbo](https://overpass-turbo.eu/), or
     - from actual sample sets (e.g. Scheibenberg test line).
@@ -59,7 +59,7 @@ RDF, [RDF-star](https://www.w3.org/2022/08/rdf-star-wg-charter/), OWL, SHACL (fo
 
 # Documentation
 ## Wiki
-The Wiki documents the design process, esp. main design choices. This is an integrated wiki, accessible via the GitHub menu bar.
+The [Wiki](https://github.com/UICrail/SemanticRSM/wiki) documents the design process, esp. main design choices. This is an integrated wiki, also accessible via the GitHub menu bar.
 
 ## Documentation folder
 Only contains diagrams (class diagrams for instance) and illustrations for use by the wiki and in other repositories. Full documentation is in the wiki.
