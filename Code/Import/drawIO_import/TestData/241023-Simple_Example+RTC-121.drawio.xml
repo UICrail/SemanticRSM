@@ -59,10 +59,15 @@
             <mxPoint x="-5" y="1" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="KE-CCnwT3hGo21N2crSz-4" value="7-27" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+        <mxCell id="KE-CCnwT3hGo21N2crSz-4" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
           <mxGeometry y="-10" width="50" height="50" relative="1" as="geometry">
             <mxPoint x="120" y="520" as="sourcePoint" />
             <mxPoint x="200" y="520" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="htsZ266mzR91RiV2L2zu-3" value="7-27" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KE-CCnwT3hGo21N2crSz-4">
+          <mxGeometry x="0.1529" y="1" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>

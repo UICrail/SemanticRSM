@@ -14,6 +14,13 @@ from Code.Varia.calculate_linestring_length import linestring_length
 from Code.Graph_transformation.step01_split_linear_elements import parse_turtle_for_labels
 
 
+def add_node(nodes: Dict[str, List[URIRef]], point_wkt: str, line: URIRef) -> None:
+    if point_wkt in nodes:
+        nodes[point_wkt].append(line)
+    else:
+        nodes[point_wkt] = [line]
+
+
 def find_nodes(g: Graph) -> Dict[str, List[URIRef]]:
     """
     Creates a dictionary:
@@ -26,20 +33,14 @@ def find_nodes(g: Graph) -> Dict[str, List[URIRef]]:
             s_wkt = loads(str(next(g.objects(geom, GEOSPARQL.asWKT))))  # Shapely geometry object
             if isinstance(s_wkt, Point):
                 print('WARNING: a point was found in the topology.ttl graph, where only linestrings are expected.')
+                continue
+            start_point_wkt = dumps(Point(s_wkt.coords[0]))
+            end_point_wkt = dumps(Point(s_wkt.coords[-1]))
+            add_node(nodes, start_point_wkt, line)
+            if end_point_wkt == start_point_wkt:  # equality may happen in the presence of loops.
+                print(f"Loop found : {start_point_wkt} -> {end_point_wkt}")
             else:
-                start_point_wkt = dumps(Point(s_wkt.coords[0]))
-                end_point_wkt = dumps(Point(s_wkt.coords[-1]))
-                if start_point_wkt in nodes:
-                    nodes[start_point_wkt].append(line)
-                else:
-                    nodes[start_point_wkt] = [line]
-                if end_point_wkt == start_point_wkt:  # equality may happen in the presence of loops.
-                    print(f"Loop found : {start_point_wkt} -> {end_point_wkt}")
-                else:
-                    if end_point_wkt in nodes:
-                        nodes[end_point_wkt].append(line)
-                    else:
-                        nodes[end_point_wkt] = [line]
+                add_node(nodes, end_point_wkt, line)
     return nodes
 
 
@@ -50,7 +51,6 @@ def report_degrees(nodes: dict[str, list[URIRef]]) -> None:
     degrees = Counter(len(v) for v in nodes.values())
     for degree, count in degrees.items():
         print(f"Nodes with degree {degree}: {count}")
-    pass
 
 
 def join_uri_refs(*urirefs: URIRef, join_symbol: str = '-') -> (URIRef, URIRef):
@@ -74,16 +74,16 @@ def join_uri_refs(*urirefs: URIRef, join_symbol: str = '-') -> (URIRef, URIRef):
         return URIRef(geom_result), URIRef(line_result)
 
 
-def merge_labels(linear_elements: List[URIRef], labels: dict, separator: str = '_') -> str:
+def merge_labels(linear_elements: List[URIRef], label_dict: dict, separator: str = '_') -> str:
     assert len(linear_elements) == 2, "ERROR: there are more than 2 track segments to be merged"
-    label_x, label_y = labels.get(linear_elements[0], ''), labels.get(linear_elements[1], '')
-    if label_x == label_y:
-        label_z = label_x
-    elif label_x == '' or label_y == '':
-        label_z = label_x + label_y
+    first_label, second_label = label_dict.get(linear_elements[0], ''), label_dict.get(linear_elements[1], '')
+    if first_label == second_label:
+        combined_label = first_label
+    elif first_label == '' or second_label == '':
+        combined_label = first_label + second_label
     else:
-        label_z = label_x + separator + label_y
-    return label_z
+        combined_label = first_label + separator + second_label
+    return combined_label
 
 
 def perform_joining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]], labels: dict) -> Graph:
