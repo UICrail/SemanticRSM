@@ -75,9 +75,12 @@ def join_uri_refs(*urirefs: URIRef, join_symbol: str = '-') -> (URIRef, URIRef):
 
 
 def merge_labels(linear_elements: List[URIRef], labels: dict, separator: str = '_') -> str:
+    assert len(linear_elements) == 2, "ERROR: there are more than 2 track segments to be merged"
     label_x, label_y = labels.get(linear_elements[0], ''), labels.get(linear_elements[1], '')
     if label_x == label_y:
         label_z = label_x
+    elif label_x == '' or label_y == '':
+        label_z = label_x + label_y
     else:
         label_z = label_x + separator + label_y
     return label_z
@@ -91,8 +94,7 @@ def perform_joining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]], labels: d
     lines_to_remove: set[URIRef] = set()
     geometries_to_remove: set[URIRef] = set()
     unprocessed_nodes = copy.deepcopy(nodes_degree_2)
-    processed_nodes_counter = 0
-    parse_error_count = 0
+    processed_nodes_counter, parse_error_count = 0, 0
 
     for node_wkt, linear_elements in nodes_degree_2.items():
         x_geom = g.value(linear_elements[0], RSM_GEOSPARQL_ADAPTER.hasNominalGeometry)
@@ -126,6 +128,8 @@ def perform_joining(g: Graph, nodes_degree_2: Dict[str, List[URIRef]], labels: d
             # note: by default, labels are empty strings
             label_z = merge_labels(linear_elements, labels)
             g.add((line_uri_z, RDFS.label, Literal(label_z)))
+            # update the labels dict
+            labels[line_uri_z] = label_z
 
             # Mark linear elements and geometries for removal
             lines_to_remove.update(linear_elements)

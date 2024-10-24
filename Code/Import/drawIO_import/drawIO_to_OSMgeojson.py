@@ -76,5 +76,5 @@ if __name__ == '__main__':
 
     file_path = 'TestData/241023-Simple_Example+RTC-121'
     OSMjsonGenerator().convert_drawio_to_osm(file_path)
-    osm_import(file_path + '.osm.geojson', "Pierre's test, 121")
-    transform_osm_to_rsm(file_path + '.osm.geojson', "Pierre's test, 121")
+    osm_import(file_path + '.osm.geojson', "Pierre_Tane_test_121")
+    transform_osm_to_rsm(file_path + '.osm.geojson', "Pierre_Tane_test_121")

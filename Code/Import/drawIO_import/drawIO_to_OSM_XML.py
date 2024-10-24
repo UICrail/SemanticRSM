@@ -75,11 +75,18 @@ class OSMGenerator:
         source_node_id = self.get_or_create_node_id(source_coords)
         target_node_id = self.get_or_create_node_id(target_coords)
         self.way_index[item['@id']] = {'source': source_node_id, 'target': target_node_id}
+        # in certain cases, the label is attached directly to the edge
+        if label := item.get('@value'):
+            self.label_index[item['@id']] = label
+
 
     def process_connectable(self, item):
         # TODO: expand this method to handle slip crossing characterization
-        if item.get('@parent') in self.way_index.keys():
-            self.label_index[item['@parent']] = item.get('@value')
+        if (related_way := item.get('@parent')) in self.way_index.keys():
+            if related_way not in self.label_index.keys():
+                self.label_index[item['@parent']] = item.get('@value')
+            else:
+                print(f"WARNING: way {related_way} has two labels")
 
     @staticmethod
     def extract_coordinates(item):
@@ -95,7 +102,7 @@ class OSMGenerator:
     @staticmethod
     def cleanup_label(label: str) -> str:
         TO_REMOVE = ['<br>', '<div>', '</div>']  # these are sometimes found in draw.io output
-        cleaned_label = label
+        cleaned_label = label.strip()
         for item in TO_REMOVE:
             cleaned_label = cleaned_label.replace(item, '')
         return cleaned_label
