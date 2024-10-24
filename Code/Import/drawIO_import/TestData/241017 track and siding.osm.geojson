@@ -1,0 +1,125 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            46.220328,
+            2.381549
+          ],
+          [
+            46.220327,
+            2.38362
+          ]
+        ]
+      },
+      "properties": {
+        "label": "A",
+        "railway": "rail"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            46.220327,
+            2.38362
+          ],
+          [
+            46.220326,
+            2.387244
+          ]
+        ]
+      },
+      "properties": {
+        "label": "B",
+        "railway": "rail"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            46.220326,
+            2.387244
+          ],
+          [
+            46.220325,
+            2.388797
+          ]
+        ]
+      },
+      "properties": {
+        "label": "C",
+        "railway": "rail"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            46.219968,
+            2.384137
+          ],
+          [
+            46.220327,
+            2.38362
+          ]
+        ]
+      },
+      "properties": {
+        "label": "",
+        "railway": "rail"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            46.219968,
+            2.384137
+          ],
+          [
+            46.219967,
+            2.386726
+          ]
+        ]
+      },
+      "properties": {
+        "label": "D",
+        "railway": "rail"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            46.219967,
+            2.386726
+          ],
+          [
+            46.220326,
+            2.387244
+          ]
+        ]
+      },
+      "properties": {
+        "label": "",
+        "railway": "rail"
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm xmlns="http://osm.org" version="0.6" generator="Python">
+  <node id="1" lat="120" lon="520"/>
+  <node id="2" lat="280" lon="520"/>
+  <node id="3" lat="560" lon="520"/>
+  <node id="4" lat="680" lon="520"/>
+  <node id="5" lat="320" lon="560"/>
+  <node id="6" lat="520" lon="560"/>
+  <way id="6IkagUWBdp1EivHOTrkd-7">
+    <nd ref="1"/>
+    <nd ref="2"/>
+    <tag k="label" v="A"/>
+  </way>
+  <way id="6IkagUWBdp1EivHOTrkd-8">
+    <nd ref="2"/>
+    <nd ref="3"/>
+    <tag k="label" v="B"/>
+  </way>
+  <way id="6IkagUWBdp1EivHOTrkd-9">
+    <nd ref="3"/>
+    <nd ref="4"/>
+    <tag k="label" v="C"/>
+  </way>
+  <way id="6IkagUWBdp1EivHOTrkd-16">
+    <nd ref="5"/>
+    <nd ref="2"/>
+    <tag k="label" v=""/>
+  </way>
+  <way id="6IkagUWBdp1EivHOTrkd-17">
+    <nd ref="5"/>
+    <nd ref="6"/>
+    <tag k="label" v="D"/>
+  </way>
+  <way id="6IkagUWBdp1EivHOTrkd-18">
+    <nd ref="6"/>
+    <nd ref="3"/>
+    <tag k="label" v=""/>
+  </way>
+</osm>
