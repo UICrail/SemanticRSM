@@ -18,6 +18,7 @@ from shapely.geometry import LineString
 from shapely.wkt import dumps
 
 from Code.Namespaces import *
+from Graph_transformation.graph_file_handing import _load_graph
 
 
 def split_linestrings_in_file(file_path: str, short_name_: str = "", with_kml: bool = False):
@@ -158,14 +159,13 @@ def generate_turtle_from_linestrings(file_path: str, linestrings_to_add: dict[UR
     """
 
     # Load the RDF graph
-    g = rdflib.Graph()
-    g.parse(file_path, format="turtle")
+    graph = _load_graph(file_path)
 
     # Bind the namespaces
-    g.bind("geo", GEOSPARQL)
-    g.bind("rsm", RSM_TOPOLOGY)
-    g.bind("rsm", RSM_GEOSPARQL_ADAPTER)
-    g.bind("", WORK)
+    graph.bind("geo", GEOSPARQL)
+    graph.bind("rsm", RSM_TOPOLOGY)
+    graph.bind("rsm", RSM_GEOSPARQL_ADAPTER)
+    graph.bind("", WORK)
 
     # Handle the geometries (linestrings)
 
@@ -175,8 +175,8 @@ def generate_turtle_from_linestrings(file_path: str, linestrings_to_add: dict[UR
         wkt_literal = Literal(wkt, datatype=GEOSPARQL.wktLiteral)
 
         # Create the triples for geometries
-        g.add((geom_uri, RDF.type, RSM_GEOSPARQL_ADAPTER.Geometry))
-        g.add((geom_uri, GEOSPARQL.asWKT, wkt_literal))  # Geometry representation using Well-Known Text (WKT)
+        graph.add((geom_uri, RDF.type, RSM_GEOSPARQL_ADAPTER.Geometry))
+        graph.add((geom_uri, GEOSPARQL.asWKT, wkt_literal))  # Geometry representation using Well-Known Text (WKT)
 
     # Handle the features (linear elements)
 
@@ -185,10 +185,10 @@ def generate_turtle_from_linestrings(file_path: str, linestrings_to_add: dict[UR
     for geom_uri in linestrings_to_add:
         index = geom_uri.split('_', 1)[1]
         line_uri = URIRef(WORK + 'split_line' + '_' + index)
-        g.add((line_uri, RDF.type, RSM_TOPOLOGY.LinearElement))
-        g.add((line_uri, RSM_GEOSPARQL_ADAPTER.hasNominalGeometry, geom_uri))
+        graph.add((line_uri, RDF.type, RSM_TOPOLOGY.LinearElement))
+        graph.add((line_uri, RSM_GEOSPARQL_ADAPTER.hasNominalGeometry, geom_uri))
         if label_dict.get(line_uri):
-            g.add((line_uri, RDFS.label, label_dict[line_uri]))
+            graph.add((line_uri, RDFS.label, label_dict[line_uri]))
         count_lines += 1
         count_geometries += 1
 
@@ -197,26 +197,26 @@ def generate_turtle_from_linestrings(file_path: str, linestrings_to_add: dict[UR
 
     count_lines = 0
     for linestring in linestrings_to_remove:
-        for matching_line in g.subjects(RSM_GEOSPARQL_ADAPTER.hasNominalGeometry, linestring):
+        for matching_line in graph.subjects(RSM_GEOSPARQL_ADAPTER.hasNominalGeometry, linestring):
             lines_to_remove.add(matching_line)
             count_lines += 1
     print(f"    Number of linear elements removed (matching the geometries to be removed): {count_lines}")
 
     count_lines: int = 0
     for line_to_remove in lines_to_remove:
-        g.remove((line_to_remove, None, None))
-        g.remove((None, None, line_to_remove))
+        graph.remove((line_to_remove, None, None))
+        graph.remove((None, None, line_to_remove))
         count_lines += 1
     print(f"    Removed {count_lines} linear elements")
 
     # finally, remove the triples referring to obsolete geometries, if any
 
     for geo_uri in linestrings_to_remove:
-        g.remove((geo_uri, None, None))
-        g.remove((None, None, geo_uri))
+        graph.remove((geo_uri, None, None))
+        graph.remove((None, None, geo_uri))
 
     # Serialize the graph to the Turtle file
-    g.serialize(destination=output_file_path, format='turtle')
+    graph.serialize(destination=output_file_path, format='turtle')
     print(f"Generated Turtle file: {output_file_path}")
 
 

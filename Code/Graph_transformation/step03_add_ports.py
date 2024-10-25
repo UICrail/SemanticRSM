@@ -23,8 +23,8 @@ def create_port(graph: Graph, linear_element: URIRef, extremity: Point, azimuth:
 
 def add_ports_to_linear_elements(input_ttl: str, output_ttl: Optional[str] = None,
                                  with_inverse_properties: bool = True) -> None:
-    graph = Graph()
-    graph.parse(input_ttl, format='turtle')
+    from Graph_transformation.graph_file_handing import _load_graph
+    graph = _load_graph(input_ttl)
     linear_element_count = len(list(graph.subjects(RDF.type, RSM_TOPOLOGY.LinearElement)))
     print(f"\nCreating ports at the extremities of {linear_element_count} linear elements:")
     counter = 0
@@ -51,7 +51,5 @@ def add_ports_to_linear_elements(input_ttl: str, output_ttl: Optional[str] = Non
     if linear_element_count != counter:
         print("    WARNING: there seems to be a mismatch above.")
 
-    if output_ttl:
-        graph.serialize(destination=output_ttl, format='turtle')
-    else:
-        print(graph.serialize(format='turtle'))
+    from Graph_transformation.graph_file_handing import _save_graph
+    _save_graph(graph, output_ttl)
