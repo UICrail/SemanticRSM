@@ -6,7 +6,7 @@ from Code.Export.export_wkt_to_kml import ttl_to_kml
 from Code.Graph_transformation.step02_join_linear_elements import join_linear_elements
 from Code.Import.OSM_import.osm_geojson_to_ttl import osm_import
 from Code.Graph_transformation.step01_split_linear_elements import split_linestrings_in_file
-from Graph_transformation.step03_add_ports import add_ports
+from Graph_transformation.step03_add_ports import add_ports_to_linear_elements
 from Graph_transformation.step04_add_port_properties import set_port_connections, set_navigabilities
 
 BASE_PATH = os.path.join(os.path.dirname(__file__), "..", "..", "Output_files", "Intermediate_files")
@@ -30,7 +30,7 @@ def transform_osm_to_rsm(osm_geojson_path, short_name):
         generate_file_path(short_name, "joint")
     )
 
-    add_ports(
+    add_ports_to_linear_elements(
         generate_file_path(short_name, "joint"),
         generate_file_path(short_name, "with_ports")
     )

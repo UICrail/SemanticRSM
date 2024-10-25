@@ -6,6 +6,7 @@ from rdflib.namespace import RDF
 from rdflib.term import Node
 
 from Code.Namespaces import *
+from Graph_transformation.geometry_scrutiny import deviation_angle, possible_navigability
 
 
 def set_port_connections(input_ttl: str, output_ttl: Optional[str] = None):
@@ -39,48 +40,24 @@ def set_port_connections(input_ttl: str, output_ttl: Optional[str] = None):
         print(g.serialize(format='turtle'))
 
 
-def deviation_angle(azimuth_1: float, azimuth_2: float) -> float:
+def get_opposite_port(graph: Graph, port: Node) -> Node | None:
     """
-    Deviation angle at the junction between two linear elements.
-    :param azimuth_1: of port X of element A at junction
-    :param azimuth_2: of port Y of element B at junction
-    :return: angle, in degrees, in [-180, 180] interval
-    """
-    dev = azimuth_1 - (azimuth_2 - 180)
-    if dev > 180:
-        dev -= 360
-    elif dev < -180:
-        dev += 360
-    return dev
-
-
-def possible_navigability(azimuth_1: float, azimuth_2: float, small_angle: float = 30) -> bool:
-    """
-    Determines whether it is possible to navigate between linear elements basing on the azimuths of their connected
-    extremities. Azimuths values are provided in degrees, in the range [-180, 180] (this is a pyproj setting).
-    "Possibility" is provided when the azimuth difference, modulo 180 degrees, is "small".
-    :param azimuth_1:
-    :param azimuth_2:
-    :param small_angle: 30° by default
-    :return: True if navigability is possible, else False
-    """
-    if abs(deviation_angle(azimuth_1, azimuth_2)) < small_angle:
-        return True
-    else:
-        return False
-
-
-def get_opposite_port(g: Graph, a_port: Node) -> Node | None:
-    """
-    Leads from a_port to the other port in the same linear element
+    Looks for the opposite port in a linear element. If the given port is not a linear element,
+    returns None.
+    :param graph the RDF graph
+    :param port a port node in the graph that is supposed to belong to a single linear element
     :returns the opposite port, or None if the element is not a Linear Element
     """
-    element = list(g.objects(a_port, RSM_TOPOLOGY.onElement))  # only one element is expected; better check
-    assert len(element) == 1
-    other_port = []
-    if g.value(element[0], RDF.type) == RSM_TOPOLOGY.LinearElement:
-        other_port = [x for x in g.subjects(RSM_TOPOLOGY.onElement, element[0]) if x != a_port]
-    return other_port[0] if other_port else None
+    elements = list(graph.objects(port, RSM_TOPOLOGY.onElement))  # only one element is expected; better check:
+    assert len(elements) == 1, "ERROR: port {} belongs to more than one element, namely {} ".format(port,
+                                                                                                    elements)
+    element = elements[0]
+    other_ports = []
+    if graph.value(element, RDF.type) == RSM_TOPOLOGY.LinearElement:
+        other_ports = [x for x in graph.subjects(RSM_TOPOLOGY.onElement, element) if x != port]
+    else:
+        print(f"**** WARNING: looking for an opposite port on non-linear element {element}")
+    return other_ports[0] if other_ports else None
 
 
 def set_navigabilities(input_ttl: str, output_ttl: Optional[str] = None, double_slip_crossings: bool = True):
