@@ -7,14 +7,15 @@ from pyproj import Transformer
 # Canvas units = one meter
 # Remember that Y axis on the canvas is oriented down
 # NTF Lambert zone 1 to WGS84:
-transformer = Transformer.from_crs("EPSG:27571", "EPSG:4326")
 CENTER_COORDS = 603357.78, 835717.15  # of NTF Lambert zone 1
-
 # From OpenStreetMap
 RAILWAY_TAG = {'railway': 'rail'}  # used in OpenStreetMap for annotating, well, railway-related stuff
 
+# initialize transformer
+transformer = Transformer.from_crs("EPSG:27571", "EPSG:4326")
 
-def _cartesian_to_lonlat(coords: tuple[str, str], permute=False) -> tuple[str, str]:
+
+def cartesian_to_lonlat(coords: tuple[str, str], permute=False) -> tuple[str, str]:
     result = transformer.transform(float(coords[0]) + CENTER_COORDS[0], -float(coords[1]) + CENTER_COORDS[1])
     if permute:
         return result[1], result[0]
@@ -31,18 +32,6 @@ class OSMjsonGenerator(OSMGenerator):
         self.out_file_extension = '.osm.geojson'
         self.osm_doc = []
 
-    @staticmethod
-    def _create_geojson_point(lon, lat):
-        return geojson.Point(_cartesian_to_lonlat((float(lon), float(lat))))
-
-    @staticmethod
-    def _create_geojson_linestring(source, target):
-        way_coords = (
-            _cartesian_to_lonlat(source),
-            _cartesian_to_lonlat(target)
-        )
-        return geojson.LineString(way_coords)
-
     def add_nodes_from_index(self):
         # needed, for polymorphism
         pass
@@ -53,7 +42,7 @@ class OSMjsonGenerator(OSMGenerator):
             source_coords = self.node_index[node_ids['source']]
             target_coords = self.node_index[node_ids['target']]
 
-            linestring = self._create_geojson_linestring(source_coords, target_coords)
+            linestring = create_geojson_linestring(source_coords, target_coords)
             cleaned_label = self.cleanup_label(self.label_index.get(way_id, ''))
             tags = {'label': cleaned_label, **RAILWAY_TAG}  # empty string as default label
             self.osm_doc.append(geojson.Feature(type="Feature", geometry=linestring, properties=tags))
@@ -68,6 +57,20 @@ class OSMjsonGenerator(OSMGenerator):
         osm_json = self.generate_osm_string()
         with open(out_path + '.osm.geojson', 'w') as f:
             f.write(osm_json)
+
+
+# TODO: move helper functions below to some helper module
+
+def create_geojson_linestring(source, target):
+    way_coords = (
+        cartesian_to_lonlat(source),
+        cartesian_to_lonlat(target)
+    )
+    return geojson.LineString(way_coords)
+
+
+def create_geojson_point(lon, lat):
+    return geojson.Point(cartesian_to_lonlat((float(lon), float(lat))))
 
 
 if __name__ == '__main__':

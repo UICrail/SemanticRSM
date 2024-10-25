@@ -8,8 +8,32 @@ import xmltodict
 # Constants
 OSM_VERSION = "0.6"
 GENERATOR = "Python"
+# Styles defined by drawIO
+DASHED_LINE = "dashed=1"
+# Constants for characterizing designer-defined artefacts.
+SLIP_CROSSING_STYLE = [DASHED_LINE]
+ARTEFACTS = {'slip crossing': SLIP_CROSSING_STYLE}
+
 # noinspection HttpUrlsUsage
 NAMESPACE_URI = "http://osm.org"
+
+
+# helper function for determining what the artefact stands for, only looking at its style
+def classify_artefact_by_style(observed_styles: str) -> str | None:
+    """
+    If all observed styles match the first encountered artefact in ARTEFACTS, this function will consider that
+    the observed styles denote such an artefact.
+    This means that more styles can be added by the user (ex. : color...).
+    The programmer should however be aware that his own ARTEFACT classification may be ambiguous...
+    :param observed_styles:
+    :return: inferred artefact category (index in ARTEFACTS), or None if not found
+    """
+    for artefact, artefact_styles in ARTEFACTS.items():
+        for artefact_style in artefact_styles:
+            if artefact_style not in observed_styles:
+                continue
+            return artefact
+    return None
 
 
 # drawIO XML to dict
@@ -66,7 +90,13 @@ class OSMGenerator:
         element_list = data['mxfile']['diagram']['mxGraphModel']['root']['mxCell']
         for item in element_list:
             if item.get('@edge'):
-                self.process_edge(item)
+                observed_styles = item['@style']
+                artefact_category = classify_artefact_by_style(observed_styles)
+                if artefact_category == 'slip crossing':
+                    print(f"INFO: edge {item['@id']} is not a linear element, but denotes a {artefact_category}")
+                    # TODO: encode this information as a pseudo-linear element
+                else:
+                    self.process_edge(item)
             elif item.get('@connectable'):
                 self.process_connectable(item)
 
@@ -79,9 +109,7 @@ class OSMGenerator:
         if label := item.get('@value'):
             self.label_index[item['@id']] = label
 
-
     def process_connectable(self, item):
-        # TODO: expand this method to handle slip crossing characterization
         if (related_way := item.get('@parent')) in self.way_index.keys():
             if related_way not in self.label_index.keys():
                 self.label_index[item['@parent']] = item.get('@value')

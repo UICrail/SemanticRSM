@@ -1,19 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <osm xmlns="http://osm.org" version="0.6" generator="Python">
-  <node id="1" lat="280" lon="440"/>
-  <node id="2" lat="400" lon="440"/>
-  <node id="3" lat="640" lon="520"/>
-  <node id="4" lat="830" lon="520"/>
-  <node id="5" lat="890" lon="600"/>
-  <node id="6" lat="960" lon="600"/>
-  <node id="7" lat="120" lon="440"/>
-  <node id="8" lat="120" lon="520"/>
-  <node id="9" lat="200" lon="520"/>
-  <node id="10" lat="520" lon="440"/>
-  <node id="11" lat="640" lon="440"/>
-  <node id="12" lat="760" lon="440"/>
-  <node id="13" lat="1040" lon="440"/>
-  <node id="14" lat="1040" lon="520"/>
+  <node id="1" lat="190" lon="220"/>
+  <node id="2" lat="310" lon="220"/>
+  <node id="3" lat="550" lon="300"/>
+  <node id="4" lat="740" lon="300"/>
+  <node id="5" lat="800" lon="380"/>
+  <node id="6" lat="870" lon="380"/>
+  <node id="7" lat="30" lon="220"/>
+  <node id="8" lat="30" lon="300"/>
+  <node id="9" lat="110" lon="300"/>
+  <node id="10" lat="430" lon="220"/>
+  <node id="11" lat="550" lon="220"/>
+  <node id="12" lat="670" lon="220"/>
+  <node id="13" lat="950" lon="220"/>
+  <node id="14" lat="950" lon="300"/>
+  <node id="15" lat="720" lon="280"/>
+  <node id="16" lat="770" lon="300"/>
   <way id="6IkagUWBdp1EivHOTrkd-8">
     <nd ref="1"/>
     <nd ref="2"/>
@@ -27,7 +29,7 @@
   <way id="6IkagUWBdp1EivHOTrkd-17">
     <nd ref="5"/>
     <nd ref="6"/>
-    <tag k="label" v="70-3"/>
+    <tag k="label" v=""/>
   </way>
   <way id="6IkagUWBdp1EivHOTrkd-18">
     <nd ref="5"/>
@@ -47,7 +49,7 @@
   <way id="KE-CCnwT3hGo21N2crSz-6">
     <nd ref="9"/>
     <nd ref="1"/>
-    <tag k="label" v="7-27"/>
+    <tag k="label" v=""/>
   </way>
   <way id="KE-CCnwT3hGo21N2crSz-9">
     <nd ref="2"/>
@@ -78,5 +80,10 @@
     <nd ref="12"/>
     <nd ref="4"/>
     <tag k="label" v="7-35"/>
+  </way>
+  <way id="htsZ266mzR91RiV2L2zu-17">
+    <nd ref="15"/>
+    <nd ref="16"/>
+    <tag k="label" v="slip"/>
   </way>
 </osm>
