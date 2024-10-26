@@ -12,18 +12,21 @@ PORT_SUFFIX_0 = '_port_0'
 PORT_SUFFIX_1 = '_port_1'
 
 
-def create_port(graph: Graph, linear_element: URIRef, extremity: Point, azimuth: float, port_suffix: str):
+def create_port(graph: Graph, linear_element: URIRef, extremity: Point, azimuth: float, port_suffix: str,
+                comment: str = ''):
     port_uri = URIRef(str(linear_element) + port_suffix)
     graph.add((port_uri, RDF.type, RSM_TOPOLOGY.Port))
     graph.add((port_uri, GEOSPARQL.asWKT, Literal(extremity)))
     graph.add((port_uri, RSM_TOPOLOGY.azimuth, Literal(azimuth)))
     graph.add((linear_element, RSM_TOPOLOGY.hasPort, port_uri))
+    if comment:
+        graph.add((port_uri, RDFS.comment, Literal(comment)))
     return port_uri
 
 
 def add_ports_to_linear_elements(input_ttl: str, output_ttl: Optional[str] = None,
                                  with_inverse_properties: bool = True) -> None:
-    from Graph_transformation.graph_file_handing import _load_graph
+    from Graph_transformation.graph_file_handing import _load_graph, _save_graph
     graph = _load_graph(input_ttl)
     linear_element_count = len(list(graph.subjects(RDF.type, RSM_TOPOLOGY.LinearElement)))
     print(f"\nCreating ports at the extremities of {linear_element_count} linear elements:")
@@ -38,8 +41,12 @@ def add_ports_to_linear_elements(input_ttl: str, output_ttl: Optional[str] = Non
         azimuth0 = wgs84_geod.inv(neighbor0.x, neighbor0.y, extremity0.x, extremity0.y)[0]
         azimuth1 = wgs84_geod.inv(neighbor1.x, neighbor1.y, extremity1.x, extremity1.y)[0]
 
-        port_uri0 = create_port(graph, linear_element, extremity0, azimuth0, PORT_SUFFIX_0)
-        port_uri1 = create_port(graph, linear_element, extremity1, azimuth1, PORT_SUFFIX_1)
+        port_uri0 = create_port(graph, linear_element, extremity0, azimuth0, PORT_SUFFIX_0, '')
+        port_uri1 = create_port(graph, linear_element, extremity1, azimuth1, PORT_SUFFIX_1, '')
+
+        if comment := graph.value(linear_element, RDFS.comment):
+            graph.add((port_uri0, RDFS.comment, comment))
+            graph.add((port_uri1, RDFS.comment, comment))
 
         if with_inverse_properties:
             graph.add((port_uri0, RSM_TOPOLOGY.onElement, linear_element))
@@ -51,5 +58,4 @@ def add_ports_to_linear_elements(input_ttl: str, output_ttl: Optional[str] = Non
     if linear_element_count != counter:
         print("    WARNING: there seems to be a mismatch above.")
 
-    from Graph_transformation.graph_file_handing import _save_graph
     _save_graph(graph, output_ttl)

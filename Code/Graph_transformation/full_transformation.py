@@ -8,6 +8,7 @@ from Code.Import.OSM_import.osm_geojson_to_ttl import osm_import
 from Code.Graph_transformation.step01_split_linear_elements import split_linestrings_in_file
 from Graph_transformation.step03_add_ports import add_ports_to_linear_elements
 from Graph_transformation.step04_add_port_properties import set_port_connections, set_navigabilities
+from Graph_transformation.step04b_add_slip_functionality import add_slip_functionality
 
 BASE_PATH = os.path.join(os.path.dirname(__file__), "..", "..", "Output_files", "Intermediate_files")
 
@@ -16,7 +17,15 @@ def generate_file_path(short_name, stage):
     return os.path.join(BASE_PATH, f"osm_{short_name}_{stage}.ttl")
 
 
+
+
 def transform_osm_to_rsm(osm_geojson_path, short_name):
+    """
+
+    :param osm_geojson_path: source data
+    :param short_name: will be used in the name of generated files
+    :return: None
+    """
     print(f"Reading the OSM file: {osm_geojson_path}")
 
     # Read the OSM geojson file
@@ -44,6 +53,11 @@ def transform_osm_to_rsm(osm_geojson_path, short_name):
         generate_file_path(short_name, "with_connected_ports"),
         generate_file_path(short_name, "with_navigabilities"),
         double_slip_crossings=True
+    )
+
+    add_slip_functionality(
+        generate_file_path(short_name, "with_navigabilities"),
+        generate_file_path(short_name, "with_slip_functionality")
     )
 
     ttl_to_kml(

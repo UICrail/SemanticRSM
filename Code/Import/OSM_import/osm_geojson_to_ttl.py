@@ -63,6 +63,10 @@ def osm_import(osm_file_path: str, short_name: str = "", linear_element_prefix: 
             graph.add((line_uri, RSM_GEOSPARQL_ADAPTER.hasNominalGeometry, geom_uri))
             graph.add((geom_uri, RDF.type, RSM_GEOSPARQL_ADAPTER.Geometry))
             graph.add((geom_uri, GEOSPARQL.asWKT, Literal(wkt, datatype=GEOSPARQL.wktLiteral)))
+        if annotations := row.get('annotations'):
+            graph.add((line_uri, RDFS.comment, Literal(annotations)))
+
+
 
     # Serialize the graph to a Turtle file
     output_file_path = f'/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{short_name}_raw.ttl'
