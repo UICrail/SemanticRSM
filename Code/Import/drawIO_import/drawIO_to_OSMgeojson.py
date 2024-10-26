@@ -45,6 +45,8 @@ class OSMjsonGenerator(OSMGenerator):
             linestring = create_geojson_linestring(source_coords, target_coords)
             cleaned_label = self.cleanup_label(self.label_index.get(way_id, ''))
             tags = {'label': cleaned_label, **RAILWAY_TAG}  # empty string as default label
+            if annotations := self.way_index[way_id].get('annotation'):
+                tags['annotations'] = annotations
             self.osm_doc.append(geojson.Feature(type="Feature", geometry=linestring, properties=tags))
 
     def generate_osm_string(self):

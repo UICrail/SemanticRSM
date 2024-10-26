@@ -260,6 +260,27 @@
         "label": "7-35",
         "railway": "rail"
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            46.222481,
+            2.389316
+          ],
+          [
+            46.222301,
+            2.389963
+          ]
+        ]
+      },
+      "properties": {
+        "label": "slip",
+        "railway": "rail",
+        "annotations": "slip switch"
+      }
     }
   ]
 }

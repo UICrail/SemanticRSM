@@ -11,8 +11,8 @@ GENERATOR = "Python"
 # Styles defined by drawIO
 DASHED_LINE = "dashed=1"
 # Constants for characterizing designer-defined artefacts.
-SLIP_CROSSING_STYLE = [DASHED_LINE]
-ARTEFACTS = {'slip crossing': SLIP_CROSSING_STYLE}
+SLIP_SWITCH_STYLE = [DASHED_LINE]
+ARTEFACTS = {'slip switch': SLIP_SWITCH_STYLE}
 
 # noinspection HttpUrlsUsage
 NAMESPACE_URI = "http://osm.org"
@@ -28,6 +28,8 @@ def classify_artefact_by_style(observed_styles: str) -> str | None:
     :param observed_styles:
     :return: inferred artefact category (index in ARTEFACTS), or None if not found
     """
+    # TODO: consider sth more sophisticated, using a taxonomy-like dict where the artefact categories are the leaves, not the index
+    # or (better) a multi-dimensional sieve
     for artefact, artefact_styles in ARTEFACTS.items():
         for artefact_style in artefact_styles:
             if artefact_style not in observed_styles:
@@ -92,19 +94,20 @@ class OSMGenerator:
             if item.get('@edge'):
                 observed_styles = item['@style']
                 artefact_category = classify_artefact_by_style(observed_styles)
-                if artefact_category == 'slip crossing':
+                if artefact_category == 'slip switch':
                     print(f"INFO: edge {item['@id']} is not a linear element, but denotes a {artefact_category}")
                     # TODO: encode this information as a pseudo-linear element
+                    self.process_edge(item, 'slip switch')
                 else:
                     self.process_edge(item)
             elif item.get('@connectable'):
                 self.process_connectable(item)
 
-    def process_edge(self, item):
+    def process_edge(self, item, annotation:str = ''):
         source_coords, target_coords = self.extract_coordinates(item)
         source_node_id = self.get_or_create_node_id(source_coords)
         target_node_id = self.get_or_create_node_id(target_coords)
-        self.way_index[item['@id']] = {'source': source_node_id, 'target': target_node_id}
+        self.way_index[item['@id']] = {'source': source_node_id, 'target': target_node_id, 'annotation': annotation}
         # in certain cases, the label is attached directly to the edge
         if label := item.get('@value'):
             self.label_index[item['@id']] = label
