@@ -93,14 +93,14 @@ def find_nearest_linear_elements(lonlat: tuple[float, float], graph, count: int 
 def find_nearest_ports(coords: tuple[float, float], graph, net_element, count: int = 1) -> dict[URIRef:float]:
     """
     In this version, only linear net elements are considered.
-    :param coords: easting and northing
+    :param coords: longitude and latitude, decimal degrees (WGS84)
     :param graph: containing linear elements and their ports, with coordinates as WKT literals
     :param net_element: the net element considered
     :param count: max number of ports to be returned (cannot exceed 2 if element is a linear one)
     :return: dict[URIRef:float] where URIRef refers to the port, and float is the value of the distance
     """
 
-    point = Point(coords)
+    point = Point(transformer.transform(*coords))
     distances = {}
 
     # Iterate over ports of the given net element
@@ -113,7 +113,6 @@ def find_nearest_ports(coords: tuple[float, float], graph, net_element, count: i
 
             port_point = Point(easting, northing)
             distance = point.distance(port_point)
-            # TODO: the above does not look right. Maybe an issue with coordinate order, again...
             distances[port] = distance
 
     # Return the nearest 'count' ports
