@@ -5,9 +5,9 @@ from rdflib.namespace import RDF
 from rdflib.term import Node
 
 from Code.Namespaces import *
-from Graph_transformation.geometry_scrutiny import deviation_angle, possible_navigability, \
+from Graph_transformation.geometry_stuff import deviation_angle, possible_navigability, \
     NAVIGABILITY_ANGULAR_THRESHOLD
-from Graph_transformation.graph_file_handing import _load_graph, _save_graph
+from Graph_transformation.graph_file_handing import load_graph, save_graph
 
 DIRECT_CONNECTION_WARNING_THRESHOLD = 1
 DOUBLE_SLIP_CROSSINGS_THRESHOLD = 3
@@ -52,7 +52,7 @@ def set_port_connections(input_ttl: str, output_ttl: Optional[str] = None):
     :param output_ttl: new file, with connection properties added
     :return: None
     """
-    graph = _load_graph(input_ttl)
+    graph = load_graph(input_ttl)
 
     print("Setting the connections between ports")
 
@@ -64,7 +64,7 @@ def set_port_connections(input_ttl: str, output_ttl: Optional[str] = None):
     print(f"    {connections_count} ports connected")
 
     # Output
-    _save_graph(graph, output_ttl=output_ttl)
+    save_graph(graph, output_ttl=output_ttl)
 
 
 def get_opposite_port(graph: Graph, port: Node) -> Node | None:
@@ -86,8 +86,8 @@ def get_opposite_port(graph: Graph, port: Node) -> Node | None:
         print(f"**** WARNING: looking for an opposite port on non-linear element {element}")
 
 
-def set_navigabilities(input_ttl: str, output_ttl: Optional[str] = None, double_slip_crossings: bool = True):
-    graph = _load_graph(input_ttl)
+def set_navigabilities(input_ttl: str, output_ttl: Optional[str] = None, double_slip_crossings: bool = False):
+    graph = load_graph(input_ttl)
     print("Setting the navigabilities between ports.")
     print_crossing_information(double_slip_crossings)
 
@@ -96,7 +96,7 @@ def set_navigabilities(input_ttl: str, output_ttl: Optional[str] = None, double_
         connected_ports, connected_ports_list = get_connected_ports(graph, port)
         handle_port_navigability(graph, port, connected_ports_list, double_slip_crossings)
 
-    _save_graph(graph, output_ttl=output_ttl)
+    save_graph(graph, output_ttl=output_ttl)
 
 
 def print_crossing_information(double_slip_crossings: bool):

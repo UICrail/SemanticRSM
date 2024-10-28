@@ -65,6 +65,7 @@ def osm_import(osm_file_path: str, short_name: str = "", linear_element_prefix: 
             graph.add((geom_uri, GEOSPARQL.asWKT, Literal(wkt, datatype=GEOSPARQL.wktLiteral)))
         if annotations := row.get('annotations'):
             graph.add((line_uri, RDFS.comment, Literal(annotations)))
+            graph.add((geom_uri, RDFS.comment, Literal(annotations)))
 
 
 

@@ -1,7 +1,7 @@
 from typing import Optional
 from pyproj import Geod
 from rdflib import Graph, URIRef, Literal
-from rdflib.namespace import RDF
+from rdflib.namespace import RDF, RDFS
 from shapely.geometry import Point
 from shapely.wkt import loads
 from Code.Namespaces import *
@@ -26,8 +26,8 @@ def create_port(graph: Graph, linear_element: URIRef, extremity: Point, azimuth:
 
 def add_ports_to_linear_elements(input_ttl: str, output_ttl: Optional[str] = None,
                                  with_inverse_properties: bool = True) -> None:
-    from Graph_transformation.graph_file_handing import _load_graph, _save_graph
-    graph = _load_graph(input_ttl)
+    from Graph_transformation.graph_file_handing import load_graph, save_graph
+    graph = load_graph(input_ttl)
     linear_element_count = len(list(graph.subjects(RDF.type, RSM_TOPOLOGY.LinearElement)))
     print(f"\nCreating ports at the extremities of {linear_element_count} linear elements:")
     counter = 0
@@ -58,4 +58,4 @@ def add_ports_to_linear_elements(input_ttl: str, output_ttl: Optional[str] = Non
     if linear_element_count != counter:
         print("    WARNING: there seems to be a mismatch above.")
 
-    _save_graph(graph, output_ttl)
+    save_graph(graph, output_ttl)

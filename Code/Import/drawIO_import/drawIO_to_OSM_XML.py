@@ -11,8 +11,9 @@ GENERATOR = "Python"
 # Styles defined by drawIO
 DASHED_LINE = "dashed=1"
 # Constants for characterizing designer-defined artefacts.
+SLIP_SWITCH_KEY = "slip switch"
 SLIP_SWITCH_STYLE = [DASHED_LINE]
-ARTEFACTS = {'slip switch': SLIP_SWITCH_STYLE}
+ARTEFACTS = {SLIP_SWITCH_KEY: SLIP_SWITCH_STYLE}
 
 # noinspection HttpUrlsUsage
 NAMESPACE_URI = "http://osm.org"

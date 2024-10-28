@@ -14,11 +14,12 @@ from typing import List
 import rdflib
 import shapely
 from rdflib import RDF, Literal, URIRef
+from rdflib.namespace import RDFS
 from shapely.geometry import LineString
 from shapely.wkt import dumps
 
 from Code.Namespaces import *
-from Graph_transformation.graph_file_handing import _load_graph
+from Graph_transformation.graph_file_handing import load_graph
 
 
 def split_linestrings_in_file(file_path: str, short_name_: str = "", with_kml: bool = False):
@@ -159,7 +160,7 @@ def generate_turtle_from_linestrings(file_path: str, linestrings_to_add: dict[UR
     """
 
     # Load the RDF graph
-    graph = _load_graph(file_path)
+    graph = load_graph(file_path)
 
     # Bind the namespaces
     graph.bind("geo", GEOSPARQL)

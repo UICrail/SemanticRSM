@@ -4,7 +4,7 @@ from typing import Dict, List, Optional
 
 import shapely.errors
 from rdflib import Graph, URIRef, Literal
-from rdflib.namespace import RDF
+from rdflib.namespace import RDF, RDFS
 from shapely.geometry import Point
 from shapely.ops import linemerge
 from shapely.wkt import loads, dumps
@@ -173,8 +173,8 @@ def join_linear_elements(input_ttl: str, output_ttl: Optional[str] = None) -> No
     optionally saves the updated graph to a Turtle file.
     """
     # Create the RDF graph by parsing the input TTL file
-    from Graph_transformation.graph_file_handing import _load_graph
-    g = _load_graph(input_ttl)
+    from Graph_transformation.graph_file_handing import load_graph
+    g = load_graph(input_ttl)
 
     # Invoke create_nodes with the RDF graph to generate the mapping of nodes to linear elements
     nodes = find_nodes(g)

@@ -1,5 +1,6 @@
-@prefix : <http://cdm.ovh/examples/Ventimiglia-Albenga/Ventimiglia-Albenga#> .
+@prefix : <http://cdm.ovh/examples#> .
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rsm: <http://cdm.ovh/rsm/topology/topology#> .
 @prefix rsm1: <http://cdm.ovh/rsm/adapters/geosparql_adapter#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -1419,30 +1420,35 @@
     geo:asWKT "POINT (7.8575816 43.8458008)" .
 
 :jointline_0-221 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_0-221 ;
     rsm1:hasNominalMetricLength 7.644773e+02 ;
     rsm:hasPort :jointline_0-221_port_0,
         :jointline_0-221_port_1 .
 
 :jointline_102_part_2-122-140 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_102_part_2-122-140 ;
     rsm1:hasNominalMetricLength 5.167444e+02 ;
     rsm:hasPort :jointline_102_part_2-122-140_port_0,
         :jointline_102_part_2-122-140_port_1 .
 
 :jointline_108-106-109 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_108-106-109 ;
     rsm1:hasNominalMetricLength 1.809412e+02 ;
     rsm:hasPort :jointline_108-106-109_port_0,
         :jointline_108-106-109_port_1 .
 
 :jointline_120_part_0-105-124 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_120_part_0-105-124 ;
     rsm1:hasNominalMetricLength 5.35077e+02 ;
     rsm:hasPort :jointline_120_part_0-105-124_port_0,
         :jointline_120_part_0-105-124_port_1 .
 
 :jointline_125_part_0-132-45_part_1 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_125_part_0-132-45_part_1 ;
     rsm1:hasNominalMetricLength 5.693012e+02 ;
     rsm:hasPort :jointline_125_part_0-132-45_part_1_port_0,
@@ -1455,6 +1461,7 @@
     geo:asWKT "POINT (8.2205305 44.0458724)" .
 
 :jointline_136_part_0-103-141 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_136_part_0-103-141 ;
     rsm1:hasNominalMetricLength 4.412586e+01 ;
     rsm:hasPort :jointline_136_part_0-103-141_port_0,
@@ -1467,24 +1474,28 @@
     geo:asWKT "POINT (8.2211673 44.0465249)" .
 
 :jointline_139_part_0-100-133 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_139_part_0-100-133 ;
     rsm1:hasNominalMetricLength 6.477171e+02 ;
     rsm:hasPort :jointline_139_part_0-100-133_port_0,
         :jointline_139_part_0-100-133_port_1 .
 
 :jointline_148-95-233-99-96-97 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_148-95-233-99-96-97 ;
     rsm1:hasNominalMetricLength 1.270363e+03 ;
     rsm:hasPort :jointline_148-95-233-99-96-97_port_0,
         :jointline_148-95-233-99-96-97_port_1 .
 
 :jointline_163_part_0-180-164_part_1 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_163_part_0-180-164_part_1 ;
     rsm1:hasNominalMetricLength 9.299565e+02 ;
     rsm:hasPort :jointline_163_part_0-180-164_part_1_port_0,
         :jointline_163_part_0-180-164_part_1_port_1 .
 
 :jointline_173-224-230-19-21-20-9-2-1-13-12-225 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_173-224-230-19-21-20-9-2-1-13-12-225 ;
     rsm1:hasNominalMetricLength 6.078677e+03 ;
     rsm:hasPort :jointline_173-224-230-19-21-20-9-2-1-13-12-225_port_0,
@@ -1497,48 +1508,56 @@
     geo:asWKT "POINT (8.1675338 44.0058105)" .
 
 :jointline_177_part_1-207-210 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_177_part_1-207-210 ;
     rsm1:hasNominalMetricLength 3.702055e+02 ;
     rsm:hasPort :jointline_177_part_1-207-210_port_0,
         :jointline_177_part_1-207-210_port_1 .
 
 :jointline_179_part_0-22-28 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_179_part_0-22-28 ;
     rsm1:hasNominalMetricLength 1.183174e+03 ;
     rsm:hasPort :jointline_179_part_0-22-28_port_0,
         :jointline_179_part_0-22-28_port_1 .
 
 :jointline_182_part_0-181-178_part_1 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_182_part_0-181-178_part_1 ;
     rsm1:hasNominalMetricLength 1.018013e+03 ;
     rsm:hasPort :jointline_182_part_0-181-178_part_1_port_0,
         :jointline_182_part_0-181-178_part_1_port_1 .
 
 :jointline_189_part_1-58_part_0 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_189_part_1-58_part_0 ;
     rsm1:hasNominalMetricLength 2.247857e+02 ;
     rsm:hasPort :jointline_189_part_1-58_part_0_port_0,
         :jointline_189_part_1-58_part_0_port_1 .
 
 :jointline_18_part_1-16-17 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_18_part_1-16-17 ;
     rsm1:hasNominalMetricLength 1.201272e+03 ;
     rsm:hasPort :jointline_18_part_1-16-17_port_0,
         :jointline_18_part_1-16-17_port_1 .
 
 :jointline_199_part_0-183-157_part_1 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_199_part_0-183-157_part_1 ;
     rsm1:hasNominalMetricLength 1.15551e+03 ;
     rsm:hasPort :jointline_199_part_0-183-157_part_1_port_0,
         :jointline_199_part_0-183-157_part_1_port_1 .
 
 :jointline_201-165-243-168-154-159-211-156-158-169-167-235-153-166 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_201-165-243-168-154-159-211-156-158-169-167-235-153-166 ;
     rsm1:hasNominalMetricLength 1.28977e+04 ;
     rsm:hasPort :jointline_201-165-243-168-154-159-211-156-158-169-167-235-153-166_port_0,
         :jointline_201-165-243-168-154-159-211-156-158-169-167-235-153-166_port_1 .
 
 :jointline_208-209 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_208-209 ;
     rsm1:hasNominalMetricLength 1.080848e+02 ;
     rsm:hasPort :jointline_208-209_port_0,
@@ -1557,42 +1576,49 @@
     geo:asWKT "POINT (8.0382251 43.8986129)" .
 
 :jointline_218_part_0-220_part_1 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_218_part_0-220_part_1 ;
     rsm1:hasNominalMetricLength 5.6945e+02 ;
     rsm:hasPort :jointline_218_part_0-220_part_1_port_0,
         :jointline_218_part_0-220_part_1_port_1 .
 
 :jointline_234_part_0-206-150-223 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_234_part_0-206-150-223 ;
     rsm1:hasNominalMetricLength 5.842711e+02 ;
     rsm:hasPort :jointline_234_part_0-206-150-223_port_0,
         :jointline_234_part_0-206-150-223_port_1 .
 
 :jointline_23_part_1-25-194_part_0-170-171-152-151-161-174-14-55-15-24-162-155-160 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_23_part_1-25-194_part_0-170-171-152-151-161-174-14-55-15-24-162-155-160 ;
     rsm1:hasNominalMetricLength 1.912609e+04 ;
     rsm:hasPort :jointline_23_part_1-25-194_part_0-170-171-152-151-161-174-14-55-15-24-162-155-160_port_0,
         :jointline_23_part_1-25-194_part_0-170-171-152-151-161-174-14-55-15-24-162-155-160_port_1 .
 
 :jointline_241-56-238-239 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_241-56-238-239 ;
     rsm1:hasNominalMetricLength 1.713929e+04 ;
     rsm:hasPort :jointline_241-56-238-239_port_0,
         :jointline_241-56-238-239_port_1 .
 
 :jointline_242-26-240-237_part_1 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_242-26-240-237_part_1 ;
     rsm1:hasNominalMetricLength 1.707892e+04 ;
     rsm:hasPort :jointline_242-26-240-237_part_1_port_0,
         :jointline_242-26-240-237_part_1_port_1 .
 
 :jointline_38-27-34-35-204_part_1-36-212-37-217-216-40-184-236 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_38-27-34-35-204_part_1-36-212-37-217-216-40-184-236 ;
     rsm1:hasNominalMetricLength 1.273765e+04 ;
     rsm:hasPort :jointline_38-27-34-35-204_part_1-36-212-37-217-216-40-184-236_port_0,
         :jointline_38-27-34-35-204_part_1-36-212-37-217-216-40-184-236_port_1 .
 
 :jointline_39-185-222 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_39-185-222 ;
     rsm1:hasNominalMetricLength 5.748604e+02 ;
     rsm:hasPort :jointline_39-185-222_port_0,
@@ -1605,18 +1631,21 @@
     geo:asWKT "POINT (8.1408174 43.9612655)" .
 
 :jointline_45_part_0-231-43 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_45_part_0-231-43 ;
     rsm1:hasNominalMetricLength 6.100517e+01 ;
     rsm:hasPort :jointline_45_part_0-231-43_port_0,
         :jointline_45_part_0-231-43_port_1 .
 
 :jointline_51-85-31-213-214-52-32-33-195-244-29-30-83-82-84-193-81 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_51-85-31-213-214-52-32-33-195-244-29-30-83-82-84-193-81 ;
     rsm1:hasNominalMetricLength 1.928485e+04 ;
     rsm:hasPort :jointline_51-85-31-213-214-52-32-33-195-244-29-30-83-82-84-193-81_port_0,
         :jointline_51-85-31-213-214-52-32-33-195-244-29-30-83-82-84-193-81_port_1 .
 
 :jointline_57_part_0-58_part_1 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_57_part_0-58_part_1 ;
     rsm1:hasNominalMetricLength 1.057788e+03 ;
     rsm:hasPort :jointline_57_part_0-58_part_1_port_0,
@@ -1629,6 +1658,7 @@
     geo:asWKT "POINT (7.8510185 43.843976)" .
 
 :jointline_57_part_1-59_part_0 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_57_part_1-59_part_0 ;
     rsm1:hasNominalMetricLength 1.249887e+02 ;
     rsm:hasPort :jointline_57_part_1-59_part_0_port_0,
@@ -1641,24 +1671,28 @@
     geo:asWKT "POINT (7.8604849 43.8453462)" .
 
 :jointline_60_part_0-63_part_1 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_60_part_0-63_part_1 ;
     rsm1:hasNominalMetricLength 9.38066e+02 ;
     rsm:hasPort :jointline_60_part_0-63_part_1_port_0,
         :jointline_60_part_0-63_part_1_port_1 .
 
 :jointline_64_part_1-91-92 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_64_part_1-91-92 ;
     rsm1:hasNominalMetricLength 6.889854e+02 ;
     rsm:hasPort :jointline_64_part_1-91-92_port_0,
         :jointline_64_part_1-91-92_port_1 .
 
 :jointline_68_part_3-75_part_0 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_68_part_3-75_part_0 ;
     rsm1:hasNominalMetricLength 7.136091e+02 ;
     rsm:hasPort :jointline_68_part_3-75_part_0_port_0,
         :jointline_68_part_3-75_part_0_port_1 .
 
 :jointline_69-88 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_69-88 ;
     rsm1:hasNominalMetricLength 1.714983e+02 ;
     rsm:hasPort :jointline_69-88_port_0,
@@ -1671,12 +1705,14 @@
     geo:asWKT "POINT (7.8500344 43.8438653)" .
 
 :jointline_70-191_part_1 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_70-191_part_1 ;
     rsm1:hasNominalMetricLength 8.536665e+02 ;
     rsm:hasPort :jointline_70-191_part_1_port_0,
         :jointline_70-191_part_1_port_1 .
 
 :jointline_74-77_part_1 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_74-77_part_1 ;
     rsm1:hasNominalMetricLength 1.060664e+02 ;
     rsm:hasPort :jointline_74-77_part_1_port_0,
@@ -1689,6 +1725,7 @@
     geo:asWKT "POINT (7.8592961 43.8453199)" .
 
 :jointline_8-42-247-246-172-41-49-10-11-48-50-47-46-44-4-5-146-147-3-6-54-53-7 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_8-42-247-246-172-41-49-10-11-48-50-47-46-44-4-5-146-147-3-6-54-53-7 ;
     rsm1:hasNominalMetricLength 6.713641e+03 ;
     rsm:hasPort :jointline_8-42-247-246-172-41-49-10-11-48-50-47-46-44-4-5-146-147-3-6-54-53-7_port_0,
@@ -1707,6 +1744,7 @@
     geo:asWKT "POINT (8.2202177 44.0454164)" .
 
 :jointline_93-110-111 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_93-110-111 ;
     rsm1:hasNominalMetricLength 6.663792e+01 ;
     rsm:hasPort :jointline_93-110-111_port_0,
@@ -1719,6 +1757,7 @@
     geo:asWKT "POINT (8.2206006 44.0458833)" .
 
 :jointline_98-94-90-232-101-89 a rsm:LinearElement ;
+    rdfs:label "" ;
     rsm1:hasNominalGeometry :geom_98-94-90-232-101-89 ;
     rsm1:hasNominalMetricLength 1.147396e+03 ;
     rsm:hasPort :jointline_98-94-90-232-101-89_port_0,

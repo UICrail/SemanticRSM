@@ -1,25 +1,23 @@
 # Convert drawIO XML file into OSM-style GeoJSON file.
+# Note: in GeoJSON, the standard order of coordinates is (longitude, latitude) or (easting, northing)
 import geojson
-from drawIO_to_OSM_XML import *
 from pyproj import Transformer
 
+from drawIO_to_OSM_XML import *
+
 # to transform cartesian coords on the canvas to geographic ones, we use an arbitrary transformation.
-# Canvas units = one meter
-# Remember that Y axis on the canvas is oriented down
-# NTF Lambert zone 1 to WGS84:
-CENTER_COORDS = 603357.78, 835717.15  # of NTF Lambert zone 1
+# Canvas scale: one pixel = one meter
+# Remember that Y axis on the drawIO canvas is oriented down
+CANVAS_ORIENTATION = -1
+# Center of ETRS89-LCC Europe area (EPSG:3034) is somewhere in the Norwegian sea; for reference see epsg.io
+CENTER_COORDS = 4115023.91, 3536037.64
 # From OpenStreetMap
 RAILWAY_TAG = {'railway': 'rail'}  # used in OpenStreetMap for annotating, well, railway-related stuff
 
-# initialize transformer
-transformer = Transformer.from_crs("EPSG:27571", "EPSG:4326")
+OSM_FILE_EXTENSION = '.osm.geojson'  # for generated output file
 
-
-def cartesian_to_lonlat(coords: tuple[str, str], permute=False) -> tuple[str, str]:
-    result = transformer.transform(float(coords[0]) + CENTER_COORDS[0], -float(coords[1]) + CENTER_COORDS[1])
-    if permute:
-        return result[1], result[0]
-    return result[0], result[1]
+# initialize transformer from ETRS89 to WGS84
+transformer = Transformer.from_crs("EPSG:3034", "EPSG:4326")
 
 
 class OSMjsonGenerator(OSMGenerator):
@@ -57,11 +55,17 @@ class OSMjsonGenerator(OSMGenerator):
 
     def save_to_file(self, out_path: str):
         osm_json = self.generate_osm_string()
-        with open(out_path + '.osm.geojson', 'w') as f:
+        with open(out_path + OSM_FILE_EXTENSION, 'w') as f:
             f.write(osm_json)
 
 
 # TODO: move helper functions below to some helper module
+
+def cartesian_to_lonlat(coords: tuple[str | float, str | float]) -> tuple[str, str]:
+    result = transformer.transform(float(coords[0]) + CENTER_COORDS[0],
+                                   CANVAS_ORIENTATION * float(coords[1]) + CENTER_COORDS[1])
+    return result[1], result[0]
+
 
 def create_geojson_linestring(source, target):
     way_coords = (
@@ -71,15 +75,14 @@ def create_geojson_linestring(source, target):
     return geojson.LineString(way_coords)
 
 
-def create_geojson_point(lon, lat):
+def create_geojson_point(lon: float | str, lat: float | str):
     return geojson.Point(cartesian_to_lonlat((float(lon), float(lat))))
 
 
 if __name__ == '__main__':
-    from Code.Import.OSM_import.osm_geojson_to_ttl import osm_import
     from Code.Graph_transformation.full_transformation import transform_osm_to_rsm
-
-    file_path = 'TestData/241023-Simple_Example+RTC-121'
-    OSMjsonGenerator().convert_drawio_to_osm(file_path)
-    osm_import(file_path + '.osm.geojson', "Pierre_Tane_test_121")
-    transform_osm_to_rsm(file_path + '.osm.geojson', "Pierre_Tane_test_121")
+    test_file = os.path.abspath(os.path.join(os.path.curdir,'TestData', '241023-Simple_Example+RTC-121'))
+    generator = OSMjsonGenerator()
+    generator.convert_drawio_to_osm(test_file )
+    test_file = test_file + OSM_FILE_EXTENSION
+    transform_osm_to_rsm(test_file, 'osm_Pierre_Tane_test_121')
