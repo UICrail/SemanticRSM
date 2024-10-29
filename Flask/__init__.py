@@ -1,10 +1,15 @@
-from flask import Flask, render_template, request, redirect, url_for
-import pages
-def create_app():
-    app = Flask(__name__)
-    app.register_blueprint(pages.bp)
-    return app
+# HTML interface for testing of sRSM functionalities
+# Just run this and navigate in your usual browser.
 
+from flask import Flask
+
+import pages
+
+
+def create_app():
+    rsm_test_app = Flask(__name__)
+    rsm_test_app.register_blueprint(pages.bp)
+    return rsm_test_app
 
 
 if __name__ == "__main__":
