@@ -1,7 +1,7 @@
 # About the sRSM test application
+See the quote of the day.
 
 # Quote of the day
-
 > After a while you start to smile, now you feel cool
 > Then you decide to take a walk by the old school
 > Nothing has changed, it's still the same

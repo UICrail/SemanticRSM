@@ -1,9 +1,10 @@
 # Convert drawIO XML file into OSM-style JSON file
 
 import os
-from lxml import etree
 from pprint import pprint
+
 import xmltodict
+from lxml import etree
 
 # Constants
 OSM_VERSION = "0.6"
@@ -51,10 +52,10 @@ def import_xml_as_dict(path: str) -> dict | bool:
         return False
 
 
-# From Python dict to OSM JSON file
+# From Python dict to OSM file
 
 class OSMGenerator:
-    """Turns the original diagram into a JSON OSM file.
+    """Turns the original diagram (saved as XML) into a JSON OSM file.
     Each straight segment becomes an OSM way. Consecutive segments will be merged under the standard OSM processing"""
 
     def __init__(self):
@@ -97,14 +98,13 @@ class OSMGenerator:
                 artefact_category = classify_artefact_by_style(observed_styles)
                 if artefact_category == 'slip switch':
                     print(f"INFO: edge {item['@id']} is not a linear element, but denotes a {artefact_category}")
-                    # TODO: encode this information as a pseudo-linear element
                     self.process_edge(item, 'slip switch')
                 else:
                     self.process_edge(item)
             elif item.get('@connectable'):
                 self.process_connectable(item)
 
-    def process_edge(self, item, annotation:str = ''):
+    def process_edge(self, item, annotation: str = ''):
         source_coords, target_coords = self.extract_coordinates(item)
         source_node_id = self.get_or_create_node_id(source_coords)
         target_node_id = self.get_or_create_node_id(target_coords)
@@ -188,5 +188,4 @@ class OSMGenerator:
 
 
 if __name__ == '__main__':
-    file_path = 'TestData/241023-Simple_Example+RTC-121'
-    OSMGenerator().convert_drawio_to_osm(file_path)
+    pass

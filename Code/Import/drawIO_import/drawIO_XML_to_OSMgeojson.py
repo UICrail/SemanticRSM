@@ -3,7 +3,7 @@
 import geojson
 from pyproj import Transformer
 
-from Code.Import.drawIO_import.drawIO_to_OSM_XML import *
+from Code.Import.drawIO_import.drawIO_XML_to_OSMjson import *
 
 # to transform cartesian coords on the canvas to geographic ones, we use an arbitrary transformation.
 # Canvas scale: one pixel = one meter

@@ -41,9 +41,9 @@ The network is represented in 2D as a set of track segments. The following conve
 _FR: traversées simples, traversées jonctions simples ou doubles; DE: Kreuzung resp. einfache - resp. doppelte Kreuzungsweiche_
 
 In the case of crossings, additional information is needed to distinguish between diamond / single slip / double slip crossings.
-Lacking such info, the user may choose to default all crossings to either double switch crossing (activated by user) or diamond crossing type (default option in the code).
-In any case, a crossing is defined where exactly four linear elements converge at their extremities.
-Two intersecting track segments will be treated as a flyover.
+Lacking such info, the user may choose to default all crossings to either double switch crossing or diamond crossing type (default option in the code).
+
+In any case, a crossing is defined where exactly four linear elements converge at their extremities. Two intersecting track segments in the drawing will be treated as a flyover.
 
 # Methodology
 
@@ -62,3 +62,11 @@ We use lxml and xmltodict, which does not catch all XML info but is sufficient i
 
 We use geopandas and shapely, essentially to find nearest objects and projected coordinates (example: a trackside signal should find its track; a slip crossing annotation should find its crossing ).
 For coordinate conversions: pyproj
+
+## Shortcomings of drawIO
+
+The SVG output could also be used, but would involve more refined coding:
+* Unlike the XML output, the SVG output will not guarantee that segment extremities snapped to the (canvas) grid will have the same coordinates.
+* In addition, the structure of the SVG file varies from one segment to another, for no apparent reason.
+
+However the display of the SVG files in a browser (Firefox was used for testing) looks fine. 
