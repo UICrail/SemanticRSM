@@ -1,9 +1,11 @@
 import os
+from html import escape
+
 import markdown2
 from flask import Blueprint, request, render_template_string, send_from_directory
+
 from Graph_transformation.full_transformation import transform_osm_to_rsm
 from Import.drawIO_import.drawIO_XML_to_OSMgeojson import OSM_GEOJSON_EXTENSION
-from html import escape
 
 # Constants
 LOCAL_FOLDER = os.path.dirname(__file__)
@@ -144,7 +146,7 @@ def drawio_to_rdf():
             file_path = os.path.join(TEMPORARY_FILES_FOLDER, file.filename)
             print('Saving XML file to ', file_path)
             file.save(file_path)
-            file_content = file.read().decode('utf-8')
+            file_content = file.read()
             if file.filename.endswith('.xml'):
                 from Code.Import.drawIO_import import drawIO_XML_to_OSMgeojson as dxo
                 osm_generator = dxo.OSMgeojsonGenerator()
@@ -162,9 +164,11 @@ def drawio_to_rdf():
                     </div>
                     <a href="/download_rdf" download class="button">Download RDF Turtle file</a>"""
             elif file.filename.endswith('.svg'):
+                with open(file_path, 'r', encoding='utf-8') as svg_file:
+                    file_content = svg_file.read()
                 result_html = f"""
                 <div style="max-height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; margin-top: 20px;">
-                    <pre>{file_content}</pre>
+                    {file_content}
                 </div>
                 """
 
