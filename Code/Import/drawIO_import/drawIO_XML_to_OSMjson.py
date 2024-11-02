@@ -50,6 +50,13 @@ def import_xml_as_dict(path: str) -> dict | bool:
     except Exception as e:
         print(e)
         return False
+    
+def import_xml_content_as_dict(content: str) -> dict | bool:
+    try:
+        return xmltodict.parse(content)
+    except Exception as e:
+        print(e)
+        return False
 
 
 # From Python dict to OSM file
@@ -169,22 +176,26 @@ class OSMGenerator:
 
     def convert_drawio_to_osm(self, input_file_path: str):
         """
-        Main routine
+        Main routine.
         :param input_file_path: filename without extension
         """
         print(f"\nTransforming a draw.io schematic track layout into {self.target}.")
-        print(f"File: {input_file_path}.{self._input_file_extension}")
-        print("\nCurrent directory: ", os.getcwd())
-
-        network_data = import_xml_as_dict(input_file_path + self._input_file_extension)
+        if input_file_path:
+            print(f"File: {input_file_path}.{self._input_file_extension}")
+            network_data = import_xml_as_dict(input_file_path)
+        else:
+            raise ValueError("no input provided to convert_drawio_to_osm")
 
         if network_data:
             print("\nData dictionary derived from drawio.xml file:\n")
             (pprint(network_data, width=80))
-            self.parse_dict(network_data)
-            self.save_to_file(input_file_path)
+            self.process_dict(network_data, input_file_path)
         else:
             print("No network data found")
+
+    def process_dict(self, data: dict, input_file_path):
+        self.parse_dict(data)
+        self.save_to_file(input_file_path)
 
 
 if __name__ == '__main__':

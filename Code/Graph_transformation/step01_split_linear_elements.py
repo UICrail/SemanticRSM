@@ -13,6 +13,7 @@ from typing import List
 
 import rdflib
 import shapely
+from pygeoif.factories import outer
 from rdflib import RDF, Literal, URIRef
 from rdflib.namespace import RDFS
 from shapely.geometry import LineString
@@ -35,11 +36,12 @@ def split_linestrings_in_file(file_path: str, short_name_: str = "", with_kml: b
     label_dict = parse_turtle_for_labels(file_path)
     shared_coords = find_shared_intermediate_points(linestring_dict)
     modified_linestrings = split_linestrings(linestring_dict, shared_coords)
-    path_to_split = "/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/"
+    import os
+    output_file_path = os.path.dirname(file_path) + f"/{short_name_}_split.ttl"
     generate_turtle_from_linestrings(file_path, modified_linestrings[0], modified_linestrings[1],
-                                     path_to_split + f"osm_{short_name_}_split.ttl", label_dict)
+                                     output_file_path, label_dict)
     if with_kml:
-        ttl_to_kml(path_to_split + f"osm_{short_name_}_split.ttl", path_to_split + f"osm_{short_name_}_split.kml")
+        ttl_to_kml(file_path + f"{short_name_}_split.ttl", file_path + f"{short_name_}_split.kml")
 
 
 def parse_turtle_for_linear_element_geometry(file_path: str) -> dict[URIRef, LineString]:

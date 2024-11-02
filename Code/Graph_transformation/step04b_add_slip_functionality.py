@@ -14,15 +14,20 @@ from Graph_transformation.geometry_stuff import find_nearest_linear_elements, wk
 from Graph_transformation.step04_add_port_properties import get_opposite_port
 
 
-def add_slip_functionality(input_ttl, output_ttl):
-    # Load graph
+def add_slip_functionality(input_ttl, output_ttl) -> str:
+    """updates the ttl file by adding switch slip functionality.
+    :param output_ttl:
+    :param input_ttl:
+    :return: file content as string
+    """
     graph = load_graph(input_ttl)
-    print(_add_slip_navigabilities(graph))
-    print(_remove_artefacts(graph))
+    _add_slip_navigabilities(graph)
+    _remove_artefacts(graph)
     save_graph(graph, output_ttl)
+    return graph.serialize(format='turtle')
 
 
-def _add_slip_navigabilities(graph: Graph) -> str:
+def _add_slip_navigabilities(graph: Graph):
     """
     slip switches are encoded, in the graph, as individuals of type LinearElement annotated with rdfs:comment "slip switch".
     Create a list of these individuals and extract the coordinates of their ports (property asWKT).
@@ -30,7 +35,7 @@ def _add_slip_navigabilities(graph: Graph) -> str:
     For each port of each slip switch, find the linear element that is closest, using the function find_nearest_linear_elements(coords, graph, count: int = 2),
     and then the closest port of this linear element.
     :param graph: the RDF graph to be processed, which already includes ports and usual navigabilities.
-    :return: a message that tells how many slip switches were generated, and between which linear element pairs.
+    :return: None
     """
 
     # Lists to hold slip switches and genuine LinearElements
@@ -67,14 +72,14 @@ def _add_slip_navigabilities(graph: Graph) -> str:
         graph.add((nearest_ports[0], predicate, get_opposite_port(graph, nearest_ports[1])))
         graph.add((nearest_ports[1], predicate, get_opposite_port(graph, nearest_ports[0])))
 
-    return f"Generated {slip_switch_count} slip switches between the following linear element pairs: {slip_switch_pairs}"
+    print(f"Generated {slip_switch_count} slip switches between the following linear element pairs: {slip_switch_pairs}")
 
 
-def _remove_artefacts(graph: Graph) -> str:
+def _remove_artefacts(graph: Graph) -> None:
     """
     Removes all individuals (of class LinearElement) that are annotated with "slip switch".
     Removes all property instances where such individuals are subjects or objects.
-    :return: message telling how many artefacts of what type (class or property) were removed
+    :return: None
     """
 
     individuals_removed = 0
@@ -93,4 +98,4 @@ def _remove_artefacts(graph: Graph) -> str:
         graph.remove((individual, None, None))  # remove all properties where individual is a subject
         graph.remove((None, None, individual))  # remove all properties where individual is an object
 
-    return f"Removed {individuals_removed} individuals (artefacts: slip switches)"
+    print(f"Removed {individuals_removed} individuals (artefacts: slip switches)")

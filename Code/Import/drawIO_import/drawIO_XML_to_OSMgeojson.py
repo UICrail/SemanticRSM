@@ -14,13 +14,13 @@ CENTER_COORDS = 4115023.91, 3536037.64
 # From OpenStreetMap
 RAILWAY_TAG = {'railway': 'rail'}  # used in OpenStreetMap for annotating, well, railway-related stuff
 
-OSM_FILE_EXTENSION = '.osm.geojson'  # for generated output file
+OSM_GEOJSON_EXTENSION = '.osm.geojson'  # for generated output file
 
 # initialize transformer from ETRS89 to WGS84
 transformer = Transformer.from_crs("EPSG:3034", "EPSG:4326")
 
 
-class OSMjsonGenerator(OSMGenerator):
+class OSMgeojsonGenerator(OSMGenerator):
 
     def __init__(self):
         super().__init__()
@@ -54,8 +54,12 @@ class OSMjsonGenerator(OSMGenerator):
         return osm_json
 
     def save_to_file(self, out_path: str):
+        out_path = out_path.split('.')[0]  # drop the former extension
+        print(
+            f"\nTransforming a draw.io schematic track layout into {self.target}.\nOutput file: {out_path + OSM_GEOJSON_EXTENSION}"
+        )
         osm_json = self.generate_osm_string()
-        with open(out_path + OSM_FILE_EXTENSION, 'w') as f:
+        with open(out_path + OSM_GEOJSON_EXTENSION, 'w') as f:
             f.write(osm_json)
 
 
@@ -81,8 +85,9 @@ def create_geojson_point(lon: float | str, lat: float | str):
 
 if __name__ == '__main__':
     from Code.Graph_transformation.full_transformation import transform_osm_to_rsm
-    test_file = os.path.abspath(os.path.join(os.path.curdir,'TestData', '241023-Simple_Example+RTC-121'))
-    generator = OSMjsonGenerator()
-    generator.convert_drawio_to_osm(test_file )
-    test_file = test_file + OSM_FILE_EXTENSION
-    transform_osm_to_rsm(test_file, 'osm_Pierre_Tane_test_121')
+
+    test_file = os.path.abspath(os.path.join(os.path.curdir, 'TestData', '241023-Simple_Example+RTC-121'))
+    generator = OSMgeojsonGenerator()
+    generator.convert_drawio_to_osm(test_file)
+    test_file = test_file + OSM_GEOJSON_EXTENSION
+    transform_osm_to_rsm(test_file, 'Pierre_Tane_test_121')

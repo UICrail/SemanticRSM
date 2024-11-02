@@ -1,6 +1,7 @@
 # Imports GeoJSON file using GeoPandas
 # WARNING: does not seem to work properly with GeoJSON export from OSM using the Overpass API;
 # overlapping linestrings would cause trouble in the subsequent processing.
+import os.path
 
 import geopandas as gpd
 import rdflib
@@ -27,10 +28,11 @@ def process_geometry(row):
     return str(row.geometry)
 
 
-def osm_import(osm_file_path: str, short_name: str = "", linear_element_prefix: str = 'line',
+def osm_to_ttl(osm_file_path: str, short_name: str = "", base_path: str = None, linear_element_prefix: str = 'line',
                geometry_prefix: str = 'geom', with_geometry: bool = True):
     """
 
+    :param base_path:
     :param geometry_prefix:
     :param linear_element_prefix:
     :param osm_file_path:
@@ -39,6 +41,7 @@ def osm_import(osm_file_path: str, short_name: str = "", linear_element_prefix: 
     In such case, only the URIs will tell which linear element matches which geometry.
     :return: None (a file is created)
     """
+    from Graph_transformation.full_transformation import BASE_PATH
     # Initialize RDF graph
     graph = initialize_rdf_graph()
 
@@ -67,8 +70,10 @@ def osm_import(osm_file_path: str, short_name: str = "", linear_element_prefix: 
             graph.add((line_uri, RDFS.comment, Literal(annotations)))
             graph.add((geom_uri, RDFS.comment, Literal(annotations)))
 
-
-
     # Serialize the graph to a Turtle file
-    output_file_path = f'/Users/airymagnien/PycharmProjects/SemanticRSM/Output_files/Intermediate_files/osm_{short_name}_raw.ttl'
+    if not base_path:
+        print('WARNING: no path was provided. Default path used instead.')
+        base_path = BASE_PATH
+    print(f'Raw ttl file is about to be saved to {base_path}')
+    output_file_path = os.path.join(base_path, f'{short_name}_raw.ttl')
     graph.serialize(destination=output_file_path, format='turtle')
