@@ -1,6 +1,8 @@
 import os
+
 import markdown2
 from flask import Blueprint, request, render_template_string, send_from_directory
+
 from Graph_transformation.full_transformation import transform_osm_to_rsm
 from Import.drawIO_import.drawIO_XML_to_OSMgeojson import OSM_GEOJSON_EXTENSION
 
@@ -57,22 +59,35 @@ def get_html_from_markdown(file_path):
 def home():
     return f'''
     <!doctype html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>sRSM demo</title>
-        {CSS_STYLES}
-    </head>
-      <body>
-        <h1>SemanticRSM test and demo site</h1>
-        <nav>
-          <ul>
-            <li><a href="/about">About</a></li>
-            <li><a href="/drawio_to_rdf">DrawIO to RDF</a></li>
-          </ul>
-        </nav>
-      </body>
+    <html>
+        <head>
+            <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>sRSM demo</title>
+            {CSS_STYLES}
+        </head>
+        <body>
+            <h1>SemanticRSM test and demo site</h1>
+            <p>This site is based on the Semantic RSM (sRSM) repository:<br>
+                <a href="https://github.com/UICrail/SemanticRSM/" target="_blank">Semantic RSM GitHub repository hosted by UIC</a><br>
+            </p>
+            <nav>
+            <ul>
+            <li><a href="/about">About the present site<br></a></li>
+            <li><a href="/drawio_to_rdf">drawIO to RDF<br></a>Draw a network schema (using <a href="https://www.drawio.com/" target="_blank">the free diagramming software draw.io</a>) and get its sRSM representation as an RDF/Turtle file
+            </li>
+            <li>import railway networks from Open Street Map networks and generate the corresponding sRSM representation (page under preparation)
+            </li>
+            </ul>
+            <p>For any question or suggestion, please use the Semantic RSM GitHub repository and post an issue.<br>
+            </p>
+            <p><i>this version: Nov. 1st, 2024</i><br>
+            </p>
+            <ul>
+            </ul>
+            </nav>
+        </body>
     </html>
     '''
 
