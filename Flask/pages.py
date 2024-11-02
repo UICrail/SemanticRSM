@@ -1,16 +1,12 @@
 import os
-
 import markdown2
 from flask import Blueprint, request, render_template_string, send_from_directory
-
 from Graph_transformation.full_transformation import transform_osm_to_rsm
 from Import.drawIO_import.drawIO_XML_to_OSMgeojson import OSM_GEOJSON_EXTENSION
 
 LOCAL_FOLDER = os.path.dirname(__file__)
 TEMPORARY_FILES_FOLDER = os.path.join(LOCAL_FOLDER, 'temporary_files')
-
 bp = Blueprint('pages', __name__, template_folder='templates')
-
 CSS_STYLES = """
 <style>
     body {
@@ -114,14 +110,12 @@ def drawio_to_rdf():
             print('Saving XML file to ', file_path)
             file.save(file_path)
             file_content = file.read().decode('utf-8')
-
             if file.filename.endswith('.xml'):
                 from Code.Import.drawIO_import import drawIO_XML_to_OSMgeojson as dxo
                 osm_generator = dxo.OSMgeojsonGenerator()
                 osm_generator.convert_drawio_to_osm(file_path)
                 file_path = file_path.split('.')[0] + OSM_GEOJSON_EXTENSION
                 result = transform_osm_to_rsm(file_path, 'Pierre_Tane_test_121_via_flask', TEMPORARY_FILES_FOLDER)
-
                 if result:
                     # Escape HTML characters to make sure content like <...> is visible
                     from html import escape
@@ -129,22 +123,18 @@ def drawio_to_rdf():
                     rdf_turtle_path = os.path.join(TEMPORARY_FILES_FOLDER, 'output.rdf')
                     with open(rdf_turtle_path, 'w') as rdf_file:
                         rdf_file.write(result)
-
                     # Create a new route for the download link
-
                     result_html = f"""<h2>Resulting sRSM file, in RDF Turtle format:</h2>
                     <div style="max-height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; margin-top: 20px; font-size: 80%;">
                         <pre>{escaped_result}</pre>
                     </div>
                     <a href="/download_rdf" download class="button">Download RDF Turtle file</a>"""
-
             elif file.filename.endswith('.svg'):
                 result_html = f"""
                 <div style="max-height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; margin-top: 20px;">
                     <pre>{file_content}</pre>
                 </div>
                 """
-
     return f'''
     <!doctype html>
     <html lang="en">
@@ -155,9 +145,9 @@ def drawio_to_rdf():
         {CSS_STYLES}</head>
       <body>
         <h1>Select a drawIO file (xml format or SVG format)</h1>
-        <form method="post" enctype="multipart/form-data" onchange="document.getElementById('file-name').textContent = this.files[0].name">
-          <input type="file" name="file">
-          <input type="submit" value="Upload">
+        <form method="post" enctype="multipart/form-data" id="file-form">
+          <input type="file" name="file" onchange="document.getElementById('file-name').textContent = this.files[0].name; document.getElementById('upload-button').disabled = false;">
+          <input type="submit" id="upload-button" value="Upload" disabled>
         </form>
         <p>Selected file: <span id="file-name">{file_name}</span></p>
         {result_html}
