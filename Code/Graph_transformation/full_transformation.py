@@ -1,6 +1,4 @@
-"""
-Purpose: pick an OSM geojson file and transform it into an RSM-compliant topology.ttl graph
-"""
+# See readme.md for explanations
 import os
 
 from Code.Export.export_wkt_to_kml import ttl_to_kml
@@ -12,7 +10,6 @@ from Graph_transformation.step04_add_port_properties import set_port_connections
 from Graph_transformation.step04b_add_slip_functionality import add_slip_functionality
 
 BASE_PATH = os.path.join(os.path.dirname(__file__), "..", "..", "Output_files", "Intermediate_files")
-DOUBLE_SLIP_CROSSINGS = False
 NAVIGABILITIES_SUFFIX = "with_navigabilities"
 KML_SUFFIX = " including slip switch representation"
 
@@ -21,10 +18,13 @@ def generate_file_path(short_name, stage, base_path=BASE_PATH):
     return os.path.join(base_path, f"{short_name}_{stage}.ttl")
 
 
-def transform_osm_to_rsm(osm_geojson_path, short_name, base_path=BASE_PATH) -> str:
+def transform_osm_to_rsm(osm_geojson_path, short_name, base_path=BASE_PATH, all_double_slip: bool = False) -> str:
     """
+    :param base_path:
+    :param all_double_slip:
     :param osm_geojson_path: source data
     :param short_name: will be used in the name of generated files
+    :param all_double_slip: if True, all crossings will default to double slip
     :return: resulting ttl file as string
     """
     print(f"Reading the OSM file: {osm_geojson_path}")
@@ -34,13 +34,14 @@ def transform_osm_to_rsm(osm_geojson_path, short_name, base_path=BASE_PATH) -> s
     print(f'TTL file produced from the OSM geojson file, output at {base_path}')
 
     # Process linear elements
-    result = run_process_steps(short_name, base_path)
+    result = run_process_steps(short_name, base_path, all_double_slip)
     return result
 
 
-def run_process_steps(short_name, base_path=BASE_PATH) -> str:
+def run_process_steps(short_name, base_path=BASE_PATH, all_double_slip: bool = False) -> str:
     """
 
+    :param all_double_slip:
     :param short_name:
     :param base_path:
     :return: processed ttl file as string
@@ -62,7 +63,7 @@ def run_process_steps(short_name, base_path=BASE_PATH) -> str:
     set_navigabilities(
         generate_file_path(short_name, "with_connected_ports", base_path),
         generate_file_path(short_name, NAVIGABILITIES_SUFFIX, base_path),
-        double_slip_crossings=DOUBLE_SLIP_CROSSINGS
+        double_slip_crossings=all_double_slip
     )
     result = add_slip_functionality(
         generate_file_path(short_name, NAVIGABILITIES_SUFFIX, base_path),

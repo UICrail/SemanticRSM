@@ -146,7 +146,6 @@ def drawio_to_rdf():
             file_path = os.path.join(TEMPORARY_FILES_FOLDER, file.filename)
             print('Saving XML file to ', file_path)
             file.save(file_path)
-            file_content = file.read()
             if file.filename.endswith('.xml'):
                 from Code.Import.drawIO_import import drawIO_XML_to_OSMgeojson as dxo
                 osm_generator = dxo.OSMgeojsonGenerator()
