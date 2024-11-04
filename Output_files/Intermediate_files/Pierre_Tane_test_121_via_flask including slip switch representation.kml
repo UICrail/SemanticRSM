@@ -1,129 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
-    <Document id="39">
-        <Style id="42">
-            <LineStyle id="43">
+    <Document id="77">
+        <Style id="80">
+            <LineStyle id="81">
                 <color>ff0000aa</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
         </Style>
-        <Style id="46">
-            <LineStyle id="47">
+        <Style id="84">
+            <LineStyle id="85">
                 <color>ff0000aa</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
         </Style>
-        <Style id="50">
-            <LineStyle id="51">
+        <Style id="88">
+            <LineStyle id="89">
                 <color>ff00ff00</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
         </Style>
-        <Style id="54">
-            <LineStyle id="55">
+        <Style id="92">
+            <LineStyle id="93">
                 <color>ff00ff00</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
         </Style>
-        <Style id="58">
-            <LineStyle id="59">
+        <Style id="96">
+            <LineStyle id="97">
                 <color>ff0000aa</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
         </Style>
-        <Style id="62">
-            <LineStyle id="63">
+        <Style id="100">
+            <LineStyle id="101">
                 <color>ffff0000</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
         </Style>
-        <Style id="66">
-            <LineStyle id="67">
+        <Style id="104">
+            <LineStyle id="105">
                 <color>ff800080</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
         </Style>
-        <Style id="70">
-            <LineStyle id="71">
+        <Style id="108">
+            <LineStyle id="109">
                 <color>ff0000aa</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
         </Style>
-        <Style id="74">
-            <LineStyle id="75">
+        <Style id="112">
+            <LineStyle id="113">
                 <color>ffff0000</color>
                 <colorMode>normal</colorMode>
                 <width>4</width>
             </LineStyle>
         </Style>
-        <Placemark id="41">
+        <Placemark id="79">
             <name>http://cdm.ovh/examples#jointline_2-3</name>
-            <styleUrl>#42</styleUrl>
-            <LineString id="40">
+            <styleUrl>#80</styleUrl>
+            <LineString id="78">
                 <coordinates>0.483391,63.834915,0.0 0.483574,63.834289,0.0 0.485353,63.833845,0.0</coordinates>
             </LineString>
         </Placemark>
-        <Placemark id="45">
+        <Placemark id="83">
             <name>http://cdm.ovh/examples#jointline_5-6</name>
-            <styleUrl>#46</styleUrl>
-            <LineString id="44">
+            <styleUrl>#84</styleUrl>
+            <LineString id="82">
                 <coordinates>0.487216,63.82749,0.0 0.487006,63.828206,0.0 0.488418,63.829015,0.0</coordinates>
             </LineString>
         </Placemark>
-        <Placemark id="49">
+        <Placemark id="87">
             <name>http://cdm.ovh/examples#jointline_9-8-0-7</name>
-            <styleUrl>#50</styleUrl>
-            <LineString id="48">
+            <styleUrl>#88</styleUrl>
+            <LineString id="86">
                 <coordinates>0.488418,63.829015,0.0 0.488103,63.830089,0.0 0.487788,63.831163,0.0 0.487473,63.832237,0.0 0.487158,63.833311,0.0</coordinates>
             </LineString>
         </Placemark>
-        <Placemark id="53">
+        <Placemark id="91">
             <name>http://cdm.ovh/examples#line_1</name>
-            <styleUrl>#54</styleUrl>
-            <LineString id="52">
+            <styleUrl>#92</styleUrl>
+            <LineString id="90">
                 <coordinates>0.485852,63.832144,0.0 0.485353,63.833845,0.0</coordinates>
             </LineString>
         </Placemark>
-        <Placemark id="57">
+        <Placemark id="95">
             <name>http://cdm.ovh/examples#line_10</name>
-            <styleUrl>#58</styleUrl>
-            <LineString id="56">
+            <styleUrl>#96</styleUrl>
+            <LineString id="94">
                 <coordinates>0.487158,63.833311,0.0 0.486424,63.835817,0.0</coordinates>
             </LineString>
         </Placemark>
-        <Placemark id="61">
+        <Placemark id="99">
             <name>http://cdm.ovh/examples#line_11</name>
-            <styleUrl>#62</styleUrl>
-            <LineString id="60">
+            <styleUrl>#100</styleUrl>
+            <LineString id="98">
                 <coordinates>0.485353,63.833845,0.0 0.484802,63.835724,0.0</coordinates>
             </LineString>
         </Placemark>
-        <Placemark id="65">
+        <Placemark id="103">
             <name>http://cdm.ovh/examples#line_12</name>
-            <styleUrl>#66</styleUrl>
-            <LineString id="64">
+            <styleUrl>#104</styleUrl>
+            <LineString id="102">
                 <coordinates>0.487158,63.833311,0.0 0.485353,63.833845,0.0</coordinates>
             </LineString>
         </Placemark>
-        <Placemark id="69">
+        <Placemark id="107">
             <name>http://cdm.ovh/examples#line_13</name>
-            <styleUrl>#70</styleUrl>
-            <LineString id="68">
+            <styleUrl>#108</styleUrl>
+            <LineString id="106">
                 <coordinates>0.485811,63.833689,0.0 0.485275,63.834113,0.0</coordinates>
             </LineString>
         </Placemark>
-        <Placemark id="73">
+        <Placemark id="111">
             <name>http://cdm.ovh/examples#line_4</name>
-            <styleUrl>#74</styleUrl>
-            <LineString id="72">
+            <styleUrl>#112</styleUrl>
+            <LineString id="110">
                 <coordinates>0.488837,63.827583,0.0 0.488418,63.829015,0.0</coordinates>
             </LineString>
         </Placemark>

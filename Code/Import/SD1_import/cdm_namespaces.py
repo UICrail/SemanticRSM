@@ -16,7 +16,7 @@ QUDT_NAMESPACE = Namespace('http://qudt.org/schema/qudt/')
 UNIT_NAMESPACE = Namespace('https://qudt.org/2.1/vocab/unit/')
 GEOSPARQL_NAMESPACE = Namespace('http://www.opengis.net/ont/geosparql')
 IFC_NAMESPACE = Namespace('https://w3id.org/ifc/IFC4X3_ADD2#')
-IFC_ADAPTER_NAMESPACE = Namespace('https://cdm.ovh/adapters/ifcowl_rsm')
+IFC_ADAPTER_NAMESPACE = Namespace('https://cdm.ovh/adapters/ifcowl_rsm#')
 
 # URI management: dictionary of reserved characters in URIs and their ASCII hexadecimal equivalents.
 # Only those reserved characters that are currently found in SD1 identifiers are listed.
