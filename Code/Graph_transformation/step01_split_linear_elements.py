@@ -13,7 +13,6 @@ from typing import List
 
 import rdflib
 import shapely
-from pygeoif.factories import outer
 from rdflib import RDF, Literal, URIRef
 from rdflib.namespace import RDFS
 from shapely.geometry import LineString

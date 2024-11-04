@@ -109,6 +109,7 @@ def linestrings_to_kml(wkts) -> str:
         placemark = kml.Placemark()
 
         # Assign the LineString geometry to the place mark
+        # TODO: correct (geometry property cannot be set)
         placemark.geometry = linestring_geometry
 
         # Add the place mark to the KML Document

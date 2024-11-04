@@ -51,7 +51,7 @@ Other important concepts may come from other pieces of EU Law, such as TAF TSI, 
 ## Data
 * [Sample data sets](https://github.com/UICrail/SemanticRSM/tree/main/Source_data):
     - based on fictive or real networks, or
-    - based on OpenStreetMap, using [Overpass Turbo](https://overpass-turbo.eu/), or
+    - based on OpenStreetMap, using [Overpass Turbo](https://overpass-turbo.eu/): these data are from www.openstreetmap.org. The data are made available under ODbL (see [this page](https://opendatacommons.org/licenses/odbl/)).
     - from actual sample sets (e.g. Scheibenberg test line).
 
 ## Languages

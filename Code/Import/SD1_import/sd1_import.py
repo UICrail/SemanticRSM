@@ -4,7 +4,7 @@ from collections import Counter
 import xmltodict
 from rdflib import Graph
 
-from Export.export_ifcAlignment_to_kml import alignment_to_kml
+# from Export.export_ifcAlignment_to_kml import alignment_to_kml
 # from Export.export_wkt_to_kml import wkt_to_kml
 from Import.SD1_import.cdm_namespaces import SD1_NAMESPACE, IFC_ADAPTER_NAMESPACE
 from Import.SD1_import.sd1_alignment_import import AlignmentGraph

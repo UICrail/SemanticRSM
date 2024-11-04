@@ -16,7 +16,7 @@ CSS_STYLES = """
 <style>
     body {
         font-family: 'Helvetica Neue', Arial, sans-serif;
-        font-size: 16px;
+        font-size: 12px;
         line-height: 1.6;
         margin: 30px;
         color: #333;
@@ -95,29 +95,31 @@ def home():
     <body>
         <h1>SemanticRSM test and demo site</h1>
         <p>This site is based on the Semantic RSM (sRSM) repository:<br>
-        <a href="https://github.com/UICrail/SemanticRSM/" target="_blank">Semantic RSM GitHub repository hosted by
-        UIC</a><br>
+        <a href="https://github.com/UICrail/SemanticRSM/" target="_blank">Semantic
+        RSM GitHub repository hosted by UIC</a><br>
         </p>
+        <h2>Proposed functions<br>
+        </h2>
         <nav>
         <ul>
-        <li><a href="/about">About the present site<br>
-        </a></li>
         <li><a href="/drawio_to_rdf">drawIO to RDF<br>
         </a>Draw a network schema (using <a
-        href="https://www.drawio.com/" target="_blank">the free diagramming software
-        draw.io</a>) and get its sRSM representation as an
-        RDF/Turtle file</li>
-        <li>import railway networks from Open Street Map networks and
-        generate the corresponding sRSM representation (page under
-        preparation)</li>
+        href="https://www.drawio.com/" target="_blank">the free
+        diagramming software draw.io</a>) and get its sRSM
+        representation as an RDF/Turtle file.</li>
+        <li><a href="/osm_to_rdf">OSM to RDF<br>
+        </a>Import railway networks from Open Street Map networks and
+        generate the corresponding sRSM representation.</li>
         </ul>
+        <h2>Everything else</h2>
         <p>For any question or suggestion, please use the Semantic RSM
-        GitHub repository and post an issue.<br>
+        GitHub repository and post an issue there.</p>
+        <p>Concerning data from <a href="https://www.openstreetmap.org" target="_blank">OpenStreetMap</a>: these data are made available under ODbL (see <a href="https://opendatacommons.org/licenses/odbl/" target="_blank">this page</a>).</p>
+        <p><a href="/about">About the present site</a></p>
+        <p><br>
         </p>
-        <p><i>this version: Nov. 1st, 2024</i><br>
+        <p><i>this version: Nov. 4th, 2024</i><br>
         </p>
-        <ul>
-        </ul>
         </nav>
     </body>
     '''
@@ -182,6 +184,102 @@ def drawio_to_rdf():
     """
     html = get_html_content_with_styles('drawio to RDF', drawio_content)
     return html
+
+
+@bp.route('/osm_to_rdf', methods=['GET', 'POST'])
+def osm_to_rdf():
+    osm_file_name = "No file selected"
+    if request.method == 'POST':
+        file = request.files['file']
+        if file:
+            osm_file_name = file.filename
+            osm_file_path = os.path.join(TEMPORARY_FILES_FOLDER, file.filename)
+            file.save(osm_file_path)
+            convert_button = f"""
+            <form method="post" action="/convert_to_sRSM">
+                <input type='hidden' name='file_path' value='{osm_file_path}'>
+                <input type="submit" value="Convert to sRSM">
+            </form>
+            """
+        else:
+            convert_button = ""
+    else:
+        convert_button = ""
+
+    osm_content = f"""
+        <h1>Convert an OpenStreetMap railway network into a semantic RSM
+      file</h1>
+    <h2>Usage<br>
+    </h2>
+    <p>The OSM railway network can be obtained using a query in <a
+        href="https://overpass-turbo.eu/" target="_blank"
+        moz-do-not-send="true">Overpass Turbo</a>.<br>
+    </p>
+    <p>The resulting OSM file will contain railway nodes and ways (in
+      OSM parlance). Export it in GeoJSON. It will then be transformed into a RailSystemModel file
+      in RDF/Turtle format.<br>
+    </p>
+    <p>At present, there is only one available option: crossings can be
+      all instantiated as diamond crossings (FR: traversée simple, DE:
+      [einfache] Kreuzung) or as double slip crossings (FR: traversée
+      jonction double, DE: Doppelkreuzweiche).<br>
+    </p>
+    <p>The software also returns a representation of the transformed
+      network in KML format, for visual inspection in QGIS, Google
+      Earth, or similar.<br>
+    </p>
+    <h2>OpenStreetMap queries</h2>
+    <p>Using Overpass Turbo, this is how you get the whole Austrian
+      network:</p>
+    <blockquote>
+      <p>area[name="Österreich"];<br>
+        way[railway=rail](area);<br>
+        (._;&gt;;);<br>
+        out;<br>
+      </p>
+    </blockquote>
+    <p>Primarily, ways get queried and nodes are obtained by recursion.
+      And this is how to get the network that is contained in a boundary
+      box:<br>
+    </p>
+    <blockquote>
+      <p>way[railway=rail]({{bbox}});<br>
+        (._;&gt;;);<br>
+        out;<br>
+      </p>
+    </blockquote>
+    <h2>There you go...<br>
+    </h2>
+    <form method="post" enctype="multipart/form-data" onchange="document.getElementById('file-name').textContent = this.files[0].name">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+    </form>
+    <p>Selected file: <span id="file-name">{osm_file_name}</span></p>
+    {convert_button}
+    """
+    html = get_html_content_with_styles('OSM to RDF', osm_content)
+    return html
+
+
+@bp.route('/convert_to_sRSM', methods=['POST'])
+def osm_to_ttl():
+    file_path = request.form['file_path']
+    result = transform_osm_to_rsm(file_path, 'converted_osm', TEMPORARY_FILES_FOLDER)
+    if result:
+        escaped_result = escape(result)
+        rdf_turtle_path = os.path.join(TEMPORARY_FILES_FOLDER, 'output.rdf')
+        with open(rdf_turtle_path, 'w') as rdf_file:
+            rdf_file.write(result)
+        result_html = f"""<h2>Resulting sRSM file, in RDF Turtle format:</h2>
+        <div style="max-height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; margin-top: 20px; font-size: 80%;">
+            <pre>{escaped_result}</pre>
+        </div>
+        <a href="/download_rdf" download class="button">Download RDF Turtle file</a>"""
+    else:
+        result_html = "<p>An error occurred during conversion.</p>"
+
+    html = get_html_content_with_styles('Converted RDF', result_html)
+    return render_template_string(html)
 
 
 @bp.route('/download_rdf')

@@ -1,6 +1,5 @@
 # Convert drawIO XML file into OSM-style JSON file
 
-import os
 from pprint import pprint
 
 import xmltodict
