@@ -1,0 +1,104 @@
+@prefix : <http://cdm.ovh/examples#> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rsm: <http://cdm.ovh/rsm/topology/topology#> .
+@prefix rsm1: <http://cdm.ovh/rsm/adapters/geosparql_adapter#> .
+
+:line_0 a rsm:LinearElement ;
+    rdfs:label "7-31" ;
+    rsm1:hasNominalGeometry :geom_0 .
+
+:line_1 a rsm:LinearElement ;
+    rdfs:label "7-43" ;
+    rsm1:hasNominalGeometry :geom_1 .
+
+:line_10 a rsm:LinearElement ;
+    rdfs:label "7-239" ;
+    rsm1:hasNominalGeometry :geom_10 .
+
+:line_11 a rsm:LinearElement ;
+    rdfs:label "7-47" ;
+    rsm1:hasNominalGeometry :geom_11 .
+
+:line_12 a rsm:LinearElement ;
+    rdfs:label "7-35" ;
+    rsm1:hasNominalGeometry :geom_12 .
+
+:line_13 a rsm:LinearElement ;
+    rdfs:label "slip" ;
+    rsm1:hasNominalGeometry :geom_13 ;
+    rdfs:comment "slip switch" .
+
+:line_2 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_2 .
+
+:line_3 a rsm:LinearElement ;
+    rdfs:label "70-3" ;
+    rsm1:hasNominalGeometry :geom_3 .
+
+:line_4 a rsm:LinearElement ;
+    rdfs:label "7-31" ;
+    rsm1:hasNominalGeometry :geom_4 .
+
+:line_5 a rsm:LinearElement ;
+    rdfs:label "7-27" ;
+    rsm1:hasNominalGeometry :geom_5 .
+
+:line_6 a rsm:LinearElement ;
+    rsm1:hasNominalGeometry :geom_6 .
+
+:line_7 a rsm:LinearElement ;
+    rdfs:label "7-11" ;
+    rsm1:hasNominalGeometry :geom_7 .
+
+:line_8 a rsm:LinearElement ;
+    rdfs:label "16-218" ;
+    rsm1:hasNominalGeometry :geom_8 .
+
+:line_9 a rsm:LinearElement ;
+    rdfs:label "7-15" ;
+    rsm1:hasNominalGeometry :geom_9 .
+
+:geom_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.488418 63.829015, 0.488103 63.830089)"^^geo:wktLiteral .
+
+:geom_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.485852 63.832144, 0.485353 63.833845)"^^geo:wktLiteral .
+
+:geom_10 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.487158 63.833311, 0.486424 63.835817)"^^geo:wktLiteral .
+
+:geom_11 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.485353 63.833845, 0.484802 63.835724)"^^geo:wktLiteral .
+
+:geom_12 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.487158 63.833311, 0.485353 63.833845)"^^geo:wktLiteral .
+
+:geom_13 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.485811 63.833689, 0.485275 63.834113)"^^geo:wktLiteral ;
+    rdfs:comment "slip switch" .
+
+:geom_2 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.483574 63.834289, 0.483391 63.834915)"^^geo:wktLiteral .
+
+:geom_3 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.483574 63.834289, 0.485353 63.833845)"^^geo:wktLiteral .
+
+:geom_4 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.488837 63.827583, 0.488418 63.829015)"^^geo:wktLiteral .
+
+:geom_5 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.487216 63.82749, 0.487006 63.828206)"^^geo:wktLiteral .
+
+:geom_6 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.487006 63.828206, 0.488418 63.829015)"^^geo:wktLiteral .
+
+:geom_7 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.488103 63.830089, 0.487788 63.831163)"^^geo:wktLiteral .
+
+:geom_8 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.487788 63.831163, 0.487473 63.832237)"^^geo:wktLiteral .
+
+:geom_9 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.487473 63.832237, 0.487158 63.833311)"^^geo:wktLiteral .
+
