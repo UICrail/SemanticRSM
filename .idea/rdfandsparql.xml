@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RDFAndSPARQL.SPARQLEndpointProjectPersistentStateComponent">
+    <option name="fileBasedConfigs">
+      <map>
+        <entry key="049a3334-53bf-4da2-82b0-1256939ab6ca">
+          <value>
+            <SPARQLEndpointFileBasedConfig>
+              <option name="endpointId" value="049a3334-53bf-4da2-82b0-1256939ab6ca" />
+              <option name="name" value="Flask/temporary_files/converted_osm_with_slip_functionality.ttl" />
+              <option name="paths">
+                <list>
+                  <option value="Flask/temporary_files/converted_osm_with_slip_functionality.ttl" />
+                </list>
+              </option>
+            </SPARQLEndpointFileBasedConfig>
+          </value>
+        </entry>
+        <entry key="7173e9d4-7aec-4a14-b279-718d0a4a9aec">
+          <value>
+            <SPARQLEndpointFileBasedConfig>
+              <option name="endpointId" value="7173e9d4-7aec-4a14-b279-718d0a4a9aec" />
+              <option name="name" value="Flask/temporary_files/output.ttl" />
+              <option name="paths">
+                <list>
+                  <option value="Flask/temporary_files/output.ttl" />
+                </list>
+              </option>
+            </SPARQLEndpointFileBasedConfig>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
