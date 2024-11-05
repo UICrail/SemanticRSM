@@ -39,6 +39,7 @@ Other important concepts may come from other pieces of EU Law, such as TAF TSI, 
 ## Tools
 * [Protégé](https://protege.stanford.edu/) desktop 5.x for RDF edition, checking, and saving to different formats.
 * [EasyRdf](https://www.easyrdf.org/converter) for format conversion (between RDF/XML and Turtle, mostly).
+* [OOPS! pitfall scanner](https://oops.linkeddata.es/), in addition to Protégé, for ontology checking.
 * Graphics:
     - Sparx Enterprise Architect (v. 16 or later) for UML diagrams, possibly using the built-in [ODM](https://www.omg.org/odm/) UML profile.
     - Visual Paradigm also for UML diagrams (most illustrations come from Visual Paradigm).
