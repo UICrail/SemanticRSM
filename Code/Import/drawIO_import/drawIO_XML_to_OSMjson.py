@@ -49,13 +49,6 @@ def import_xml_as_dict(path: str) -> dict | bool:
     except Exception as e:
         print(e)
         return False
-    
-def import_xml_content_as_dict(content: str) -> dict | bool:
-    try:
-        return xmltodict.parse(content)
-    except Exception as e:
-        print(e)
-        return False
 
 
 # From Python dict to OSM file

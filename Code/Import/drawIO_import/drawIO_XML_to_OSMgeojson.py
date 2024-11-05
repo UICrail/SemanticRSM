@@ -1,5 +1,7 @@
 # Convert drawIO XML file into OSM-style GeoJSON file.
 # Note: in GeoJSON, the standard order of coordinates is (longitude, latitude) or (easting, northing)
+import os
+
 import geojson
 from pyproj import Transformer
 
@@ -7,7 +9,7 @@ from Code.Import.drawIO_import.drawIO_XML_to_OSMjson import *
 
 # to transform cartesian coords on the canvas to geographic ones, we use an arbitrary transformation.
 # Canvas scale: one pixel = one meter
-# Remember that Y axis on the drawIO canvas is oriented down
+# Remember that Y axis on the drawIO canvas is oriented down:
 CANVAS_ORIENTATION = -1
 # Center of ETRS89-LCC Europe area (EPSG:3034) is somewhere in the Norwegian sea; for reference see epsg.io
 CENTER_COORDS = 4115023.91, 3536037.64
@@ -16,7 +18,7 @@ RAILWAY_TAG = {'railway': 'rail'}  # used in OpenStreetMap for annotating, well,
 
 OSM_GEOJSON_EXTENSION = '.osm.geojson'  # for generated output file
 
-# initialize transformer from ETRS89 to WGS84
+# initialize coordinate transformer from ETRS89 to WGS84
 transformer = Transformer.from_crs("EPSG:3034", "EPSG:4326")
 
 

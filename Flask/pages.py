@@ -12,6 +12,8 @@ LOCAL_FOLDER = os.path.dirname(__file__)
 TEMPORARY_FILES_FOLDER = os.path.join(LOCAL_FOLDER, 'temporary_files')
 bp = Blueprint('pages', __name__, template_folder='templates')
 
+uploaded_files = []
+
 CSS_STYLES = """
 <style>
     body {
@@ -58,6 +60,49 @@ BACK_TO_HOME_BUTTON = """
 <button class="back-button" onclick="window.location.href='/'">Back to sRSM Home</button>
 """
 
+HOME_PAGE_HTML = ''' 
+<body>
+    <h1>SemanticRSM test and demo site</h1>
+    <p>This site is based on the Semantic RSM (sRSM) repository:<br>
+    <a href="https://github.com/UICrail/SemanticRSM/" target="_blank">Semantic
+    RSM GitHub repository hosted by UIC</a><br>
+    </p>
+    <h2>Proposed functions<br>
+    </h2>
+    <nav>
+    <ul>
+    <li><a href="/drawio_to_rdf">drawIO to RDF<br>
+    </a>Draw a network schema (using <a
+    href="https://www.drawio.com/" target="_blank">the free
+    diagramming software draw.io</a>) and get its sRSM
+    representation as an RDF/Turtle file.</li>
+    <li><a href="/osm_to_rdf">OSM to RDF<br>
+    </a>Import railway networks from Open Street Map networks and
+    generate the corresponding sRSM representation.</li>
+    </ul>
+    <h2>Everything else</h2>
+    <p>For any question or suggestion, please use the Semantic RSM
+    GitHub repository and post an issue there.</p>
+    <p>Concerning data from <a href="https://www.openstreetmap.org" target="_blank">OpenStreetMap</a>: these data are made available under ODbL (see <a href="https://opendatacommons.org/licenses/odbl/" target="_blank">this page</a>).</p>
+    <p><a href="/about">About the present site</a></p>
+    <p><br>
+    </p>
+    <p><i>this version: Nov. 4th, 2024</i><br>
+    </p>
+    <button onclick="erase_and_quit();">Erase temporary files and quit</button>
+    <script>
+        function erase_and_quit() {
+            fetch('/erase_and_quit', { method: 'POST' }).then(response => {
+                if (response.ok) {
+                    window.close();
+                }
+            });
+        }
+    </script>
+    </nav>
+</body>
+'''
+
 
 # Helper Functions
 def get_html_content_with_styles(title, body_content, include_back_button=True):
@@ -88,42 +133,9 @@ def get_html_from_markdown(file_path):
 
 
 # Routes
-
 @bp.route('/')
 def home():
-    home_content = '''
-    <body>
-        <h1>SemanticRSM test and demo site</h1>
-        <p>This site is based on the Semantic RSM (sRSM) repository:<br>
-        <a href="https://github.com/UICrail/SemanticRSM/" target="_blank">Semantic
-        RSM GitHub repository hosted by UIC</a><br>
-        </p>
-        <h2>Proposed functions<br>
-        </h2>
-        <nav>
-        <ul>
-        <li><a href="/drawio_to_rdf">drawIO to RDF<br>
-        </a>Draw a network schema (using <a
-        href="https://www.drawio.com/" target="_blank">the free
-        diagramming software draw.io</a>) and get its sRSM
-        representation as an RDF/Turtle file.</li>
-        <li><a href="/osm_to_rdf">OSM to RDF<br>
-        </a>Import railway networks from Open Street Map networks and
-        generate the corresponding sRSM representation.</li>
-        </ul>
-        <h2>Everything else</h2>
-        <p>For any question or suggestion, please use the Semantic RSM
-        GitHub repository and post an issue there.</p>
-        <p>Concerning data from <a href="https://www.openstreetmap.org" target="_blank">OpenStreetMap</a>: these data are made available under ODbL (see <a href="https://opendatacommons.org/licenses/odbl/" target="_blank">this page</a>).</p>
-        <p><a href="/about">About the present site</a></p>
-        <p><br>
-        </p>
-        <p><i>this version: Nov. 4th, 2024</i><br>
-        </p>
-        </nav>
-    </body>
-    '''
-    html = get_html_content_with_styles('sRSM demo', home_content, include_back_button=False)
+    html = get_html_content_with_styles('sRSM demo', HOME_PAGE_HTML, include_back_button=False)
     return html
 
 
@@ -140,12 +152,13 @@ def about():
 @bp.route('/drawio_to_rdf', methods=['GET', 'POST'])
 def drawio_to_rdf():
     result_html = ""
-    file_name = "No file selected"
+    selected_file_name = "No file selected"
     if request.method == 'POST':
         file = request.files['file']
         if file:
-            file_name = file.filename
+            selected_file_name = file.filename
             file_path = os.path.join(TEMPORARY_FILES_FOLDER, file.filename)
+            uploaded_files.append(file_path)
             print('Saving XML file to ', file_path)
             file.save(file_path)
             if file.filename.endswith('.xml'):
@@ -153,12 +166,14 @@ def drawio_to_rdf():
                 osm_generator = dxo.OSMgeojsonGenerator()
                 osm_generator.convert_drawio_to_osm(file_path)
                 file_path = file_path.split('.')[0] + OSM_GEOJSON_EXTENSION
+                uploaded_files.append(file_path)
                 result = transform_osm_to_rsm(file_path, 'Pierre_Tane_test_121_via_flask', TEMPORARY_FILES_FOLDER)
                 if result:
                     escaped_result = escape(result)
                     rdf_turtle_path = os.path.join(TEMPORARY_FILES_FOLDER, 'output.rdf')
                     with open(rdf_turtle_path, 'w') as rdf_file:
                         rdf_file.write(result)
+                    uploaded_files.append(rdf_turtle_path)
                     result_html = f"""<h2>Resulting sRSM file, in RDF Turtle format:</h2>
                     <div style="max-height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; margin-top: 20px; font-size: 80%;">
                         <pre>{escaped_result}</pre>
@@ -173,17 +188,21 @@ def drawio_to_rdf():
                 </div>
                 """
 
-    drawio_content = f"""
+    drawio_content = render_drawio_form(selected_file_name, result_html)
+    html = get_html_content_with_styles('drawio to RDF', drawio_content)
+    return html
+
+
+def render_drawio_form(selected_file_name, result_html):
+    return f"""
     <h1>Select a drawIO file (xml format or SVG format)</h1>
     <form method="post" enctype="multipart/form-data" onchange="document.getElementById('file-name').textContent = this.files[0].name">
         <input type="file" name="file">
         <input type="submit" value="Upload">
     </form>
-    <p>Selected file: <span id="file-name">{file_name}</span></p>
+    <p>Selected file: <span id="file-name">{selected_file_name}</span></p>
     {result_html}
     """
-    html = get_html_content_with_styles('drawio to RDF', drawio_content)
-    return html
 
 
 @bp.route('/osm_to_rdf', methods=['GET', 'POST'])
@@ -194,6 +213,7 @@ def osm_to_rdf():
         if file:
             osm_file_name = file.filename
             osm_file_path = os.path.join(TEMPORARY_FILES_FOLDER, file.filename)
+            uploaded_files.append(osm_file_path)
             file.save(osm_file_path)
             convert_button = f"""
             <form method="post" action="/convert_to_sRSM">
@@ -270,6 +290,7 @@ def osm_to_ttl():
         rdf_turtle_path = os.path.join(TEMPORARY_FILES_FOLDER, 'output.rdf')
         with open(rdf_turtle_path, 'w') as rdf_file:
             rdf_file.write(result)
+        uploaded_files.append(rdf_turtle_path)
         result_html = f"""<h2>Resulting sRSM file, in RDF Turtle format:</h2>
         <div style="max-height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; margin-top: 20px; font-size: 80%;">
             <pre>{escaped_result}</pre>
@@ -285,3 +306,12 @@ def osm_to_ttl():
 @bp.route('/download_rdf')
 def download_rdf():
     return send_from_directory(TEMPORARY_FILES_FOLDER, 'output.rdf', as_attachment=True)
+
+
+@bp.route('/erase_and_quit', methods=['POST'])
+def erase_and_quit():
+    for file_path in uploaded_files:
+        if os.path.exists(file_path):
+            os.remove(file_path)
+    uploaded_files.clear()
+    return ('', 200)

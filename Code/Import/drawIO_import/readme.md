@@ -22,6 +22,9 @@ The user may select between ontology vocabulary versions.
 
 The network is represented in 2D as a set of track segments. The following conventions apply:
 
+* a network is composed of track segments. These shall be represented, in drawIO, by lines (line segments), with or without waypoints.
+  * we recommend using waypoints to give the drawing a realistic aspect while keeping the drafting simple and effective.
+  * at the time of writing, the processing of waypoints is not yet finished.
 * each track segment is a __linear element__ in the sense of sRSM, i.e. it should start and end at a switch, crossing (where 3 or 4 track segments converge) or into nothing (where you would have a buffer for instance).
 * use __snap to grid__ to join linear elements. The program will identify connections between extremities of linear elements by identity of coordinates, rather than vicinity.
 * you can approximate a curve by having chained track segments. You may also use a curve instead.
@@ -49,6 +52,7 @@ In any case, a crossing is defined where exactly four linear elements converge a
 
 The drawIO import rests on the conversion of the drawIO XML file into an OSM file in GeoJSON format.
 Additional processing rests on:
+
 * the input geometry,
 * conventional annotations on the diagram.
 
@@ -66,7 +70,8 @@ For coordinate conversions: pyproj
 ## Shortcomings of drawIO
 
 The SVG output could also be used, but would involve more refined coding:
+
 * Unlike the XML output, the SVG output will not guarantee that segment extremities snapped to the (canvas) grid will have the same coordinates.
 * In addition, the structure of the SVG file varies from one segment to another, for no apparent reason.
 
-However the display of the SVG files in a browser (Firefox was used for testing) looks fine. 
+However the display of the SVG files in a browser (Firefox was used for testing) looks fine.
