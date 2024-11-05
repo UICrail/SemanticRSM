@@ -170,7 +170,7 @@ def drawio_to_rdf():
                 result = transform_osm_to_rsm(file_path, 'Pierre_Tane_test_121_via_flask', TEMPORARY_FILES_FOLDER)
                 if result:
                     escaped_result = escape(result)
-                    rdf_turtle_path = os.path.join(TEMPORARY_FILES_FOLDER, 'output.rdf')
+                    rdf_turtle_path = os.path.join(TEMPORARY_FILES_FOLDER, 'output.ttl')
                     with open(rdf_turtle_path, 'w') as rdf_file:
                         rdf_file.write(result)
                     uploaded_files.append(rdf_turtle_path)
@@ -287,7 +287,7 @@ def osm_to_ttl():
     result = transform_osm_to_rsm(file_path, 'converted_osm', TEMPORARY_FILES_FOLDER)
     if result:
         escaped_result = escape(result)
-        rdf_turtle_path = os.path.join(TEMPORARY_FILES_FOLDER, 'output.rdf')
+        rdf_turtle_path = os.path.join(TEMPORARY_FILES_FOLDER, 'output.ttl')
         with open(rdf_turtle_path, 'w') as rdf_file:
             rdf_file.write(result)
         uploaded_files.append(rdf_turtle_path)
@@ -305,7 +305,7 @@ def osm_to_ttl():
 
 @bp.route('/download_rdf')
 def download_rdf():
-    return send_from_directory(TEMPORARY_FILES_FOLDER, 'output.rdf', as_attachment=True)
+    return send_from_directory(TEMPORARY_FILES_FOLDER, 'output.ttl', as_attachment=True)
 
 
 @bp.route('/erase_and_quit', methods=['POST'])
