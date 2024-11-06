@@ -9,6 +9,7 @@ from rdflib import RDF, Literal, RDFS
 from shapely.geometry import LineString, Point
 
 from Code.Namespaces import *
+from Graph_transformation.full_transformation import OUTPUT_FOLDER
 
 
 def initialize_rdf_graph():
@@ -28,7 +29,8 @@ def process_geometry(row):
     return str(row.geometry)
 
 
-def osm_to_ttl(osm_file_path: str, short_name: str = "", base_path: str = None, linear_element_prefix: str = 'line',
+def osm_to_ttl(osm_file_path: str, short_name: str = "", base_path: str = OUTPUT_FOLDER,
+               linear_element_prefix: str = 'line',
                geometry_prefix: str = 'geom', with_geometry: bool = True):
     """
 
@@ -41,7 +43,7 @@ def osm_to_ttl(osm_file_path: str, short_name: str = "", base_path: str = None, 
     In such case, only the URIs will tell which linear element matches which geometry.
     :return: None (a file is created)
     """
-    from Graph_transformation.full_transformation import BASE_PATH
+
     # Initialize RDF graph
     graph = initialize_rdf_graph()
 
@@ -71,9 +73,7 @@ def osm_to_ttl(osm_file_path: str, short_name: str = "", base_path: str = None, 
             graph.add((geom_uri, RDFS.comment, Literal(annotations)))
 
     # Serialize the graph to a Turtle file
-    if not base_path:
-        print('WARNING: no path was provided. Default path used instead.')
-        base_path = BASE_PATH
+
     print(f'Raw ttl file is about to be saved to {base_path}')
     output_file_path = os.path.join(base_path, f'{short_name}_raw.ttl')
     graph.serialize(destination=output_file_path, format='turtle')

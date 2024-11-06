@@ -7,7 +7,7 @@
 from rdflib import Literal, Graph
 from rdflib.namespace import RDF, RDFS
 
-from Import.drawIO_import.drawIO_XML_to_OSMjson import SLIP_SWITCH_KEY
+from Import.drawIO_import.drawio_parameters import SLIP_SWITCH_KEY
 from Namespaces import GEOSPARQL, RSM_TOPOLOGY, RSM_GEOSPARQL_ADAPTER
 from Graph_transformation.graph_file_handing import load_graph, save_graph
 from Graph_transformation.geometry_stuff import find_nearest_linear_elements, wkt_point_to_lon_lat, find_nearest_ports

@@ -39,14 +39,16 @@ The network is represented in 2D as a set of track segments. The following conve
 * track segments _may_ be terminated by arrows (choose symbols accordingly). The arrows are only helping visualize where segments start or end, and help telling crossings and flyovers apart. Orientation is ignored.
 * to represent a siding along a straight track, you may use for instance three aligned, straight segments, and one curved segment. Parallelism is not important, but visually, the siding should be one the one or the other side of the "through" track, and the graphical representation is expected to show where the "toe" and "heel" side of the switch is situated.
 
-## Dealing with (diamond, single slip, double slip) crossings
+## Dealing with (diamond | single slip | double slip) crossings
 
 _FR: traversées simples, traversées jonctions simples ou doubles; DE: Kreuzung resp. einfache - resp. doppelte Kreuzungsweiche_
 
 In the case of crossings, additional information is needed to distinguish between diamond / single slip / double slip crossings.
 Lacking such info, the user may choose to default all crossings to either double switch crossing or diamond crossing type (default option in the code).
 
-In any case, a crossing is defined where exactly four linear elements converge at their extremities. Two intersecting track segments in the drawing will be treated as a flyover.
+In any case, a crossing is defined where exactly four linear elements converge at their extremities.
+
+WARNING: Two intersecting track segments in the drawing will be intepreted as a flyover.
 
 # Methodology
 

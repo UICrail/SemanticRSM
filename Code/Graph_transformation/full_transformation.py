@@ -4,83 +4,85 @@ import os
 from Code.Export.export_wkt_to_kml import ttl_to_kml
 from Code.Graph_transformation.step01_split_linear_elements import split_linestrings_in_file
 from Code.Graph_transformation.step02_join_linear_elements import join_linear_elements
-from Code.Import.OSM_import.osm_geojson_to_ttl import osm_to_ttl
 from Graph_transformation.step03_add_ports import add_ports_to_linear_elements
 from Graph_transformation.step04_add_port_properties import set_port_connections, set_navigabilities
 from Graph_transformation.step04b_add_slip_functionality import add_slip_functionality
 
-BASE_PATH = os.path.join(os.path.dirname(__file__), "..", "..", "Output_files", "Intermediate_files")
+OUTPUT_FOLDER = os.path.join(os.path.dirname(__file__), "..", "..", "Output_files", "Intermediate_files")
 NAVIGABILITIES_SUFFIX = "with_navigabilities"
 KML_SUFFIX = " including slip switch representation"
 
 
-def generate_file_path(short_name, stage, base_path=BASE_PATH):
-    return os.path.join(base_path, f"{short_name}_{stage}.ttl")
+def generate_file_path(short_name, stage, to_folder=OUTPUT_FOLDER):
+    return os.path.join(to_folder, f"{short_name}_{stage}.ttl")
 
 
-def transform_osm_to_rsm(osm_geojson_path, short_name, base_path=BASE_PATH, all_double_slip: bool = False) -> str:
+def transform_osm_to_rsm(osm_geojson_path, short_name, output_folder=OUTPUT_FOLDER, all_double_slip: bool = False) -> str:
     """
-    :param base_path:
-    :param all_double_slip:
+    :param output_folder:
     :param osm_geojson_path: source data
     :param short_name: will be used in the name of generated files
     :param all_double_slip: if True, all crossings will default to double slip
     :return: resulting ttl file as string
     """
+    print()
+    print("Preparing the transformation of an OSM file (GeoJSON format) into a sRSM file (TTL format)")
     print(f"Reading the OSM file: {osm_geojson_path}")
 
     # Read the OSM geojson file and produce the raw ttl file
-    osm_to_ttl(osm_geojson_path, short_name=short_name, base_path=base_path)
-    print(f'TTL file produced from the OSM geojson file, output at {base_path}')
+    from Import.OSM_import.osm_geojson_to_ttl import osm_to_ttl
+    osm_to_ttl(osm_geojson_path, short_name=short_name, base_path=output_folder)
+    print(f'TTL file produced from the OSM geojson file, output at {output_folder}')
 
     # Process linear elements
-    result = run_process_steps(short_name, base_path, all_double_slip)
+    result = run_process_steps(short_name, output_folder, all_double_slip)
     return result
 
 
-def run_process_steps(short_name, base_path=BASE_PATH, all_double_slip: bool = False) -> str:
+def run_process_steps(short_name, output_folder=OUTPUT_FOLDER, all_double_slip: bool = False) -> str:
     """
 
     :param all_double_slip:
     :param short_name:
-    :param base_path:
+    :param output_folder:
     :return: processed ttl file as string
     """
 
-    split_linestrings_in_file(generate_file_path(short_name, "raw", base_path), short_name)
+    split_linestrings_in_file(generate_file_path(short_name, "raw", output_folder), short_name)
     join_linear_elements(
-        generate_file_path(short_name, "split", base_path),
-        generate_file_path(short_name, "joint", base_path)
+        generate_file_path(short_name, "split", output_folder),
+        generate_file_path(short_name, "joint", output_folder)
     )
     add_ports_to_linear_elements(
-        generate_file_path(short_name, "joint", base_path),
-        generate_file_path(short_name, "with_ports", base_path)
+        generate_file_path(short_name, "joint", output_folder),
+        generate_file_path(short_name, "with_ports", output_folder)
     )
     set_port_connections(
-        generate_file_path(short_name, "with_ports", base_path),
-        generate_file_path(short_name, "with_connected_ports", base_path)
+        generate_file_path(short_name, "with_ports", output_folder),
+        generate_file_path(short_name, "with_connected_ports", output_folder)
     )
     set_navigabilities(
-        generate_file_path(short_name, "with_connected_ports", base_path),
-        generate_file_path(short_name, NAVIGABILITIES_SUFFIX, base_path),
+        generate_file_path(short_name, "with_connected_ports", output_folder),
+        generate_file_path(short_name, NAVIGABILITIES_SUFFIX, output_folder),
         double_slip_crossings=all_double_slip
     )
     result = add_slip_functionality(
-        generate_file_path(short_name, NAVIGABILITIES_SUFFIX, base_path),
-        generate_file_path(short_name, "with_slip_functionality", base_path)
+        generate_file_path(short_name, NAVIGABILITIES_SUFFIX, output_folder),
+        generate_file_path(short_name, "with_slip_functionality", output_folder)
     )
     ttl_to_kml(
-        generate_file_path(short_name, NAVIGABILITIES_SUFFIX, base_path),
-        os.path.join(BASE_PATH, f"{short_name}{KML_SUFFIX}.kml")
+        generate_file_path(short_name, NAVIGABILITIES_SUFFIX, output_folder),
+        os.path.join(OUTPUT_FOLDER, f"{short_name}{KML_SUFFIX}.kml")
     )
     return result
 
 
-def osm_via_rsm_to_kml(osm_geojson_file, short_name, base_path=BASE_PATH):
+def osm_via_rsm_to_kml(osm_geojson_file, short_name, base_path=OUTPUT_FOLDER):
     """
     Direct transformation, without attempting to split or merge.
     """
     print(f"Reading the OSM file: {osm_geojson_file}")
+    from Import.OSM_import.osm_geojson_to_ttl import osm_to_ttl
     osm_to_ttl(osm_geojson_file)
     ttl_to_kml(
         generate_file_path(short_name, "raw"),

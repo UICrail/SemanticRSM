@@ -5,6 +5,8 @@ from shapely.geometry import LineString
 from typing import Dict, List
 from Code.Namespaces import *
 
+LINEAR_ELEMENT_WIDTH = 4  # adjust as needed
+
 
 def ttl_to_kml(input_ttl_, output_kml_):
     elements = parse_ttl_linestrings(input_ttl_)
@@ -41,13 +43,21 @@ def parse_ttl_linestrings(input_ttl_: str) -> Dict[URIRef, LineString]:
 
 def generate_kml_from_elements_and_colors(elements: Dict[URIRef, LineString], colors: Dict[URIRef, str],
                                           output_kml_: str) -> None:
+    """
+    Note: in KML, the order of coordinates is longitude, latitude[, altitude].
+    :param elements:
+    :param colors:
+    :param output_kml_:
+    :return:
+    """
     import simplekml
 
     kml = simplekml.Kml()
     for uri, geom in elements.items():
+        # the following assumes that the provided WKT also follows the order longitude, latitude
         linestring = kml.newlinestring(name=str(uri), coords=[(pt[0], pt[1]) for pt in geom.coords])
         linestring.style.linestyle.color = colors[uri]
-        linestring.style.linestyle.width = 4  # Adjust width as needed
+        linestring.style.linestyle.width = LINEAR_ELEMENT_WIDTH  # Adjust width as needed
     kml.save(output_kml_)
 
 
