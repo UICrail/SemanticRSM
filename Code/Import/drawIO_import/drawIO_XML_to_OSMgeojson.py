@@ -3,23 +3,20 @@
 import os
 
 import geojson
-from pyproj import Transformer
 
 from Code.Import.drawIO_import.drawIO_XML_to_OSMjson import *
+from Import.drawIO_import.geojson_helpers import create_geojson_linestring
 
 # to transform cartesian coords on the canvas to geographic ones, we use an arbitrary transformation.
 # Canvas scale: one pixel = one meter
 # Remember that Y axis on the drawIO canvas is oriented down:
-CANVAS_ORIENTATION = -1
 # Center of ETRS89-LCC Europe area (EPSG:3034) is somewhere in the Norwegian sea; for reference see epsg.io
-CENTER_COORDS = 4115023.91, 3536037.64
 # From OpenStreetMap
 RAILWAY_TAG = {'railway': 'rail'}  # used in OpenStreetMap for annotating, well, railway-related stuff
 
 OSM_GEOJSON_EXTENSION = '.osm.geojson'  # output file extension
 
 # initialize coordinate transformer from ETRS89 to WGS84
-transformer = Transformer.from_crs("EPSG:3034", "EPSG:4326")
 
 
 class OSMgeojsonGenerator(OSMGenerator):
@@ -62,32 +59,6 @@ class OSMgeojsonGenerator(OSMGenerator):
 
     def save_to_file(self, in_path: str, new_extension: str = OSM_GEOJSON_EXTENSION):
         super().save_to_file(in_path, new_extension)
-
-
-def create_geojson_linestring(source, target, *waypoints):
-    lon_lat_array = ()
-    if waypoints:
-        lon_lat_array = cartesian_to_lonlat(*waypoints)
-    way_coords = (
-        cartesian_to_lonlat(source),
-        *lon_lat_array,
-        cartesian_to_lonlat(target)
-    )
-    return geojson.LineString(way_coords)
-
-
-def create_geojson_point(lon: float | str, lat: float | str):
-    # TODO: move this helper function to some helper module
-    return geojson.Point(cartesian_to_lonlat((float(lon), float(lat))))
-
-
-def cartesian_to_lonlat(*coords: tuple[str | float, str | float]):
-    # TODO: move this helper function to some helper module
-    result = []
-    for coord in coords:
-        result.append(transformer.transform(CANVAS_ORIENTATION * float(coord[1]) + CENTER_COORDS[1],
-                                            float(coord[0]) + CENTER_COORDS[0]))
-    return tuple(result)
 
 
 if __name__ == '__main__':
