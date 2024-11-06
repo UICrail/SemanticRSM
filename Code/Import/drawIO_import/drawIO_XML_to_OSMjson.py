@@ -1,11 +1,12 @@
 # Convert drawIO XML file into OSM-style JSON file
-
+import os.path
 from pprint import pprint
 
 import xmltodict
 from lxml import etree
 
 # Constants
+
 OSM_VERSION = "0.6"
 GENERATOR = "Python"
 # Styles defined by drawIO
@@ -14,6 +15,10 @@ DASHED_LINE = "dashed=1"
 SLIP_SWITCH_KEY = "slip switch"
 SLIP_SWITCH_STYLE = [DASHED_LINE]
 ARTEFACTS = {SLIP_SWITCH_KEY: SLIP_SWITCH_STYLE}
+# File extensions
+DRAWIO_XML_EXTENSION = '.drawio.xml'  # input file
+OSM_JSON_EXTENSION = '.osm.json'  # output file
+
 
 # noinspection HttpUrlsUsage
 NAMESPACE_URI = "http://osm.org"
@@ -60,7 +65,7 @@ class OSMGenerator:
     def __init__(self):
         self._input_file_extension = ".drawio.xml"
         self.node_index = {}  # key= autoincrement node ID, value=(lat,lon)
-        self.way_index = {}  # key=way (edge) id, value={'source'=<node ID>, 'target'=<node ID>}
+        self.way_index = {}  # key=way (edge) id, value={'source'=<node ID>, 'target'=<node ID>, 'waypoint'= (<node ID, ...>)}
         self.label_index = {}  # key=way (edge) id, value=label string (value of connectable in the XML file)
         self.target = ''
         self.osm_doc = None
@@ -78,6 +83,14 @@ class OSMGenerator:
                 etree.SubElement(node, "tag", k=key, v=value)
 
     def create_osm_way(self, way_id, node_ids, tags: dict):
+        """
+        Note: waypoints are not (yet) exploited in this module.
+        For waypoint exploitation, see the transformation to GeoJSON.
+        :param way_id:
+        :param node_ids: nodes at start and end of the way, in that order.
+        :param tags:
+        :return:
+        """
         way = etree.SubElement(self.osm_doc, "way", id=str(way_id))
         for node_id in node_ids:
             etree.SubElement(way, "nd", ref=str(node_id))
@@ -105,9 +118,17 @@ class OSMGenerator:
 
     def process_edge(self, item, annotation: str = ''):
         source_coords, target_coords = self.extract_coordinates(item)
+        waypoints = self.extract_waypoints(item)
         source_node_id = self.get_or_create_node_id(source_coords)
         target_node_id = self.get_or_create_node_id(target_coords)
-        self.way_index[item['@id']] = {'source': source_node_id, 'target': target_node_id, 'annotation': annotation}
+        waypoint_node_ids = ()
+        if waypoints:
+            for waypoint in waypoints:
+                waypoint_node_id = self.get_or_create_node_id(waypoint)
+                waypoint_node_ids += (waypoint_node_id,)
+
+        self.way_index[item['@id']] = {'source': source_node_id, 'target': target_node_id, 'waypoints': waypoint_node_ids, 'annotation': annotation}
+
         # in certain cases, the label is attached directly to the edge
         if label := item.get('@value'):
             self.label_index[item['@id']] = label
@@ -129,6 +150,14 @@ class OSMGenerator:
                 target_point = dic['@x'], dic['@y']
         if source_point and target_point:
             return source_point, target_point
+
+    @staticmethod
+    def extract_waypoints(item):
+        waypoints = None
+        if array := item['mxGeometry'].get('Array'):
+            if array.get('@as') == 'points' and len(array.get('mxPoint')) > 0:
+                waypoints = tuple((waypoint['@x'], waypoint['@y']) for waypoint in array['mxPoint'])
+            return waypoints
 
     @staticmethod
     def cleanup_label(label: str) -> str:
@@ -155,10 +184,14 @@ class OSMGenerator:
         self.add_nodes_from_index()
         self.add_ways_from_index()
 
-    def save_to_file(self, out_path: str):
-        self.generate_osm_string()
-        tree = etree.ElementTree(self.osm_doc)
-        tree.write(out_path + '.osm.xml', pretty_print=True, xml_declaration=True, encoding="UTF-8")
+    def save_to_file(self, in_path: str, new_extension: str = OSM_JSON_EXTENSION):
+        osm_json = self.generate_osm_string()
+        out_path = in_path.replace(DRAWIO_XML_EXTENSION, new_extension)
+        print(
+            f"\nTransforming a draw.io schematic track layout into {self.target}.\nOutput file: {out_path}"
+        )
+        with open(out_path, 'w') as f:
+            f.write(osm_json)
 
     def add_ways_from_index(self):
         for way_id, nodes in self.way_index.items():
@@ -191,4 +224,6 @@ class OSMGenerator:
 
 
 if __name__ == '__main__':
-    pass
+    input = os.path.join(os.path.curdir, 'TestData/241104 siding.drawio.xml')
+    generator = OSMGenerator()
+    generator.convert_drawio_to_osm(input)
