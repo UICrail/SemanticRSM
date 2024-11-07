@@ -230,10 +230,31 @@ def osm_to_rdf():
             uploaded_files.append(osm_file_path)
             file.save(osm_file_path)
             convert_button = f"""
-            <form method="post" action="/convert_to_sRSM">
+            <form method="post" action="/convert_osm_to_sRSM">
                 <input type='hidden' name='file_path' value='{osm_file_path}'>
-                <input type="submit" value="Convert to sRSM">
+                <input type="submit" value="Convert to sRSM" onclick="showProgressBar()">
             </form>
+            <div id="progress-bar" style="display: none; margin-top: 10px;">
+                <progress value="0" max="100" id="progress"></progress>
+                <span id="progress-text">Processing...</span>
+            </div>
+            <script>
+                function showProgressBar() {{
+                    document.getElementById('progress-bar').style.display = 'block';
+                    let progress = document.getElementById('progress');
+                    let progressText = document.getElementById('progress-text');
+                    let value = 0;
+                    let interval = setInterval(() => {{
+                        if (value < 100) {{
+                            value += 1;
+                            progress.value = value;
+                            progressText.textContent = "Processing... " + value + "%";
+                        }} else {{
+                            clearInterval(interval);
+                        }}
+                    }}, 300); // Adjust time as needed
+                }}
+            </script>
             """
         else:
             convert_button = ""
@@ -295,9 +316,10 @@ def osm_to_rdf():
     return html
 
 
-@bp.route('/convert_to_sRSM', methods=['POST'])
+@bp.route('/convert_osm_to_sRSM', methods=['POST'])
 def osm_to_ttl():
     file_path = request.form['file_path']
+    file_name = os.path.basename(file_path)
     result = transform_osm_to_rsm(file_path, 'converted_osm', TEMPORARY_FILES_FOLDER)
     if result:
         escaped_result = escape(result)
@@ -306,6 +328,7 @@ def osm_to_ttl():
             rdf_file.write(result)
         uploaded_files.append(rdf_turtle_path)
         result_html = f"""<h2>Resulting sRSM file, in RDF Turtle format:</h2>
+        <p>Source file: {file_name}</p>
         <div style="max-height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; margin-top: 20px; font-size: 80%;">
             <pre>{escaped_result}</pre>
         </div>
