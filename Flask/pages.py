@@ -298,7 +298,7 @@ def osm_to_rdf():
       box:<br>
     </p>
     <blockquote>
-      <p>way[railway=rail]({{bbox}});<br>
+      <p>way[railway=rail](&#123;&#123;bbox&#125;&#125;);<br>
         (._;&gt;;);<br>
         out;<br>
       </p>
