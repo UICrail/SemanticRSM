@@ -25,6 +25,7 @@ class OSMgeojsonGenerator:
 
     def __init__(self):
         self._input_file_extension = DRAWIO_XML_EXTENSION
+        self._output_folder = None
         self.node_index = {}  # key= autoincrement node ID, value=(lat,lon)
         self.way_index = {}  # key=way (edge) id, value={'source'=<node ID>, 'target'=<node ID>, 'waypoint'= (<node ID, ...>)}
         self.label_index = {}  # key=way (edge) id, value=label string (value of connectable in the XML file)
@@ -37,10 +38,11 @@ class OSMgeojsonGenerator:
         self.out_file_extension = OSM_GEOJSON_EXTENSION
         self.osm_doc = []
 
-    def convert_drawio_to_osm(self, input_file_path: str):
+    def convert_drawio_to_osm(self, input_file_path: str, output_folder: str = TEST_OUTPUTS_FOLDER):
         """
         Main routine, to be called after instantiation.
         :param input_file_path: full path with extension (expected: .drawio.xml)
+        :param output_folder:
         """
         print(f"\nTransforming a draw.io schematic track layout into {self.target}.")
         network_data = None
@@ -51,6 +53,7 @@ class OSMgeojsonGenerator:
         if network_data:
             print("\nData dictionary derived from drawio.xml file:\n")
             (pprint(network_data, width=80))
+            self._output_folder = output_folder
             self.process_dict(network_data, input_file_path)
         else:
             print("No network data found. Exiting.")
@@ -59,10 +62,10 @@ class OSMgeojsonGenerator:
         self.parse_dict(data)
         input_file_name = os.path.basename(input_file_path)
         output_file_name = input_file_name.replace(DRAWIO_XML_EXTENSION, self.out_file_extension)
-        output_file_path = os.path.join(TEST_OUTPUTS_FOLDER, output_file_name)
+        output_file_path = os.path.join(self._output_folder, output_file_name)
 
         self.save_to_file(output_file_path)
-        print(f"OSM file saved to {output_file_name}")
+        print(f"OSM file saved to {output_file_path}")
 
     def parse_dict(self, data: dict):
         elements = data['mxfile']['diagram']['mxGraphModel']['root']['mxCell']
@@ -139,9 +142,9 @@ class OSMgeojsonGenerator:
             if val == value:
                 return key
 
-    def save_to_file(self, in_path: str, new_extension: str = OSM_GEOJSON_EXTENSION):
+    def save_to_file(self, out_path: str, new_extension: str = OSM_GEOJSON_EXTENSION):
         osm_geojson = self.generate_nodes_and_ways_from_index()
-        out_path = in_path.replace(DRAWIO_XML_EXTENSION, new_extension)
+        out_path = out_path.replace(DRAWIO_XML_EXTENSION, new_extension)
         print(
             f"\nTransforming a draw.io schematic track layout into {self.target}.\nOutput file: {out_path}"
         )

@@ -2,7 +2,7 @@ import os
 from html import escape
 
 import markdown2
-from flask import Blueprint, request, render_template_string, send_from_directory
+from flask import Blueprint, render_template_string, send_from_directory, request
 
 from Graph_transformation.full_transformation import transform_osm_to_rsm
 from Import.drawIO_import.drawIO_XML_to_OSMgeojson import OSM_GEOJSON_EXTENSION
@@ -13,6 +13,7 @@ TEMPORARY_FILES_FOLDER = os.path.join(LOCAL_FOLDER, 'temporary_files')
 bp = Blueprint('pages', __name__, template_folder='templates')
 
 uploaded_files = []
+output_file = []
 
 CSS_STYLES = """
 <style>
@@ -77,7 +78,7 @@ HOME_PAGE_HTML = '''
     diagramming software draw.io</a>) and get its sRSM
     representation as an RDF/Turtle file.</li>
     <li><a href="/osm_to_rdf">OSM to RDF<br>
-    </a>Import railway networks from Open Street Map networks and
+    </a>Import railway networks from Open Street Map and
     generate the corresponding sRSM representation.</li>
     </ul>
     <h2>Everything else</h2>
@@ -151,46 +152,59 @@ def about():
 
 @bp.route('/drawio_to_rdf', methods=['GET', 'POST'])
 def drawio_to_rdf():
-    result_html = ""
-    selected_file_name = "No file selected"
-    if request.method == 'POST':
-        file = request.files['file']
-        if file:
-            selected_file_name = file.filename
-            file_path = os.path.join(TEMPORARY_FILES_FOLDER, file.filename)
-            uploaded_files.append(file_path)
-            print('Saving XML file to ', file_path)
-            file.save(file_path)
-            if file.filename.endswith('.xml'):
-                from Code.Import.drawIO_import import drawIO_XML_to_OSMgeojson as dxo
-                osm_generator = dxo.OSMgeojsonGenerator()
-                osm_generator.convert_drawio_to_osm(file_path)
-                file_path = file_path.split('.')[0] + OSM_GEOJSON_EXTENSION
-                uploaded_files.append(file_path)
-                result = transform_osm_to_rsm(file_path, 'Pierre_Tane_test_121_via_flask', TEMPORARY_FILES_FOLDER)
-                if result:
-                    escaped_result = escape(result)
-                    rdf_turtle_path = os.path.join(TEMPORARY_FILES_FOLDER, 'output.ttl')
-                    with open(rdf_turtle_path, 'w') as rdf_file:
-                        rdf_file.write(result)
-                    uploaded_files.append(rdf_turtle_path)
-                    result_html = f"""<h2>Resulting sRSM file, in RDF Turtle format:</h2>
-                    <div style="max-height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; margin-top: 20px; font-size: 80%;">
-                        <pre>{escaped_result}</pre>
-                    </div>
-                    <a href="/download_rdf" download class="button">Download RDF Turtle file</a>"""
-            elif file.filename.endswith('.svg'):
-                with open(file_path, 'r', encoding='utf-8') as svg_file:
-                    file_content = svg_file.read()
-                result_html = f"""
+    def save_uploaded_file(file, file_path):
+        print('Saving file to ', file_path)
+        file.save(file_path)
+        uploaded_files.append(file_path)
+
+    def process_xml_file(file_path):
+        from Code.Import.drawIO_import import drawIO_XML_to_OSMgeojson as dxo
+        osm_generator = dxo.OSMgeojsonGenerator()
+        osm_generator.convert_drawio_to_osm(file_path, TEMPORARY_FILES_FOLDER)
+        osm_file_path = file_path.split('.')[0] + OSM_GEOJSON_EXTENSION
+        uploaded_files.append(osm_file_path)
+        result = transform_osm_to_rsm(osm_file_path, 'output', TEMPORARY_FILES_FOLDER)
+        if result:
+            escaped_result = escape(result)
+            rdf_turtle_path = os.path.join(TEMPORARY_FILES_FOLDER, 'output.ttl')
+            with open(rdf_turtle_path, 'w') as rdf_file:
+                rdf_file.write(result)
+            uploaded_files.append(rdf_turtle_path)
+            return f"""<h2>Resulting sRSM file, in RDF Turtle format:</h2>
+                       <div style="max-height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; margin-top: 20px; font-size: 80%;">
+                           <pre>{escaped_result}</pre>
+                       </div>
+                       <a href="/download_rdf" download class="button">Download RDF Turtle file</a>"""
+        return ""
+
+    def process_svg_file(file_path):
+        with open(file_path, 'r', encoding='utf-8') as svg_file:
+            file_content = svg_file.read()
+        return f"""
                 <div style="max-height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; margin-top: 20px;">
                     {file_content}
                 </div>
                 """
 
+    result_html = ""
+    selected_file_name = "No file selected"
+
+    if request.method == 'POST':
+        uploaded_file = request.files['file']
+        if uploaded_file:
+            selected_file_name = uploaded_file.filename
+            temporary_file_path = os.path.join(TEMPORARY_FILES_FOLDER, selected_file_name)
+            save_uploaded_file(uploaded_file, temporary_file_path)
+
+            if selected_file_name.endswith('.xml'):
+                result_html = process_xml_file(temporary_file_path)
+            elif selected_file_name.endswith('.svg'):
+                result_html = process_svg_file(temporary_file_path)
+
     drawio_content = render_drawio_form(selected_file_name, result_html)
-    html = get_html_content_with_styles('drawio to RDF', drawio_content)
-    return html
+    html_response = get_html_content_with_styles('drawio to RDF', drawio_content)
+
+    return html_response
 
 
 def render_drawio_form(selected_file_name, result_html):

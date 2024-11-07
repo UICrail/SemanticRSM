@@ -19,9 +19,10 @@ def generate_file_path(short_name, stage, to_folder=OUTPUT_FOLDER):
 
 def transform_osm_to_rsm(osm_geojson_path, short_name, output_folder=OUTPUT_FOLDER, all_double_slip: bool = False) -> str:
     """
-    :param output_folder:
+
     :param osm_geojson_path: source data
     :param short_name: will be used in the name of generated files
+    :param output_folder: folder for the ttl file
     :param all_double_slip: if True, all crossings will default to double slip
     :return: resulting ttl file as string
     """
