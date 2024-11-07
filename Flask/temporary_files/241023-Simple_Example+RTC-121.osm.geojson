@@ -1,0 +1,286 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.497801,
+            63.82582
+          ],
+          [
+            0.500233,
+            63.825959
+          ]
+        ]
+      },
+      "properties": {
+        "label": "7-31",
+        "railway": "rail"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.505306,
+            63.825521
+          ],
+          [
+            0.509156,
+            63.82574
+          ]
+        ]
+      },
+      "properties": {
+        "label": "7-43",
+        "railway": "rail"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.510581,
+            63.825094
+          ],
+          [
+            0.511999,
+            63.825174
+          ]
+        ]
+      },
+      "properties": {
+        "label": "",
+        "railway": "rail"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.510581,
+            63.825094
+          ],
+          [
+            0.509156,
+            63.82574
+          ]
+        ]
+      },
+      "properties": {
+        "label": "70-3",
+        "railway": "rail"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.494559,
+            63.825635
+          ],
+          [
+            0.497801,
+            63.82582
+          ]
+        ]
+      },
+      "properties": {
+        "label": "7-31",
+        "railway": "rail"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.494769,
+            63.824919
+          ],
+          [
+            0.49639,
+            63.825012
+          ]
+        ]
+      },
+      "properties": {
+        "label": "7-27",
+        "railway": "rail"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.49639,
+            63.825012
+          ],
+          [
+            0.497801,
+            63.82582
+          ]
+        ]
+      },
+      "properties": {
+        "label": "",
+        "railway": "rail"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.500233,
+            63.825959
+          ],
+          [
+            0.502664,
+            63.826098
+          ]
+        ]
+      },
+      "properties": {
+        "label": "7-11",
+        "railway": "rail"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.502664,
+            63.826098
+          ],
+          [
+            0.505096,
+            63.826237
+          ]
+        ]
+      },
+      "properties": {
+        "label": "16-218",
+        "railway": "rail"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.505096,
+            63.826237
+          ],
+          [
+            0.507528,
+            63.826375
+          ]
+        ]
+      },
+      "properties": {
+        "label": "7-15",
+        "railway": "rail"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.507528,
+            63.826375
+          ],
+          [
+            0.513202,
+            63.826699
+          ]
+        ]
+      },
+      "properties": {
+        "label": "7-239",
+        "railway": "rail"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.509156,
+            63.82574
+          ],
+          [
+            0.513411,
+            63.825983
+          ]
+        ]
+      },
+      "properties": {
+        "label": "7-47",
+        "railway": "rail"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.507528,
+            63.826375
+          ],
+          [
+            0.509156,
+            63.82574
+          ]
+        ]
+      },
+      "properties": {
+        "label": "7-35",
+        "railway": "rail"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.508698,
+            63.825896
+          ],
+          [
+            0.509764,
+            63.825775
+          ]
+        ]
+      },
+      "properties": {
+        "label": "slip",
+        "railway": "rail",
+        "annotations": "slip switch"
+      }
+    }
+  ]
+}

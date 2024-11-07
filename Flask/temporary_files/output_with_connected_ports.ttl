@@ -1,0 +1,203 @@
+@prefix : <http://cdm.ovh/examples#> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rsm: <http://cdm.ovh/rsm/topology/topology#> .
+@prefix rsm1: <http://cdm.ovh/rsm/adapters/geosparql_adapter#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:geom_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.505306 63.825521, 0.509156 63.82574)"^^geo:wktLiteral .
+
+:geom_10 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.507528 63.826375, 0.513202 63.826699)"^^geo:wktLiteral .
+
+:geom_11 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.509156 63.82574, 0.513411 63.825983)"^^geo:wktLiteral .
+
+:geom_12 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.507528 63.826375, 0.509156 63.82574)"^^geo:wktLiteral .
+
+:geom_13 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.508698 63.825896, 0.509764 63.825775)"^^geo:wktLiteral ;
+    rdfs:comment "slip switch" .
+
+:geom_2-3 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.5091560000000001 63.8257400000000032, 0.5105810000000000 63.8250940000000000, 0.5119990000000000 63.8251739999999970)"^^geo:wktLiteral .
+
+:geom_4 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.494559 63.825635, 0.497801 63.82582)"^^geo:wktLiteral .
+
+:geom_5-6 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.4947690000000000 63.8249190000000013, 0.4963900000000000 63.8250120000000010, 0.4978010000000000 63.8258200000000002)"^^geo:wktLiteral .
+
+:geom_9-8-0-7 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.4978010000000000 63.8258200000000002, 0.5002330000000000 63.8259589999999974, 0.5026640000000000 63.8260980000000018, 0.5050960000000000 63.8262369999999990, 0.5075280000000000 63.8263749999999987)"^^geo:wktLiteral .
+
+:jointline_2-3_port_0 a rsm:Port ;
+    rsm:azimuth -4.42538e+01 ;
+    rsm:connectedWith :line_11_port_0,
+        :line_12_port_1,
+        :line_1_port_1 ;
+    rsm:onElement :jointline_2-3 ;
+    geo:asWKT "POINT (0.509156 63.82574)" .
+
+:jointline_2-3_port_1 a rsm:Port ;
+    rsm:azimuth 8.272035e+01 ;
+    rsm:onElement :jointline_2-3 ;
+    geo:asWKT "POINT (0.511999 63.825174)" .
+
+:jointline_5-6_port_0 a rsm:Port ;
+    rsm:azimuth -9.740004e+01 ;
+    rsm:onElement :jointline_5-6 ;
+    geo:asWKT "POINT (0.494769 63.824919)" .
+
+:jointline_5-6_port_1 a rsm:Port ;
+    rsm:azimuth 3.764276e+01 ;
+    rsm:connectedWith :jointline_9-8-0-7_port_0,
+        :line_4_port_1 ;
+    rsm:onElement :jointline_5-6 ;
+    geo:asWKT "POINT (0.497801 63.82582)" .
+
+:jointline_9-8-0-7_port_1 a rsm:Port ;
+    rsm:azimuth 8.267799e+01 ;
+    rsm:connectedWith :line_10_port_0,
+        :line_12_port_0 ;
+    rsm:onElement :jointline_9-8-0-7 ;
+    geo:asWKT "POINT (0.507528 63.826375)" .
+
+:line_10_port_1 a rsm:Port ;
+    rsm:azimuth 8.263065e+01 ;
+    rsm:onElement :line_10 ;
+    geo:asWKT "POINT (0.513202 63.826699)" .
+
+:line_11_port_1 a rsm:Port ;
+    rsm:azimuth 8.26306e+01 ;
+    rsm:onElement :line_11 ;
+    geo:asWKT "POINT (0.513411 63.825983)" .
+
+:line_13_port_0 a rsm:Port ;
+    rsm:azimuth -7.558682e+01 ;
+    rsm:onElement :line_13 ;
+    geo:asWKT "POINT (0.508698 63.825896)" ;
+    rdfs:comment "slip switch" .
+
+:line_13_port_1 a rsm:Port ;
+    rsm:azimuth 1.044122e+02 ;
+    rsm:onElement :line_13 ;
+    geo:asWKT "POINT (0.509764 63.825775)" ;
+    rdfs:comment "slip switch" .
+
+:line_1_port_0 a rsm:Port ;
+    rsm:azimuth -9.733684e+01 ;
+    rsm:onElement :line_1 ;
+    geo:asWKT "POINT (0.505306 63.825521)" .
+
+:line_4_port_0 a rsm:Port ;
+    rsm:azimuth -9.736016e+01 ;
+    rsm:onElement :line_4 ;
+    geo:asWKT "POINT (0.494559 63.825635)" .
+
+:jointline_2-3 a rsm:LinearElement ;
+    rdfs:label "70-3" ;
+    rsm1:hasNominalGeometry :geom_2-3 ;
+    rsm1:hasNominalMetricLength 3.302488e+02 ;
+    rsm:hasPort :jointline_2-3_port_0,
+        :jointline_2-3_port_1 .
+
+:jointline_5-6 a rsm:LinearElement ;
+    rdfs:label "7-27" ;
+    rsm1:hasNominalGeometry :geom_5-6 ;
+    rsm1:hasNominalMetricLength 3.596288e+02 ;
+    rsm:hasPort :jointline_5-6_port_0,
+        :jointline_5-6_port_1 .
+
+:jointline_9-8-0-7 a rsm:LinearElement ;
+    rdfs:label "7-15_16-218_7-31_7-11" ;
+    rsm1:hasNominalGeometry :geom_9-8-0-7 ;
+    rsm1:hasNominalMetricLength 1.07733e+03 ;
+    rsm:hasPort :jointline_9-8-0-7_port_0,
+        :jointline_9-8-0-7_port_1 .
+
+:jointline_9-8-0-7_port_0 a rsm:Port ;
+    rsm:azimuth -9.737219e+01 ;
+    rsm:connectedWith :line_4_port_1 ;
+    rsm:onElement :jointline_9-8-0-7 ;
+    geo:asWKT "POINT (0.497801 63.82582)" .
+
+:line_1 a rsm:LinearElement ;
+    rdfs:label "7-43" ;
+    rsm1:hasNominalGeometry :geom_1 ;
+    rsm1:hasNominalMetricLength 4.264087e+02 ;
+    rsm:hasPort :line_1_port_0,
+        :line_1_port_1 .
+
+:line_10 a rsm:LinearElement ;
+    rdfs:label "7-239" ;
+    rsm1:hasNominalGeometry :geom_10 ;
+    rsm1:hasNominalMetricLength 6.284347e+02 ;
+    rsm:hasPort :line_10_port_0,
+        :line_10_port_1 .
+
+:line_10_port_0 a rsm:Port ;
+    rsm:azimuth -9.736426e+01 ;
+    rsm:connectedWith :line_12_port_0 ;
+    rsm:onElement :line_10 ;
+    geo:asWKT "POINT (0.507528 63.826375)" .
+
+:line_11 a rsm:LinearElement ;
+    rdfs:label "7-47" ;
+    rsm1:hasNominalGeometry :geom_11 ;
+    rsm1:hasNominalMetricLength 4.712708e+02 ;
+    rsm:hasPort :line_11_port_0,
+        :line_11_port_1 .
+
+:line_11_port_0 a rsm:Port ;
+    rsm:azimuth -9.736558e+01 ;
+    rsm:connectedWith :line_12_port_1,
+        :line_1_port_1 ;
+    rsm:onElement :line_11 ;
+    geo:asWKT "POINT (0.509156 63.82574)" .
+
+:line_12 a rsm:LinearElement ;
+    rdfs:label "7-35" ;
+    rsm1:hasNominalGeometry :geom_12 ;
+    rsm1:hasNominalMetricLength 1.933955e+02 ;
+    rsm:hasPort :line_12_port_0,
+        :line_12_port_1 .
+
+:line_13 a rsm:LinearElement ;
+    rdfs:label "slip" ;
+    rsm1:hasNominalGeometry :geom_13 ;
+    rsm1:hasNominalMetricLength 1.186393e+02 ;
+    rsm:hasPort :line_13_port_0,
+        :line_13_port_1 ;
+    rdfs:comment "slip switch" .
+
+:line_4 a rsm:LinearElement ;
+    rdfs:label "7-31" ;
+    rsm1:hasNominalGeometry :geom_4 ;
+    rsm1:hasNominalMetricLength 3.590731e+02 ;
+    rsm:hasPort :line_4_port_0,
+        :line_4_port_1 .
+
+:line_12_port_0 a rsm:Port ;
+    rsm:azimuth -4.855119e+01 ;
+    rsm:onElement :line_12 ;
+    geo:asWKT "POINT (0.507528 63.826375)" .
+
+:line_12_port_1 a rsm:Port ;
+    rsm:azimuth 1.314474e+02 ;
+    rsm:connectedWith :line_1_port_1 ;
+    rsm:onElement :line_12 ;
+    geo:asWKT "POINT (0.509156 63.82574)" .
+
+:line_4_port_1 a rsm:Port ;
+    rsm:azimuth 8.263693e+01 ;
+    rsm:onElement :line_4 ;
+    geo:asWKT "POINT (0.497801 63.82582)" .
+
+:line_1_port_1 a rsm:Port ;
+    rsm:azimuth 8.26597e+01 ;
+    rsm:onElement :line_1 ;
+    geo:asWKT "POINT (0.509156 63.82574)" .
+

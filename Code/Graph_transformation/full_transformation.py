@@ -71,10 +71,10 @@ def run_process_steps(short_name, output_folder=OUTPUT_FOLDER, all_double_slip: 
         generate_file_path(short_name, NAVIGABILITIES_SUFFIX, output_folder),
         generate_file_path(short_name, "with_slip_functionality", output_folder)
     )
-    ttl_to_kml(
-        generate_file_path(short_name, NAVIGABILITIES_SUFFIX, output_folder),
-        os.path.join(OUTPUT_FOLDER, f"{short_name}{KML_SUFFIX}.kml")
-    )
+    # ttl_to_kml(
+    #     generate_file_path(short_name, NAVIGABILITIES_SUFFIX, output_folder),
+    #     os.path.join(OUTPUT_FOLDER, f"{short_name}{KML_SUFFIX}.kml")
+    # )
     return result
 
 
