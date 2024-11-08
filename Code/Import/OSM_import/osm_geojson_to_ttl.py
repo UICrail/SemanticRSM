@@ -5,7 +5,7 @@ import os.path
 
 import geopandas as gpd
 import rdflib
-from rdflib import RDF, Literal, RDFS
+from rdflib import RDF, Literal, RDFS, OWL, DC
 from shapely.geometry import LineString, Point
 
 from Code.Namespaces import *
@@ -52,6 +52,11 @@ def osm_to_ttl(osm_file_path: str, short_name: str = "", base_path: str = OUTPUT
 
     # Assuming the 'railway' attribute is within the properties field, filter for railway lines
     railways = gdf[gdf['railway'] == 'rail']  # tagged value 'rail' designates a track
+
+    # Add ontology name and other annotations
+    graph.add((WORK[''], RDF.type, OWL.Ontology))
+    graph.add((WORK[''], RDFS.label, Literal(short_name, lang='en')))
+    graph.add((WORK[''], DC.creator, Literal("sRSM Flask App")))
 
     # Process railway lines
     for index, row in railways.iterrows():
