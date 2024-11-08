@@ -217,60 +217,68 @@ def render_drawio_form(selected_file_name, result_html):
     <p>Selected file: <span id="file-name">{selected_file_name}</span></p>
     {result_html}
     """
-
-
 @bp.route('/osm_to_rdf', methods=['GET', 'POST'])
 def osm_to_rdf():
-    osm_file_name = "No file selected"
+    def generate_progress_script(estimated_time):
+        return f"""
+        <script>
+            function showProgressBar(time) {{
+                document.getElementById('progress-bar').style.display = 'block';
+                let progress = document.getElementById('progress');
+                let progressText = document.getElementById('progress-text');
+                let nearlyThereText = document.getElementById('nearly-there');
+                let value = 0;
+                let interval = setInterval(() => {{
+                    if (value < 100) {{
+                        value += 100 / time;
+                        progress.value = value;
+                        progressText.textContent = "Processing... " + Math.min(Math.floor(value), 100) + "%";
+                    }} else {{
+                        progressText.textContent = "Processing... 100%";
+                        nearlyThereText.style.display = 'inline';
+                        clearInterval(interval);
+                    }}
+                }}, 1000); // 1000 ms intervals
+            }}
+        </script>
+        """
+
+    def generate_convert_button(osm_file_path, estimated_time):
+        return f"""
+        <form method="post" action="/convert_osm_to_sRSM" onsubmit="showProgressBar({estimated_time})">
+            <input type='hidden' name='file_path' value='{osm_file_path}'>
+            <input type="submit" value="Convert to sRSM">
+        </form>
+        <div id="progress-bar" style="display: none; margin-top: 10px;">
+            <progress value="0" max="100" id="progress"></progress>
+            <span id="progress-text">Processing...</span>
+            <span id="nearly-there" style="display: none;"> (well, nearly there...)</span>
+        </div>
+        {generate_progress_script(estimated_time)}
+        """
+
     if request.method == 'POST':
-        file = request.files['file']
-        if file:
-            osm_file_name = file.filename
-            file_size_mb = len(file.read()) / (1024 * 1024)
-            file.seek(0)
-            osm_file_path = os.path.join(TEMPORARY_FILES_FOLDER, file.filename)
+        uploaded_file = request.files['file']
+
+        if uploaded_file:
+            osm_file_name = uploaded_file.filename
+            file_size_mb = len(uploaded_file.read()) / (1024 * 1024)
+            uploaded_file.seek(0)
+            osm_file_path = os.path.join(TEMPORARY_FILES_FOLDER, uploaded_file.filename)
             uploaded_files.append(osm_file_path)
-            file.save(osm_file_path)
-            estimated_time = int(file_size_mb * 0.95 + 0.8) ** 2
-            convert_button = f"""
-            <form method="post" action="/convert_osm_to_sRSM" onsubmit="showProgressBar({estimated_time})">
-                <input type='hidden' name='file_path' value='{osm_file_path}'>
-                <input type="submit" value="Convert to sRSM">
-            </form>
-            <div id="progress-bar" style="display: none; margin-top: 10px;">
-                <progress value="0" max="100" id="progress"></progress>
-                <span id="progress-text">Processing...</span>
-                <span id="nearly-there" style="display: none;"> (well, nearly there...)</span>
-            </div>
-            <script>
-                function showProgressBar(time) {{
-                    document.getElementById('progress-bar').style.display = 'block';
-                    let progress = document.getElementById('progress');
-                    let progressText = document.getElementById('progress-text');
-                    let nearlyThereText = document.getElementById('nearly-there');
-                    let value = 0;
-                    let interval = setInterval(() => {{
-                        if (value < 100) {{
-                            value += 100 / time;
-                            progress.value = value;
-                            progressText.textContent = "Processing... " + Math.min(Math.floor(value), 100) + "%";
-                        }} else {{
-                            progressText.textContent = "Processing... 100%";
-                            nearlyThereText.style.display = 'inline';
-                            clearInterval(interval);
-                        }}
-                    }}, 1000); // 1000 ms intervals
-                }}
-            </script>
-            """
+            uploaded_file.save(osm_file_path)
+            estimated_conversion_time = int(file_size_mb * 0.95 + 0.8) ** 2
+
+            convert_button = generate_convert_button(osm_file_path, estimated_conversion_time)
         else:
             convert_button = ""
     else:
+        osm_file_name = "No file selected"
         convert_button = ""
 
     osm_content = f"""
-        <h1>Convert an OpenStreetMap railway network into a semantic RSM
-      file</h1>
+    <h1>Convert an OpenStreetMap railway network into a semantic RSM
+    file</h1>
     <h2>Usage<br>
     </h2>
     <p>The OSM railway network can be obtained using a query in <a
@@ -307,7 +315,6 @@ def osm_to_rdf():
       <p>way[railway=rail](&#123;&#123;bbox&#125;&#125;);<br>
         (._;&gt;;);<br>
         out;<br>
-      </p>
     </blockquote>
     <h2>There you go...<br>
     </h2>
@@ -327,6 +334,115 @@ def osm_to_rdf():
     """
     html = get_html_content_with_styles('OSM to RDF', osm_content)
     return html
+
+# @bp.route('/osm_to_rdf', methods=['GET', 'POST'])
+# def osm_to_rdf():
+#     osm_file_name = "No file selected"
+#     if request.method == 'POST':
+#         file = request.files['file']
+#         if file:
+#             osm_file_name = file.filename
+#             file_size_mb = len(file.read()) / (1024 * 1024)
+#             file.seek(0)
+#             osm_file_path = os.path.join(TEMPORARY_FILES_FOLDER, file.filename)
+#             uploaded_files.append(osm_file_path)
+#             file.save(osm_file_path)
+#             estimated_time = int(file_size_mb * 0.95 + 0.8) ** 2
+#             convert_button = f"""
+#             <form method="post" action="/convert_osm_to_sRSM" onsubmit="showProgressBar({estimated_time})">
+#                 <input type='hidden' name='file_path' value='{osm_file_path}'>
+#                 <input type="submit" value="Convert to sRSM">
+#             </form>
+#             <div id="progress-bar" style="display: none; margin-top: 10px;">
+#                 <progress value="0" max="100" id="progress"></progress>
+#                 <span id="progress-text">Processing...</span>
+#                 <span id="nearly-there" style="display: none;"> (well, nearly there...)</span>
+#             </div>
+#             <script>
+#                 function showProgressBar(time) {{
+#                     document.getElementById('progress-bar').style.display = 'block';
+#                     let progress = document.getElementById('progress');
+#                     let progressText = document.getElementById('progress-text');
+#                     let nearlyThereText = document.getElementById('nearly-there');
+#                     let value = 0;
+#                     let interval = setInterval(() => {{
+#                         if (value < 100) {{
+#                             value += 100 / time;
+#                             progress.value = value;
+#                             progressText.textContent = "Processing... " + Math.min(Math.floor(value), 100) + "%";
+#                         }} else {{
+#                             progressText.textContent = "Processing... 100%";
+#                             nearlyThereText.style.display = 'inline';
+#                             clearInterval(interval);
+#                         }}
+#                     }}, 1000); // 1000 ms intervals
+#                 }}
+#             </script>
+#             """
+#         else:
+#             convert_button = ""
+#     else:
+#         convert_button = ""
+#
+#     osm_content = f"""
+#         <h1>Convert an OpenStreetMap railway network into a semantic RSM
+#       file</h1>
+#     <h2>Usage<br>
+#     </h2>
+#     <p>The OSM railway network can be obtained using a query in <a
+#         href="https://overpass-turbo.eu/" target="_blank"
+#         moz-do-not-send="true">Overpass Turbo</a>.<br>
+#     </p>
+#     <p>The resulting OSM file will contain railway nodes and ways (in
+#       OSM parlance). Export it in GeoJSON. The GeoJSON file will then be transformed into a RailSystemModel file
+#       in RDF/Turtle format.<br>
+#     </p>
+#     <p>At present, there is only one available option: crossings can be
+#       all instantiated as diamond crossings (FR: traversée simple, DE:
+#       [einfache] Kreuzung) or as double slip crossings (FR: traversée
+#       jonction double, DE: Doppelkreuzweiche).<br>
+#     </p>
+#     <p>(on hold) The software also returns a representation of the transformed
+#       network in KML format, for visual inspection in QGIS, Google
+#       Earth, or similar.<br>
+#     </p>
+#     <h2>OpenStreetMap queries</h2>
+#     <p>Ways get queried and nodes are obtained by recursion. This is how you get the whole Austrian
+#       network:</p>
+#     <blockquote>
+#       <p>area[name="Österreich"];<br>
+#         way[railway=rail](area);<br>
+#         (._;&gt;;);<br>
+#         out;<br>
+#       </p>
+#     </blockquote>
+#     <p>And this is how to get the network that is contained in a boundary
+#       box:<br>
+#     </p>
+#     <blockquote>
+#       <p>way[railway=rail](&#123;&#123;bbox&#125;&#125;);<br>
+#         (._;&gt;;);<br>
+#         out;<br>
+#       </p>
+#     </blockquote>
+#     <h2>There you go...<br>
+#     </h2>
+#     <form method="post" enctype="multipart/form-data" onchange="document.getElementById('file-name').textContent = this.files[0].name">
+#         <input type="file" name="file">
+#         <input type="submit" value="Upload">
+#     </form>
+#     <p>Selected file: <span id="file-name">{osm_file_name}</span></p>
+#     {convert_button}
+#     <script>
+#         document.addEventListener('DOMContentLoaded', () => {{
+#             if (document.referrer.includes('/convert_osm_to_sRSM')) {{
+#                 document.getElementById('progress-bar').style.display = 'none';
+#             }}
+#         }});
+#     </script>
+#     """
+#     html = get_html_content_with_styles('OSM to RDF', osm_content)
+#     return html
 
 
 @bp.route('/convert_osm_to_sRSM', methods=['POST'])
