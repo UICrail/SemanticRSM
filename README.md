@@ -53,7 +53,7 @@ Other important concepts may come from other pieces of EU Law, such as TAF TSI, 
 * Using a schematic track plan made in draw.io to generate a sRSM file in RDF Turtle.
 * Using an OpenStreetMap query output to generate a sRSM file.
 
-See the Flask folder and launch `__init__.py`
+See the Flask folder and launch `__init__.py`. You'll be able to process files with your usual web navigator, via a local server (127.0.0.1:8000).
  
 ## Data
 * [Sample data sets](https://github.com/UICrail/SemanticRSM/tree/main/Source_data):
