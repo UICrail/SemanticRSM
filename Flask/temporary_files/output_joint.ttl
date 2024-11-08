@@ -1,9 +1,15 @@
 @prefix : <http://cdm.ovh/examples#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rsm: <http://cdm.ovh/rsm/topology/topology#> .
 @prefix rsm1: <http://cdm.ovh/rsm/adapters/geosparql_adapter#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+: a owl:Ontology ;
+    rdfs:label "output"@en ;
+    dc:creator "sRSM Flask App" .
 
 :jointline_2-3 a rsm:LinearElement ;
     rdfs:label "70-3" ;

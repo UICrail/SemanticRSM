@@ -1,9 +1,15 @@
 @prefix : <http://cdm.ovh/examples#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rsm: <http://cdm.ovh/rsm/topology/topology#> .
 @prefix rsm1: <http://cdm.ovh/rsm/adapters/geosparql_adapter#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+: a owl:Ontology ;
+    rdfs:label "converted_osm"@en ;
+    dc:creator "sRSM Flask App" .
 
 :geom_100 a rsm1:Geometry ;
     geo:asWKT "LINESTRING (15.6153068 48.1608732, 15.6153281 48.1612593, 15.6153627 48.1618438, 15.6153672 48.1619677, 15.6153669 48.1620686, 15.6153566 48.1621664, 15.6153409 48.1622739, 15.6153318 48.1625185, 15.6153403 48.1626502)"^^geo:wktLiteral .

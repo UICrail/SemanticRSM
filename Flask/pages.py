@@ -88,7 +88,7 @@ HOME_PAGE_HTML = '''
     <p><a href="/about">About the present site</a></p>
     <p><br>
     </p>
-    <p><i>this version: Nov. 4th, 2024</i><br>
+    <p><i>this version: Nov. 8th, 2024</i><br>
     </p>
     <button onclick="erase_and_quit();">Erase temporary files and quit</button>
     <script>
@@ -221,49 +221,66 @@ def render_drawio_form(selected_file_name, result_html):
 
 @bp.route('/osm_to_rdf', methods=['GET', 'POST'])
 def osm_to_rdf():
-    osm_file_name = "No file selected"
+    def generate_progress_script(estimated_time):
+        return f"""
+        <script>
+            function showProgressBar(time) {{
+                document.getElementById('progress-bar').style.display = 'block';
+                let progress = document.getElementById('progress');
+                let progressText = document.getElementById('progress-text');
+                let nearlyThereText = document.getElementById('nearly-there');
+                let value = 0;
+                let interval = setInterval(() => {{
+                    if (value < 100) {{
+                        value += 100 / time;
+                        progress.value = value;
+                        progressText.textContent = "Processing... " + Math.min(Math.floor(value), 100) + "%";
+                    }} else {{
+                        progressText.textContent = "Processing... 100%";
+                        nearlyThereText.style.display = 'inline';
+                        clearInterval(interval);
+                    }}
+                }}, 1000); // 1000 ms intervals
+            }}
+        </script>
+        """
+
+    def generate_convert_button(osm_file_path, estimated_time):
+        return f"""
+        <form method="post" action="/convert_osm_to_sRSM" onsubmit="showProgressBar({estimated_time})">
+            <input type='hidden' name='file_path' value='{osm_file_path}'>
+            <input type="submit" value="Convert to sRSM">
+        </form>
+        <div id="progress-bar" style="display: none; margin-top: 10px;">
+            <progress value="0" max="100" id="progress"></progress>
+            <span id="progress-text">Processing...</span>
+            <span id="nearly-there" style="display: none;"> (well, nearly there...)</span>
+        </div>
+        {generate_progress_script(estimated_time)}
+        """
+
     if request.method == 'POST':
-        file = request.files['file']
-        if file:
-            osm_file_name = file.filename
-            osm_file_path = os.path.join(TEMPORARY_FILES_FOLDER, file.filename)
+        uploaded_file = request.files['file']
+
+        if uploaded_file:
+            osm_file_name = uploaded_file.filename
+            file_size_mb = len(uploaded_file.read()) / (1024 * 1024)
+            uploaded_file.seek(0)
+            osm_file_path = os.path.join(TEMPORARY_FILES_FOLDER, uploaded_file.filename)
             uploaded_files.append(osm_file_path)
-            file.save(osm_file_path)
-            convert_button = f"""
-            <form method="post" action="/convert_osm_to_sRSM">
-                <input type='hidden' name='file_path' value='{osm_file_path}'>
-                <input type="submit" value="Convert to sRSM" onclick="showProgressBar()">
-            </form>
-            <div id="progress-bar" style="display: none; margin-top: 10px;">
-                <progress value="0" max="100" id="progress"></progress>
-                <span id="progress-text">Processing...</span>
-            </div>
-            <script>
-                function showProgressBar() {{
-                    document.getElementById('progress-bar').style.display = 'block';
-                    let progress = document.getElementById('progress');
-                    let progressText = document.getElementById('progress-text');
-                    let value = 0;
-                    let interval = setInterval(() => {{
-                        if (value < 100) {{
-                            value += 1;
-                            progress.value = value;
-                            progressText.textContent = "Processing... " + value + "%";
-                        }} else {{
-                            clearInterval(interval);
-                        }}
-                    }}, 300); // Adjust time as needed
-                }}
-            </script>
-            """
+            uploaded_file.save(osm_file_path)
+            estimated_conversion_time = int(file_size_mb * 0.95 + 0.8) ** 2
+
+            convert_button = generate_convert_button(osm_file_path, estimated_conversion_time)
         else:
             convert_button = ""
     else:
+        osm_file_name = "No file selected"
         convert_button = ""
 
     osm_content = f"""
-        <h1>Convert an OpenStreetMap railway network into a semantic RSM
-      file</h1>
+    <h1>Convert an OpenStreetMap railway network into a semantic RSM
+    file</h1>
     <h2>Usage<br>
     </h2>
     <p>The OSM railway network can be obtained using a query in <a
@@ -271,7 +288,7 @@ def osm_to_rdf():
         moz-do-not-send="true">Overpass Turbo</a>.<br>
     </p>
     <p>The resulting OSM file will contain railway nodes and ways (in
-      OSM parlance). Export it in GeoJSON. It will then be transformed into a RailSystemModel file
+      OSM parlance). Export it in GeoJSON. The GeoJSON file will then be transformed into a RailSystemModel file
       in RDF/Turtle format.<br>
     </p>
     <p>At present, there is only one available option: crossings can be
@@ -279,12 +296,12 @@ def osm_to_rdf():
       [einfache] Kreuzung) or as double slip crossings (FR: traversée
       jonction double, DE: Doppelkreuzweiche).<br>
     </p>
-    <p>The software also returns a representation of the transformed
+    <p>(on hold) The software also returns a representation of the transformed
       network in KML format, for visual inspection in QGIS, Google
       Earth, or similar.<br>
     </p>
     <h2>OpenStreetMap queries</h2>
-    <p>Using Overpass Turbo, this is how you get the whole Austrian
+    <p>Ways get queried and nodes are obtained by recursion. This is how you get the whole Austrian
       network:</p>
     <blockquote>
       <p>area[name="Österreich"];<br>
@@ -293,15 +310,13 @@ def osm_to_rdf():
         out;<br>
       </p>
     </blockquote>
-    <p>Primarily, ways get queried and nodes are obtained by recursion.
-      And this is how to get the network that is contained in a boundary
+    <p>And this is how to get the network that is contained in a boundary
       box:<br>
     </p>
     <blockquote>
       <p>way[railway=rail](&#123;&#123;bbox&#125;&#125;);<br>
         (._;&gt;;);<br>
         out;<br>
-      </p>
     </blockquote>
     <h2>There you go...<br>
     </h2>
@@ -311,6 +326,13 @@ def osm_to_rdf():
     </form>
     <p>Selected file: <span id="file-name">{osm_file_name}</span></p>
     {convert_button}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {{
+            if (document.referrer.includes('/convert_osm_to_sRSM')) {{
+                document.getElementById('progress-bar').style.display = 'none';
+            }}
+        }});
+    </script>
     """
     html = get_html_content_with_styles('OSM to RDF', osm_content)
     return html
@@ -318,9 +340,18 @@ def osm_to_rdf():
 
 @bp.route('/convert_osm_to_sRSM', methods=['POST'])
 def osm_to_ttl():
+    import time
     file_path = request.form['file_path']
     file_name = os.path.basename(file_path)
+
+    file_size_mb = os.path.getsize(file_path) / (1024 * 1024)
+
+    start_time = time.time()
     result = transform_osm_to_rsm(file_path, 'converted_osm', TEMPORARY_FILES_FOLDER)
+    end_time = time.time()
+
+    transformation_time = end_time - start_time
+
     if result:
         escaped_result = escape(result)
         rdf_turtle_path = os.path.join(TEMPORARY_FILES_FOLDER, 'output.ttl')
@@ -332,6 +363,7 @@ def osm_to_ttl():
         <div style="max-height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; margin-top: 20px; font-size: 80%;">
             <pre>{escaped_result}</pre>
         </div>
+        <p>Transformation time: {transformation_time:.2f} seconds | Input file size: {file_size_mb:.2f} MB</p>
         <a href="/download_rdf" download class="button">Download RDF Turtle file</a>"""
     else:
         result_html = "<p>An error occurred during conversion.</p>"

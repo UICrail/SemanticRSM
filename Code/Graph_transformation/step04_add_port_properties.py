@@ -125,7 +125,7 @@ def handle_port_navigability(graph: Graph, port: Node, connected_ports_list: lis
     elif case == 0:  # dead-end
         pass
     else:
-        raise ValueError(f"Unexpected case: {case} ports connected to port {port}")
+        print(f"Unexpected case: {case} ports connected to port {port}")
 
 
 def process_double_slip_crossing(graph: Graph, port: Node, connected_ports_list: list):
