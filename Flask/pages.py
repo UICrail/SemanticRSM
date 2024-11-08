@@ -88,7 +88,7 @@ HOME_PAGE_HTML = '''
     <p><a href="/about">About the present site</a></p>
     <p><br>
     </p>
-    <p><i>this version: Nov. 4th, 2024</i><br>
+    <p><i>this version: Nov. 8th, 2024</i><br>
     </p>
     <button onclick="erase_and_quit();">Erase temporary files and quit</button>
     <script>
@@ -226,33 +226,36 @@ def osm_to_rdf():
         file = request.files['file']
         if file:
             osm_file_name = file.filename
+            file_size_mb = len(file.read()) / (1024 * 1024)
+            file.seek(0)
             osm_file_path = os.path.join(TEMPORARY_FILES_FOLDER, file.filename)
             uploaded_files.append(osm_file_path)
             file.save(osm_file_path)
+            estimated_time = int(file_size_mb * 8)
             convert_button = f"""
-            <form method="post" action="/convert_osm_to_sRSM">
+            <form method="post" action="/convert_osm_to_sRSM" onsubmit="showProgressBar({estimated_time})">
                 <input type='hidden' name='file_path' value='{osm_file_path}'>
-                <input type="submit" value="Convert to sRSM" onclick="showProgressBar()">
+                <input type="submit" value="Convert to sRSM">
             </form>
             <div id="progress-bar" style="display: none; margin-top: 10px;">
                 <progress value="0" max="100" id="progress"></progress>
                 <span id="progress-text">Processing...</span>
             </div>
             <script>
-                function showProgressBar() {{
+                function showProgressBar(time) {{
                     document.getElementById('progress-bar').style.display = 'block';
                     let progress = document.getElementById('progress');
                     let progressText = document.getElementById('progress-text');
                     let value = 0;
                     let interval = setInterval(() => {{
                         if (value < 100) {{
-                            value += 1;
+                            value += 100 / time;
                             progress.value = value;
-                            progressText.textContent = "Processing... " + value + "%";
+                            progressText.textContent = "Processing... " + Math.min(Math.floor(value), 100) + "%";
                         }} else {{
                             clearInterval(interval);
                         }}
-                    }}, 300); // Adjust time as needed
+                    }}, 1000); // 1000 ms intervals
                 }}
             </script>
             """
@@ -271,7 +274,7 @@ def osm_to_rdf():
         moz-do-not-send="true">Overpass Turbo</a>.<br>
     </p>
     <p>The resulting OSM file will contain railway nodes and ways (in
-      OSM parlance). Export it in GeoJSON. It will then be transformed into a RailSystemModel file
+      OSM parlance). Export it in GeoJSON. The GeoJSON file will then be transformed into a RailSystemModel file
       in RDF/Turtle format.<br>
     </p>
     <p>At present, there is only one available option: crossings can be
@@ -279,12 +282,12 @@ def osm_to_rdf():
       [einfache] Kreuzung) or as double slip crossings (FR: traversée
       jonction double, DE: Doppelkreuzweiche).<br>
     </p>
-    <p>The software also returns a representation of the transformed
+    <p>(on hold) The software also returns a representation of the transformed
       network in KML format, for visual inspection in QGIS, Google
       Earth, or similar.<br>
     </p>
     <h2>OpenStreetMap queries</h2>
-    <p>Using Overpass Turbo, this is how you get the whole Austrian
+    <p>Ways get queried and nodes are obtained by recursion. This is how you get the whole Austrian
       network:</p>
     <blockquote>
       <p>area[name="Österreich"];<br>
@@ -293,8 +296,7 @@ def osm_to_rdf():
         out;<br>
       </p>
     </blockquote>
-    <p>Primarily, ways get queried and nodes are obtained by recursion.
-      And this is how to get the network that is contained in a boundary
+    <p>And this is how to get the network that is contained in a boundary
       box:<br>
     </p>
     <blockquote>
@@ -311,6 +313,13 @@ def osm_to_rdf():
     </form>
     <p>Selected file: <span id="file-name">{osm_file_name}</span></p>
     {convert_button}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {{
+            if (document.referrer.includes('/convert_osm_to_sRSM')) {{
+                document.getElementById('progress-bar').style.display = 'none';
+            }}
+        }});
+    </script>
     """
     html = get_html_content_with_styles('OSM to RDF', osm_content)
     return html
