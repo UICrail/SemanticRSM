@@ -48,6 +48,11 @@ Other important concepts may come from other pieces of EU Law, such as TAF TSI, 
     - from ttl files using [OntoMermaid](https://github.com/floresbakker/OntoMermaid), a Python program returning a Mermaid script.
     - from IFC Step files, using [OpenIFCViewer](https://openifcviewer.com/).
  As Sparx Enterprise Architect and Visual Paradigm are paid applications, copies of the diagrams are also provided in PNG.
+
+## Demos
+* Using a schematic track plan made in draw.io to generate a sRSM file in RDF Turtle.
+* Using an OpenStreetMap query output to generate a sRSM file.
+See the Flask folder and launch __init__.py
  
 ## Data
 * [Sample data sets](https://github.com/UICrail/SemanticRSM/tree/main/Source_data):
