@@ -231,7 +231,7 @@ def osm_to_rdf():
             osm_file_path = os.path.join(TEMPORARY_FILES_FOLDER, file.filename)
             uploaded_files.append(osm_file_path)
             file.save(osm_file_path)
-            estimated_time = int(file_size_mb * 8)
+            estimated_time = int(file_size_mb * 0.95 + 0.8) ** 2
             convert_button = f"""
             <form method="post" action="/convert_osm_to_sRSM" onsubmit="showProgressBar({estimated_time})">
                 <input type='hidden' name='file_path' value='{osm_file_path}'>
@@ -240,12 +240,14 @@ def osm_to_rdf():
             <div id="progress-bar" style="display: none; margin-top: 10px;">
                 <progress value="0" max="100" id="progress"></progress>
                 <span id="progress-text">Processing...</span>
+                <span id="nearly-there" style="display: none;"> (well, nearly there...)</span>
             </div>
             <script>
                 function showProgressBar(time) {{
                     document.getElementById('progress-bar').style.display = 'block';
                     let progress = document.getElementById('progress');
                     let progressText = document.getElementById('progress-text');
+                    let nearlyThereText = document.getElementById('nearly-there');
                     let value = 0;
                     let interval = setInterval(() => {{
                         if (value < 100) {{
@@ -253,6 +255,8 @@ def osm_to_rdf():
                             progress.value = value;
                             progressText.textContent = "Processing... " + Math.min(Math.floor(value), 100) + "%";
                         }} else {{
+                            progressText.textContent = "Processing... 100%";
+                            nearlyThereText.style.display = 'inline';
                             clearInterval(interval);
                         }}
                     }}, 1000); // 1000 ms intervals
@@ -327,9 +331,18 @@ def osm_to_rdf():
 
 @bp.route('/convert_osm_to_sRSM', methods=['POST'])
 def osm_to_ttl():
+    import time
     file_path = request.form['file_path']
     file_name = os.path.basename(file_path)
+
+    file_size_mb = os.path.getsize(file_path) / (1024 * 1024)
+
+    start_time = time.time()
     result = transform_osm_to_rsm(file_path, 'converted_osm', TEMPORARY_FILES_FOLDER)
+    end_time = time.time()
+
+    transformation_time = end_time - start_time
+
     if result:
         escaped_result = escape(result)
         rdf_turtle_path = os.path.join(TEMPORARY_FILES_FOLDER, 'output.ttl')
@@ -341,6 +354,7 @@ def osm_to_ttl():
         <div style="max-height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; margin-top: 20px; font-size: 80%;">
             <pre>{escaped_result}</pre>
         </div>
+        <p>Transformation time: {transformation_time:.2f} seconds | Input file size: {file_size_mb:.2f} MB</p>
         <a href="/download_rdf" download class="button">Download RDF Turtle file</a>"""
     else:
         result_html = "<p>An error occurred during conversion.</p>"
