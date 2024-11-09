@@ -10,7 +10,7 @@
               <option name="name" value="Flask/temporary_files/converted_osm_with_slip_functionality.ttl" />
               <option name="paths">
                 <list>
-                  <option value="Flask/temporary_files/converted_osm_with_slip_functionality.ttl" />
+                  <option value="Flask/output/converted_osm_with_slip_functionality.ttl" />
                 </list>
               </option>
             </SPARQLEndpointFileBasedConfig>
@@ -23,7 +23,7 @@
               <option name="name" value="Flask/temporary_files/output.ttl" />
               <option name="paths">
                 <list>
-                  <option value="Flask/temporary_files/output.ttl" />
+                  <option value="Flask/output/output.ttl" />
                 </list>
               </option>
             </SPARQLEndpointFileBasedConfig>
