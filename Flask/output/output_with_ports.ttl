@@ -1,0 +1,93 @@
+@prefix : <http://cdm.ovh/examples#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rsm: <http://cdm.ovh/rsm/topology/topology#> .
+@prefix rsm1: <http://cdm.ovh/rsm/adapters/geosparql_adapter#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+: a owl:Ontology ;
+    rdfs:label "output"@en ;
+    dc:creator "sRSM Flask App" .
+
+:geom_0 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.498056 63.825653, 0.501298 63.825838)"^^geo:wktLiteral .
+
+:geom_1 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.501298 63.825838, 0.504541 63.826023)"^^geo:wktLiteral .
+
+:geom_2 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.504541 63.826023, 0.507783 63.826208)"^^geo:wktLiteral .
+
+:geom_3 a rsm1:Geometry ;
+    geo:asWKT "LINESTRING (0.501298 63.825838, 0.501599 63.826219, 0.504031 63.826358, 0.504541 63.826023)"^^geo:wktLiteral .
+
+:line_0_port_0 a rsm:Port ;
+    rsm:azimuth -9.736017e+01 ;
+    rsm:onElement :line_0 ;
+    geo:asWKT "POINT (0.498056 63.825653)" .
+
+:line_0_port_1 a rsm:Port ;
+    rsm:azimuth 8.263692e+01 ;
+    rsm:onElement :line_0 ;
+    geo:asWKT "POINT (0.501298 63.825838)" .
+
+:line_1_port_0 a rsm:Port ;
+    rsm:azimuth -9.735797e+01 ;
+    rsm:onElement :line_1 ;
+    geo:asWKT "POINT (0.501298 63.825838)" .
+
+:line_1_port_1 a rsm:Port ;
+    rsm:azimuth 8.263912e+01 ;
+    rsm:onElement :line_1 ;
+    geo:asWKT "POINT (0.504541 63.826023)" .
+
+:line_2_port_0 a rsm:Port ;
+    rsm:azimuth -9.736026e+01 ;
+    rsm:onElement :line_2 ;
+    geo:asWKT "POINT (0.504541 63.826023)" .
+
+:line_2_port_1 a rsm:Port ;
+    rsm:azimuth 8.263683e+01 ;
+    rsm:onElement :line_2 ;
+    geo:asWKT "POINT (0.507783 63.826208)" .
+
+:line_3_port_0 a rsm:Port ;
+    rsm:azimuth -1.607641e+02 ;
+    rsm:onElement :line_3 ;
+    geo:asWKT "POINT (0.501298 63.825838)" .
+
+:line_3_port_1 a rsm:Port ;
+    rsm:azimuth 1.460829e+02 ;
+    rsm:onElement :line_3 ;
+    geo:asWKT "POINT (0.504541 63.826023)" .
+
+:line_0 a rsm:LinearElement ;
+    rdfs:label "1" ;
+    rsm1:hasNominalGeometry :geom_0 ;
+    rsm1:hasNominalMetricLength 3.590731e+02 ;
+    rsm:hasPort :line_0_port_0,
+        :line_0_port_1 .
+
+:line_1 a rsm:LinearElement ;
+    rdfs:label "1" ;
+    rsm1:hasNominalGeometry :geom_1 ;
+    rsm1:hasNominalMetricLength 3.591835e+02 ;
+    rsm:hasPort :line_1_port_0,
+        :line_1_port_1 .
+
+:line_2 a rsm:LinearElement ;
+    rdfs:label "1" ;
+    rsm1:hasNominalGeometry :geom_2 ;
+    rsm1:hasNominalMetricLength 3.590731e+02 ;
+    rsm:hasPort :line_2_port_0,
+        :line_2_port_1 .
+
+:line_3 a rsm:LinearElement ;
+    rdfs:label "2" ;
+    rsm1:hasNominalGeometry :geom_3 ;
+    rsm1:hasNominalMetricLength 3.908805e+02 ;
+    rsm:hasPort :line_3_port_0,
+        :line_3_port_1 .
+

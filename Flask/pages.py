@@ -9,7 +9,7 @@ from Import.drawIO_import.drawIO_XML_to_OSMgeojson import OSM_GEOJSON_EXTENSION
 
 # Constants
 LOCAL_FOLDER = os.path.dirname(__file__)
-TEMPORARY_FILES_FOLDER = os.path.join(LOCAL_FOLDER, 'temporary_files')
+OUTPUT_FOLDER = os.path.join(LOCAL_FOLDER, 'output')
 bp = Blueprint('pages', __name__, template_folder='templates')
 
 uploaded_files = []
@@ -160,13 +160,13 @@ def drawio_to_rdf():
     def process_xml_file(file_path):
         from Code.Import.drawIO_import import drawIO_XML_to_OSMgeojson as dxo
         osm_generator = dxo.OSMgeojsonGenerator()
-        osm_generator.convert_drawio_to_osm(file_path, TEMPORARY_FILES_FOLDER)
+        osm_generator.convert_drawio_to_osm(file_path, OUTPUT_FOLDER)
         osm_file_path = file_path.split('.')[0] + OSM_GEOJSON_EXTENSION
         uploaded_files.append(osm_file_path)
-        result = transform_osm_to_rsm(osm_file_path, 'output', TEMPORARY_FILES_FOLDER)
+        result = transform_osm_to_rsm(osm_file_path, 'output', OUTPUT_FOLDER)
         if result:
             escaped_result = escape(result)
-            rdf_turtle_path = os.path.join(TEMPORARY_FILES_FOLDER, 'output.ttl')
+            rdf_turtle_path = os.path.join(OUTPUT_FOLDER, 'output.ttl')
             with open(rdf_turtle_path, 'w') as rdf_file:
                 rdf_file.write(result)
             uploaded_files.append(rdf_turtle_path)
@@ -193,7 +193,7 @@ def drawio_to_rdf():
         uploaded_file = request.files['file']
         if uploaded_file:
             selected_file_name = uploaded_file.filename
-            temporary_file_path = os.path.join(TEMPORARY_FILES_FOLDER, selected_file_name)
+            temporary_file_path = os.path.join(OUTPUT_FOLDER, selected_file_name)
             save_uploaded_file(uploaded_file, temporary_file_path)
 
             if selected_file_name.endswith('.xml'):
@@ -221,7 +221,7 @@ def render_drawio_form(selected_file_name, result_html):
 
 @bp.route('/osm_to_rdf', methods=['GET', 'POST'])
 def osm_to_rdf():
-    def generate_progress_script(estimated_time):
+    def generate_progress_script():
         return f"""
         <script>
             function showProgressBar(time) {{
@@ -256,9 +256,10 @@ def osm_to_rdf():
             <span id="progress-text">Processing...</span>
             <span id="nearly-there" style="display: none;"> (well, nearly there...)</span>
         </div>
-        {generate_progress_script(estimated_time)}
+        {generate_progress_script()}
         """
 
+    osm_file_name = "No file selected"
     if request.method == 'POST':
         uploaded_file = request.files['file']
 
@@ -266,7 +267,7 @@ def osm_to_rdf():
             osm_file_name = uploaded_file.filename
             file_size_mb = len(uploaded_file.read()) / (1024 * 1024)
             uploaded_file.seek(0)
-            osm_file_path = os.path.join(TEMPORARY_FILES_FOLDER, uploaded_file.filename)
+            osm_file_path = os.path.join(OUTPUT_FOLDER, uploaded_file.filename)
             uploaded_files.append(osm_file_path)
             uploaded_file.save(osm_file_path)
             estimated_conversion_time = int(file_size_mb * 0.95 + 0.8) ** 2
@@ -275,7 +276,6 @@ def osm_to_rdf():
         else:
             convert_button = ""
     else:
-        osm_file_name = "No file selected"
         convert_button = ""
 
     osm_content = f"""
@@ -347,14 +347,14 @@ def osm_to_ttl():
     file_size_mb = os.path.getsize(file_path) / (1024 * 1024)
 
     start_time = time.time()
-    result = transform_osm_to_rsm(file_path, 'converted_osm', TEMPORARY_FILES_FOLDER)
+    result = transform_osm_to_rsm(file_path, 'converted_osm', OUTPUT_FOLDER)
     end_time = time.time()
 
     transformation_time = end_time - start_time
 
     if result:
         escaped_result = escape(result)
-        rdf_turtle_path = os.path.join(TEMPORARY_FILES_FOLDER, 'output.ttl')
+        rdf_turtle_path = os.path.join(OUTPUT_FOLDER, 'output.ttl')
         with open(rdf_turtle_path, 'w') as rdf_file:
             rdf_file.write(result)
         uploaded_files.append(rdf_turtle_path)
@@ -374,7 +374,7 @@ def osm_to_ttl():
 
 @bp.route('/download_rdf')
 def download_rdf():
-    return send_from_directory(TEMPORARY_FILES_FOLDER, 'output.ttl', as_attachment=True)
+    return send_from_directory(OUTPUT_FOLDER, 'output.ttl', as_attachment=True)
 
 
 @bp.route('/erase_and_quit', methods=['POST'])
@@ -383,4 +383,4 @@ def erase_and_quit():
         if os.path.exists(file_path):
             os.remove(file_path)
     uploaded_files.clear()
-    return ('', 200)
+    return '', 200
