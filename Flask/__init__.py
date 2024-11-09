@@ -1,5 +1,5 @@
 # HTML interface for testing of sRSM functionalities
-# Just run this and navigate in your usual browser.
+# Just run this and navigate using your usual browser.
 
 from flask import Flask
 
