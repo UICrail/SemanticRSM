@@ -270,10 +270,7 @@ def osm_to_rdf():
             osm_file_path = os.path.join(OUTPUT_FOLDER, uploaded_file.filename)
             uploaded_files.append(osm_file_path)
             uploaded_file.save(osm_file_path)
-            # the following matches a Macbook Air M2
-            estimated_conversion_time = int(0.856 * file_size_mb ** 2 * 2.1113 * file_size_mb + 0.324)
-
-            convert_button = generate_convert_button(osm_file_path, estimated_conversion_time)
+            convert_button = generate_convert_button(osm_file_path, estimated_conversion_time(file_size_mb))
         else:
             convert_button = ""
     else:
@@ -337,6 +334,15 @@ def osm_to_rdf():
     """
     html = get_html_content_with_styles('OSM to RDF', osm_content)
     return html
+
+
+def estimated_conversion_time(file_size_MB: float) -> int:
+    """
+    the parameters match a Macbook Air M2 execution time
+    :param file_size_MB: in megabytes
+    :return: execution time in milliseconds
+    """
+    return int(0.856 * file_size_MB ** 2 * 2.1113 * file_size_MB + 0.324)
 
 
 @bp.route('/convert_osm_to_sRSM', methods=['POST'])
