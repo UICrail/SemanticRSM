@@ -270,7 +270,8 @@ def osm_to_rdf():
             osm_file_path = os.path.join(OUTPUT_FOLDER, uploaded_file.filename)
             uploaded_files.append(osm_file_path)
             uploaded_file.save(osm_file_path)
-            estimated_conversion_time = int(file_size_mb * 0.95 + 0.8) ** 2
+            # the following matches a Macbook Air M2
+            estimated_conversion_time = int(0.856 * file_size_mb ** 2 * 2.1113 * file_size_mb + 0.324)
 
             convert_button = generate_convert_button(osm_file_path, estimated_conversion_time)
         else:
