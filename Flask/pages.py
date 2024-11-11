@@ -260,9 +260,9 @@ def osm_to_rdf():
         """
 
     osm_file_name = "No file selected"
+    convert_button = ""
     if request.method == 'POST':
         uploaded_file = request.files['file']
-
         if uploaded_file:
             osm_file_name = uploaded_file.filename
             file_size_mb = len(uploaded_file.read()) / (1024 * 1024)
@@ -271,10 +271,6 @@ def osm_to_rdf():
             uploaded_files.append(osm_file_path)
             uploaded_file.save(osm_file_path)
             convert_button = generate_convert_button(osm_file_path, estimated_conversion_time(file_size_mb))
-        else:
-            convert_button = ""
-    else:
-        convert_button = ""
 
     osm_content = f"""
     <h1>Convert an OpenStreetMap railway network into a semantic RSM

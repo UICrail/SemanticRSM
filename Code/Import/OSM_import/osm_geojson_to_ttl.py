@@ -5,7 +5,7 @@ import os.path
 
 import geopandas as gpd
 import rdflib
-from rdflib import RDF, Literal, RDFS, OWL, DC
+from rdflib import RDF, Literal, RDFS, OWL, DC, URIRef
 from shapely.geometry import LineString, Point
 
 from Code.Namespaces import *
@@ -33,10 +33,11 @@ def osm_to_ttl(osm_file_path: str, short_name: str = "", base_path: str = OUTPUT
                linear_element_prefix: str = 'line',
                geometry_prefix: str = 'geom', with_geometry: bool = True):
     """
-
+    Takes the GeoJSON file (OpenStreetMap-style) and turns it into a ttl file. RSM compliance will however be achieved
+    in subsequent transformations (see Graph_transformation folder).
     :param base_path:
     :param geometry_prefix:
-    :param linear_element_prefix:
+    :param linear_element_prefix: used to build URIRefs
     :param osm_file_path:
     :param short_name: will be used for the intermediate and final file naming
     :param with_geometry: if False, geometries will not be associated with the linear elements via hasNominalGeometry.
@@ -58,24 +59,36 @@ def osm_to_ttl(osm_file_path: str, short_name: str = "", base_path: str = OUTPUT
     graph.add((WORK[''], RDFS.label, Literal(short_name, lang='en')))
     graph.add((WORK[''], DC.creator, Literal("sRSM Flask App")))
 
-    # Process railway lines
+    # Process elements
     for index, row in railways.iterrows():
-        line_uri = WORK[f"{linear_element_prefix}_{index}"]
-        geom_uri = WORK[f"{geometry_prefix}_{index}"]
-        # Convert geometry to WKT
-        wkt = process_geometry(row)
+        if rsm_class:= row.get('rsm_class'):
+            if rsm_class == 'LinearElement':
+                line_uri = WORK[f"{linear_element_prefix}_{index}"]
+                geom_uri = WORK[f"{geometry_prefix}_{index}"]
+                # Convert geometry to WKT
+                wkt = process_geometry(row)
 
-        graph.add((line_uri, RDF.type, RSM_TOPOLOGY.LinearElement))
+                graph.add((line_uri, RDF.type, RSM_TOPOLOGY.LinearElement))
 
-        if label := row.get('label'):
-            graph.add((line_uri, RDFS.label, Literal(label)))
-        if with_geometry:
-            graph.add((line_uri, RSM_GEOSPARQL_ADAPTER.hasNominalGeometry, geom_uri))
-            graph.add((geom_uri, RDF.type, RSM_GEOSPARQL_ADAPTER.Geometry))
-            graph.add((geom_uri, GEOSPARQL.asWKT, Literal(wkt, datatype=GEOSPARQL.wktLiteral)))
-        if annotations := row.get('annotations'):
-            graph.add((line_uri, RDFS.comment, Literal(annotations)))
-            graph.add((geom_uri, RDFS.comment, Literal(annotations)))
+                if label := row.get('label'):
+                    graph.add((line_uri, RDFS.label, Literal(label)))
+                if with_geometry:
+                    graph.add((line_uri, RSM_GEOSPARQL_ADAPTER.hasNominalGeometry, geom_uri))
+                    graph.add((geom_uri, RDF.type, RSM_GEOSPARQL_ADAPTER.Geometry))
+                    graph.add((geom_uri, GEOSPARQL.asWKT, Literal(wkt, datatype=GEOSPARQL.wktLiteral)))
+                if annotations := row.get('annotations'):
+                    graph.add((line_uri, RDFS.comment, Literal(annotations)))
+                    graph.add((geom_uri, RDFS.comment, Literal(annotations)))
+            elif rsm_class == 'SpotLocation':
+                spot_uri = WORK[f"spot_location_{index}"]
+                geom_uri = WORK[f"spot_{index}"]
+                wkt = process_geometry(row)
+                # TODO: replace object by proper URIRef
+                graph.add((spot_uri, RDF.type, URIRef('http://cdm.ovh/rsm/location#SpotLocation')))
+                graph.add((geom_uri, RDF.type, RSM_GEOSPARQL_ADAPTER.Geometry))
+                graph.add((geom_uri, GEOSPARQL.asWKT, Literal(wkt, datatype=GEOSPARQL.wktLiteral)))
+                graph.add((spot_uri, RSM_GEOSPARQL_ADAPTER.hasNominalGeometry, geom_uri))
+
 
     # Serialize the graph to a Turtle file
 

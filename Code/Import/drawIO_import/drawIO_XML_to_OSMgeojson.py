@@ -7,7 +7,7 @@ import geojson
 import xmltodict
 
 from Import.drawIO_import.drawio_parameters import DRAWIO_XML_EXTENSION, classify_artefact_by_style
-from Import.drawIO_import.geojson_helpers import create_geojson_linestring
+from Import.drawIO_import.geojson_helpers import create_geojson_linestring, create_geojson_point
 
 # to transform cartesian coords on the canvas to geographic ones, we use an arbitrary transformation.
 # Canvas scale: one pixel = one meter
@@ -79,9 +79,11 @@ class OSMgeojsonGenerator:
                     self.process_edge(element)
             elif element.get('@connectable'):
                 self.process_connectable(element)
+            elif element.get('@vertex'):
+                self.process_vertex(element)
 
     def process_edge(self, item, annotation: str = ''):
-        source_coords, target_coords = self.extract_coordinates(item)
+        source_coords, target_coords = self.extract_coordinates_pair(item)
         waypoints = self.extract_waypoints(item)
         source_node_id = self.get_or_create_node_id(source_coords)
         target_node_id = self.get_or_create_node_id(target_coords)
@@ -105,6 +107,22 @@ class OSMgeojsonGenerator:
             else:
                 print(f"WARNING: way {related_way} has two labels")
 
+    def process_vertex(self, element):
+        # exclude connectables
+        if element.get('@connectable'):
+            return
+        # we are interested in spot locations only (for the time being) and associated objects
+        # these are characterized by a (small) circle with red outline
+        if style := element.get('@style'):
+            if 'ellipse' in style and 'strokeColor=#ff0000' in style:
+                this_id = element.get('@id')
+                coords = self.extract_coordinates(element)
+                label = element.get('@value')
+                node_id = len(
+                    self.node_index) + 1  # in this case, we always create a node even if it coincides with another one (e.g. a port)
+                self.node_index[node_id] = {'id': this_id, 'coords': coords, 'label': label, 'rsm_type': 'SpotLocation'}
+        pass
+
     def add_ways_from_index(self):
         """
         Also handles waypoints
@@ -118,12 +136,23 @@ class OSMgeojsonGenerator:
 
             linestring = create_geojson_linestring(source_coords, target_coords, *waypoints)
             cleaned_label = self.cleanup_label(self.label_index.get(way_id, ''))
-            tags = {'label': cleaned_label, **OSM_RAILWAY_TAG}  # empty string as default label
+            tags = {'label': cleaned_label, 'rsm_class': 'LinearElement', **OSM_RAILWAY_TAG}  # empty string as default label
             if annotations := self.way_index[way_id].get('annotation'):
                 tags['annotations'] = annotations
             self.osm_doc.append(geojson.Feature(type="Feature", geometry=linestring, properties=tags))
 
+    def add_nodes_from_index(self):
+        """Adds nodes collected in node_index to the GeoJSON file
+        except those denoting linear element extremities
+        """
+        for node_id, node_value in self.node_index.items():
+            if isinstance(node_value, dict):
+                if node_value.get('rsm_type') == 'SpotLocation':
+                    tags = {'label': node_value.get('label'), 'rsm_class': 'SpotLocation', **OSM_RAILWAY_TAG}
+                    self.osm_doc.append(geojson.Feature(type="Feature", geometry=create_geojson_point(*node_value['coords']), properties=tags))
+
     def generate_nodes_and_ways_from_index(self):
+        self.add_nodes_from_index()
         self.add_ways_from_index()
         feature_collection = geojson.FeatureCollection(self.osm_doc)
         osm_geojson = geojson.dumps(feature_collection, indent=2)
@@ -135,9 +164,9 @@ class OSMgeojsonGenerator:
             self.node_index[node_id] = coords
             return node_id
         else:
-            return self.find_key(coords)
+            return self.find_node_key(coords)
 
-    def find_key(self, value):
+    def find_node_key(self, value):
         for key, val in self.node_index.items():
             if val == value:
                 return key
@@ -152,7 +181,15 @@ class OSMgeojsonGenerator:
             f.write(osm_geojson)
 
     @staticmethod
-    def extract_coordinates(item):
+    def extract_coordinates(element):
+        """Applies to a vertex, spot location, whatever translates to a single point"""
+        point = None
+        if geom := element.get('mxGeometry'):
+            point = geom['@x'], geom['@y']
+        return point
+
+    @staticmethod
+    def extract_coordinates_pair(item):
         source_point, target_point = None, None
         for dic in item['mxGeometry']['mxPoint']:
             if dic.get('@as') == 'sourcePoint':
