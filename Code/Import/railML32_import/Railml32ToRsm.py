@@ -18,13 +18,17 @@ class Railml32ToRsm:
         self._short_name = ''
         self._input_namespaces = None
         self._graph = None
+        self.issue_warning_about_distribution()
+        print(f"Current directory: {os.path.abspath(os.path.curdir)}")
+
+    def issue_warning_about_distribution(self):
         user_input = input("WARNING: you may not *distribute* the output file. Type 'YES' to continue: ")
         if user_input == 'YES':
             print("Good girl|boy|whatever. Let us resume.")
         else:
             print("Naughty girl|boy|whatever. Let us stop here.")
             exit()
-        print(f"Current directory: {os.path.abspath(os.path.curdir)}")
+
 
     def process_railML32(self, input_path: str, output_directory: str, short_name: str = ''):
         """
