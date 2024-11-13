@@ -18,7 +18,13 @@ class Railml32ToRsm:
         self._short_name = ''
         self._input_namespaces = None
         self._graph = None
-        print("WARNING: you may not *distribute* the output file.")
+        user_input = input("WARNING: you may not *distribute* the output file. Type 'YES' to continue: ")
+        if user_input == 'YES':
+            print("Good girl|boy|whatever. Let us resume.")
+        else:
+            print("Naughty girl|boy|whatever. Let us stop here.")
+            exit()
+        print(f"Current directory: {os.path.abspath(os.path.curdir)}")
 
     def process_railML32(self, input_path: str, output_directory: str, short_name: str = ''):
         """
@@ -51,7 +57,8 @@ class Railml32ToRsm:
             self._root = tree.getroot()
             # print(etree.tostring(self._root, pretty_print=True).decode())
             self.input_namespaces = {k: v for k, v in self._root.nsmap.items() if k}
-            self._input_namespaces['default'] = "https://www.railml.org/schemas/3.2"
+            # and the lousy one with a None key:
+            self._input_namespaces['default'] = list(self._root.nsmap.items())[0][1]
             print(f"INFO: loaded namespaces: {self.input_namespaces}")
             return f"INFO: successfully loaded railML3.2 file: {path}"
         except (OSError, etree.XMLSyntaxError) as e:
@@ -75,6 +82,8 @@ class Railml32ToRsm:
         print(f"INFO: {len(linear_elements)} linear elements found. Processing...")
         valid_elements = []
         warnings = []
+
+        # TODO: get rid of @*[local-name()='whatever'] hack
 
         for element in linear_elements:
             length_attr = element.xpath("@*[local-name()='length']")[0]
