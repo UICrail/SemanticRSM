@@ -1,7 +1,7 @@
 # See readme.md for explanations
 import os
 
-from Code.Export.export_wkt_to_kml import ttl_to_kml
+from Code.Export.export_ttl_to_kml import ttl_to_kml
 from Code.Graph_transformation.step01_split_linear_elements import split_linestrings_in_file
 from Code.Graph_transformation.step02_join_linear_elements import join_linear_elements
 from Graph_transformation.step03_add_ports import add_ports_to_linear_elements
@@ -71,10 +71,10 @@ def run_process_steps(short_name, output_folder=OUTPUT_FOLDER, all_double_slip: 
         generate_file_path(short_name, NAVIGABILITIES_SUFFIX, output_folder),
         generate_file_path(short_name, "with_slip_functionality", output_folder)
     )
-    # ttl_to_kml(
-    #     generate_file_path(short_name, NAVIGABILITIES_SUFFIX, output_folder),
-    #     os.path.join(OUTPUT_FOLDER, f"{short_name}{KML_SUFFIX}.kml")
-    # )
+    ttl_to_kml(
+        generate_file_path(short_name, NAVIGABILITIES_SUFFIX, output_folder),
+        os.path.join(OUTPUT_FOLDER, f"{short_name}{KML_SUFFIX}.kml")
+    )
     return result
 
 

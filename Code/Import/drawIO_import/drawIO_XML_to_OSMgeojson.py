@@ -232,11 +232,11 @@ if __name__ == '__main__':
 
     def test_full_transformation():
         """Transforming a station track plan in drawio xml into a sRSM topology"""
-        drawio_input_file = os.path.join(TEST_DATA_FOLDER, '241023-Simple_Example+RTC-121.drawio.xml')
+        drawio_input_file = os.path.join(TEST_DATA_FOLDER, 'Alnabru.drawio.xml')
         generator1 = OSMgeojsonGenerator()
         generator1.convert_drawio_to_osm(drawio_input_file)
-        osm_input_file = os.path.join(TEST_OUTPUTS_FOLDER, '241023-Simple_Example+RTC-121.osm.geojson')
-        transform_osm_to_rsm(osm_input_file, 'New test after deep refactoring')
+        osm_input_file = os.path.join(TEST_OUTPUTS_FOLDER, 'Alnabru.osm.geojson')
+        transform_osm_to_rsm(osm_input_file, '241112 Alnabru')
 
 
     def test_waypoints():

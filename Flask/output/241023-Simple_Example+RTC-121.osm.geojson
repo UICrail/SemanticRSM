@@ -12,6 +12,7 @@
       },
       "properties": {
         "label": "Signal",
+        "rsm_class": "SpotLocation",
         "railway": "rail"
       }
     },
@@ -32,6 +33,7 @@
       },
       "properties": {
         "label": "7-31",
+        "rsm_class": "LinearElement",
         "railway": "rail"
       }
     },
@@ -52,6 +54,7 @@
       },
       "properties": {
         "label": "7-43",
+        "rsm_class": "LinearElement",
         "railway": "rail"
       }
     },
@@ -72,6 +75,7 @@
       },
       "properties": {
         "label": "",
+        "rsm_class": "LinearElement",
         "railway": "rail"
       }
     },
@@ -92,6 +96,7 @@
       },
       "properties": {
         "label": "70-3",
+        "rsm_class": "LinearElement",
         "railway": "rail"
       }
     },
@@ -112,6 +117,7 @@
       },
       "properties": {
         "label": "7-31",
+        "rsm_class": "LinearElement",
         "railway": "rail"
       }
     },
@@ -140,6 +146,7 @@
       },
       "properties": {
         "label": "7-27",
+        "rsm_class": "LinearElement",
         "railway": "rail"
       }
     },
@@ -160,6 +167,7 @@
       },
       "properties": {
         "label": "7-11",
+        "rsm_class": "LinearElement",
         "railway": "rail"
       }
     },
@@ -180,6 +188,7 @@
       },
       "properties": {
         "label": "16-218",
+        "rsm_class": "LinearElement",
         "railway": "rail"
       }
     },
@@ -200,6 +209,7 @@
       },
       "properties": {
         "label": "7-15",
+        "rsm_class": "LinearElement",
         "railway": "rail"
       }
     },
@@ -220,6 +230,7 @@
       },
       "properties": {
         "label": "7-239",
+        "rsm_class": "LinearElement",
         "railway": "rail"
       }
     },
@@ -240,6 +251,7 @@
       },
       "properties": {
         "label": "7-47",
+        "rsm_class": "LinearElement",
         "railway": "rail"
       }
     },
@@ -260,6 +272,7 @@
       },
       "properties": {
         "label": "7-35",
+        "rsm_class": "LinearElement",
         "railway": "rail"
       }
     },
@@ -280,6 +293,7 @@
       },
       "properties": {
         "label": "slip",
+        "rsm_class": "LinearElement",
         "railway": "rail",
         "annotations": "slip switch"
       }
@@ -301,6 +315,7 @@
       },
       "properties": {
         "label": "100m",
+        "rsm_class": "LinearElement",
         "railway": "rail"
       }
     }

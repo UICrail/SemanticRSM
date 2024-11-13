@@ -82,12 +82,17 @@ def osm_to_ttl(osm_file_path: str, short_name: str = "", base_path: str = OUTPUT
             elif rsm_class == 'SpotLocation':
                 spot_uri = WORK[f"spot_location_{index}"]
                 geom_uri = WORK[f"spot_{index}"]
+                asso_uri = WORK[f"location_on_net_element_{index}"]
                 wkt = process_geometry(row)
                 # TODO: replace object by proper URIRef
                 graph.add((spot_uri, RDF.type, URIRef('http://cdm.ovh/rsm/location#SpotLocation')))
                 graph.add((geom_uri, RDF.type, RSM_GEOSPARQL_ADAPTER.Geometry))
                 graph.add((geom_uri, GEOSPARQL.asWKT, Literal(wkt, datatype=GEOSPARQL.wktLiteral)))
                 graph.add((spot_uri, RSM_GEOSPARQL_ADAPTER.hasNominalGeometry, geom_uri))
+                graph.add((asso_uri, RDF.type, URIRef('http://cdm.ovh/rsm/location#LocationOnNetElement')))
+                graph.add((spot_uri, URIRef('http://cdm.ovh/rsm/location#associatedNetElement'), asso_uri))
+                graph.add((asso_uri, URIRef('http://cdm.ovh/rsm/location#bound'), Literal(0.123)))
+                graph.add((asso_uri, RSM_TOPOLOGY.onElement, OWL.Nothing))
 
 
     # Serialize the graph to a Turtle file
