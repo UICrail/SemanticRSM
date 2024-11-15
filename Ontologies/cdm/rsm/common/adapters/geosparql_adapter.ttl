@@ -1,14 +1,14 @@
 @prefix : <http://cdm.ovh/rsm/adapters/geosparql_adapter#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rsm: <http://cdm.ovh/rsm/topology#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @base <http://cdm.ovh/rsm/adapters/geosparql_adapter#> .
 
 <http://cdm.ovh/rsm/adapters/geosparql_adapter> rdf:type owl:Ontology ;
-                                                 rdfs:comment "Adapter vocabulary for connecting various parts of RSM with GeoSPARQL 1.1."@en .
+                                                 rdfs:comment "Adapter vocabulary for connecting various parts of RSM with GeoSPARQL 1.1."@en ;
+                                                 rdfs:label "GeoSPARQL adapter for CDM/RSM"@en .
 
 #################################################################
 #    Object Properties
@@ -44,7 +44,6 @@
 ###  http://cdm.ovh/rsm/adapters/geosparql_adapter#hasNominalMetricLength
 :hasNominalMetricLength rdf:type owl:DatatypeProperty ;
                         rdfs:subPropertyOf <http://www.opengis.net/ont/geosparql#hasMetricLength> ;
-                        rdfs:domain rsm:LinearElement ;
                         rdfs:range [ rdf:type rdfs:Datatype ;
                                      owl:onDatatype xsd:double ;
                                      owl:withRestrictions ( [ xsd:minInclusive "0.0"^^xsd:double
@@ -81,11 +80,7 @@ Compared to geo:hasMetricLength, from which it is derived, a restriction was app
 ###  http://cdm.ovh/rsm/adapters/geosparql_adapter#Geometry
 :Geometry rdf:type owl:Class ;
           rdfs:subClassOf <http://www.opengis.net/ont/geosparql#Geometry> ;
-          rdfs:comment "A coherent set of direct positions in space. The positions are held within a Spatial Reference System (SRS)."@en .
-
-
-###  http://cdm.ovh/rsm/topology#LinearElement
-rsm:LinearElement rdf:type owl:Class .
+          rdfs:comment "A coherent set of direct positions in space. The positions are held within a Spatial Reference System (SRS). that can be explicit or implicit."@en .
 
 
 ###  http://www.opengis.net/ont/geosparql#Feature

@@ -18,17 +18,8 @@ class Railml32ToRsm:
         self._short_name = ''
         self._input_namespaces = None
         self._graph = None
-        self.issue_warning_about_distribution()
+        # self.issue_warning_about_distribution()
         print(f"Current directory: {os.path.abspath(os.path.curdir)}")
-
-    def issue_warning_about_distribution(self):
-        user_input = input("WARNING: you may not *distribute* the output file. Type 'YES' to continue: ")
-        if user_input == 'YES':
-            print("Good girl|boy|whatever. Let us resume.")
-        else:
-            print("Naughty girl|boy|whatever. Let us stop here.")
-            exit()
-
 
     def process_railML32(self, input_path: str, output_directory: str, short_name: str = ''):
         """
@@ -79,7 +70,7 @@ class Railml32ToRsm:
         Loop through net elements.
         :return: info message
         """
-        all_net_elements= self._root.findall(".//default:netElement", namespaces=self.input_namespaces)
+        all_net_elements = self._root.findall(".//default:netElement", namespaces=self.input_namespaces)
         print(f"INFO: {len(all_net_elements)} net elements found using findall and namespace prefix. Processing...")
         linear_elements = self._root.findall(".//default:netElement[@length]", namespaces=self.input_namespaces)
         # note: syntax [@length and not(@elementCollection)], while legal XPath1.0, is not accepted by lxml...
@@ -90,19 +81,17 @@ class Railml32ToRsm:
         # TODO: get rid of @*[local-name()='whatever'] hack
 
         for element in linear_elements:
+            element_id = element.xpath("@*[local-name()='id']")[0]
             length_attr = element.xpath("@*[local-name()='length']")[0]
             if not length_attr:
                 warnings.append(
                     f"WARNING: netElement without @length found: {etree.tostring(element, pretty_print=True).decode()}")
-            length_value = rdflib.Literal(float(length_attr), datatype=rdflib.XSD.float)
-
-            element_uri = rdflib.URIRef(f"http://example.org/resource/{element.xpath("@*[local-name()='id']")[0]}")
-
-            # Add the LinearElement to the RDF graph
-            # Add length property to the LinearElement
+            # Create arguments for triples
+            element_uri = rdflib.URIRef(f"http://example.org/resource/{element_id}")
+            length_value = rdflib.Literal(length_attr, datatype=rdflib.XSD.float)
+            # Add the LinearElement and its properties to the RDF graph
             self._graph.add((element_uri, RDF.type, RSM_TOPOLOGY.LinearElement))
-            self._graph.add((element_uri, RSM_GEOSPARQL_ADAPTER.hasNominaMetriclLength,
-                             rdflib.Literal(float(length_attr), datatype=rdflib.XSD.float)))
+            self._graph.add((element_uri, RSM_GEOSPARQL_ADAPTER.hasNominaMetriclLength, length_value))
 
             # Collect valid elements for the output message
             valid_elements.append(element_uri)
@@ -165,6 +154,15 @@ class Railml32ToRsm:
     @property
     def output_path(self):
         return self._output_path if self._output_path else self._generate_output_path(self._short_name)
+
+    @staticmethod
+    def issue_warning_about_distribution():
+        user_input = input("WARNING: you may not *distribute* the output file. Type 'YES' to continue: ")
+        if user_input == 'YES':
+            print("Good girl|boy|whatever. Let us resume.")
+        else:
+            print("Naughty girl|boy|whatever. Let us stop here.")
+            exit()
 
 
 if __name__ == "__main__":
