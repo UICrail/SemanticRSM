@@ -1,7 +1,7 @@
 import os
 
-from rdflib import RDF, RDFS, BNode, Literal, URIRef, XSD, Graph
 from lxml import etree
+from rdflib import RDF, RDFS, BNode, Literal, URIRef, XSD, Graph
 
 from Namespaces import RSM_TOPOLOGY, RSM_GEOSPARQL_ADAPTER, RSM_POSITIONING, LIST
 
@@ -86,6 +86,7 @@ class Railml32ToRsm:
             if not length_attr:
                 warnings.append(
                     f"WARNING: netElement without @length found: {etree.tostring(element, pretty_print=True).decode()}")
+
             # Create arguments for triples
             element_uri = URIRef(f"http://example.org/resource/{element_id}")
             length_value = Literal(length_attr, datatype=XSD.float)
@@ -94,7 +95,7 @@ class Railml32ToRsm:
             self._graph.add((element_uri, RSM_GEOSPARQL_ADAPTER.hasNominaMetriclLength, length_value))
             # Add ports 0 and 1
             for index in range(1):
-                port_uri = URIRef(f"http://example.org/resource/{element_id}_port_{index}")
+                port_uri = self.port_uri_ref(element_uri, index)
                 self._graph.add((port_uri, RDF.type, RSM_TOPOLOGY.Port))
                 self._graph.add((element_uri, RSM_TOPOLOGY.hasPort, port_uri))
 
@@ -150,10 +151,21 @@ class Railml32ToRsm:
         net_relations = self._root.findall(".//default:netRelations", namespaces=self.input_namespaces)[0]
         for relation in net_relations:
             navigability = relation.attrib["navigability"]
-            positionOnA = relation.attrib["positionOnA"]
-            positionOnB = relation.attrib["positionOnB"]
+            positionOnA = str(relation.attrib["positionOnA"])
+            positionOnB = str(relation.attrib["positionOnB"])
             element_A_ref = relation.xpath("*[local-name()='elementA']")[0].attrib["ref"]
             element_B_ref = relation.xpath("*[local-name()='elementB']")[0].attrib["ref"]
+            if navigability == "Both":
+                self._graph.add((self.port_uri_ref(element_A_ref, positionOnA), RSM_TOPOLOGY.navigableTo,
+                                 self.port_uri_ref(element_B_ref, self.opposite_port(positionOnB))))
+                self._graph.add((self.port_uri_ref(element_B_ref, positionOnB), RSM_TOPOLOGY.navigableTo,
+                                 self.port_uri_ref(element_A_ref, self.opposite_port(positionOnA))))
+            elif navigability == "None":
+                self._graph.add((self.port_uri_ref(element_A_ref, positionOnA), RSM_TOPOLOGY.nonNavigableTo,
+                                 self.port_uri_ref(element_B_ref, self.opposite_port(positionOnB))))
+                self._graph.add((self.port_uri_ref(element_B_ref, positionOnB), RSM_TOPOLOGY.nonNavigableTo,
+                                 self.port_uri_ref(element_A_ref, self.opposite_port(positionOnA))))
+
 
     def _save_graph_to_file(self):
         """
@@ -203,6 +215,19 @@ class Railml32ToRsm:
         else:
             print("Naughty girl|boy|whatever. Let us stop here.")
             exit()
+
+    @staticmethod
+    def port_uri_ref(linear_element_id: str, port_index: str|int) -> URIRef:
+        return URIRef(f"http://example.org/resource/{linear_element_id}_port_{str(port_index)}")
+
+    @staticmethod
+    def opposite_port(x: str) -> str:
+        if x == '0':
+            return '1'
+        elif x == '1':
+            return '0'
+        else:
+            raise ValueError(f"opposite_port(): Port index {x} is not valid.")
 
 
 if __name__ == "__main__":
