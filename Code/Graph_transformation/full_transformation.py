@@ -8,7 +8,7 @@ from Graph_transformation.step03_add_ports import add_ports_to_linear_elements
 from Graph_transformation.step04_add_port_properties import set_port_connections, set_navigabilities
 from Graph_transformation.step04b_add_slip_functionality import add_slip_functionality
 
-OUTPUT_FOLDER = os.path.join(os.path.dirname(__file__), "..", "..", "Output_files", "Intermediate_files")
+OUTPUT_FOLDER = os.path.join(os.path.dirname(__file__), 'TestOutput')
 NAVIGABILITIES_SUFFIX = "with_navigabilities"
 KML_SUFFIX = " including slip switch representation"
 
@@ -17,10 +17,10 @@ def generate_file_path(short_name, stage, to_folder=OUTPUT_FOLDER):
     return os.path.join(to_folder, f"{short_name}_{stage}.ttl")
 
 
-def transform_osm_to_rsm(osm_geojson_path, short_name, output_folder=OUTPUT_FOLDER, all_double_slip: bool = False) -> str:
+def transform_geojson_to_rsm(geojson_path, short_name, output_folder=OUTPUT_FOLDER, all_double_slip: bool = False) -> str:
     """
 
-    :param osm_geojson_path: source data
+    :param geojson_path: source data (if from OSM, should be pre-processed)
     :param short_name: will be used in the name of generated files
     :param output_folder: folder for the ttl file
     :param all_double_slip: if True, all crossings will default to double slip
@@ -28,11 +28,11 @@ def transform_osm_to_rsm(osm_geojson_path, short_name, output_folder=OUTPUT_FOLD
     """
     print()
     print("Preparing the transformation of an OSM file (GeoJSON format) into a sRSM file (TTL format)")
-    print(f"Reading the OSM file: {osm_geojson_path}")
+    print(f"Reading the OSM file: {geojson_path}")
 
     # Read the OSM geojson file and produce the raw ttl file
-    from Import.OSM_import.osm_geojson_to_ttl import osm_to_ttl
-    osm_to_ttl(osm_geojson_path, short_name=short_name, base_path=output_folder)
+    from Import.OSM_import.osm_geojson_to_ttl import osm_to_ttl, geojson_to_ttl
+    geojson_to_ttl(geojson_path, short_name=short_name, base_path=output_folder)
     print(f'TTL file produced from the OSM geojson file, output at {output_folder}')
 
     # Process linear elements
@@ -83,8 +83,8 @@ def osm_via_rsm_to_kml(osm_geojson_file, short_name, base_path=OUTPUT_FOLDER):
     Direct transformation, without attempting to split or merge.
     """
     print(f"Reading the OSM file: {osm_geojson_file}")
-    from Import.OSM_import.osm_geojson_to_ttl import osm_to_ttl
-    osm_to_ttl(osm_geojson_file)
+    from Import.OSM_import.osm_geojson_to_ttl import geojson_to_ttl
+    geojson_to_ttl(osm_geojson_file)
     ttl_to_kml(
         generate_file_path(short_name, "raw"),
         os.path.join(base_path, f"osm_{short_name}_direct.kml")
@@ -92,6 +92,9 @@ def osm_via_rsm_to_kml(osm_geojson_file, short_name, base_path=OUTPUT_FOLDER):
 
 
 if __name__ == "__main__":
-    transform_osm_to_rsm(
-        os.path.join(os.path.dirname(__file__), "..", "..", "Source_data", "OSM", "Ventimiglia_Albenga.geojson"),
-        "Ventimiglia-Albenga")
+    # transform_geojson_to_rsm(
+    #     os.path.join(os.path.dirname(__file__), "..", "..", "Source_data", "OSM", "Ventimiglia_Albenga.geojson"),
+    #     "Ventimiglia-Albenga")
+    source_path = '/Users/airymagnien/PycharmProjects/SemanticRSM/Code/Graph_transformation/TestData/Sankt Pölten area_preprocessed.geojson'
+    transform_geojson_to_rsm(source_path, 'SPO_preprocessed', all_double_slip=True)
+

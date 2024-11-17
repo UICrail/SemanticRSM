@@ -8,7 +8,12 @@ from Code.Namespaces import *
 LINEAR_ELEMENT_WIDTH = 4  # adjust as needed
 
 
-def ttl_to_kml(input_ttl_, output_kml_):
+def ttl_to_kml(input_ttl_: str, output_kml_: str):
+    """
+    :param input_ttl_: full path to input sRSM file
+    :param output_kml_: full path to output kml file
+    :return: None
+    """
     elements = parse_ttl_linestrings(input_ttl_)
     if elements:
         adjacency_list = build_adjacency_list(elements)

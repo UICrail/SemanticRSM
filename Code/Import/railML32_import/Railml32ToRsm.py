@@ -1,10 +1,9 @@
 import os
 
-import rdflib
+from rdflib import RDF, RDFS, BNode, Literal, URIRef, XSD, Graph
 from lxml import etree
-from rdflib import RDF
 
-from Namespaces import RSM_TOPOLOGY, RSM_GEOSPARQL_ADAPTER
+from Namespaces import RSM_TOPOLOGY, RSM_GEOSPARQL_ADAPTER, RSM_POSITIONING, LIST
 
 RAILML32_DEFAULT_OUTPUT_FOLDER = os.path.join(os.path.curdir, 'TestOutputs')  # default output directory
 
@@ -33,7 +32,7 @@ class Railml32ToRsm:
         self.output_directory = output_directory
         self._short_name = short_name
         print(self._load_source(input_path))
-        self._graph = rdflib.Graph()
+        self._graph = Graph()
 
         # Processing
         print(self._process_net_elements())
@@ -63,6 +62,7 @@ class Railml32ToRsm:
         """Extracts all net elements in source file."""
         self._process_linear_elements()
         self._process_nonlinear_elements()
+        self._process_net_relations()
 
     def _process_linear_elements(self):
 
@@ -87,11 +87,45 @@ class Railml32ToRsm:
                 warnings.append(
                     f"WARNING: netElement without @length found: {etree.tostring(element, pretty_print=True).decode()}")
             # Create arguments for triples
-            element_uri = rdflib.URIRef(f"http://example.org/resource/{element_id}")
-            length_value = rdflib.Literal(length_attr, datatype=rdflib.XSD.float)
+            element_uri = URIRef(f"http://example.org/resource/{element_id}")
+            length_value = Literal(length_attr, datatype=XSD.float)
             # Add the LinearElement and its properties to the RDF graph
             self._graph.add((element_uri, RDF.type, RSM_TOPOLOGY.LinearElement))
             self._graph.add((element_uri, RSM_GEOSPARQL_ADAPTER.hasNominaMetriclLength, length_value))
+            # Add ports 0 and 1
+            for index in range(1):
+                port_uri = URIRef(f"http://example.org/resource/{element_id}_port_{index}")
+                self._graph.add((port_uri, RDF.type, RSM_TOPOLOGY.Port))
+                self._graph.add((element_uri, RSM_TOPOLOGY.hasPort, port_uri))
+
+            # add positioning systems
+            associated_positioning_system = element.xpath("*[local-name()='associatedPositioningSystem']")[0]
+            associated_positioning_system_label = associated_positioning_system.attrib["id"]
+            associated_positioning_system_coords = associated_positioning_system.xpath(
+                "*[local-name()='intrinsicCoordinate']")
+            element_ics = []
+            for ic in associated_positioning_system_coords:
+                element_ics += [ic.attrib["intrinsicCoord"]]
+
+            # generate positioning system-related triples.
+            # we choose to have positioning systems as blank nodes.
+            previous_position, head_position = None, None
+            for index, ic in enumerate(element_ics):
+                associated_position = BNode()
+                self._graph.add((associated_position, RDF.type, RSM_POSITIONING.AssociatedPosition))
+                if index == 0:
+                    head_position = associated_position
+                    self._graph.add((associated_position, RDFS.label, Literal(associated_positioning_system_label)))
+                else:
+                    self._graph.add((previous_position, LIST.hasNext, associated_position))
+                self._graph.add(
+                    (associated_position, RSM_POSITIONING.intrinsicCoordinate, Literal(ic, datatype=XSD.float)))
+
+                if index == len(associated_positioning_system_coords) - 1:
+                    self._graph.add((associated_position, LIST.hasNext, LIST.EmptyList))
+                previous_position = associated_position
+
+            self._graph.add((element_uri, RSM_POSITIONING.associatedPositioningSystem, head_position))
 
             # Collect valid elements for the output message
             valid_elements.append(element_uri)
@@ -113,7 +147,13 @@ class Railml32ToRsm:
 
         :return:
         """
-        pass
+        net_relations = self._root.findall(".//default:netRelations", namespaces=self.input_namespaces)[0]
+        for relation in net_relations:
+            navigability = relation.attrib["navigability"]
+            positionOnA = relation.attrib["positionOnA"]
+            positionOnB = relation.attrib["positionOnB"]
+            element_A_ref = relation.xpath("*[local-name()='elementA']")[0].attrib["ref"]
+            element_B_ref = relation.xpath("*[local-name()='elementB']")[0].attrib["ref"]
 
     def _save_graph_to_file(self):
         """

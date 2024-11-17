@@ -227,7 +227,7 @@ class OSMgeojsonGenerator:
 
 
 if __name__ == '__main__':
-    from Code.Graph_transformation.full_transformation import transform_osm_to_rsm
+    from Code.Graph_transformation.full_transformation import transform_geojson_to_rsm
 
 
     def test_full_transformation():
@@ -236,7 +236,7 @@ if __name__ == '__main__':
         generator1 = OSMgeojsonGenerator()
         generator1.convert_drawio_to_osm(drawio_input_file)
         osm_input_file = os.path.join(TEST_OUTPUTS_FOLDER, 'Alnabru.osm.geojson')
-        transform_osm_to_rsm(osm_input_file, '241112 Alnabru')
+        transform_geojson_to_rsm(osm_input_file, '241112 Alnabru')
 
 
     def test_waypoints():

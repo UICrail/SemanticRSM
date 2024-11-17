@@ -4,7 +4,7 @@ from html import escape
 import markdown2
 from flask import Blueprint, render_template_string, send_from_directory, request
 
-from Graph_transformation.full_transformation import transform_osm_to_rsm
+from Graph_transformation.full_transformation import transform_geojson_to_rsm
 from Import.drawIO_import.drawIO_XML_to_OSMgeojson import OSM_GEOJSON_EXTENSION
 
 # Constants
@@ -163,7 +163,7 @@ def drawio_to_rdf():
         osm_generator.convert_drawio_to_osm(file_path, OUTPUT_FOLDER)
         osm_file_path = file_path.split('.')[0] + OSM_GEOJSON_EXTENSION
         uploaded_files.append(osm_file_path)
-        result = transform_osm_to_rsm(osm_file_path, 'output', OUTPUT_FOLDER)
+        result = transform_geojson_to_rsm(osm_file_path, 'output', OUTPUT_FOLDER)
         if result:
             escaped_result = escape(result)
             rdf_turtle_path = os.path.join(OUTPUT_FOLDER, 'output.ttl')
@@ -350,7 +350,7 @@ def osm_to_ttl():
     file_size_mb = os.path.getsize(file_path) / (1024 * 1024)
 
     start_time = time.time()
-    result = transform_osm_to_rsm(file_path, 'converted_osm', OUTPUT_FOLDER)
+    result = transform_geojson_to_rsm(file_path, 'converted_osm', OUTPUT_FOLDER)
     end_time = time.time()
 
     transformation_time = end_time - start_time
