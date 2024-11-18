@@ -1,9 +1,11 @@
 import os
 
 from lxml import etree
-from rdflib import RDF, RDFS, BNode, Literal, URIRef, XSD, Graph
+from rdflib import RDF, BNode, Literal, URIRef, XSD, Graph
 
-from Namespaces import RSM_TOPOLOGY, RSM_GEOSPARQL_ADAPTER, RSM_POSITIONING, LIST
+from Namespaces import RSM_TOPOLOGY, RSM_GEOSPARQL_ADAPTER, RSM_POSITIONING, LIST, GEOSPARQL
+
+OUTPUT_NAMESPACE = 'http://example.org/railML3.2_import#'
 
 RAILML32_DEFAULT_OUTPUT_FOLDER = os.path.join(os.path.curdir, 'TestOutputs')  # default output directory
 
@@ -17,6 +19,8 @@ class Railml32ToRsm:
         self._short_name = ''
         self._input_namespaces = None
         self._graph = None
+        self._spotElementProjections: dict = {}  # key = IC railML identifier, value = coordinates (X,Y) on canvas or...
+        self._spotElementProjectionsPositioningSystemRef = ''  # expect instance of PositioningSystem
         # self.issue_warning_about_distribution()
         print(f"Current directory: {os.path.abspath(os.path.curdir)}")
 
@@ -33,6 +37,12 @@ class Railml32ToRsm:
         self._short_name = short_name
         print(self._load_source(input_path))
         self._graph = Graph()
+        self._graph.bind('rsm_topo', RSM_TOPOLOGY)
+        self._graph.bind('rsm_geosparql', RSM_GEOSPARQL_ADAPTER)
+        self._graph.bind('rsm_positioning', RSM_POSITIONING)
+        self._graph.bind('list', LIST)
+        self._graph.bind('geo', GEOSPARQL)
+        self._graph.bind('', OUTPUT_NAMESPACE)
 
         # Processing
         print(self._process_net_elements())
@@ -60,9 +70,11 @@ class Railml32ToRsm:
 
     def _process_net_elements(self):
         """Extracts all net elements in source file."""
+        self._process_visualizations()
         self._process_linear_elements()
         self._process_nonlinear_elements()
         self._process_net_relations()
+        return f"INFO: output {len(self._graph)} triples."
 
     def _process_linear_elements(self):
 
@@ -88,7 +100,7 @@ class Railml32ToRsm:
                     f"WARNING: netElement without @length found: {etree.tostring(element, pretty_print=True).decode()}")
 
             # Create arguments for triples
-            element_uri = URIRef(f"http://example.org/resource/{element_id}")
+            element_uri = URIRef(OUTPUT_NAMESPACE + element_id)
             length_value = Literal(length_attr, datatype=XSD.float)
             # Add the LinearElement and its properties to the RDF graph
             self._graph.add((element_uri, RDF.type, RSM_TOPOLOGY.LinearElement))
@@ -101,32 +113,67 @@ class Railml32ToRsm:
 
             # add positioning systems
             associated_positioning_system = element.xpath("*[local-name()='associatedPositioningSystem']")[0]
-            associated_positioning_system_label = associated_positioning_system.attrib["id"]
+            # associated_positioning_system_label = associated_positioning_system.attrib["id"]
             associated_positioning_system_coords = associated_positioning_system.xpath(
                 "*[local-name()='intrinsicCoordinate']")
-            element_ics = []
+            element_ics = {}  # key: id in railML, value: intrinsicCoord [value of]
             for ic in associated_positioning_system_coords:
-                element_ics += [ic.attrib["intrinsicCoord"]]
+                element_ics[ic.attrib["id"]] = ic.attrib["intrinsicCoord"]
 
             # generate positioning system-related triples.
             # we choose to have positioning systems as blank nodes.
             previous_position, head_position = None, None
-            for index, ic in enumerate(element_ics):
+            for index, ic in enumerate(element_ics.items()):
                 associated_position = BNode()
                 self._graph.add((associated_position, RDF.type, RSM_POSITIONING.AssociatedPosition))
+
+                # fetch matching coordinates in canvas or other positioning system
+                position = None
+                # add the reference system [provisional]
+                uriref = OUTPUT_NAMESPACE + 'Canvas'
+                if (identifier := ic[0]) in self._spotElementProjections:
+                    x, y = self._spotElementProjections[identifier]
+                    position = f"<{uriref}> POINT({str(x)} {str(y)})"
+
+                    # self._graph.add(
+                    #     (associated_position, RDFS.label, Literal(self._spotElementProjectionsPositioningSystemRef)))
+
                 if index == 0:
                     head_position = associated_position
-                    self._graph.add((associated_position, RDFS.label, Literal(associated_positioning_system_label)))
+                    # self._graph.add((associated_position, RDFS.label, Literal(associated_positioning_system_label)))
                 else:
                     self._graph.add((previous_position, LIST.hasNext, associated_position))
+
                 self._graph.add(
-                    (associated_position, RSM_POSITIONING.intrinsicCoordinate, Literal(ic, datatype=XSD.float)))
+                    (associated_position, RSM_POSITIONING.intrinsicCoordinate, Literal(ic[1], datatype=XSD.float)))
+                if position:
+                    self._graph.add(
+                        (associated_position, RSM_POSITIONING.position,
+                         Literal(position, datatype=GEOSPARQL.wktLiteral)))
 
                 if index == len(associated_positioning_system_coords) - 1:
                     self._graph.add((associated_position, LIST.hasNext, LIST.EmptyList))
                 previous_position = associated_position
 
             self._graph.add((element_uri, RSM_POSITIONING.associatedPositioningSystem, head_position))
+            
+            # create associated geometry from the associated positions
+            # currently, we assume that all points refer to the same referencing system
+            # TODO: assemble positions into linestrings according to *multiple* referenced CRS
+            associated_positions = []
+            # starting with head_position, fetch all position property values and append them to associated_positions
+            current_position = head_position
+            while current_position and current_position != LIST.EmptyList:
+                pos_literal = self._graph.value(current_position, RSM_POSITIONING.position)
+                if pos_literal:
+                    associated_positions.append(pos_literal)
+                current_position = self._graph.value(current_position, LIST.hasNext)
+            linestring = self.assemble_wkt_points_to_wkt_linestring(*associated_positions)
+            geometry_uri = URIRef(element_uri+'_geometry')
+            self._graph.add((geometry_uri, RDF.type, RSM_GEOSPARQL_ADAPTER.Geometry))
+            self._graph.add((element_uri, RSM_GEOSPARQL_ADAPTER.hasGeometry, geometry_uri))
+            self._graph.add((geometry_uri, GEOSPARQL.asWKT, Literal(linestring, datatype=GEOSPARQL.wktLiteral)))
+
 
             # Collect valid elements for the output message
             valid_elements.append(element_uri)
@@ -153,8 +200,8 @@ class Railml32ToRsm:
             navigability = relation.attrib["navigability"]
             positionOnA = str(relation.attrib["positionOnA"])
             positionOnB = str(relation.attrib["positionOnB"])
-            element_A_ref = relation.xpath("*[local-name()='elementA']")[0].attrib["ref"]
-            element_B_ref = relation.xpath("*[local-name()='elementB']")[0].attrib["ref"]
+            element_A_ref = OUTPUT_NAMESPACE + relation.xpath("*[local-name()='elementA']")[0].attrib["ref"]
+            element_B_ref = OUTPUT_NAMESPACE + relation.xpath("*[local-name()='elementB']")[0].attrib["ref"]
             self._graph.add((self.port_uri_ref(element_A_ref, positionOnA), RSM_TOPOLOGY.connectedWith,
                              self.port_uri_ref(element_B_ref, positionOnB)))
             if navigability == "Both":
@@ -168,6 +215,30 @@ class Railml32ToRsm:
                 self._graph.add((self.port_uri_ref(element_B_ref, positionOnB), RSM_TOPOLOGY.nonNavigableTo,
                                  self.port_uri_ref(element_A_ref, self.opposite_port(positionOnA))))
 
+    def _process_visualizations(self):
+        """
+        'Visualizations' is the railML3.2 term (and element, in XML) for geometry representation on a canvas.
+        Transposed to sRSM, this means using a rsm:Geometry (subclass of geosparql:Geometry) and
+        put a reference to the engineering coordinate system in the WKT string.
+        """
+        visualizations = self._root.findall(".//default:visualizations", namespaces=self.input_namespaces)[0]
+        infrastructureVisualizations = visualizations.xpath("*[local-name()='infrastructureVisualizations']")[0]
+        infrastructureVisualization = infrastructureVisualizations.xpath(
+            "*[local-name()='infrastructureVisualization']")
+        if (length := len(infrastructureVisualization)) > 1:
+            print(f"WARNING: {length} infrastructure visualizations found. Only the first one will be processed.")
+        infrastructureVisualization = infrastructureVisualization[0]
+        # id = infrastructureVisualization.attrib["id"]
+        self._spotElementProjectionsPositioningSystemRef = infrastructureVisualization.attrib[
+            "positioningSystemRef"]  # in the simple example, the canvas
+        spotElementProjections = infrastructureVisualization.xpath("*[local-name()='spotElementProjection']")  # a list
+        for spotElementProjection in spotElementProjections:
+            # we do not exploit the "id" for the time being
+            refersTo = spotElementProjection.attrib["refersToElement"]
+            # read the coords in element "coordinate"
+            coordinate = spotElementProjection.xpath("*[local-name()='coordinate']")
+            if len(coordinate) > 0:
+                self._spotElementProjections[refersTo] = coordinate[0].attrib["x"], coordinate[0].attrib["y"]
 
     def _save_graph_to_file(self):
         """
@@ -219,8 +290,8 @@ class Railml32ToRsm:
             exit()
 
     @staticmethod
-    def port_uri_ref(linear_element_id: str, port_index: str|int) -> URIRef:
-        return URIRef(f"http://example.org/resource/{linear_element_id}_port_{str(port_index)}")
+    def port_uri_ref(linear_element_id: str, port_index: str | int) -> URIRef:
+        return URIRef(f"{linear_element_id}_port_{str(port_index)}")
 
     @staticmethod
     def opposite_port(x: str) -> str:
@@ -230,6 +301,37 @@ class Railml32ToRsm:
             return '0'
         else:
             raise ValueError(f"opposite_port(): Port index {x} is not valid.")
+
+    @staticmethod
+    def assemble_wkt_points_to_wkt_linestring(*points: str) -> str:
+        """takes as argument a sequence of points in the shape 
+        "<reference_system_uri> POINT(<x> <y>)"
+        returns "<reference_system_uri> LINESTRING(<x1> <y1>, <x2> <y2>, ...)"
+        issues an error if reference systems are not identical.
+        """
+        if not points:
+            raise ValueError("No points provided to assemble WKT LINESTRING.")
+
+        first_ref_sys = None
+        point_coords = []
+
+        for point in points:
+            if not point.startswith("<") or ">" not in point or "POINT(" not in point:
+                raise ValueError(f"Invalid point format: {point}")
+
+            ref_sys, coords = point.split(" POINT(")
+            ref_sys = ref_sys.strip("<>")
+
+            if first_ref_sys is None:
+                first_ref_sys = ref_sys
+
+            if ref_sys != first_ref_sys:
+                raise ValueError("Reference systems are not identical.")
+
+            point_coords.append(coords.rstrip(")"))
+
+        linestring = f"<{first_ref_sys}> LINESTRING({', '.join(point_coords)})"
+        return linestring
 
 
 if __name__ == "__main__":

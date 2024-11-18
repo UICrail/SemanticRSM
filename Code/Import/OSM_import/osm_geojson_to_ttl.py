@@ -198,7 +198,7 @@ def geojson_to_ttl(geojson_file_path: str, short_name: str = "", base_path: str 
 
 
 if __name__ == '__main__':
-    def test_osm_to_geojson_transformation():
+    def test_osm_to_ttl_transformation():
         osm_to_ttl(osm_file_path='./TestData/Sankt_Pölten.geojson', short_name='Sankt Pölten area',
                    base_path='./TestOutput', linear_element_prefix='linear_element', geometry_prefix='geom',
                    with_geometry=True)
@@ -209,5 +209,5 @@ if __name__ == '__main__':
                                base_path='./TestOutput')
 
     # test_preprocess()
-    # test_osm_to_geojson_transformation()  # success on 202411171428
+    test_osm_to_ttl_transformation()  # success on 202411171428
     pass

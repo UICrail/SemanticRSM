@@ -31,7 +31,7 @@ def transform_geojson_to_rsm(geojson_path, short_name, output_folder=OUTPUT_FOLD
     print(f"Reading the OSM file: {geojson_path}")
 
     # Read the OSM geojson file and produce the raw ttl file
-    from Import.OSM_import.osm_geojson_to_ttl import osm_to_ttl, geojson_to_ttl
+    from Import.OSM_import.osm_geojson_to_ttl import geojson_to_ttl
     geojson_to_ttl(geojson_path, short_name=short_name, base_path=output_folder)
     print(f'TTL file produced from the OSM geojson file, output at {output_folder}')
 
