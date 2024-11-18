@@ -94,7 +94,7 @@ class Railml32ToRsm:
             self._graph.add((element_uri, RDF.type, RSM_TOPOLOGY.LinearElement))
             self._graph.add((element_uri, RSM_GEOSPARQL_ADAPTER.hasNominaMetriclLength, length_value))
             # Add ports 0 and 1
-            for index in range(1):
+            for index in range(2):
                 port_uri = self.port_uri_ref(element_uri, index)
                 self._graph.add((port_uri, RDF.type, RSM_TOPOLOGY.Port))
                 self._graph.add((element_uri, RSM_TOPOLOGY.hasPort, port_uri))
@@ -155,6 +155,8 @@ class Railml32ToRsm:
             positionOnB = str(relation.attrib["positionOnB"])
             element_A_ref = relation.xpath("*[local-name()='elementA']")[0].attrib["ref"]
             element_B_ref = relation.xpath("*[local-name()='elementB']")[0].attrib["ref"]
+            self._graph.add((self.port_uri_ref(element_A_ref, positionOnA), RSM_TOPOLOGY.connectedWith,
+                             self.port_uri_ref(element_B_ref, positionOnB)))
             if navigability == "Both":
                 self._graph.add((self.port_uri_ref(element_A_ref, positionOnA), RSM_TOPOLOGY.navigableTo,
                                  self.port_uri_ref(element_B_ref, self.opposite_port(positionOnB))))

@@ -1,0 +1,119 @@
+@prefix : <http://cdm.ovh/rsm/adapters/geosparql_adapter#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <https://www.w3.org/2004/02/skos/core#> .
+@base <http://cdm.ovh/rsm/adapters/geosparql_adapter> .
+
+<http://cdm.ovh/rsm/adapters/geosparql_adapter> rdf:type owl:Ontology ;
+                                                 rdfs:comment "Adapter vocabulary for connecting various parts of RSM with GeoSPARQL 1.1."@en ;
+                                                 rdfs:label "GeoSPARQL adapter for CDM/RSM"@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/source
+<http://purl.org/dc/elements/1.1/source> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#altLabel
+<http://www.w3.org/2004/02/skos/core#altLabel> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#definition
+<http://www.w3.org/2004/02/skos/core#definition> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#prefLabel
+<http://www.w3.org/2004/02/skos/core#prefLabel> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://cdm.ovh/rsm/adapters/geosparql_adapter#hasGeometry
+:hasGeometry rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf <http://www.opengis.net/ont/geosparql#hasGeometry> ;
+             rdfs:comment "A spatial representation for a given Feature. As in GeoSPARQL, a feature can be associated with more than one geometry (valid at different times, or provided by different surveys...)."@en .
+
+
+###  http://cdm.ovh/rsm/adapters/geosparql_adapter#hasNominalGeometry
+:hasNominalGeometry rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :hasGeometry ,
+                                       <http://www.opengis.net/ont/geosparql#hasDefaultGeometry> ;
+                    rdfs:comment "The default Geometry to be used in spatial calculations. It is usually the most detailed Geometry. Takes into account SOSA/SSN viewpoint, i.e. there can be more than one default geometry (e.g. valid at different times)."@en .
+
+
+###  http://www.opengis.net/ont/geosparql#hasDefaultGeometry
+<http://www.opengis.net/ont/geosparql#hasDefaultGeometry> rdf:type owl:ObjectProperty ;
+                                                          rdfs:subPropertyOf <http://www.opengis.net/ont/geosparql#hasGeometry> ;
+                                                          rdfs:comment "The default Geometry to be used in spatial calculations. It is usually the most detailed Geometry."@en .
+
+
+###  http://www.opengis.net/ont/geosparql#hasGeometry
+<http://www.opengis.net/ont/geosparql#hasGeometry> rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://cdm.ovh/rsm/adapters/geosparql_adapter#hasNominalMetricLength
+:hasNominalMetricLength rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf <http://www.opengis.net/ont/geosparql#hasMetricLength> ;
+                        rdfs:range [ rdf:type rdfs:Datatype ;
+                                     owl:onDatatype xsd:double ;
+                                     owl:withRestrictions ( [ xsd:minInclusive "0.0"^^xsd:double
+                                                            ]
+                                                          )
+                                   ] ;
+                        rdfs:comment """Length (in meter) of a Linear Element. This length is assumed to be derived from the chosen Nominal Geometry.
+
+The Nominal Metric Length is supposed to be used for conversions between linear referencing methods \"absolute\" (distance along, e.g. used in CCS/TMS data model) and \"interpolation\" (intrinsic coordinates, with values 0 to 1, used in RSM and others).
+
+Compared to geo:hasMetricLength, from which it is derived, a restriction was applied to the range (non-negative values)."""@en .
+
+
+###  http://www.opengis.net/ont/geosparql#hasMetricLength
+<http://www.opengis.net/ont/geosparql#hasMetricLength> rdf:type owl:DatatypeProperty ;
+                                                       rdfs:range [ rdf:type rdfs:Datatype ;
+                                                                    owl:onDatatype xsd:double ;
+                                                                    owl:withRestrictions ( [ xsd:minInclusive "0.0"^^xsd:double
+                                                                                           ]
+                                                                                         )
+                                                                  ] .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://cdm.ovh/rsm/adapters/geosparql_adapter#Feature
+:Feature rdf:type owl:Class ;
+         rdfs:subClassOf <http://www.opengis.net/ont/geosparql#Feature> ;
+         rdfs:comment "A discrete spatial phenomenon in the CDM universe of discourse."@en .
+
+
+###  http://cdm.ovh/rsm/adapters/geosparql_adapter#Geometry
+:Geometry rdf:type owl:Class ;
+          rdfs:subClassOf <http://www.opengis.net/ont/geosparql#Geometry> ;
+          <http://purl.org/dc/elements/1.1/source> "OGC 18-010r11"@en ;
+          rdfs:comment "The reference system can be geographic, geodetic, cartesian (e.g. engineering coordinate system), and its definition may be part of the WKT or GML string. See OGC documentation."@en ;
+          rdfs:label "Geometry"@en ;
+          <http://www.w3.org/2004/02/skos/core#definition> "A coherent set of direct positions in space. The positions are held within a Spatial Reference System (SRS)."@en ;
+          <http://www.w3.org/2004/02/skos/core#prefLabel> "Geometry"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#Feature
+<http://www.opengis.net/ont/geosparql#Feature> rdf:type owl:Class .
+
+
+###  http://www.opengis.net/ont/geosparql#Geometry
+<http://www.opengis.net/ont/geosparql#Geometry> rdf:type owl:Class .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
