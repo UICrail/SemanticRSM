@@ -70,7 +70,7 @@ class Railml32ToRsm:
 
     def _process_net_elements(self):
         """Extracts all net elements in source file."""
-        self._process_visualizations()
+        self._process_visualizations()  # to be executed first, as it provides geometry for net elements
         self._process_linear_elements()
         self._process_nonlinear_elements()
         self._process_net_relations()
@@ -156,7 +156,7 @@ class Railml32ToRsm:
                 previous_position = associated_position
 
             self._graph.add((element_uri, RSM_POSITIONING.associatedPositioningSystem, head_position))
-            
+
             # create associated geometry from the associated positions
             # currently, we assume that all points refer to the same referencing system
             # TODO: assemble positions into linestrings according to *multiple* referenced CRS
@@ -169,11 +169,10 @@ class Railml32ToRsm:
                     associated_positions.append(pos_literal)
                 current_position = self._graph.value(current_position, LIST.hasNext)
             linestring = self.assemble_wkt_points_to_wkt_linestring(*associated_positions)
-            geometry_uri = URIRef(element_uri+'_geometry')
+            geometry_uri = URIRef(element_uri + '_geometry')
             self._graph.add((geometry_uri, RDF.type, RSM_GEOSPARQL_ADAPTER.Geometry))
             self._graph.add((element_uri, RSM_GEOSPARQL_ADAPTER.hasGeometry, geometry_uri))
             self._graph.add((geometry_uri, GEOSPARQL.asWKT, Literal(linestring, datatype=GEOSPARQL.wktLiteral)))
-
 
             # Collect valid elements for the output message
             valid_elements.append(element_uri)
@@ -338,6 +337,7 @@ if __name__ == "__main__":
     RAILML32_TEST_DATA_FOLDER = os.path.join(os.path.curdir, 'TestData')
     railml32_to_rsm = Railml32ToRsm()
     railml32_to_rsm.process_railML32(
-        os.path.join(RAILML32_TEST_DATA_FOLDER, "Advanced Example railML.org.xml"),
-        RAILML32_DEFAULT_OUTPUT_FOLDER
+        os.path.join(RAILML32_TEST_DATA_FOLDER, "Simple Example+RTC.xml"),
+        RAILML32_DEFAULT_OUTPUT_FOLDER,
+        "Simple Example+RTC"
     )
