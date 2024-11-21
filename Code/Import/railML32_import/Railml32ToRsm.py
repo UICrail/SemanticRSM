@@ -1,7 +1,7 @@
 import os
 
 from lxml import etree
-from rdflib import RDF, BNode, Literal, URIRef, XSD, Graph
+from rdflib import RDF, BNode, Literal, URIRef, XSD, Graph, RDFS
 
 from Namespaces import RSM_TOPOLOGY, RSM_GEOSPARQL_ADAPTER, RSM_POSITIONING, LIST, GEOSPARQL
 
@@ -223,7 +223,16 @@ class Railml32ToRsm:
                 elements_parts.append(URIRef(OUTPUT_NAMESPACE + element_part_id))
             composite_element_dict[element_id]['elementsParts'] = elements_parts
 
-        # now generate the composite elements in the RDF graph. Each composite element is of type RSM
+        # now generate the composite elements in the RDF graph. Each composite element is of type RSM_TOPOLOGY.NonlinearElement.
+        # now generate the composite elements in the RDF graph. Each composite element is of type RSM_TOPOLOGY.NonlinearElement.
+        for element_id, properties in composite_element_dict.items():
+            composite_element_uri = URIRef(OUTPUT_NAMESPACE + element_id)
+            self._graph.add((composite_element_uri, RDF.type, RSM_TOPOLOGY.NonlinearElement))
+            # Add the name property
+            if 'name' in properties:
+                self._graph.add((composite_element_uri, RDFS.label, properties['name']))
+            for part_uri in properties['elementsParts']:
+                self._graph.add((composite_element_uri, RSM_TOPOLOGY.hasComponent, part_uri))
 
         pass
 
@@ -378,5 +387,5 @@ if __name__ == "__main__":
     railml32_to_rsm.process_railML32(
         os.path.join(RAILML32_TEST_DATA_FOLDER, Test_file),
         RAILML32_DEFAULT_OUTPUT_FOLDER,
-        "Simple Example+RTC"
+        "Advanced Example"
     )

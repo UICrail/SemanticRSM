@@ -40,4 +40,4 @@ In the case of a composite net element, said element has its own IC "instances" 
 
 Unclear in railML: element ne_ms_141 has no length attribute, therefore probably not deemed linear (the XSD does not make that difference explicitly, it only knows about net elements, derived from the RTM class PositioningNetElement, superclass of linear and non-linear element). It has three ICs, with value 0, 0, 1 which seems actually linked with the linear referencing system (kilometric points), but it is not clear what the values tell and how they should be used.
 
-In sRSM, the ports are numbered lexically (by their identifiers), here: 0, 1, 2... Intrinsic coordinates are only used in association with the metrics of linear elements.[](https://)
+By contrast, in sRSM, the ports are numbered lexically (by their identifiers), here: 0, 1, 2... The numbering is only there to help human readers. Intrinsic coordinates are only used in association with the metrics of linear elements.
