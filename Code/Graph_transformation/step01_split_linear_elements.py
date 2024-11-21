@@ -152,7 +152,7 @@ def generate_turtle_from_linestrings(file_path: str, linestrings_to_add: dict[UR
                                      linestrings_to_remove: set[URIRef], output_file_path: str, label_dict: dict = None):
     """
     Modifies the linear elements according to the split linestrings and stores result in ttl file.
-    :param label_dict: dictionary of labels key = linear element URI ref, value = Literal
+    :param label_dict: dictionary of labels; key = linear element URI ref, value = Literal
     :param linestrings_to_remove:
     :param linestrings_to_add:
     :param file_path: turtle file with linear elements and their geometries

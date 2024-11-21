@@ -71,7 +71,10 @@ def osm_to_ttl(osm_file_path: str, short_name: str = "", base_path: str = OUTPUT
                linear_element_prefix: str = 'linear_element',
                geometry_prefix: str = 'geom', with_geometry: bool = True):
     """
-    Converts an OpenStreetMap (OSM) file to Turtle (TTL) format for RDF representation.
+    Converts an OpenStreetMap (OSM) file to RDF Turtle (*.ttl) format for RDF representation.
+    The RDF file is RAW, i.e. uses only a few concepts from RSM topology and geometry. For instance, it contains
+    no connections or navigabilities.
+
     First, checks whether the input file has a PREPROCESSED key in its GeoJSON metadata.
     If so, geojson_to_ttl is called with the appropriate parameters.
     If not, preprocess_osm_geojson is called and the output file is placed into the base_path folder, then

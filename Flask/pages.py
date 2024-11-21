@@ -5,7 +5,7 @@ import markdown2
 from flask import Blueprint, render_template_string, send_from_directory, request
 
 from Graph_transformation.full_transformation import transform_geojson_to_rsm
-from Import.drawIO_import.drawIO_XML_to_OSMgeojson import OSM_GEOJSON_EXTENSION
+from Import.drawIO_import.drawIO_XML_to_geojson import GEOJSON_EXTENSION
 
 # Constants
 LOCAL_FOLDER = os.path.dirname(__file__)
@@ -151,17 +151,17 @@ def about():
 
 
 @bp.route('/drawio_to_rdf', methods=['GET', 'POST'])
-def drawio_to_rdf():
+def drawio_to_rsm():
     def save_uploaded_file(file, file_path):
         print('Saving file to ', file_path)
         file.save(file_path)
         uploaded_files.append(file_path)
 
     def process_xml_file(file_path):
-        from Code.Import.drawIO_import import drawIO_XML_to_OSMgeojson as dxo
-        osm_generator = dxo.OSMgeojsonGenerator()
-        osm_generator.convert_drawio_to_osm(file_path, OUTPUT_FOLDER)
-        osm_file_path = file_path.split('.')[0] + OSM_GEOJSON_EXTENSION
+        from Code.Import.drawIO_import import drawIO_XML_to_geojson as dxo
+        osm_generator = dxo.GeojsonGenerator()
+        osm_generator.drawio_to_geojson(file_path, OUTPUT_FOLDER)
+        osm_file_path = file_path.split('.')[0] + GEOJSON_EXTENSION
         uploaded_files.append(osm_file_path)
         result = transform_geojson_to_rsm(osm_file_path, 'output', OUTPUT_FOLDER)
         if result:
@@ -342,7 +342,7 @@ def estimated_conversion_time(file_size_MB: float) -> int:
 
 
 @bp.route('/convert_osm_to_sRSM', methods=['POST'])
-def osm_to_ttl():
+def osm_to_rsm():
     import time
     file_path = request.form['file_path']
     file_name = os.path.basename(file_path)

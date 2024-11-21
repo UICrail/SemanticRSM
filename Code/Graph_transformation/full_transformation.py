@@ -2,6 +2,7 @@
 import os
 
 from Code.Export.export_ttl_to_kml import ttl_to_kml
+
 from Code.Graph_transformation.step01_split_linear_elements import split_linestrings_in_file
 from Code.Graph_transformation.step02_join_linear_elements import join_linear_elements
 from Graph_transformation.step03_add_ports import add_ports_to_linear_elements
@@ -26,16 +27,18 @@ def transform_geojson_to_rsm(geojson_path, short_name, output_folder=OUTPUT_FOLD
     :param all_double_slip: if True, all crossings will default to double slip
     :return: resulting ttl file as string
     """
+    from Code.Import.OSM_import.osm_geojson_to_ttl import osm_to_ttl
+
     print()
     print("Preparing the transformation of an OSM file (GeoJSON format) into a sRSM file (TTL format)")
     print(f"Reading the OSM file: {geojson_path}")
 
     # Read the OSM geojson file and produce the raw ttl file
-    from Import.OSM_import.osm_geojson_to_ttl import geojson_to_ttl
-    geojson_to_ttl(geojson_path, short_name=short_name, base_path=output_folder)
+    osm_to_ttl(geojson_path, short_name=short_name, base_path=output_folder)
+
     print(f'TTL file produced from the OSM geojson file, output at {output_folder}')
 
-    # Process linear elements
+    # Process steps 01-04b, affecting Linear elements, connections, ports, and navigabilities
     result = run_process_steps(short_name, output_folder, all_double_slip)
     return result
 

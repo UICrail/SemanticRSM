@@ -16,12 +16,12 @@ from Import.drawIO_import.geojson_helpers import create_geojson_linestring, crea
 # From OpenStreetMap
 OSM_RAILWAY_TAG = {'railway': 'rail'}  # used in OpenStreetMap for annotating, well, railway-related stuff
 
-OSM_GEOJSON_EXTENSION = '.osm.geojson'  # output file extension
+GEOJSON_EXTENSION = '.geojson'  # output file extension
 TEST_DATA_FOLDER = os.path.join(os.path.curdir, 'TestData')
 TEST_OUTPUTS_FOLDER = os.path.join(os.path.curdir, 'TestOutputs')
 
 
-class OSMgeojsonGenerator:
+class GeojsonGenerator:
 
     def __init__(self):
         self._input_file_extension = DRAWIO_XML_EXTENSION
@@ -30,15 +30,15 @@ class OSMgeojsonGenerator:
         self.way_index = {}  # key=way (edge) id, value={'source'=<node ID>, 'target'=<node ID>, 'waypoint'= (<node ID, ...>)}
         self.label_index = {}  # key=way (edge) id, value=label string (value of connectable in the XML file)
         self.target = ''
-        self.osm_doc = None
+        self.geojson_doc = None
         self._define_target()
 
     def _define_target(self):
-        self.target = "OSM GeoJSON format, with geometries"
-        self.out_file_extension = OSM_GEOJSON_EXTENSION
-        self.osm_doc = []
+        self.target = "GeoJSON format, with geometries"
+        self.out_file_extension = GEOJSON_EXTENSION
+        self.geojson_doc = []
 
-    def convert_drawio_to_osm(self, input_file_path: str, output_folder: str = TEST_OUTPUTS_FOLDER):
+    def drawio_to_geojson(self, input_file_path: str, output_folder: str = TEST_OUTPUTS_FOLDER):
         """
         Main routine, to be called after instantiation.
         :param input_file_path: full path with extension (expected: .drawio.xml)
@@ -65,7 +65,7 @@ class OSMgeojsonGenerator:
         output_file_path = os.path.join(self._output_folder, output_file_name)
 
         self.save_to_file(output_file_path)
-        print(f"OSM file saved to {output_file_path}")
+        print(f"GeoJSON file saved to {output_file_path}")
 
     def parse_dict(self, data: dict):
         elements = data['mxfile']['diagram']['mxGraphModel']['root']['mxCell']
@@ -83,8 +83,8 @@ class OSMgeojsonGenerator:
                 self.process_vertex(element)
 
     def process_edge(self, item, annotation: str = ''):
-        source_coords, target_coords = self.extract_coordinates_pair(item)
-        waypoints = self.extract_waypoints(item)
+        source_coords, target_coords = self.get_coordinates_pair(item)
+        waypoints = self.get_waypoints(item)
         source_node_id = self.get_or_create_node_id(source_coords)
         target_node_id = self.get_or_create_node_id(target_coords)
         waypoint_node_ids = ()
@@ -116,7 +116,7 @@ class OSMgeojsonGenerator:
         if style := element.get('@style'):
             if 'ellipse' in style and 'strokeColor=#ff0000' in style:
                 this_id = element.get('@id')
-                coords = self.extract_coordinates(element)
+                coords = self.get_coordinates(element)
                 label = element.get('@value')
                 node_id = len(
                     self.node_index) + 1  # in this case, we always create a node even if it coincides with another one (e.g. a port)
@@ -136,10 +136,11 @@ class OSMgeojsonGenerator:
 
             linestring = create_geojson_linestring(source_coords, target_coords, *waypoints)
             cleaned_label = self.cleanup_label(self.label_index.get(way_id, ''))
-            tags = {'label': cleaned_label, 'rsm_class': 'LinearElement', **OSM_RAILWAY_TAG}  # empty string as default label
+            tags = {'label': cleaned_label, 'rsm_class': 'LinearElement',
+                    **OSM_RAILWAY_TAG}  # empty string as default label
             if annotations := self.way_index[way_id].get('annotation'):
                 tags['annotations'] = annotations
-            self.osm_doc.append(geojson.Feature(type="Feature", geometry=linestring, properties=tags))
+            self.geojson_doc.append(geojson.Feature(type="Feature", geometry=linestring, properties=tags))
 
     def add_nodes_from_index(self):
         """Adds nodes collected in node_index to the GeoJSON file
@@ -149,14 +150,15 @@ class OSMgeojsonGenerator:
             if isinstance(node_value, dict):
                 if node_value.get('rsm_type') == 'SpotLocation':
                     tags = {'label': node_value.get('label'), 'rsm_class': 'SpotLocation', **OSM_RAILWAY_TAG}
-                    self.osm_doc.append(geojson.Feature(type="Feature", geometry=create_geojson_point(*node_value['coords']), properties=tags))
+                    self.geojson_doc.append(
+                        geojson.Feature(type="Feature", geometry=create_geojson_point(*node_value['coords']),
+                                        properties=tags))
 
     def generate_nodes_and_ways_from_index(self):
         self.add_nodes_from_index()
         self.add_ways_from_index()
-        feature_collection = geojson.FeatureCollection(self.osm_doc)
-        osm_geojson = geojson.dumps(feature_collection, indent=2)
-        return osm_geojson
+        feature_collection = geojson.FeatureCollection(self.geojson_doc)
+        return geojson.dumps(feature_collection, indent=2)
 
     def get_or_create_node_id(self, coords) -> int:
         if coords not in self.node_index.values():
@@ -171,17 +173,17 @@ class OSMgeojsonGenerator:
             if val == value:
                 return key
 
-    def save_to_file(self, out_path: str, new_extension: str = OSM_GEOJSON_EXTENSION):
-        osm_geojson = self.generate_nodes_and_ways_from_index()
+    def save_to_file(self, out_path: str, new_extension: str = GEOJSON_EXTENSION):
+        geojson_string = self.generate_nodes_and_ways_from_index()
         out_path = out_path.replace(DRAWIO_XML_EXTENSION, new_extension)
         print(
             f"\nTransforming a draw.io schematic track layout into {self.target}.\nOutput file: {out_path}"
         )
         with open(out_path, 'w') as f:
-            f.write(osm_geojson)
+            f.write(geojson_string)
 
     @staticmethod
-    def extract_coordinates(element):
+    def get_coordinates(element):
         """Applies to a vertex, spot location, whatever translates to a single point"""
         point = None
         if geom := element.get('mxGeometry'):
@@ -189,7 +191,7 @@ class OSMgeojsonGenerator:
         return point
 
     @staticmethod
-    def extract_coordinates_pair(item):
+    def get_coordinates_pair(item):
         source_point, target_point = None, None
         for dic in item['mxGeometry']['mxPoint']:
             if dic.get('@as') == 'sourcePoint':
@@ -200,7 +202,7 @@ class OSMgeojsonGenerator:
             return source_point, target_point
 
     @staticmethod
-    def extract_waypoints(item):
+    def get_waypoints(item):
         waypoints = None
         if array := item['mxGeometry'].get('Array'):
             if array.get('@as') == 'points' and len(array.get('mxPoint')) > 0:
@@ -233,17 +235,18 @@ if __name__ == '__main__':
     def test_full_transformation():
         """Transforming a station track plan in drawio xml into a sRSM topology"""
         drawio_input_file = os.path.join(TEST_DATA_FOLDER, 'Alnabru.drawio.xml')
-        generator1 = OSMgeojsonGenerator()
-        generator1.convert_drawio_to_osm(drawio_input_file)
+        generator1 = GeojsonGenerator()
+        generator1.drawio_to_geojson(drawio_input_file)
         osm_input_file = os.path.join(TEST_OUTPUTS_FOLDER, 'Alnabru.osm.geojson')
         transform_geojson_to_rsm(osm_input_file, '241112 Alnabru')
 
 
     def test_waypoints():
-        """Testing the usage of waypoints, in drawIO, on connectors (so they are shaped as polyline)"""
+        """Testing the usage of waypoints, in drawIO, on 'connectors' (so they are shaped as polyline / linestring).
+        Passed successfully"""
         drawio_input_file = os.path.join(TEST_DATA_FOLDER, '241104 siding.drawio.xml')
-        generator1 = OSMgeojsonGenerator()
-        generator1.convert_drawio_to_osm(drawio_input_file)
+        generator1 = GeojsonGenerator()
+        generator1.drawio_to_geojson(drawio_input_file)
 
 
     test_full_transformation()
