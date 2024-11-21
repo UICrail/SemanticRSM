@@ -71,6 +71,7 @@ def get_opposite_port(graph: Graph, port: Node) -> Node | None:
     """
     Looks for the opposite port 0n a linear element.
     If the given port is not a linear element, returns None (and issues a warning).
+
     :param graph the RDF graph
     :param port a port node in the graph that is supposed to belong to a single linear element
     :returns the opposite port, or None if the element is not a Linear Element
@@ -153,9 +154,9 @@ def process_diamond_crossing(graph: Graph, port: Node, connected_ports_list: lis
     for other_port in connected_ports_list:
         opposite = get_opposite_port(graph, other_port)
         if opposite:
-            azimuth1 = float(graph.value(port, RSM_TOPOLOGY.azimuth))
-            azimuth2 = float(graph.value(other_port, RSM_TOPOLOGY.azimuth))
-            deviation_angles.append(abs(deviation_angle(azimuth1, azimuth2)))
+            port_azimuth = float(graph.value(port, RSM_TOPOLOGY.azimuth))
+            other_port_azimuth = float(graph.value(other_port, RSM_TOPOLOGY.azimuth))
+            deviation_angles.append(abs(deviation_angle(port_azimuth, other_port_azimuth)))
         else:
             deviation_angles.append(NON_NAVIGABLE_AZIMUTH)
             print(f'**** ERROR: no opposite port to {other_port} on same linear element')

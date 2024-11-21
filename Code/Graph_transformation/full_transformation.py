@@ -6,7 +6,7 @@ from Code.Export.export_ttl_to_kml import ttl_to_kml
 from Code.Graph_transformation.step01_split_linear_elements import split_linestrings_in_file
 from Code.Graph_transformation.step02_join_linear_elements import join_linear_elements
 from Graph_transformation.step03_add_ports import add_ports_to_linear_elements
-from Graph_transformation.step04_add_port_properties import set_port_connections, set_navigabilities
+from Graph_transformation.step04a_add_port_properties import set_port_connections, set_navigabilities
 from Graph_transformation.step04b_add_slip_functionality import add_slip_functionality
 
 OUTPUT_FOLDER = os.path.join(os.path.dirname(__file__), 'TestOutput')

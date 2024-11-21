@@ -11,7 +11,7 @@ from Import.drawIO_import.drawio_parameters import SLIP_SWITCH_KEY
 from Namespaces import GEOSPARQL, RSM_TOPOLOGY, RSM_GEOSPARQL_ADAPTER
 from Graph_transformation.graph_file_handing import load_graph, save_graph
 from Graph_transformation.geometry_stuff import find_nearest_linear_elements, wkt_point_to_lon_lat, find_nearest_ports
-from Graph_transformation.step04_add_port_properties import get_opposite_port
+from Graph_transformation.step04a_add_port_properties import get_opposite_port
 
 
 def add_slip_functionality(input_ttl, output_ttl) -> str:
