@@ -104,7 +104,8 @@ def print_crossing_information(double_slip_crossings: bool):
     if double_slip_crossings:
         print("All crossings are deemed to be double slip crossings.")
     else:
-        print("All crossings are deemed to be diamond crossings, by default. Additional navigabilities may result, depending on the source.")
+        print(
+            "All crossings are deemed to be diamond crossings, by default. Additional navigabilities may be added, if such information is provided by the source file.")
 
 
 def get_connected_ports(graph: Graph, port: Node):

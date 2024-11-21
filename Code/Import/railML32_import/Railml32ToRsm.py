@@ -45,7 +45,7 @@ class Railml32ToRsm:
         self._graph.bind('', OUTPUT_NAMESPACE)
 
         # Processing
-        print(self._process_net_elements())
+        self._process_net_elements()
         self._process_net_relations()
 
         # Saving
@@ -74,7 +74,8 @@ class Railml32ToRsm:
         self._process_linear_elements()
         self._process_nonlinear_elements()
         self._process_net_relations()
-        return f"INFO: output {len(self._graph)} triples."
+        self._process_composite_elements()
+        print(f"INFO: output {len(self._graph)} triples. Writing to {self.output_path}...")
 
     def _process_linear_elements(self):
 
@@ -187,6 +188,43 @@ class Railml32ToRsm:
 
         :return:
         """
+        pass
+
+    def _process_composite_elements(self):
+        """
+        limited to the case of unordered element collections (which is the most useful one)
+        :return:
+        """
+        all_net_elements = self._root.findall(".//default:netElement", namespaces=self.input_namespaces)
+        composite_elements = [
+            element for element in all_net_elements
+            if not element.xpath("@*[local-name()='length']") and len(
+                element.xpath("*[local-name()='elementCollectionUnordered']")) == 1
+        ]
+
+        composite_element_dict = {}
+        for composite_element in composite_elements:
+
+            # Get composite element name
+            element_id = composite_element.attrib.get('id')
+            name_element = composite_element.find(".//{*}name")
+            if name_element is not None:
+                name = name_element.attrib.get("name")
+                language = name_element.attrib.get("language", "en")
+                # store the RDF Literal representation in a dictionary
+                composite_element_dict[element_id] = {'name':Literal(name, lang=language)}
+
+            # Get list of components and put it in same dictionary as another entry.
+            # the entry has key 'elementsParts' and value = list of element parts
+            element_collection_unordered = composite_element.find(".//{*}elementCollectionUnordered")
+            elements_parts = []
+            for element_part in element_collection_unordered.findall(".//{*}elementPart"):
+                element_part_id = element_part.attrib.get('ref')
+                elements_parts.append(URIRef(OUTPUT_NAMESPACE + element_part_id))
+            composite_element_dict[element_id]['elementsParts'] = elements_parts
+
+        # now generate the composite elements in the RDF graph. Each composite element is of type RSM
+
         pass
 
     def _process_net_relations(self):
@@ -334,10 +372,11 @@ class Railml32ToRsm:
 
 
 if __name__ == "__main__":
+    Test_file = 'Advanced Example railML.org.xml'
     RAILML32_TEST_DATA_FOLDER = os.path.join(os.path.curdir, 'TestData')
     railml32_to_rsm = Railml32ToRsm()
     railml32_to_rsm.process_railML32(
-        os.path.join(RAILML32_TEST_DATA_FOLDER, "Simple Example+RTC.xml"),
+        os.path.join(RAILML32_TEST_DATA_FOLDER, Test_file),
         RAILML32_DEFAULT_OUTPUT_FOLDER,
         "Simple Example+RTC"
     )
