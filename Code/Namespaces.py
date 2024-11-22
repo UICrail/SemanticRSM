@@ -10,7 +10,7 @@ LIST = Namespace("http://www.w3.org/ns/list#")
 
 # RSM namespaces
 
-RSM_TOPOLOGY = Namespace("http://cdm.ovh/rsm/topology/0.1/topology#")
+RSM_TOPOLOGY = Namespace("http://cdm.ovh/rsm/topology/1.0rc1/topology#")
 RSM_POSITIONING = Namespace("http://cdm.ovh/rsm/positioning/positioning#")
 RSM_GEOSPARQL_ADAPTER = Namespace("http://cdm.ovh/rsm/adapters/geosparql_adapter#")
 
