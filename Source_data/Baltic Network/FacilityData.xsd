@@ -1,0 +1,2234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.trafikverket.se/FacilityData/2016/08" version="1.83" elementFormDefault="qualified" targetNamespace="http://www.trafikverket.se/FacilityData/2016/08" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="FacilityData" nillable="true" type="tns:FacilityData" /> 
+  <xs:complexType name="FacilityData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="SchemaVersion" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Source" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ValidFrom" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ChangeLogging" type="tns:ChangeLog" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Project" type="tns:Projectdefinition" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MacroPath" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BaseRoot" type="tns:Root" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ChangeLog">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="LastVersionId" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FromVersionId" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LocationChanges" type="tns:LocationChange" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NodeChanges" type="tns:NodeChange" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LinkChanges" type="tns:LinkChange" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ObjectChanges" type="tns:ObjectChange" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InterlockingOrderIndicationChanges" type="tns:InterlockingOrderIndicationChange" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LocationChange">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ChangeLogItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="LocationId" type="tns:LocationId" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ChangeLogItem" abstract="true">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ChangeType" type="tns:ChangeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="VersionId" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Updated" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Deleted" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SortDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ChangeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Created" />
+      <xs:enumeration value="Updated" />
+      <xs:enumeration value="Deleted" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="InterlockingOrderIndicationChange">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ChangeLogItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="InterlockingOrderIndicationRowId" type="tns:InterlockingOrderIndicationRowId" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="InterlockingOrderIndicationRowId">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:InterlockingOrderIndicationId">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="RowId" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="InterlockingOrderIndicationId">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ObjectChange">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ChangeLogItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="ObjectId" type="tns:ObjectId" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ObjectId">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Objectnumber" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Objecttypenumber" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LinkChange">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ChangeLogItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="LinkId" type="tns:LinkId" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LinkId">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="NodeFrom" type="tns:NodeId" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NodeTo" type="tns:NodeId" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Linknumber" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NodeId">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="LocationNumber" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NodeNumber" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NodeChange">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ChangeLogItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="NodeId" type="tns:NodeId" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LocationId">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="LocationNumber" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Projectdefinition">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ProjectNumber" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Contact" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ChangedDate" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ActivationDate" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ProjectStatus" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Borderpoints" type="tns:ArrayOfNodeIdentification" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LocationPairs" type="tns:ArrayOfLocationPair" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ProjectStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="InProgress" />
+      <xs:enumeration value="Validated" />
+      <xs:enumeration value="InProduction" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfNodeIdentification">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NodeIdentification" nillable="true" type="tns:NodeIdentification" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NodeIdentification">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="NodeId" type="tns:NodeId" />
+      <xs:element minOccurs="0" maxOccurs="1" name="GlobalId" type="tns:GlobalId" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Designation" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Type" type="tns:NodeType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GlobalId">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="UniversalId" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="VersionId" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="NodeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SwitchOrCrossing" />
+      <xs:enumeration value="BufferStop" />
+      <xs:enumeration value="Turntable" />
+      <xs:enumeration value="Fictisous" />
+      <xs:enumeration value="CountryBorder" />
+      <xs:enumeration value="LocationBorder" />
+      <xs:enumeration value="InfrastructureManagementBorder" />
+      <xs:enumeration value="TrackEnd" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfLocationPair">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LocationPair" nillable="true" type="tns:LocationPair" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LocationPair">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="FromLocationNumber" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ToLocationNumber" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Root">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Infrastructure" type="tns:Infrastructure" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Facility" type="tns:Facility" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Divisions" type="tns:Divisions" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Infrastructure">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Links" type="tns:Links" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Nodes" type="tns:Nodes" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Locations" type="tns:Locations" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Links">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Link" type="tns:Link" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Link">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="tns:LinkIdentification" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Length" type="xs:decimal" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Coordinates" type="tns:Coordinates" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SchematicCoordinates" type="tns:SchematicCoordinate" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LinkIdentification">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="LinkId" type="tns:LinkId" />
+      <xs:element minOccurs="0" maxOccurs="1" name="GlobalId" type="tns:GlobalId" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FromNodeId" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ToNodeId" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Designation" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Coordinates">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Coordinate" type="tns:Coordinate" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Coordinate">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Northing" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Easting" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="HeightOverSea" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SchematicCoordinate">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="X" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Y" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Nodes">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Node" type="tns:Node" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Node">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="tns:NodeIdentification" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Coordinate" type="tns:Coordinate" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SchematicCoordinate" type="tns:SchematicCoordinate" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NodeConnections" type="tns:NodeConnections" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NodeConnections">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NodeConnection" type="tns:NodeConnection" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NodeConnection">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ConnectionNumber" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="StartOrEndNode" type="tns:StartOrEndNode" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LinkIdentification" type="tns:LinkIdentification" />
+      <xs:element minOccurs="0" maxOccurs="1" name="KilometerPosition" type="tns:KilometerPosition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="StartOrEndNode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="StartNode" />
+      <xs:enumeration value="EndNode" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="KilometerPosition">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="KilometerPost" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MetersFromPost" type="xs:decimal" />
+      <xs:element minOccurs="0" maxOccurs="1" name="KilometerRegion" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="State" type="tns:KilometerRegionState" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="KilometerRegionState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Calculated" />
+      <xs:enumeration value="Locked" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Locations">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Location" type="tns:Location" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Location">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Borderpoints" type="tns:ArrayOfNodeIdentification" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Status" type="tns:LocationStatus" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Type" type="tns:LocationTypes" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="LocationNodes" type="tns:NodeIdentification" />
+          <xs:element minOccurs="1" maxOccurs="1" name="PLCCode" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BaseObject">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="tns:Identification" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LinkPositions" type="tns:LinkPositions" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Coordinate" type="tns:Coordinate" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Identification">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ObjectId" type="tns:ObjectId" />
+      <xs:element minOccurs="0" maxOccurs="1" name="GlobalId" type="tns:GlobalId" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BusinessId" type="tns:BusinessId" />
+      <xs:element minOccurs="0" maxOccurs="1" name="VersionId" type="tns:VersionId" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ConstructionId" type="tns:ConstructionId" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BusinessId">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Designation" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LocationSignature" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ObjectType" type="tns:TypeOfObjects" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="TypeOfObjects">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Other" />
+      <xs:enumeration value="LevelCrossing" />
+      <xs:enumeration value="Switch" />
+      <xs:enumeration value="Derailer" />
+      <xs:enumeration value="Signal" />
+      <xs:enumeration value="LineTrack" />
+      <xs:enumeration value="Bufferstop" />
+      <xs:enumeration value="Board" />
+      <xs:enumeration value="MovableBridge" />
+      <xs:enumeration value="AxleCounter" />
+      <xs:enumeration value="PositioningBalise" />
+      <xs:enumeration value="TrackCircuitJoint" />
+      <xs:enumeration value="TrackCircuit" />
+      <xs:enumeration value="SystemM" />
+      <xs:enumeration value="SystemF" />
+      <xs:enumeration value="SystemS" />
+      <xs:enumeration value="SwitchBlade" />
+      <xs:enumeration value="Route" />
+      <xs:enumeration value="Frontprotecion" />
+      <xs:enumeration value="Interlocking" />
+      <xs:enumeration value="FictitiousInformationPoint" />
+      <xs:enumeration value="LocalReleaseAreas" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="VersionId">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="UserId" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Date" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ConstructionId">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="UserId" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ConstructionIdentification" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ConstructionStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ConstructionStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="New" />
+      <xs:enumeration value="Updated" />
+      <xs:enumeration value="Deleted" />
+      <xs:enumeration value="UnChanged" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="LinkPositions">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LinkPosition" type="tns:LinkPosition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LinkPosition">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ConnectionNumber" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LinkIdentification" type="tns:LinkIdentification" />
+      <xs:element minOccurs="1" maxOccurs="1" name="StartDistanceFromNode" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="EndDistanceFromNode" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Side" type="tns:LinkPositionSide" />
+      <xs:element minOccurs="0" maxOccurs="1" name="StartKilometerPosition" type="tns:KilometerPosition" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EndKilometerPosition" type="tns:KilometerPosition" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Sequence" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="LinkPositionSide">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Left" />
+      <xs:enumeration value="Right" />
+      <xs:enumeration value="Both" />
+      <xs:enumeration value="NotApplicable" />
+      <xs:enumeration value="Unknown" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="TechnologyBuilding">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="InformationObject">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SpeedProfile">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="ATrainSpeed" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="BTrainSpeed" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="CTrainSpeed" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="STrainSpeed" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Direction" type="tns:Direction" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="Direction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="In" />
+      <xs:enumeration value="Against" />
+      <xs:enumeration value="Any" />
+      <xs:enumeration value="Unknown" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ObstacleFreeLength">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Length" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="MeetingLength">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Length" type="xs:decimal" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FromSignal" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ToSignal" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Plannable" type="tns:YesNo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="YesNo">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="Yes" />
+      <xs:enumeration value="No" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="TimetableLocation">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Signature" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Status" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="BorderToBlockSection" type="tns:YesNo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CountryCode" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="UICCode" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DispatcherSendsProceed" type="tns:YesNo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="UnsupervisedTurnaround" type="tns:YesNo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DefaultManningType" type="tns:ManningType" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DefaultSurveillanceType" type="tns:SurveillanceType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ManningType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="ClosedWhenUnmanned" />
+      <xs:enumeration value="FreePassage" />
+      <xs:enumeration value="AlwaysOpen" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="SurveillanceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="ConstantRemotelySupervised" />
+      <xs:enumeration value="ConstantLocallySupervised" />
+      <xs:enumeration value="RemotelyOrLocallySupervised" />
+      <xs:enumeration value="LocallySupervisedOrFreePassage" />
+      <xs:enumeration value="LocallySupervisedOrUnsupervisedStartAndEndStation" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="VerticalGeometry">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Gradient" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="HorizontalGeometry">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Radius" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DerailingDetector">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Direction" type="tns:Direction" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DetectorLocationSignature" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AffectedSignals" type="tns:Identifications" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Identifications">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Identification" type="tns:Identification" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LandSlideDetector">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DisablesArs" type="tns:YesNo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CoupledObjects" type="tns:Identifications" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Detector">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PointHeatingArea">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Designation" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TypeOfControl" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ServicedObjectIdentifications" type="tns:Identifications" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CutOutSwitch">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Designation" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="RemotelyControlled" type="tns:YesNo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="InsulatedSection">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="NormalState" type="tns:InsulatedSectionNormalState" />
+          <xs:element minOccurs="1" maxOccurs="1" name="CanBeEnergized" type="tns:YesNo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="InsulatedSectionNormalState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Energized" />
+      <xs:enumeration value="Unpowered" />
+      <xs:enumeration value="Unknown" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="CatenarySection">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="System" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Designation" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Tunnel">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Length" type="xs:decimal" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Lighting" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="HasGates" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Evacuation" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RescueArea" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Bridge">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Length" type="xs:decimal" />
+          <xs:element minOccurs="1" maxOccurs="1" name="MovingBridge" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="CombinedTraffic" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Evacuation" type="tns:YesNo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ProtectivePoints" type="tns:ObjectsWithConditions" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ObjectsWithConditions">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ObjectWithCondition" type="tns:ObjectWithCondition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ObjectWithCondition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="tns:Identification" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsProtectionObject" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TypeOfCondition" type="tns:TypeOfCondition" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Condition" type="tns:ObjectCondition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="TypeOfCondition">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ConditionForRouteLocking" />
+      <xs:enumeration value="ConditionForClearSignal" />
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="NotApplicable" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ObjectCondition">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Left" />
+      <xs:enumeration value="Right" />
+      <xs:enumeration value="LeftLeft" />
+      <xs:enumeration value="RightRight" />
+      <xs:enumeration value="LeftRight" />
+      <xs:enumeration value="RightLeft" />
+      <xs:enumeration value="Stop" />
+      <xs:enumeration value="ClearSignal" />
+      <xs:enumeration value="On" />
+      <xs:enumeration value="Off" />
+      <xs:enumeration value="Free" />
+      <xs:enumeration value="Active" />
+      <xs:enumeration value="Indicated" />
+      <xs:enumeration value="Locked" />
+      <xs:enumeration value="FortyFiveRight" />
+      <xs:enumeration value="FortyFiveLeft" />
+      <xs:enumeration value="NotApplicable" />
+      <xs:enumeration value="Occupied" />
+      <xs:enumeration value="LockedLeft" />
+      <xs:enumeration value="LockedRight" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="SwitchOrCrossing">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="SwitchType" type="tns:SwitchType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TmsOid" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ShortDescription" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Angle" type="xs:decimal" />
+          <xs:element minOccurs="1" maxOccurs="1" name="MaxSpeedToSidetrack" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AdditionalNodeSignatureForCrossingSwitches" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="CentrallyControllable" type="tns:YesNo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="VariableCrossingNose" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="SpringSwitch" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="LocallyReleaseable" type="tns:YesNo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ReturnsToPredefinedPosition" type="tns:PredefinedSwitchPosition" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ReturnDelayTime" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ConstructionSide" type="tns:LinkPositionSide" />
+          <xs:element minOccurs="1" maxOccurs="1" name="FunctionAtTkkFault" type="tns:FunctionsAtTkkFault" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CoupledTo" type="tns:Identifications" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TrackCircuitBlockingPoints" type="tns:ArrayOfTrackCircuitBlockingPointWithCondition" />
+          <xs:element minOccurs="1" maxOccurs="1" name="PointHeating" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="SwitchType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Switch" />
+      <xs:enumeration value="SingleSlipCrossing" />
+      <xs:enumeration value="DoubleSlipCrossing" />
+      <xs:enumeration value="Unknown" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PredefinedSwitchPosition">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Left" />
+      <xs:enumeration value="Right" />
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="NotApplicable" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="FunctionsAtTkkFault">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Stop" />
+      <xs:enumeration value="Drive" />
+      <xs:enumeration value="Drive40" />
+      <xs:enumeration value="Unknown" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfTrackCircuitBlockingPointWithCondition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TrackCircuitBlockingPointWithCondition" nillable="true" type="tns:TrackCircuitBlockingPointWithCondition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TrackCircuitBlockingPointWithCondition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="tns:Identification" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SwitchOrCrossingIdentification" type="tns:Identification" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Condition" type="tns:ObjectCondition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Derailer">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Direction" type="tns:Direction" />
+          <xs:element minOccurs="1" maxOccurs="1" name="CentrallyControllable" type="tns:YesNo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="LocallyReleaseable" type="tns:YesNo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ReturnsToPredefinedPosition" type="tns:PredefinedDerailerPosition" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ReturnDelayTime" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TrackCircuitBlockingPoints" type="tns:ArrayOfTrackCircuitBlockingPointWithCondition" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="PredefinedDerailerPosition">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="On" />
+      <xs:enumeration value="Off" />
+      <xs:enumeration value="No" />
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="NotApplicable" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="DiamondCross">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Angle" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BufferStop">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Type" type="tns:BufferStopTypes" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ShortDescription" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Direction" type="tns:Direction" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="BufferStopTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Fixed" />
+      <xs:enumeration value="Folding" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="LoadingArea">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LoadingDirection" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="InspectionType" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TrainAndLocomotiveHeatingFacility">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Designation" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ForEquipmentType" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="InspectionType" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Platform">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Length" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Height" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CrossingProtectionIdentification" type="tns:Identifications" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ParkingTrack">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Lighting" type="tns:YesNo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="LocomotiveHeating" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="TrainHeating" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DiselLocomotivesHeating" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Length" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SpecialObject">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Route">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="PriorityOnROute" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="TypeOfRoute" type="tns:TypeOfRoute" />
+          <xs:element minOccurs="0" maxOccurs="1" name="StartOfRouteIdentification" type="tns:Identification" />
+          <xs:element minOccurs="0" maxOccurs="1" name="EndOfRouteIdentification" type="tns:Identification" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Positions" type="tns:Positions" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ReleasePoints" type="tns:ReleasePoints" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ConflictingRoutes" type="tns:ConflictingRoutes" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ManualRouteReleaseTime" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="TypeOfRoute">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotApplicable" />
+      <xs:enumeration value="TrainRoute" />
+      <xs:enumeration value="ShuntingRoute" />
+      <xs:enumeration value="StaffResponsible" />
+      <xs:enumeration value="SpecialTrainRoute" />
+      <xs:enumeration value="BlockSection" />
+      <xs:enumeration value="TAMSection" />
+      <xs:enumeration value="MonitoredTrainRoute" />
+      <xs:enumeration value="LocalReleaseAreas" />
+      <xs:enumeration value="ReversedOrder" />
+      <xs:enumeration value="CombinedOrder" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Positions">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Position" type="tns:Position" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Position">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="SequenceNumber" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PositioningIdentification" type="tns:Identification" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ObjectsWithConditions" type="tns:ObjectsWithConditions" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ActivatesEndOfRouteRelease" type="tns:ActivatesEndOfRouteRelease" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ActivatesEndOfRouteRelease">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="FreeToOccupied" />
+      <xs:enumeration value="OccupiedToFree" />
+      <xs:enumeration value="NotApplicable" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ReleasePoints">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReleasePoint" type="tns:ReleasePoint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReleasePoint">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="SequenceNumber" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TypeOfReleasePoint" type="tns:TypeOfReleasePoint" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="tns:Identification" />
+      <xs:element minOccurs="0" maxOccurs="1" name="StartIdentification" type="tns:Identification" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EndIdentification" type="tns:Identification" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="TypeOfReleasePoint">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="TrackCircuit" />
+      <xs:enumeration value="TrackCircuitJoint" />
+      <xs:enumeration value="AxleCounter" />
+      <xs:enumeration value="PositioningBalise" />
+      <xs:enumeration value="FictitiousInformationPoint" />
+      <xs:enumeration value="Unknown" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ConflictingRoutes">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ConflictingRoute" type="tns:ConflictingRoute" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ConflictingRoute">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ForTypeOfRoute" type="tns:TypeOfRoute" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ConflictingId" type="tns:Identification" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ConflictingTypeOfRoute" type="tns:TypeOfRoute" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Condition" type="tns:ObjectCondition" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Movement" type="tns:TypeOfMovement" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IfNotConditions" type="tns:IfNotConditions" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Conflict" type="tns:TypeOfConflict" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="TypeOfMovement">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Route" />
+      <xs:enumeration value="LocalReleaseArea" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="IfNotConditions">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IfNotCondition" type="tns:IfNotCondition" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IfNotCondition">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Condition" type="tns:ObjectCondition" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="tns:Identification" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="TypeOfConflict">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SharedObject" />
+      <xs:enumeration value="SafetyDistance" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="EmergencyStopArea">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="EmergencyStopAreaType" type="tns:TypeOfEmergencyStopArea" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ActivationType" type="tns:TypeOfActivation" />
+          <xs:element minOccurs="0" maxOccurs="1" name="StopSignals" type="tns:Identifications" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="TypeOfEmergencyStopArea">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="EmergencyStopArea" />
+      <xs:enumeration value="EmergencyEvacuationArea" />
+      <xs:enumeration value="Unknown" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TypeOfActivation">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Manual" />
+      <xs:enumeration value="Automatic" />
+      <xs:enumeration value="Unknown" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="RemoteTerminalUnit">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="IPAddress" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ProtocolIdentity" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TransportProtocol" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TransportProtocolVersion" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SiteDataVersion" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DataFormat" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="InterlockingsIdentification" type="tns:Identifications" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BVTNumber" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="InterlockingObjectGroup">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="GroupName" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="AllSignalRelease" type="tns:YesNo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="StoreCancellation" type="tns:YesNo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SignalObjects" type="tns:Identifications" />
+          <xs:element minOccurs="1" maxOccurs="1" name="AllSignalLocking" type="tns:YesNo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FunctionalInterlocking">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="SwitchedOutOperation" type="tns:YesNo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BehaviourWhenBlockingTrackCircuitInLockedRoute" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="SwitchDerailerSurveillanceTime" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="SwitchDerailerEngineSurveillanceTime" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="TimeDelayForManualReleaseOfExitSignal" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BoundaryObjectsIdentification" type="tns:Identifications" />
+          <xs:element minOccurs="1" maxOccurs="1" name="InformationPointMaxNumberOfStoredStartOfRoutes" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="InformationPointMaxNumberOfStoredEndOfRoutes" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="TwoLightSignaling" type="tns:YesNo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ShortRoutesCanOnlyBeSetByAutomaton" type="tns:YesNo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="BehaviourWhenBlockingSignalsIsSwitchDependent" type="tns:YesNo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ManualSignalRelaseDeactivatesAutomaton" type="tns:YesNo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Automatons" type="tns:Automatons" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AutomatonsTrackCircuitTriggers" type="tns:Identifications" />
+          <xs:element minOccurs="0" maxOccurs="1" name="GeneralConditionsForRouteLocking" type="tns:ObjectsWithConditions" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CurrentRevisionId" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="InterlockingIdentification" type="tns:Identification" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LocalReleaseAreaIdentifications" type="tns:Identifications" />
+          <xs:element minOccurs="0" maxOccurs="1" name="InterlockingObjectGroups" type="tns:ArrayOfInterlockingObjectGroup" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Automatons">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Automaton" type="tns:Automaton" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Automaton">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FunctionalDescription" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ExecutesOnlyOnce" type="tns:YesNo" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ActivatedAtTransmissionErrors" type="tns:YesNo" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ManualDeactivationCausesSignalToStop" type="tns:YesNo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfInterlockingObjectGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InterlockingObjectGroup" nillable="true" type="tns:InterlockingObjectGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Interlocking">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="InterlockingType" type="tns:InterlockingType" />
+          <xs:element minOccurs="1" maxOccurs="1" name="DeviceType" type="tns:InterlockingDeviceType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Model" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="IPAddressSPU1" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="IPAddressSPU2" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ProtocolIdentity" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TransportProtocol" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TransportProtocolVersion" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SiteDataVersion" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BVTNumber" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="InterlockingType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Relay" />
+      <xs:enumeration value="Computerized" />
+      <xs:enumeration value="Other" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="InterlockingDeviceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CentralUnit" />
+      <xs:enumeration value="RemoteUnit" />
+      <xs:enumeration value="CentralAndRemoteUnit" />
+      <xs:enumeration value="NotApplicable" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="LocalReleaseArea">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Type" type="tns:TypeOfShuntingArea" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LocalAreaObjects" type="tns:LocalAreaObjects" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Conflicts" type="tns:ConflictingRoutes" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Area" type="tns:Identifications" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ManualSignalReleaseDeactivatesShuntingArea" type="tns:YesNo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ManualAreaReleaseForcesSignalsToStop" type="tns:YesNo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="NoDelayIfAreaIsFree" type="tns:YesNo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ReleaseDelay" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="PossibleToStore" type="tns:YesNo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DependencyToLocalReleaseAreas" type="tns:ArrayOfDependencyToLocalReleaseArea" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="TypeOfShuntingArea">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Permanent" />
+      <xs:enumeration value="Temporary" />
+      <xs:enumeration value="Unknown" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="LocalAreaObjects">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LocalAreaObject" type="tns:LocalAreaObject" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LocalAreaObject">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="tns:Identification" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsDemarcationPoint" type="tns:YesNo" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SafetyDistance" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Condition" type="tns:ObjectCondition" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Conflicts" type="tns:ConflictingRoutes" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfDependencyToLocalReleaseArea">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DependencyToLocalReleaseArea" nillable="true" type="tns:DependencyToLocalReleaseArea" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DependencyToLocalReleaseArea">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="tns:Identification" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TypeOfDenpendency" type="tns:DependencyType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ValidThrough" type="tns:ValidThroughType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="DependencyType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CancelsAutomaton" />
+      <xs:enumeration value="ActivatesAutomaton" />
+      <xs:enumeration value="Unknown" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ValidThroughType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Parent" />
+      <xs:enumeration value="Child" />
+      <xs:enumeration value="Both" />
+      <xs:enumeration value="Unknown" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Treadle">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SpeedIndicationDetector">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="DistanceToCoupledObject" type="xs:decimal" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CoupledTo" type="tns:Identifications" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CrossingProtection">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="InterlockingIdentification" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="TypeOfCrossing" type="tns:TypeOfCrossing" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ProtectionTypeBase" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ProtectionTypeAddition" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="CentrallyControllable" type="tns:YesNo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="SurveillanceTime" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="LocallyReleaseable" type="tns:YesNo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsATCEquiped" type="tns:YesNo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="PostponedLevelCrossing" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PostponedLevelCrossingDeactivatedHow" type="tns:ArrayOfPostponedLevelCrossingActivation" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PostponedLevelCrossingActivatedBy" type="tns:Identifications" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ActivatedBy" type="tns:Identifications" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ReducedAutomation" type="tns:YesNo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="CanBeDisabled" type="tns:YesNo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsInOperation" type="tns:YesNo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="TypeOfCrossing">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="LevelCrossing" />
+      <xs:enumeration value="PlatformBarrier" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfPostponedLevelCrossingActivation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PostponedLevelCrossingActivation" type="tns:PostponedLevelCrossingActivation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="PostponedLevelCrossingActivation">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Manual" />
+      <xs:enumeration value="Timer" />
+      <xs:enumeration value="Tbfl" />
+      <xs:enumeration value="Jimo" />
+      <xs:enumeration value="Unknown" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="TrackCircuitJoint">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="State" type="tns:TcJointState" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="TcJointState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Active" />
+      <xs:enumeration value="ActiveZZ" />
+      <xs:enumeration value="Passive" />
+      <xs:enumeration value="Unknown" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="TrackCircuit">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="InterlockingIdentification" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ActivedByTrackCircuits" type="tns:Identifications" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TrackCircuitGroup">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="InterlockingIdentification" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TrackCircuits" type="tns:Identifications" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="KilometerBoard">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="KilometerPost" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="KilometerRegion" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CantDeficiencySpeedProfile">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Direction" type="tns:Direction" />
+          <xs:element minOccurs="1" maxOccurs="1" name="TrainLengthDelay" type="tns:YesNo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="BasicStaticSpeed" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="SpeedAtCantDeficiency130" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="SpeedAtCantDeficiency150" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="SpeedAtCantDeficiency165" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="SpeedAtCantDeficiency180" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="SpeedAtCantDeficiency210" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="SpeedAtCantDeficiency225" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="SpeedAtCantDeficiency245" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="SpeedAtCantDeficiency275" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="SpeedAtCantDeficiency300" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TSRElement">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="TrackCircuitsIdentifications" type="tns:Identifications" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="RadioBlockCenter">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="IPAddressSPU1" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="IPAddressSPU2" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ProtocolIdentity" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TransportProtocol" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TransportProtocolVersion" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SiteDataVersion" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="InterlockingIdentification" type="tns:Identification" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BVTNumber" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FrontProtection">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="ForTypeOfRoute" type="tns:TypeOfRoute" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ObjectsWithConditions" type="tns:ObjectsWithConditions" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="InformationPoint">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseObject">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="ProtectionSystem" type="tns:ProtectionSystem" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DesignKilometerPosition" type="tns:KilometerPosition" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Direction" type="tns:Direction" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TypeOfInformationPoint" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="TrainRouteCanBeExtendedWithShuntingMove" type="tns:YesNo" />
+          <xs:element minOccurs="1" maxOccurs="1" name="MustBeBlockedBeforeManualRelase" type="tns:YesNo" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Signal" type="tns:Signal" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Board" type="tns:Board" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BaliseGroupAtc" type="tns:BaliseGroupAtc" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BaliseErtms" type="tns:BaliseErtms" />
+          <xs:element minOccurs="0" maxOccurs="1" name="StartOfRoutes" type="tns:StartOfRoutes" />
+          <xs:element minOccurs="0" maxOccurs="1" name="EndOfRoutes" type="tns:EndOfRoutes" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ProtectionSystem">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ATC" />
+      <xs:enumeration value="ETCS" />
+      <xs:enumeration value="Other" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Signal">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="IsFictitious" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TypeOfMainSignal" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NumberOfMainSignalLights" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SwitchSignalLights" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="GreenReplacesFailingWhite" type="tns:YesNo" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DependencyToFollowingSignal" type="tns:YesNo" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Direction" type="tns:Direction" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RouteRequestFromJimoTbfl" type="tns:RouteRequest" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LevelCrossingControlledInMainSignal" type="tns:YesNo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ControlConfirms" type="tns:Identifications" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="RouteRequest">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="Both" />
+      <xs:enumeration value="Jimo" />
+      <xs:enumeration value="No" />
+      <xs:enumeration value="Tbfl" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Board">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="IsFictitious" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SpeedRestriction" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="GeneralInformation" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Direction" type="tns:Direction" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BaliseGroupAtc">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BaliseAtc" type="tns:BaliseAtc" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BaliseAtc">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Position" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BaliseType" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BaliseCodeing" type="tns:ArrayOfBaliseCodeingAtc" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfBaliseCodeingAtc">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BaliseCodeingAtc" nillable="true" type="tns:BaliseCodeingAtc" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BaliseCodeingAtc">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Position" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="XCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="YCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ZCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ATCMessage" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SignalMessage" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TargetPoint" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Remark" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BaliseErtms">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="NID_C" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NID_BG" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AtSignalPoint" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StartOfRoutes">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="StartOfRoute" type="tns:StartOfRoute" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StartOfRoute">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="TypeOfRoute" type="tns:TypeOfRoute" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ApproachSection" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EndOfRoutes">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EndOfRoute" type="tns:EndOfRoute" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EndOfRoute">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="TypeOfRoute" type="tns:TypeOfRoute" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SafetyDistance" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ProtectionDistance" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FrontProtections" type="tns:FrontProtections" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EndOfRouteReleases" type="tns:EndOfRouteReleases" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ConflictingRoutes" type="tns:ConflictingRoutes" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FrontProtections">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FrontProtection" type="tns:FrontProtection" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EndOfRouteReleases">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EndOfRouteRelease" type="tns:EndOfRouteRelease" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EndOfRouteRelease">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="TimeControledRelease" type="tns:YesNo" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TimeDelayBeforeRelease" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="LocationStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Open" />
+      <xs:enumeration value="Closed" />
+      <xs:enumeration value="NoMaintenance" />
+      <xs:enumeration value="Planned" />
+      <xs:enumeration value="Demolished" />
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="NotApplicable" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="LocationTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Station" />
+      <xs:enumeration value="SubStation" />
+      <xs:enumeration value="LinePlace" />
+      <xs:enumeration value="TrainStop" />
+      <xs:enumeration value="LineTrainStop" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Facility">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="SignalingFacilities" type="tns:SignalingFacilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="InterlockingFacilities" type="tns:InterlockingFacilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="YardFacilities" type="tns:YardFacilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Superstructure" type="tns:Superstructure" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ElectricalFacilities" type="tns:ElectricalFacilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Detectors" type="tns:Detectors" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Geometries" type="tns:Geometries" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Planning" type="tns:Planning" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OtherFacilities" type="tns:OtherFacilities" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SignalingFacilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="InformationPoints" type="tns:InformationPoints" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ERTMS" type="tns:ERTMS" />
+      <xs:element minOccurs="0" maxOccurs="1" name="KilometerBoards" type="tns:KilometerBoards" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TrackCircuitsGrouped" type="tns:TrackCircuitsGrouped" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TrackCircuits" type="tns:TrackCircuits" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TrackCircuitJoints" type="tns:TrackCircuitJoints" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CrossingProtections" type="tns:CrossingProtections" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SpeedIndicationDetectors" type="tns:SpeedIndicationDetectors" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Treadles" type="tns:Treadles" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InformationPoints">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InformationPoint" type="tns:InformationPoint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ERTMS">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="RadioBlockCenters" type="tns:RadioBlockCenters" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TSRElements" type="tns:TSRElements" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CantDeficiencySpeedProfiles" type="tns:CantDeficiencySpeedProfiles" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RadioBlockCenters">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RadioBlockCenter" type="tns:RadioBlockCenter" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TSRElements">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TSRElement" type="tns:TSRElement" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CantDeficiencySpeedProfiles">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CantDeficiencySpeedProfile" type="tns:CantDeficiencySpeedProfile" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="KilometerBoards">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KilometerBoard" type="tns:KilometerBoard" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TrackCircuitsGrouped">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TrackCircuitGrouped" type="tns:TrackCircuitGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TrackCircuits">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TrackCircuit" type="tns:TrackCircuit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TrackCircuitJoints">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TrackCircuitJoint" type="tns:TrackCircuitJoint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CrossingProtections">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CrossingProtection" type="tns:CrossingProtection" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SpeedIndicationDetectors">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SpeedIndicationDetector" type="tns:SpeedIndicationDetector" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Treadles">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Treadle" type="tns:Treadle" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InterlockingFacilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="LocalReleaseAreas" type="tns:LocalReleaseAreas" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Interlockings" type="tns:Interlockings" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FunctionalInterlockings" type="tns:FunctionalInterlockings" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RemoteTerminalUnits" type="tns:RemoteTerminalUnits" />
+      <xs:element minOccurs="0" maxOccurs="1" name="InterlockingOrderAndIndications" type="tns:InterlockingOrderIndications" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EmergencyStopAreas" type="tns:EmergencyStopAreas" />
+      <xs:element minOccurs="0" maxOccurs="1" name="InterlockingRoutes" type="tns:InterlockingRoutes" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SpecialObjects" type="tns:SpecialObjects" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LocalReleaseAreas">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="LocalReleaseArea" type="tns:ArrayOfLocalReleaseArea" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfLocalReleaseArea">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LocalReleaseArea" nillable="true" type="tns:LocalReleaseArea" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Interlockings">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Interlocking" type="tns:Interlocking" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FunctionalInterlockings">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FunctionalInterlocking" type="tns:FunctionalInterlocking" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RemoteTerminalUnits">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RemoteTerminalUnit" type="tns:RemoteTerminalUnit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InterlockingOrderIndications">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InterlockingOrderIndication" type="tns:InterlockingOrderIndication" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InterlockingOrderIndication">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="tns:Identification" />
+      <xs:element minOccurs="0" maxOccurs="1" name="InterlockingOrderIndicationId" type="tns:InterlockingOrderIndicationId" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Filename" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NationalNomenclatureVersion" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OrderIndication" type="tns:ArrayOfOrderIndication" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RtuIxlRows" type="tns:ArrayOfOrderIndicationsRtuIxlBlock" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Documents" type="tns:ArrayOfSourceDocument" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfOrderIndication">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderIndication" nillable="true" type="tns:OrderIndication" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OrderIndication">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="InterlockingOrderIndicationRowId" type="tns:InterlockingOrderIndicationRowId" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RtuIxlBlockIdentification" type="tns:RtuIxlIdentification" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LocationIdentifications" type="tns:Identifications" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Acronym" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FullAcronym" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OpcUaState" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OpcUaObjectType" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="InterlockingObjectType" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="InterlockingExternalName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TmsOid" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FacilityObjectIdentifications" type="tns:Identifications" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DataFormat" type="tns:DataFormatType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IndicationOrOrder" type="tns:IndicationOrOrderType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Onepoint" type="tns:Onepoint" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Sequence" type="tns:Sequence" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BCD" type="tns:BCD" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Modbus" type="tns:Modbus" />
+      <xs:element minOccurs="0" maxOccurs="1" name="I85C85" type="tns:I85C85" />
+      <xs:element minOccurs="0" maxOccurs="1" name="I85C95" type="tns:I85C95" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Fffis" type="tns:Fffis" />
+      <xs:element minOccurs="0" maxOccurs="1" name="InterlockingBorder" type="tns:InterlockingBorder" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Descriptions" type="tns:OrderIndicationDescriptions" />
+      <xs:element minOccurs="0" maxOccurs="1" name="VersionId" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ProtocolObjectType" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LID" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Remark" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RtuIxlIdentification">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="IxlRtuId" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IxlRtuRowDesignation" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="DataFormatType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Onepoint" />
+      <xs:enumeration value="Sequence" />
+      <xs:enumeration value="BCD" />
+      <xs:enumeration value="Modbus" />
+      <xs:enumeration value="I85C85" />
+      <xs:enumeration value="I85C95" />
+      <xs:enumeration value="FFFIS" />
+      <xs:enumeration value="Relay" />
+      <xs:enumeration value="Unknown" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="IndicationOrOrderType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Indication" />
+      <xs:enumeration value="Order" />
+      <xs:enumeration value="UnmappedIndication" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Onepoint">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Order" type="tns:OnepointOrder" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Indication" type="tns:RelayIndication" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OnepointOrder">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="OrderCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RelayIndication">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="BitIndications" type="tns:BitIndicationBlock" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BitIndicationBlock">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BitIndication" type="tns:BitIndication" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BitIndication">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="SlotOrWord" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Bit" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Inverted" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Sequence">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Order" type="tns:SequenceOrder" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Indication" type="tns:RelayIndication" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SequenceOrder">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="OrderCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ObjectCodes" type="tns:OrderIndicationData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OrderIndicationData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Value" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BCD">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Order" type="tns:BCDOrder" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Indication" type="tns:RelayIndication" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BCDOrder">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="OrderCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ObjectCodes" type="tns:OrderIndicationData" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ObjectClass" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Modbus">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Order" type="tns:ModbusOrder" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Indication" type="tns:ModbusIndication" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ModbusOrder">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="FSLDOCard" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FSLOutput" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ModbusIndication">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="FSLIndications" type="tns:BitIndicationBlock" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="I85C85">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="OrderData" type="tns:C85Order" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IndicationData" type="tns:C85Indication" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="C85Order">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="OrderEcCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ObjectCodes" type="tns:OrderIndicationData" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Data" type="tns:OrderIndicationData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="C85Indication">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="IndicationEcCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ObjectCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Data" type="tns:OrderIndicationData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="I85C95">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="OrderData" type="tns:C95Order" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IndicationData" type="tns:C95Indication" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="C95Order">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="OrderEcCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Objects" type="tns:OrderIndicationData" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Data" type="tns:OrderIndicationData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="C95Indication">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="IndicationEcCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ObjectCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Data" type="tns:OrderIndicationData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Fffis">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="IndicationData" type="tns:EgIndication" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OrderData" type="tns:EgOrder" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EgIndication">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="IndicationVariable" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IndicationValue" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Objects" type="tns:OrderIndicationData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EgOrder">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="OrderVariable" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OrderValue" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Objects" type="tns:OrderIndicationData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InterlockingBorder">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Connector" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ConnectorPoint" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PatchTerminalBlock" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OrderIndicationDescriptions">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Description" type="tns:OrderIndicationDescription" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OrderIndicationDescription">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Source" type="tns:OrderIndicationDescriptionSourceType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Text" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LanguageCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="OrderIndicationDescriptionSourceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Interlocking" />
+      <xs:enumeration value="NationalNomenclature" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfOrderIndicationsRtuIxlBlock">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OrderIndicationsRtuIxlBlock" nillable="true" type="tns:OrderIndicationsRtuIxlBlock" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OrderIndicationsRtuIxlBlock">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="RtuIxlIdentification" type="tns:RtuIxlIdentification" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RemoteTerminalUnitIdentification" type="tns:Identification" />
+      <xs:element minOccurs="0" maxOccurs="1" name="InterlockingIdentification" type="tns:Identification" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfSourceDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SourceDocument" nillable="true" type="tns:SourceDocument" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SourceDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RevisionId" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EmergencyStopAreas">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EmergencyStopArea" type="tns:EmergencyStopArea" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InterlockingRoutes">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InterlockingRoute" type="tns:InterlockingRoute" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InterlockingRoute">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="InterlockingId" type="tns:Identification" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Routes" type="tns:Routes" />
+      <xs:element minOccurs="0" maxOccurs="1" name="StartOfRouteObjects" type="tns:StartOfRouteObjects" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EndOfRouteObjects" type="tns:EndOfRouteObjects" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ObjectsThatRequireFlankProtection" type="tns:ObjectsThatRequireFlankProtection" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Routes">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Route" type="tns:Route" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StartOfRouteObjects">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="StartOfRouteObject" type="tns:ArrayOfStartOfRouteObject" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfStartOfRouteObject">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="StartOfRouteObject" nillable="true" type="tns:StartOfRouteObject" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StartOfRouteObject">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="StartOfRouteIdentification" type="tns:Identification" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ApproachLocking" type="tns:ApproachLocking" />
+      <xs:element minOccurs="0" maxOccurs="1" name="StartOfRoutes" type="tns:StartOfRoutes" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ApproachLocking">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="No" />
+      <xs:enumeration value="Conditional" />
+      <xs:enumeration value="Unconditional" />
+      <xs:enumeration value="NotApplicable" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="EndOfRouteObjects">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EndOfRouteObject" type="tns:EndOfRouteObject" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EndOfRouteObject">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="EndOfRouteIdentification" type="tns:Identification" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DynamicFrontProtection" type="tns:YesNo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EndOfRoutes" type="tns:EndOfRoutes" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ObjectsThatRequireFlankProtection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ObjectThatNeedFlankProtection" type="tns:ObjectThatRequireFlankProtection" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ObjectThatRequireFlankProtection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="tns:Identification" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ProtectingLinkIdentification" type="tns:LinkIdentification" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FlankProtections" type="tns:FlankProtections" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Leg" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FlankProtections">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FlankProtection" type="tns:FlankProtection" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FlankProtection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Id" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Identification" type="tns:Identification" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SpeedInProtectedTrack" type="tns:FlankProtectionSpeedCondition" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ObjectsWithCondition" type="tns:ObjectsWithConditions" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LinkPositions" type="tns:LinkPositions" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="FlankProtectionSpeedCondition">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SpeedLessThanOrEqualTo160Kmh" />
+      <xs:enumeration value="SpeedOver160Kmh" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="SpecialObjects">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SpecialObject" type="tns:SpecialObject" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="YardFacilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ParkingTracks" type="tns:ParkingTracks" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Platforms" type="tns:Platforms" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TrainAndLocomotiveHeatingFacilities" type="tns:TrainAndLocomotiveHeatingFacilities" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LoadingAreas" type="tns:LoadingAreas" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ParkingTracks">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ParkingTrack" type="tns:ParkingTrack" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Platforms">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Platform" type="tns:Platform" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TrainAndLocomotiveHeatingFacilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TrainAndLocomotiveHeatingFacility" type="tns:TrainAndLocomotiveHeatingFacility" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LoadingAreas">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LoadingArea" type="tns:LoadingArea" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Superstructure">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="BufferStops" type="tns:BufferStops" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DiamondCrosses" type="tns:DiamondCrosses" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Derailers" type="tns:Derailers" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SwitchesAndCrossings" type="tns:SwitchesAndCrossings" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Bridges" type="tns:Bridges" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Tunnels" type="tns:Tunnels" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BufferStops">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BufferStop" type="tns:BufferStop" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DiamondCrosses">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DiamondCross" type="tns:DiamondCross" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Derailers">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Derailer" type="tns:Derailer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SwitchesAndCrossings">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SwitchOrCrossing" type="tns:SwitchOrCrossing" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Bridges">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bridge" type="tns:Bridge" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Tunnels">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Tunnel" type="tns:Tunnel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ElectricalFacilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CatenarySections" type="tns:CatenarySections" />
+      <xs:element minOccurs="0" maxOccurs="1" name="InsulatedSections" type="tns:InsulatedSections" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CutOutSwitches" type="tns:CutOutSwitches" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PointHeatingAreas" type="tns:PointHeatingAreas" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CatenarySections">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CatenarySection" type="tns:CatenarySection" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InsulatedSections">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InsulatedSection" type="tns:InsulatedSection" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CutOutSwitches">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CutOutSwitch" type="tns:CutOutSwitch" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PointHeatingAreas">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PointHeatingArea" type="tns:PointHeatingArea" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Detectors">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Detector" type="tns:ArrayOfDetector" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LandSlideDetector" type="tns:ArrayOfLandSlideDetector" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DerailingDetector" type="tns:ArrayOfDerailingDetector" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfDetector">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Detector" nillable="true" type="tns:Detector" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfLandSlideDetector">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LandSlideDetector" nillable="true" type="tns:LandSlideDetector" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfDerailingDetector">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DerailingDetector" nillable="true" type="tns:DerailingDetector" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Geometries">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="HorizontalGeometries" type="tns:HorizontalGeometries" />
+      <xs:element minOccurs="0" maxOccurs="1" name="VerticalGeometries" type="tns:VerticalGeometries" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HorizontalGeometries">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HorizontalGeometry" type="tns:HorizontalGeometry" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="VerticalGeometries">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VerticalGeometry" type="tns:VerticalGeometry" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Planning">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="TimetableLocations" type="tns:TimetableLocations" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TimetableLocations">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TimetableLocation" type="tns:TimetableLocation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OtherFacilities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="MeetingLengths" type="tns:MeetingLengths" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ObstacleFreeLengths" type="tns:ObstacleFreeLengths" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ObstacleFreePoints" type="tns:ObstacleFreePoints" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SpeedProfiles" type="tns:SpeedProfiles" />
+      <xs:element minOccurs="0" maxOccurs="1" name="InformationObjects" type="tns:ArrayOfInformationObject" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Navigabilities" type="tns:Navigability" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TechnologyBuildings" type="tns:TechnologyBuildings" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MeetingLengths">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MeetingLength" type="tns:MeetingLength" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ObstacleFreeLengths">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ObstacleFreeLength" type="tns:ObstacleFreeLength" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ObstacleFreePoints">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ObstacleFreePoint" type="tns:ObstacleFreePoint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ObstacleFreePoint">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Angle" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Length" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SpeedProfiles">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SpeedProfile" type="tns:SpeedProfile" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfInformationObject">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InformationObject" nillable="true" type="tns:InformationObject" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Navigability">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SwitchCategories" type="tns:SwitchCategory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SwitchCategory">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Type" type="tns:SwitchType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NodePaths" type="tns:NodePath" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NodePath">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ToConnectionNumber" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="FromConnectionNumber" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TrackPath" type="tns:TrackPathType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="TrackPathType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NormalTrack" />
+      <xs:enumeration value="SideTrack" />
+      <xs:enumeration value="NonNavigational" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="TechnologyBuildings">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TechnologyBuilding" type="tns:TechnologyBuilding" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Divisions">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Division" type="tns:Division" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Division">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="DivisionId" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DivisionType" type="tns:DivisionTypes" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ShortDescription" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Subdivisions" type="tns:Subdivisions" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="DivisionTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="TrafficManagementSystem" />
+      <xs:enumeration value="OverSpeed" />
+      <xs:enumeration value="Tracknumber" />
+      <xs:enumeration value="InfrastructureManager" />
+      <xs:enumeration value="InfrastructureOwner" />
+      <xs:enumeration value="Electrification" />
+      <xs:enumeration value="Passage" />
+      <xs:enumeration value="TrafficDirection" />
+      <xs:enumeration value="LineCategory" />
+      <xs:enumeration value="KilometerRegion" />
+      <xs:enumeration value="TrackPortion" />
+      <xs:enumeration value="TrackFacility" />
+      <xs:enumeration value="NetworkStatus" />
+      <xs:enumeration value="TrackUpDownSingle" />
+      <xs:enumeration value="TrackType" />
+      <xs:enumeration value="TrafficControlNet" />
+      <xs:enumeration value="CapacityPlanningNet" />
+      <xs:enumeration value="OperatingStation" />
+      <xs:enumeration value="TrafficControlArea" />
+      <xs:enumeration value="LineCategoryAddition" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Subdivisions">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Subdivision" type="tns:Subdivision" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Subdivision">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="GlobalId" type="tns:GlobalId" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DivisionCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Text" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="LinkPositions" type="tns:LinkPositions" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

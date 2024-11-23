@@ -1,3 +1,5 @@
 *.vpp.bak*
 /Flask/output/
 /Code/Import/railML32_import/TestOutputs/Advanced Example.ttl
+/Code/Import/TRV_import_OLD/*
+/Code/Import/TRV_import_OLD/GraphTransformation/
