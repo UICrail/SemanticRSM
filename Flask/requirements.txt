@@ -1,0 +1,11 @@
+flask
+markdown2
+rdflib
+shapely
+geopy
+pyproj
+geojson
+xmltodict
+fastkml
+geopandas
+simplekml
