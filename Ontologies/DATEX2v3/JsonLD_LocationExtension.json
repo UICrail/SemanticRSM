@@ -1,0 +1,465 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "datex_D2Payload": "http://datex2.eu/vocab/3/D2Payload/",
+    "datex_Common": "http://datex2.eu/vocab/3/Common/",
+    "datex_LocationReferencing": "http://datex2.eu/vocab/3/LocationReferencing/",
+    "datex_RoadTrafficData": "http://datex2.eu/vocab/3/RoadTrafficData/",
+    "datex_Situation": "http://datex2.eu/vocab/3/Situation/",
+    "datex_Vms": "http://datex2.eu/vocab/3/Vms/",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "dct": "http://purl.org/dc/terms/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "vann": "http://purl.org/vocab/vann/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "cc": "http://creativecommons.org/ns#",
+    "status": "http://www.w3.org/2003/06/sw-vocab-status/ns#",
+    "schema": "http://schema.org/",
+    "license": {
+      "@id": "cc:license"
+    },
+    "hasFormat": {
+      "@id": "dct:hasFormat"
+    },
+    "label": {
+      "@id": "rdfs:label"
+    },
+    "comment": {
+      "@id": "rdfs:comment"
+    },
+    "subClassOf": {
+      "@id": "rdfs:subClassOf",
+      "@type": "@id"
+    },
+    "issued": {
+      "@id": "dct:issued"
+    },
+    "modified": {
+      "@id": "dct:modified"
+    },
+    "rights": {
+      "@id": "dct:rights"
+    },
+    "primaryTopic": {
+      "@id": "foaf:primaryTopic",
+      "@type": "@id"
+    },
+    "title": {
+      "@id": "dct:title"
+    },
+    "description": {
+      "@id": "dct:description"
+    },
+    "creator": {
+      "@id": "dct:creator"
+    },
+    "preferredNamespacePrefix": {
+      "@id": "vann:preferredNamespacePrefix"
+    },
+    "preferredNamespaceUri": {
+      "@id": "vann:preferredNamespaceUri"
+    },
+    "seeAlso": {
+      "@id": "rdfs:seeAlso",
+      "@type": "@id"
+    },
+    "range": {
+      "@id": "rdfs:range",
+      "@type": "@id"
+    },
+    "domain": {
+      "@id": "rdfs:domain",
+      "@type": "@id"
+    }
+  },
+  "@graph": [
+    {
+      "@id": "http://datex2.eu/vocab/3/LocationExtension",
+      "@type": "foaf:Document",
+      "license": "http://creativecommons.org/licenses/by/3.0/",
+      "hasFormat": "http://datex2.eu/vocab/3/LocationExtension/vocabulary.jsonld",
+      "issued": {
+        "@value": "2023-11-10",
+        "@type": "xsd:date"
+      },
+      "modified": {
+        "@value": "2023-11-10",
+        "@type": "xsd:date"
+      },
+      "rights": "Copyright 2023 - DATEX TMG",
+      "primaryTopic": "datex_LocationExtension:Ontology"
+    },
+    {
+      "@id": "datex_LocationExtension:Ontology",
+      "@type": "owl:Ontology",
+      "title": {
+        "@value": "DATEX II",
+        "@language": "en"
+      },
+      "comment": {
+        "@value": "A mapping of DATEX II to a Linked Data vocabulary",
+        "@language": "en"
+      },
+      "description": {
+        "@value": "This document gives URIs to all terms used within Datex II",
+        "@language": "en"
+      },
+      "creator": [
+        "DATEX TMG "
+      ],
+      "preferredNamespacePrefix": "NOT_FOUND",
+      "preferredNamespaceUri": "http://datex2.eu/vocab/3/LocationExtension",
+      "label": {
+        "@value": "Linked DATEX II",
+        "@language": "en"
+      },
+      "seeAlso": "http://datex2.eu/schema/3/LocationExtension"
+    },
+    {
+      "@id": "NOT_FOUND:NamedAreaCode",
+      "label": {
+        "@value": "Named area code",
+        "@language": "en"
+      },
+      "@type": "owl:Class",
+      "comment": {
+        "@value": "Type for a short numeric or alphanumeric code identifying an area.",
+        "@language": "en"
+      },
+      "subClassOf": "datex_Common:String"
+    },
+    {
+      "@id": "NOT_FOUND:AddressLineTypeEnum",
+      "label": {
+        "@value": "Address line type enum",
+        "@language": "en"
+      },
+      "@type": "owl:Class",
+      "comment": {
+        "@value": "Address line type enum",
+        "@language": "en"
+      },
+      "subClassOf": "schema:Enumeration"
+    },
+    {
+      "@id": "NOT_FOUND:AddressLineTypeEnum#apartment",
+      "label": {
+        "@value": "Address line type enum apartment",
+        "@language": "en"
+      },
+      "@type": "NOT_FOUND:AddressLineTypeEnum",
+      "comment": {
+        "@value": "Element indicating a discrete element of a building forming the address",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:AddressLineTypeEnum#building",
+      "label": {
+        "@value": "Address line type enum building",
+        "@language": "en"
+      },
+      "@type": "NOT_FOUND:AddressLineTypeEnum",
+      "comment": {
+        "@value": "Element identifying the number or name and type of the edifice or construction relevant for the address [derived from ISO19160-4]",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:AddressLineTypeEnum#poBox",
+      "label": {
+        "@value": "Address line type enum po box",
+        "@language": "en"
+      },
+      "@type": "NOT_FOUND:AddressLineTypeEnum",
+      "comment": {
+        "@value": "A postal delivery location identifier, not necessarily a physical location.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:AddressLineTypeEnum#unit",
+      "label": {
+        "@value": "Address line type enum unit",
+        "@language": "en"
+      },
+      "@type": "NOT_FOUND:AddressLineTypeEnum",
+      "comment": {
+        "@value": "An element representing a section of a building or organisation.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:AddressLineTypeEnum#region",
+      "label": {
+        "@value": "Address line type enum region",
+        "@language": "en"
+      },
+      "@type": "NOT_FOUND:AddressLineTypeEnum",
+      "comment": {
+        "@value": "Element indicating the name of the area within or adjacent to the town in which delivery address is.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:AddressLineTypeEnum#town",
+      "label": {
+        "@value": "Address line type enum town",
+        "@language": "en"
+      },
+      "@type": "NOT_FOUND:AddressLineTypeEnum",
+      "comment": {
+        "@value": "Element indicating the name of the populated place in which a delivery point is located, or near to or via which the delivery point is accessed. [Source: ISO19160-4]",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:AddressLineTypeEnum#districtTerritory",
+      "label": {
+        "@value": "Address line type enum district territory",
+        "@language": "en"
+      },
+      "@type": "NOT_FOUND:AddressLineTypeEnum",
+      "comment": {
+        "@value": "Element specifying the geographic or administrative area of the country for the address [Source: 19160-4]",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:AddressLineTypeEnum#floor",
+      "label": {
+        "@value": "Address line type enum floor",
+        "@language": "en"
+      },
+      "@type": "NOT_FOUND:AddressLineTypeEnum",
+      "comment": {
+        "@value": "Element indicating the floor or level on which a delivery point is located in a multi-storey building [Source:ISO19160-4]",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:AddressLineTypeEnum#street",
+      "label": {
+        "@value": "Address line type enum street",
+        "@language": "en"
+      },
+      "@type": "NOT_FOUND:AddressLineTypeEnum",
+      "comment": {
+        "@value": "Element indicating road or street identifier or name ",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:AddressLineTypeEnum#houseNumber",
+      "label": {
+        "@value": "Address line type enum house number",
+        "@language": "en"
+      },
+      "@type": "NOT_FOUND:AddressLineTypeEnum",
+      "comment": {
+        "@value": "Element indicating a house number",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:AddressLineTypeEnum#generalTextLine",
+      "label": {
+        "@value": "Address line type enum general text line",
+        "@language": "en"
+      },
+      "@type": "NOT_FOUND:AddressLineTypeEnum",
+      "comment": {
+        "@value": "A non-predefined text line for general purpose.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:Address",
+      "label": {
+        "@value": "Address",
+        "@language": "en"
+      },
+      "@type": "owl:Class",
+      "comment": {
+        "@value": "A street oriented addressing structure supporting delivery",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:AddressLine",
+      "label": {
+        "@value": "Address line",
+        "@language": "en"
+      },
+      "@type": "owl:Class",
+      "comment": {
+        "@value": "A class defining information concerning one line of a postal address.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:FacilityLocation",
+      "label": {
+        "@value": "Facility location",
+        "@language": "en"
+      },
+      "@type": "owl:Class",
+      "comment": {
+        "@value": "A location for which a time zone and an address can be specified",
+        "@language": "en"
+      },
+      "subClassOf": "datex_LocationReferencing:LocationReference"
+    },
+    {
+      "@id": "NOT_FOUND:NamedAreaExtended",
+      "label": {
+        "@value": "Named area extended",
+        "@language": "en"
+      },
+      "@type": "owl:Class",
+      "comment": {
+        "@value": "A named area with an additional code (that is not an ISO subdivision code)",
+        "@language": "en"
+      },
+      "subClassOf": "datex_LocationReferencing:NamedArea"
+    },
+    {
+      "@id": "NOT_FOUND:city",
+      "@type": "owl:DatatypeProperty",
+      "label": {
+        "@value": "City",
+        "@language": "en"
+      },
+      "domain": "NOT_FOUND:Address",
+      "range": "datex_Common:MultilingualString",
+      "comment": {
+        "@value": "Postal city name of the address.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:countryCode",
+      "@type": "owl:DatatypeProperty",
+      "label": {
+        "@value": "Country code",
+        "@language": "en"
+      },
+      "domain": "NOT_FOUND:Address",
+      "range": "datex_Common:CountryCode",
+      "comment": {
+        "@value": "EN ISO 3166-1 two-character country code.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:postcode",
+      "@type": "owl:DatatypeProperty",
+      "label": {
+        "@value": "Postcode",
+        "@language": "en"
+      },
+      "domain": "NOT_FOUND:Address",
+      "range": "datex_Common:String",
+      "comment": {
+        "@value": "Postcode or postal code for the address.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:order",
+      "@type": "owl:DatatypeProperty",
+      "label": {
+        "@value": "Order",
+        "@language": "en"
+      },
+      "domain": "NOT_FOUND:AddressLine",
+      "range": "datex_Common:NonNegativeInteger",
+      "comment": {
+        "@value": "The sequence order that the address line element should be displayed in",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:text",
+      "@type": "owl:DatatypeProperty",
+      "label": {
+        "@value": "Text",
+        "@language": "en"
+      },
+      "domain": "NOT_FOUND:AddressLine",
+      "range": "datex_Common:MultilingualString",
+      "comment": {
+        "@value": "Free-text description for the address line element",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:type",
+      "@type": "owl:DatatypeProperty",
+      "label": {
+        "@value": "Type",
+        "@language": "en"
+      },
+      "domain": "NOT_FOUND:AddressLine",
+      "range": "NOT_FOUND:AddressLineTypeEnum",
+      "comment": {
+        "@value": "The type for the address line element",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:timeZone",
+      "@type": "owl:DatatypeProperty",
+      "label": {
+        "@value": "Time zone",
+        "@language": "en"
+      },
+      "domain": "NOT_FOUND:FacilityLocation",
+      "range": "NOT_FOUND:TimeZone",
+      "comment": {
+        "@value": "The time zone the facility is located in.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:namedAreaCode",
+      "@type": "owl:DatatypeProperty",
+      "label": {
+        "@value": "Named area code",
+        "@language": "en"
+      },
+      "domain": "NOT_FOUND:NamedAreaExtended",
+      "range": "NOT_FOUND:NamedAreaCode",
+      "comment": {
+        "@value": "Code for the named area, such a postal code or other code assigned for administration.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:hasaddressLine",
+      "@type": "owl:ObjectProperty",
+      "label": {
+        "@value": "Address line",
+        "@language": "en"
+      },
+      "domain": "NOT_FOUND:Address",
+      "range": "NOT_FOUND:AddressLine"
+    },
+    {
+      "@id": "NOT_FOUND:hasaddress",
+      "@type": "owl:ObjectProperty",
+      "label": {
+        "@value": "Address",
+        "@language": "en"
+      },
+      "domain": "NOT_FOUND:FacilityLocation",
+      "range": "NOT_FOUND:Address",
+      "comment": {
+        "@value": "An address specification following ISO 19160-4.",
+        "@language": "en"
+      }
+    }
+  ]
+}
