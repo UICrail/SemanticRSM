@@ -1,0 +1,305 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "datex_D2Payload": "http://datex2.eu/vocab/3/D2Payload/",
+    "datex_Common": "http://datex2.eu/vocab/3/Common/",
+    "datex_LocationReferencing": "http://datex2.eu/vocab/3/LocationReferencing/",
+    "datex_RoadTrafficData": "http://datex2.eu/vocab/3/RoadTrafficData/",
+    "datex_Situation": "http://datex2.eu/vocab/3/Situation/",
+    "datex_Vms": "http://datex2.eu/vocab/3/Vms/",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "dct": "http://purl.org/dc/terms/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "vann": "http://purl.org/vocab/vann/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "cc": "http://creativecommons.org/ns#",
+    "status": "http://www.w3.org/2003/06/sw-vocab-status/ns#",
+    "schema": "http://schema.org/",
+    "license": {
+      "@id": "cc:license"
+    },
+    "hasFormat": {
+      "@id": "dct:hasFormat"
+    },
+    "label": {
+      "@id": "rdfs:label"
+    },
+    "comment": {
+      "@id": "rdfs:comment"
+    },
+    "subClassOf": {
+      "@id": "rdfs:subClassOf",
+      "@type": "@id"
+    },
+    "issued": {
+      "@id": "dct:issued"
+    },
+    "modified": {
+      "@id": "dct:modified"
+    },
+    "rights": {
+      "@id": "dct:rights"
+    },
+    "primaryTopic": {
+      "@id": "foaf:primaryTopic",
+      "@type": "@id"
+    },
+    "title": {
+      "@id": "dct:title"
+    },
+    "description": {
+      "@id": "dct:description"
+    },
+    "creator": {
+      "@id": "dct:creator"
+    },
+    "preferredNamespacePrefix": {
+      "@id": "vann:preferredNamespacePrefix"
+    },
+    "preferredNamespaceUri": {
+      "@id": "vann:preferredNamespaceUri"
+    },
+    "seeAlso": {
+      "@id": "rdfs:seeAlso",
+      "@type": "@id"
+    },
+    "range": {
+      "@id": "rdfs:range",
+      "@type": "@id"
+    },
+    "domain": {
+      "@id": "rdfs:domain",
+      "@type": "@id"
+    }
+  },
+  "@graph": [
+    {
+      "@id": "http://datex2.eu/vocab/3/CommonExtension",
+      "@type": "foaf:Document",
+      "license": "http://creativecommons.org/licenses/by/3.0/",
+      "hasFormat": "http://datex2.eu/vocab/3/CommonExtension/vocabulary.jsonld",
+      "issued": {
+        "@value": "2023-11-10",
+        "@type": "xsd:date"
+      },
+      "modified": {
+        "@value": "2023-11-10",
+        "@type": "xsd:date"
+      },
+      "rights": "Copyright 2023 - DATEX TMG",
+      "primaryTopic": "datex_CommonExtension:Ontology"
+    },
+    {
+      "@id": "datex_CommonExtension:Ontology",
+      "@type": "owl:Ontology",
+      "title": {
+        "@value": "DATEX II",
+        "@language": "en"
+      },
+      "comment": {
+        "@value": "A mapping of DATEX II to a Linked Data vocabulary",
+        "@language": "en"
+      },
+      "description": {
+        "@value": "This document gives URIs to all terms used within Datex II",
+        "@language": "en"
+      },
+      "creator": [
+        "DATEX TMG "
+      ],
+      "preferredNamespacePrefix": "NOT_FOUND",
+      "preferredNamespaceUri": "http://datex2.eu/vocab/3/CommonExtension",
+      "label": {
+        "@value": "Linked DATEX II",
+        "@language": "en"
+      },
+      "seeAlso": "http://datex2.eu/schema/3/CommonExtension"
+    },
+    {
+      "@id": "NOT_FOUND:EmissionClassificationEuroEnumExtended",
+      "label": {
+        "@value": "Emission classification euro enum extended",
+        "@language": "en"
+      },
+      "@type": "owl:Class",
+      "comment": {
+        "@value": "Emission classification euro enum extended",
+        "@language": "en"
+      },
+      "subClassOf": "schema:Enumeration"
+    },
+    {
+      "@id": "NOT_FOUND:EmissionClassificationEuroEnumExtended#euroUnknown",
+      "label": {
+        "@value": "Emission classification euro enum extended euro unknown",
+        "@language": "en"
+      },
+      "@type": "NOT_FOUND:EmissionClassificationEuroEnumExtended",
+      "comment": {
+        "@value": "euro qualification of engine unknown",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:EmissionClassificationEuroEnumExtended#euroI",
+      "label": {
+        "@value": "Emission classification euro enum extended euro i",
+        "@language": "en"
+      },
+      "@type": "NOT_FOUND:EmissionClassificationEuroEnumExtended",
+      "comment": {
+        "@value": "euro 1",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:EmissionClassificationEuroEnumExtended#euroII",
+      "label": {
+        "@value": "Emission classification euro enum extended euro i i",
+        "@language": "en"
+      },
+      "@type": "NOT_FOUND:EmissionClassificationEuroEnumExtended",
+      "comment": {
+        "@value": "euro 2",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:EmissionClassificationEuroEnumExtended#euroIII",
+      "label": {
+        "@value": "Emission classification euro enum extended euro i i i",
+        "@language": "en"
+      },
+      "@type": "NOT_FOUND:EmissionClassificationEuroEnumExtended",
+      "comment": {
+        "@value": "euro 3",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:EmissionClassificationEuroEnumExtended#euro0",
+      "label": {
+        "@value": "Emission classification euro enum extended euro0",
+        "@language": "en"
+      },
+      "@type": "NOT_FOUND:EmissionClassificationEuroEnumExtended",
+      "comment": {
+        "@value": "Euro 0.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:EmissionClassificationEuroEnumExtended#euro4",
+      "label": {
+        "@value": "Emission classification euro enum extended euro4",
+        "@language": "en"
+      },
+      "@type": "NOT_FOUND:EmissionClassificationEuroEnumExtended",
+      "comment": {
+        "@value": "Euro 4.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:EmissionClassificationEuroEnumExtended#euro6d",
+      "label": {
+        "@value": "Emission classification euro enum extended euro6d",
+        "@language": "en"
+      },
+      "@type": "NOT_FOUND:EmissionClassificationEuroEnumExtended",
+      "comment": {
+        "@value": "Euro 6d.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:EmissionClassificationEuroEnumExtended#euro6dTemp",
+      "label": {
+        "@value": "Emission classification euro enum extended euro6d temp",
+        "@language": "en"
+      },
+      "@type": "NOT_FOUND:EmissionClassificationEuroEnumExtended",
+      "comment": {
+        "@value": "Euro 6d-TEMP.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:EmissionClassificationEuroEnumExtended#euroIV",
+      "label": {
+        "@value": "Emission classification euro enum extended euro i v",
+        "@language": "en"
+      },
+      "@type": "NOT_FOUND:EmissionClassificationEuroEnumExtended",
+      "comment": {
+        "@value": "Euro IV.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:EmissionClassificationEuroEnumExtended#euro1",
+      "label": {
+        "@value": "Emission classification euro enum extended euro1",
+        "@language": "en"
+      },
+      "@type": "NOT_FOUND:EmissionClassificationEuroEnumExtended",
+      "comment": {
+        "@value": "Euro1.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:EmissionClassificationEuroEnumExtended#euro2",
+      "label": {
+        "@value": "Emission classification euro enum extended euro2",
+        "@language": "en"
+      },
+      "@type": "NOT_FOUND:EmissionClassificationEuroEnumExtended",
+      "comment": {
+        "@value": "Euro2.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:EmissionClassificationEuroEnumExtended#euro3",
+      "label": {
+        "@value": "Emission classification euro enum extended euro3",
+        "@language": "en"
+      },
+      "@type": "NOT_FOUND:EmissionClassificationEuroEnumExtended",
+      "comment": {
+        "@value": "Euro3.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "NOT_FOUND:EmissionsExtension",
+      "label": {
+        "@value": "Emissions extension",
+        "@language": "en"
+      },
+      "@type": "owl:Class",
+      "comment": {
+        "@value": "An extension for the Emissions class to provide a comparison operator.",
+        "@language": "en"
+      },
+      "subClassOf": "datex_Common:Emissions"
+    },
+    {
+      "@id": "NOT_FOUND:comparisonOperator",
+      "@type": "owl:DatatypeProperty",
+      "label": {
+        "@value": "Comparison operator",
+        "@language": "en"
+      },
+      "domain": "NOT_FOUND:EmissionsExtension",
+      "range": "datex_Common:ComparisonOperatorEnum",
+      "comment": {
+        "@value": "A comparison operator for the applicable emission classifications in correspondence to the specified value. The comparison applies to the Roman- or Arabic-numbered portion (e.g. euro6 > euro5b), but not crosswise (e.g. euro6 cannot be compared to euroV).",
+        "@language": "en"
+      }
+    }
+  ]
+}
