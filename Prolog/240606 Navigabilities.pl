@@ -69,9 +69,6 @@ connectedTo(X,Y) :- connectedTo(X,Z), connectedTo(Z,Y).
 navigableToTransitive(X,Y) :- navigableTo(X, Y).
 navigableToTransitive(X, Y) :- navigableToTransitive(X,Z), navigableTo(Z,Y).
 
-% note: no distinction is made here between asserted navigabilities and inferred navigabilities (using transitivity).
-% This is probably not best practice. See for instance SKOS ontology, that makes use of transitivity with this precaution.
-
 % Navigability assertions:
 navigableTo(a1, b1) .
 navigableTo(b0, a0) .
@@ -99,7 +96,7 @@ navigableFrom(X, Y) :- navigableTo(Y, X) .
 % Caveat: in other words, PROLOG rests on a closed-world assumption, which is different from ontology open world assumption (what cannot be proven true is not false, but merely unknown). Take great care.
 nonNavigableTo(X, Y) :- \+ navigableTo(X,Y) .
 
-% The "intuitive" assertion above will yield counter-intuitive results when using variables in a query. 
+% The "intuitive" assertion above will yield counter-intuitive results when using variables in a query.
 % For instance, nonNavigableTo(b1, c0) and nonNavigableTo(b1, c1) will correctly be evaluated to true.
 % However, nonNavigableTo(b1, X) for instance evaluates to false, because there is at lease one navigable path leading to some X, making navigableTo(b1, X) true.
 
@@ -117,7 +114,7 @@ navigable(X,Y) :- netelement(X), netelement(Y), port(A,X), port(B,Y), navigableT
 % here: navigable(b,c) would always evaluate to true, even without any loop.
 
 % Suggested queries:
-% 
+%
 % Find all navigabilities from port a1:
 % navigableTo(a1, X) . % or, alternatively:
 % navigableFrom(X, a1) .
@@ -128,7 +125,7 @@ navigable(X,Y) :- netelement(X), netelement(Y), port(A,X), port(B,Y), navigableT
 % navigable(b, c) .
 % Activating the loop will change the results, as expected.
 
-% Now, let us introduce element lengths:
+% Now, let us introduce (nominal) element lengths:
 
 elementlength(a, 100) .
 elementlength(b, 220) .  % the diverted track is supposedly a bit longer than the through track c, below
@@ -141,10 +138,10 @@ elementlength(e, 450) .
 % Note: these functions may be SWI PROLOG-specific.
 sum_element_lengths(Elements, TotalLength) :-
     maplist(elementlength, Elements, Lengths), % Apply elementlength/2 to each element
-    sum_list(Lengths, TotalLength).             % Sum the resulting list of lengths
+    sum_list(Lengths, TotalLength).            % Sum the resulting list of lengths
 
-% find_path(Start, End, Path)
-% Path is a list of ports starting from Start and ending at End (if a navigable path could be found)
+% find_path(Start port, End port, Path)
+% A path is a list of ports starting from Start port and ending at End port.
 find_path(Start, End, [Start, End]) :-
     navigableTo(Start, End).
 
@@ -174,8 +171,8 @@ find_shortest_path(Start, End, ShortestPath, MinLength) :-
     nth0(Index, Lengths, MinLength),  % Find the index of the shortest length
     nth0(Index, Paths, ShortestPath).  % Retrieve the corresponding path
 
-
-
-
-
+% Query examples:
+% navigableTo(a1, d1) returns false.
+% navigableToTransitive(a1, d1) returns true.
+% find_shortest_path(a1, d1, X, Y) returns X = [a1,c1,d1] and Y = 450.
 

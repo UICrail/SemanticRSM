@@ -1,510 +1,479 @@
-@prefix : <http://cdm.ovh/rsm/topology/topology#> .
+# baseURI: http://cdm.ovh/rsm/topology/topology#
+# prefix: topo
+
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix dcterms: <http://purl.org/dc/terms/> .
-@base <http://cdm.ovh/rsm/topology/topology#> .
+@prefix topo: <http://cdm.ovh/rsm/topology/topology#> .
+@prefix topo_rc1: <http://cdm.ovh/rsm/topology/1.0rc1/topology#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://cdm.ovh/rsm/topology/topology> rdf:type owl:Ontology ;
-                                        owl:versionIRI <http://cdm.ovh/rsm/topology/1.0rc1/topology> ;
-                                        owl:imports <http://cdm.ovh/rsm/adapters/geosparql_adapter> ;
-                                        dc:abstract """Most complete RSM topology vocabulary to date, with reified relations between net elements ports, and property chains (2 levels) to simplify querying for basic usages.
+topo_rc1:BoundaryElement
+  a owl:Class ;
+  rdfs:label "Boundary Element"@en ;
+  rdfs:subClassOf topo_rc1:LinearElement ;
+  owl:disjointWith topo_rc1:NonlinearElement ;
+  skos:definition """a linear element with zero length. Allows to break up a topology between different infrastructure managers without disturbing the computation of navigabilities, since such boundary elements still have two ports, albeit coinciding ones.
+
+This is, hopefully, the sole concession of topology to \"usability\". It is motivated by the fact that such network boundaries are often knowledge boundaries; when setting up a topology instance, the user is not forced to look beyond the border.
+
+Using boundary elements is, by convention, the only way to break up a linear element into several consecutive linear elements."""@en ;
+.
+topo_rc1:Connection
+  a owl:Class ;
+  rdfs:label "Connection"@en ;
+  rdfs:subClassOf topo_rc1:PortRelationship ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:onClass topo_rc1:Port ;
+      owl:onProperty topo_rc1:withPort ;
+      owl:qualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+    ] ;
+  owl:disjointWith topo_rc1:Navigability ;
+  skos:definition "relation between two distinct ports of one (loop case) or two (common case) net  elements. This relation is understood as \"adjacency\", i.e. the related ports are expected to be at the same coordinates or with a minimal gap. A rare exception would be the case of transfer bridges, turntables, or the like."@en ;
+.
+topo_rc1:LinearElement
+  a owl:Class ;
+  rdfs:label "Linear element"@en ;
+  rdfs:subClassOf topo_rc1:NetElement ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:onClass topo_rc1:Port ;
+      owl:onProperty topo_rc1:hasPort ;
+      owl:qualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+    ] ;
+  owl:disjointWith topo_rc1:NonlinearElement ;
+  skos:definition """<quote ISO19148:2021> one-dimensional object that serves as the axis along which measurements are made </quote>
+In the context of sRSM topology, the extremities of a linear element are called \"ports\"."""@en ;
+.
+topo_rc1:LinearElementPart
+  a owl:Class ;
+  rdfs:label "Linear element part"@en ;
+  rdfs:subClassOf topo_rc1:TopologyComponent ;
+  skos:definition "contiguous part of a linear element"@en ;
+.
+topo_rc1:Navigability
+  a owl:Class ;
+  rdfs:label "Navigability"@en ;
+  rdfs:subClassOf topo_rc1:PortRelationship ;
+  skos:definition "a (reified) relation between two ports of two distinct net elements."@en ;
+.
+topo_rc1:NetElement
+  a owl:Class ;
+  rdfs:label "Net element"@en ;
+  rdfs:subClassOf topo_rc1:TopologyComponent ;
+  owl:disjointUnionOf (
+      topo_rc1:LinearElement
+      topo_rc1:NonlinearElement
+    ) ;
+  skos:definition "superclass for the two basic classes of net elements: linear ones and non-linear ones. No direct instances."@en ;
+.
+topo_rc1:NonlinearElement
+  a owl:Class ;
+  rdfs:label "Nonlinear element"@en ;
+  rdfs:subClassOf topo_rc1:NetElement ;
+  skos:definition "Any topology component other than linear. Can be understood, in many cases, as a hub with three or more ports."@en ;
+.
+topo_rc1:Port
+  a owl:Class ;
+  rdfs:label "Port"@en ;
+  rdfs:subClassOf topo_rc1:TopologyObject ;
+  skos:definition "a Port denotes one extremity of a linear element. Port generalizes to all places where a non-linear element (a \"hub\") can be accessed or egressed, hence the name."@en ;
+.
+topo_rc1:PortRelationship
+  a owl:Class ;
+  rdfs:label "Port relationship"@en ;
+  rdfs:subClassOf topo_rc1:TopologyObject ;
+  skos:definition "superclass for all relations between ports"@en ;
+.
+topo_rc1:TopologyComponent
+  a owl:Class ;
+  rdfs:label "Topology component"@en ;
+  rdfs:subClassOf topo_rc1:TopologyObject ;
+  owl:disjointUnionOf (
+      topo_rc1:LinearElementPart
+      topo_rc1:NetElement
+    ) ;
+  skos:definition "Superclass of all classes taking part in a composite pattern. No direct instances."@en ;
+.
+topo_rc1:TopologyObject
+  a owl:Class ;
+  rdfs:label "Topology object"@en ;
+  rdfs:subClassOf <http://cdm.ovh/rsm/adapters/geosparql_adapter#Feature> ;
+  owl:disjointUnionOf (
+      topo_rc1:Port
+      topo_rc1:PortRelationship
+      topo_rc1:TopologyComponent
+    ) ;
+  skos:definition "Superclass for all classes belonging to the topology. No direct instances."@en ;
+.
+topo_rc1:azimuth
+  a owl:DatatypeProperty ;
+  rdfs:domain topo_rc1:LinearElement ;
+  rdfs:label "azimuth"@en ;
+  rdfs:range [
+      a rdfs:Datatype ;
+      owl:onDatatype xsd:float ;
+      owl:withRestrictions (
+          [
+            xsd:minInclusive "-180.0"^^xsd:float ;
+          ]
+          [
+            xsd:maxInclusive "180.0"^^xsd:float ;
+          ]
+        ) ;
+    ] ;
+  skos:definition """outward azimuth at a port (of a linear element).
+\"outward\" means, seen in the direction of leaving the linear element.
+azimuth value is given with respect to North in a WGS84-based reference system.
+Expected value is in degrees, in the range [-180, +180] as per <fetch reference> convention, with 0 pointing to North."""@en ;
+.
+topo_rc1:connectedWith
+  a owl:ObjectProperty ;
+  a owl:SymmetricProperty ;
+  rdfs:domain topo_rc1:Port ;
+  rdfs:label "connected with"@en ;
+  rdfs:range topo_rc1:Port ;
+  rdfs:subPropertyOf topo_rc1:portRelation ;
+  owl:propertyChainAxiom (
+      topo_rc1:connection
+      topo_rc1:withPort
+    ) ;
+  skos:definition "connection between ports, expressing that the elements to which these ports belong are connected (creating some kind of mechanical continuity)"@en ;
+.
+topo_rc1:connection
+  a owl:ObjectProperty ;
+  rdfs:domain topo_rc1:Port ;
+  rdfs:label "connection"@en ;
+  rdfs:range topo_rc1:Connection ;
+  rdfs:subPropertyOf topo:connectionRelation ;
+  owl:inverseOf topo_rc1:withPort ;
+  skos:definition "inverse property of 'between port'. Instrumental in building the property chain resulting in 'connected with' (a relation between ports)"@en ;
+.
+topo_rc1:endPosition
+  a owl:DatatypeProperty ;
+  rdfs:domain topo_rc1:LinearElementPart ;
+  rdfs:label "end position"@en ;
+  rdfs:range [
+      a rdfs:Datatype ;
+      owl:onDatatype xsd:float ;
+      owl:withRestrictions (
+          [
+            xsd:minInclusive "0.0"^^xsd:float ;
+          ]
+          [
+            xsd:maxInclusive "1.0"^^xsd:float ;
+          ]
+        ) ;
+    ] ;
+  skos:definition """intrinsic coordinate of the linear element referenced by property \"partOf\" , at which the element part ends.
+Note: endsAt value may be greater or smaller than startsAt value; there is no imposed order."""@en ;
+.
+topo_rc1:fromExitPort
+  a owl:FunctionalProperty ;
+  a owl:ObjectProperty ;
+  rdfs:domain topo_rc1:Navigability ;
+  rdfs:label "from exit port"@en ;
+  rdfs:range topo_rc1:Port ;
+  rdfs:subPropertyOf topo_rc1:navigabilityRelation ;
+  owl:inverseOf topo_rc1:fromNav ;
+  skos:definition "port of origin in a navigability relation"@en ;
+.
+topo_rc1:fromNav
+  a owl:ObjectProperty ;
+  rdfs:domain topo_rc1:Port ;
+  rdfs:label "from navigability"@en ;
+  rdfs:range topo_rc1:Navigability ;
+  rdfs:subPropertyOf topo_rc1:navigabilityRelation ;
+  skos:definition "inverse of 'from exit port'. Instrumental in buildung property chain yielding navigability properties between ports."@en ;
+.
+topo_rc1:hasComponent
+  a owl:ObjectProperty ;
+  rdfs:domain topo_rc1:NetElement ;
+  rdfs:label "has component"@en ;
+  rdfs:range topo_rc1:TopologyComponent ;
+  owl:inverseOf topo_rc1:inElement ;
+  skos:definition "A net element may be compound. In such case, its components are other net elements, or parts of linear elements."@en ;
+.
+topo_rc1:hasPort
+  a owl:InverseFunctionalProperty ;
+  a owl:ObjectProperty ;
+  rdfs:domain topo_rc1:NetElement ;
+  rdfs:label "has port"@en ;
+  rdfs:range topo_rc1:Port ;
+  owl:inverseOf topo_rc1:onElement ;
+  skos:definition "tells which ports (extremities) the net element in subject has."@en ;
+.
+topo_rc1:inElement
+  a owl:ObjectProperty ;
+  rdfs:domain topo_rc1:TopologyComponent ;
+  rdfs:label "in Element"@en ;
+  rdfs:range topo_rc1:NetElement ;
+  skos:definition "tells to which composite net element the element in subject belongs."@en ;
+.
+topo_rc1:leadsTo
+  a owl:ObjectProperty ;
+  rdfs:domain topo_rc1:NetElement ;
+  rdfs:label "leads to"@en ;
+  rdfs:range topo_rc1:NetElement ;
+  rdfs:subPropertyOf topo_rc1:leadsToTransitive ;
+  owl:propertyChainAxiom (
+      topo_rc1:hasPort
+      topo_rc1:navigableTo
+      topo_rc1:onElement
+    ) ;
+  skos:definition "a property chain: net element A \"leads to\" net element B iff some port of A is navigable to some port of B,"@en ;
+.
+topo_rc1:leadsToTransitive
+  a owl:ObjectProperty ;
+  rdfs:domain topo_rc1:NetElement ;
+  rdfs:label "leads to (transitive)"@en ;
+  rdfs:range topo_rc1:NetElement ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  owl:propertyChainAxiom (
+      topo_rc1:hasPort
+      topo_rc1:navigableToTransitive
+      topo_rc1:onElement
+    ) ;
+  skos:definition """Net element A leads to (transitively) net element B iff some port in A is navigable to (transitively) some port of B.
+
+Transitivity is *not* a characteristic of this property, but a characteristic of the included 'navigable to (transitive)' in the property chain.
+
+This guarantees that paths of successive net elements will never imply a reversal of travel direction."""@en ;
+.
+topo_rc1:navigabilityRelation
+  a owl:ObjectProperty ;
+  a owl:SymmetricProperty ;
+  rdfs:domain [
+      a owl:Class ;
+      owl:unionOf (
+          topo_rc1:Navigability
+          topo_rc1:Port
+        ) ;
+    ] ;
+  rdfs:label "navigability relation"@en ;
+  rdfs:range [
+      a owl:Class ;
+      owl:unionOf (
+          topo_rc1:Navigability
+          topo_rc1:Port
+        ) ;
+    ] ;
+  skos:definition "Super-property for all properties linking Navigability with Port."@en ;
+.
+topo_rc1:navigableFrom
+  a owl:ObjectProperty ;
+  rdfs:domain topo_rc1:Port ;
+  rdfs:label "navigable from"@en ;
+  rdfs:range topo_rc1:Port ;
+  rdfs:subPropertyOf topo_rc1:navigableFromTransitive ;
+  owl:inverseOf topo_rc1:navigableTo ;
+  owl:propertyChainAxiom (
+      topo_rc1:toNav
+      topo_rc1:fromExitPort
+    ) ;
+  skos:definition "inverse of 'navigable to'"@en ;
+.
+topo_rc1:navigableFromTransitive
+  a owl:ObjectProperty ;
+  a owl:TransitiveProperty ;
+  rdfs:domain topo_rc1:Port ;
+  rdfs:label "navigable from (transitive)"@en ;
+  rdfs:range topo_rc1:Port ;
+  rdfs:subPropertyOf topo_rc1:portRelation ;
+  owl:inverseOf topo_rc1:navigableToTransitive ;
+  skos:definition "transitive closure of the 'navigable' from property,"@en ;
+.
+topo_rc1:navigableTo
+  a owl:ObjectProperty ;
+  rdfs:domain topo_rc1:Port ;
+  rdfs:label "navigable to"@en ;
+  rdfs:range topo_rc1:Port ;
+  rdfs:subPropertyOf topo_rc1:navigableToTransitive ;
+  owl:propertyChainAxiom (
+      topo_rc1:fromNav
+      topo_rc1:toExitPort
+    ) ;
+  skos:definition "expresses the possibility, for a vehicle, to ride from the subject port to the object port (excluding travel direction reversal)"@en ;
+.
+topo_rc1:navigableToTransitive
+  a owl:ObjectProperty ;
+  a owl:TransitiveProperty ;
+  rdfs:domain topo_rc1:Port ;
+  rdfs:label "navigable to (transitive)"@en ;
+  rdfs:range topo_rc1:Port ;
+  rdfs:subPropertyOf topo_rc1:portRelation ;
+  skos:definition "transitive closure of \"navigable to\". While navigability is expressed between neighbouring net elements and an expected input, navigability (transitive) is inferred and tells the relationship between distant net elements."@en ;
+.
+topo_rc1:nonNavigableTo
+  a owl:ObjectProperty ;
+  rdfs:domain topo_rc1:Port ;
+  rdfs:label "non navigable to"@en ;
+  rdfs:range topo_rc1:Port ;
+  rdfs:subPropertyOf topo_rc1:portRelation ;
+  skos:definition """used to positively assert that navigability is not possible. Concrete examples: non-aligned branches of diamond crossings ; the through and the diverted track on the heel side of a switch.
+
+Please remember the OWA (Open World Assumption): if a navigability between ports A and B is not asserted, this does not entail that the relation A-B is not navigable. No assertion simply means \"not known (yet), not documented (yet)\". Additional information may lift the ambiguity when it becomes available. On the other hand, any inference made on incomplete data will remain valid after data completion; e.g. any collection of paths inferred from incomplete data will remain valid once the data are completed, but new paths may appear. This is known as monotonic logic (new facts do not invalidate previously made inferences)."""@en ;
+.
+topo_rc1:onElement
+  a owl:FunctionalProperty ;
+  a owl:ObjectProperty ;
+  rdfs:domain topo_rc1:Port ;
+  rdfs:label "on element"@en ;
+  rdfs:range topo_rc1:NetElement ;
+  skos:definition "a port denotes one! extremity of one! net element. Ports are never \"shared\" by neighbouring elements, even though they may coincide."@en ;
+.
+topo_rc1:partOf
+  a owl:FunctionalProperty ;
+  a owl:ObjectProperty ;
+  rdfs:domain topo_rc1:LinearElementPart ;
+  rdfs:label "part of"@en ;
+  rdfs:range topo_rc1:LinearElement ;
+  owl:inverseOf topo:hasPart ;
+  skos:definition "tells to which single linear element a linear element part belongs."@en ;
+.
+topo_rc1:portRelation
+  a owl:ObjectProperty ;
+  rdfs:domain topo_rc1:Port ;
+  rdfs:label "port relation"@en ;
+  rdfs:range topo_rc1:Port ;
+  skos:definition "super-property for all properties between ports"@en ;
+.
+topo_rc1:startPosition
+  a owl:DatatypeProperty ;
+  rdfs:domain topo_rc1:LinearElementPart ;
+  rdfs:label "start position"@en ;
+  rdfs:range [
+      a rdfs:Datatype ;
+      owl:onDatatype xsd:decimal ;
+      owl:withRestrictions (
+          [
+            xsd:minInclusive 0.0 ;
+          ]
+          [
+            xsd:maxInclusive 1.0 ;
+          ]
+        ) ;
+    ] ;
+  skos:definition "intrinsic coordinate of the linear element referenced by property \"partOf\" , from which the element part starts."@en ;
+.
+topo_rc1:toExitPort
+  a owl:FunctionalProperty ;
+  a owl:ObjectProperty ;
+  rdfs:domain topo_rc1:Navigability ;
+  rdfs:label "to exit port"@en ;
+  rdfs:range topo_rc1:Port ;
+  rdfs:subPropertyOf topo_rc1:navigabilityRelation ;
+  owl:inverseOf topo_rc1:toNav ;
+  skos:definition "port of destination in a navigability relation"@en ;
+.
+topo_rc1:toNav
+  a owl:ObjectProperty ;
+  rdfs:domain topo_rc1:Port ;
+  rdfs:label "to navigability"@en ;
+  rdfs:range topo_rc1:Navigability ;
+  rdfs:subPropertyOf topo_rc1:navigabilityRelation ;
+  skos:definition "inverse of 'to exit port'."@en ;
+.
+topo_rc1:withPort
+  a owl:ObjectProperty ;
+  rdfs:domain topo_rc1:Connection ;
+  rdfs:label "with port"@en ;
+  rdfs:range topo_rc1:Port ;
+  rdfs:subPropertyOf topo:connectionRelation ;
+  skos:definition """This object property points to the (exactly) two ports that share a connection relationship.
+
+It is used for building the knowledge graph and allows to derive a symmetric 'connected with' property linking these two ports."""@en ;
+.
+<http://cdm.ovh/rsm/topology/topology>
+  a owl:Ontology ;
+  dc:abstract """Most complete RSM topology vocabulary to date, with reified relations between net elements ports, and property chains (2 levels) to simplify querying for basic usages.
 
 RSM is a member of the CDM (Conceptual Data Model), under development under the ERJU MOTIONAL project.
 
 Some properties that are most likely to be used are chained properties (equivalent to derived associations in UML). However, using reified relationships between net elements guarantees highest expressiveness. Such reification allows to handle evolutions of the topology (relations being time-dependent objects or \"endurants\" in UFO parlance).
 
 Superclasses for \"endurants\" are yet to be chosen and introduced."""@en ;
-                                        dc:contributor "Pierre Tane, UIC" ;
-                                        dc:creator "Airy Magnien, UIC" ;
-                                        dc:date "2024/11/15" ;
-                                        dc:relation """MOTIONAL project: https://rail-research.europa.eu/eu-rail-projects/ 
+  dc:contributor "Pierre Tane, UIC" ;
+  dc:creator "Airy Magnien, UIC" ;
+  dc:date "2024/11/15" ;
+  dc:relation """MOTIONAL project: https://rail-research.europa.eu/eu-rail-projects/ 
 ONTORAIL project: https://ontorail.org/
 RSM GitHub: https://github.com/UICrail/SemanticRSM"""@en ;
-                                        dc:title "CDM/RSM topology"@en ;
-                                        dc:type "RDF/OWL ontology" ;
-                                        dcterms:license "EUPL1.2; see https://interoperable-europe.ec.europa.eu/sites/default/files/custom-page/attachment/eupl_v1.2_en.pdf"@en ;
-                                        owl:versionInfo "1.0rc1"@en ;
-                                        <https://vocab.org/vann/preferredNamespacePrefix> "rsmtopo" ;
-                                        <https://vocab.org/vann/preferredNamespaceURI> "http://cdm.ovh/rsm/topology/topology#" .
-
-#################################################################
-#    Annotation properties
-#################################################################
-
-###  http://purl.org/dc/elements/1.1/abstract
-dc:abstract rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/elements/1.1/contributor
-dc:contributor rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/elements/1.1/creator
-dc:creator rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/elements/1.1/date
-dc:date rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/elements/1.1/relation
-dc:relation rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/elements/1.1/title
-dc:title rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/elements/1.1/type
-dc:type rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/terms/license
-dcterms:license rdf:type owl:AnnotationProperty .
-
-
-###  http://www.w3.org/2004/02/skos/core#definition
-skos:definition rdf:type owl:AnnotationProperty .
-
-
-###  https://vocab.org/vann/preferredNamespacePrefix
-<https://vocab.org/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
-
-
-###  https://vocab.org/vann/preferredNamespaceURI
-<https://vocab.org/vann/preferredNamespaceURI> rdf:type owl:AnnotationProperty .
-
-
-#################################################################
-#    Object Properties
-#################################################################
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#connectedWith
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#connectedWith> rdf:type owl:ObjectProperty ;
-                                                            rdfs:subPropertyOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#portRelation> ;
-                                                            rdf:type owl:SymmetricProperty ;
-                                                            rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port> ;
-                                                            rdfs:range <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port> ;
-                                                            owl:propertyChainAxiom ( <http://cdm.ovh/rsm/topology/1.0rc1/topology#connection>
-                                                                                     <http://cdm.ovh/rsm/topology/1.0rc1/topology#withPort>
-                                                                                   ) ;
-                                                            rdfs:label "connected with"@en ;
-                                                            skos:definition "connection between ports, expressing that the elements to which these ports belong are connected (creating some kind of mechanical continuity)"@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#connection
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#connection> rdf:type owl:ObjectProperty ;
-                                                         rdfs:subPropertyOf :connectionRelation ;
-                                                         owl:inverseOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#withPort> ;
-                                                         rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port> ;
-                                                         rdfs:range <http://cdm.ovh/rsm/topology/1.0rc1/topology#Connection> ;
-                                                         rdfs:label "connection"@en ;
-                                                         skos:definition "inverse property of 'between port'. Instrumental in building the property chain resulting in 'connected with' (a relation between ports)"@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#fromExitPort
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#fromExitPort> rdf:type owl:ObjectProperty ;
-                                                           rdfs:subPropertyOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#navigabilityRelation> ;
-                                                           owl:inverseOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#fromNav> ;
-                                                           rdf:type owl:FunctionalProperty ;
-                                                           rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#Navigability> ;
-                                                           rdfs:range <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port> ;
-                                                           rdfs:label "from exit port"@en ;
-                                                           skos:definition "port of origin in a navigability relation"@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#fromNav
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#fromNav> rdf:type owl:ObjectProperty ;
-                                                      rdfs:subPropertyOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#navigabilityRelation> ;
-                                                      rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port> ;
-                                                      rdfs:range <http://cdm.ovh/rsm/topology/1.0rc1/topology#Navigability> ;
-                                                      rdfs:label "from navigability"@en ;
-                                                      skos:definition "inverse of 'from exit port'. Instrumental in buildung property chain yielding navigability properties between ports."@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#hasComponent
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#hasComponent> rdf:type owl:ObjectProperty ;
-                                                           owl:inverseOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#inElement> ;
-                                                           rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#NetElement> ;
-                                                           rdfs:range <http://cdm.ovh/rsm/topology/1.0rc1/topology#TopologyComponent> ;
-                                                           rdfs:label "has component"@en ;
-                                                           skos:definition "A net element may be compound. In such case, its components are other net elements, or parts of linear elements."@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#hasPort
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#hasPort> rdf:type owl:ObjectProperty ;
-                                                      owl:inverseOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#onElement> ;
-                                                      rdf:type owl:InverseFunctionalProperty ;
-                                                      rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#NetElement> ;
-                                                      rdfs:range <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port> ;
-                                                      rdfs:label "has port"@en ;
-                                                      skos:definition "tells which ports (extremities) the net element in subject has."@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#inElement
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#inElement> rdf:type owl:ObjectProperty ;
-                                                        rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#TopologyComponent> ;
-                                                        rdfs:range <http://cdm.ovh/rsm/topology/1.0rc1/topology#NetElement> ;
-                                                        rdfs:label "in Element"@en ;
-                                                        skos:definition "tells to which composite net element the element in subject belongs."@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#leadsTo
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#leadsTo> rdf:type owl:ObjectProperty ;
-                                                      rdfs:subPropertyOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#leadsToTransitive> ;
-                                                      rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#NetElement> ;
-                                                      rdfs:range <http://cdm.ovh/rsm/topology/1.0rc1/topology#NetElement> ;
-                                                      owl:propertyChainAxiom ( <http://cdm.ovh/rsm/topology/1.0rc1/topology#hasPort>
-                                                                               <http://cdm.ovh/rsm/topology/1.0rc1/topology#navigableTo>
-                                                                               <http://cdm.ovh/rsm/topology/1.0rc1/topology#onElement>
-                                                                             ) ;
-                                                      rdfs:label "leads to"@en ;
-                                                      skos:definition "a property chain: net element A \"leads to\" net element B iff some port of A is navigable to some port of B,"@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#leadsToTransitive
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#leadsToTransitive> rdf:type owl:ObjectProperty ;
-                                                                rdfs:subPropertyOf owl:topObjectProperty ;
-                                                                rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#NetElement> ;
-                                                                rdfs:range <http://cdm.ovh/rsm/topology/1.0rc1/topology#NetElement> ;
-                                                                owl:propertyChainAxiom ( <http://cdm.ovh/rsm/topology/1.0rc1/topology#hasPort>
-                                                                                         <http://cdm.ovh/rsm/topology/1.0rc1/topology#navigableToTransitive>
-                                                                                         <http://cdm.ovh/rsm/topology/1.0rc1/topology#onElement>
-                                                                                       ) ;
-                                                                rdfs:label "leads to (transitive)"@en ;
-                                                                skos:definition """Net element A leads to (transitively) net element B iff some port in A is navigable to (transitively) some port of B.
-
-Transitivity is *not* a characteristic of this property, but a characteristic of the included 'navigable to (transitive)' in the property chain.
-
-This guarantees that paths of successive net elements will never imply a reversal of travel direction."""@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#navigabilityRelation
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#navigabilityRelation> rdf:type owl:ObjectProperty ,
-                                                                            owl:SymmetricProperty ;
-                                                                   rdfs:domain [ rdf:type owl:Class ;
-                                                                                 owl:unionOf ( <http://cdm.ovh/rsm/topology/1.0rc1/topology#Navigability>
-                                                                                               <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port>
-                                                                                             )
-                                                                               ] ;
-                                                                   rdfs:range [ rdf:type owl:Class ;
-                                                                                owl:unionOf ( <http://cdm.ovh/rsm/topology/1.0rc1/topology#Navigability>
-                                                                                              <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port>
-                                                                                            )
-                                                                              ] ;
-                                                                   rdfs:label "navigability relation"@en ;
-                                                                   skos:definition "Super-property for all properties linking Navigability with Port."@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#navigableFrom
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#navigableFrom> rdf:type owl:ObjectProperty ;
-                                                            rdfs:subPropertyOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#navigableFromTransitive> ;
-                                                            owl:inverseOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#navigableTo> ;
-                                                            rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port> ;
-                                                            rdfs:range <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port> ;
-                                                            owl:propertyChainAxiom ( <http://cdm.ovh/rsm/topology/1.0rc1/topology#toNav>
-                                                                                     <http://cdm.ovh/rsm/topology/1.0rc1/topology#fromExitPort>
-                                                                                   ) ;
-                                                            rdfs:label "navigable from"@en ;
-                                                            skos:definition "inverse of 'navigable to'"@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#navigableFromTransitive
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#navigableFromTransitive> rdf:type owl:ObjectProperty ;
-                                                                      rdfs:subPropertyOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#portRelation> ;
-                                                                      owl:inverseOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#navigableToTransitive> ;
-                                                                      rdf:type owl:TransitiveProperty ;
-                                                                      rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port> ;
-                                                                      rdfs:range <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port> ;
-                                                                      rdfs:label "navigable from (transitive)"@en ;
-                                                                      skos:definition "transitive closure of the 'navigable' from property,"@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#navigableTo
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#navigableTo> rdf:type owl:ObjectProperty ;
-                                                          rdfs:subPropertyOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#navigableToTransitive> ;
-                                                          rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port> ;
-                                                          rdfs:range <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port> ;
-                                                          owl:propertyChainAxiom ( <http://cdm.ovh/rsm/topology/1.0rc1/topology#fromNav>
-                                                                                   <http://cdm.ovh/rsm/topology/1.0rc1/topology#toExitPort>
-                                                                                 ) ;
-                                                          rdfs:label "navigable to"@en ;
-                                                          skos:definition "expresses the possibility, for a vehicle, to ride from the subject port to the object port (excluding travel direction reversal)"@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#navigableToTransitive
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#navigableToTransitive> rdf:type owl:ObjectProperty ;
-                                                                    rdfs:subPropertyOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#portRelation> ;
-                                                                    rdf:type owl:TransitiveProperty ;
-                                                                    rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port> ;
-                                                                    rdfs:range <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port> ;
-                                                                    rdfs:label "navigable to (transitive)"@en ;
-                                                                    skos:definition "transitive closure of \"navigable to\". While navigability is expressed between neighbouring net elements and an expected input, navigability (transitive) is inferred and tells the relationship between distant net elements."@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#nonNavigableTo
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#nonNavigableTo> rdf:type owl:ObjectProperty ;
-                                                             rdfs:subPropertyOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#portRelation> ;
-                                                             rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port> ;
-                                                             rdfs:range <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port> ;
-                                                             rdfs:label "non navigable to"@en ;
-                                                             skos:definition """used to positively assert that navigability is not possible. Concrete examples: non-aligned branches of diamond crossings ; the through and the diverted track on the heel side of a switch.
-
-Please remember the OWA (Open World Assumption): if a navigability between ports A and B is not asserted, this does not entail that the relation A-B is not navigable. No assertion simply means \"not known (yet), not documented (yet)\". Additional information may lift the ambiguity when it becomes available. On the other hand, any inference made on incomplete data will remain valid after data completion; e.g. any collection of paths inferred from incomplete data will remain valid once the data are completed, but new paths may appear. This is known as monotonic logic (new facts do not invalidate previously made inferences)."""@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#onElement
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#onElement> rdf:type owl:ObjectProperty ,
-                                                                 owl:FunctionalProperty ;
-                                                        rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port> ;
-                                                        rdfs:range <http://cdm.ovh/rsm/topology/1.0rc1/topology#NetElement> ;
-                                                        rdfs:label "on element"@en ;
-                                                        skos:definition "a port denotes one! extremity of one! net element. Ports are never \"shared\" by neighbouring elements, even though they may coincide."@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#partOf
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#partOf> rdf:type owl:ObjectProperty ;
-                                                     owl:inverseOf :hasPart ;
-                                                     rdf:type owl:FunctionalProperty ;
-                                                     rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#LinearElementPart> ;
-                                                     rdfs:range <http://cdm.ovh/rsm/topology/1.0rc1/topology#LinearElement> ;
-                                                     rdfs:label "part of"@en ;
-                                                     skos:definition "tells to which single linear element a linear element part belongs."@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#portRelation
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#portRelation> rdf:type owl:ObjectProperty ;
-                                                           rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port> ;
-                                                           rdfs:range <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port> ;
-                                                           rdfs:label "port relation"@en ;
-                                                           skos:definition "super-property for all properties between ports"@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#toExitPort
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#toExitPort> rdf:type owl:ObjectProperty ;
-                                                         rdfs:subPropertyOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#navigabilityRelation> ;
-                                                         owl:inverseOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#toNav> ;
-                                                         rdf:type owl:FunctionalProperty ;
-                                                         rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#Navigability> ;
-                                                         rdfs:range <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port> ;
-                                                         rdfs:label "to exit port"@en ;
-                                                         skos:definition "port of destination in a navigability relation"@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#toNav
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#toNav> rdf:type owl:ObjectProperty ;
-                                                    rdfs:subPropertyOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#navigabilityRelation> ;
-                                                    rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port> ;
-                                                    rdfs:range <http://cdm.ovh/rsm/topology/1.0rc1/topology#Navigability> ;
-                                                    rdfs:label "to navigability"@en ;
-                                                    skos:definition "inverse of 'to exit port'."@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#withPort
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#withPort> rdf:type owl:ObjectProperty ;
-                                                       rdfs:subPropertyOf :connectionRelation ;
-                                                       rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#Connection> ;
-                                                       rdfs:range <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port> ;
-                                                       rdfs:label "with port"@en ;
-                                                       skos:definition """This object property points to the (exactly) two ports that share a connection relationship.
-
-It is used for building the knowledge graph and allows to derive a symmetric 'connected with' property linking these two ports."""@en .
-
-
-###  http://cdm.ovh/rsm/topology/topology#connectionRelation
-:connectionRelation rdf:type owl:ObjectProperty ,
-                             owl:SymmetricProperty ;
-                    rdfs:domain [ rdf:type owl:Class ;
-                                  owl:unionOf ( <http://cdm.ovh/rsm/topology/1.0rc1/topology#Connection>
-                                                <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port>
-                                              )
-                                ] ;
-                    rdfs:range [ rdf:type owl:Class ;
-                                 owl:unionOf ( <http://cdm.ovh/rsm/topology/1.0rc1/topology#Connection>
-                                               <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port>
-                                             )
-                               ] ;
-                    rdfs:label "connection relation"@en ;
-                    skos:definition "super-property for all relations between Connection and Port"@en .
-
-
-###  http://cdm.ovh/rsm/topology/topology#hasPart
-:hasPart rdf:type owl:ObjectProperty ;
-         rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#LinearElement> ;
-         rdfs:range <http://cdm.ovh/rsm/topology/1.0rc1/topology#LinearElementPart> ;
-         rdfs:label "has part"@en ;
-         skos:definition "tells which element parts are defined for the linear element in subject."@en .
-
-
-#################################################################
-#    Data properties
-#################################################################
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#azimuth
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#azimuth> rdf:type owl:DatatypeProperty ;
-                                                      rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#LinearElement> ;
-                                                      rdfs:range [ rdf:type rdfs:Datatype ;
-                                                                   owl:onDatatype xsd:float ;
-                                                                   owl:withRestrictions ( [ xsd:minInclusive "-180.0"^^xsd:float
-                                                                                          ]
-                                                                                          [ xsd:maxInclusive "180.0"^^xsd:float
-                                                                                          ]
-                                                                                        )
-                                                                 ] ;
-                                                      rdfs:label "azimuth"@en ;
-                                                      skos:definition """outward azimuth at a port (of a linear element).
-\"outward\" means, seen in the direction of leaving the linear element.
-azimuth value is given with respect to North in a WGS84-based reference system.
-Expected value is in degrees, in the range [-180, +180] as per <fetch reference> convention, with 0 pointing to North."""@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#endPosition
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#endPosition> rdf:type owl:DatatypeProperty ;
-                                                          rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#LinearElementPart> ;
-                                                          rdfs:range [ rdf:type rdfs:Datatype ;
-                                                                       owl:onDatatype xsd:float ;
-                                                                       owl:withRestrictions ( [ xsd:minInclusive "0.0"^^xsd:float
-                                                                                              ]
-                                                                                              [ xsd:maxInclusive "1.0"^^xsd:float
-                                                                                              ]
-                                                                                            )
-                                                                     ] ;
-                                                          rdfs:label "end position"@en ;
-                                                          skos:definition """intrinsic coordinate of the linear element referenced by property \"partOf\" , at which the element part ends.
-Note: endsAt value may be greater or smaller than startsAt value; there is no imposed order."""@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#startPosition
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#startPosition> rdf:type owl:DatatypeProperty ;
-                                                            rdfs:domain <http://cdm.ovh/rsm/topology/1.0rc1/topology#LinearElementPart> ;
-                                                            rdfs:range [ rdf:type rdfs:Datatype ;
-                                                                         owl:onDatatype xsd:decimal ;
-                                                                         owl:withRestrictions ( [ xsd:minInclusive 0.0
-                                                                                                ]
-                                                                                                [ xsd:maxInclusive 1.0
-                                                                                                ]
-                                                                                              )
-                                                                       ] ;
-                                                            rdfs:label "start position"@en ;
-                                                            skos:definition "intrinsic coordinate of the linear element referenced by property \"partOf\" , from which the element part starts."@en .
-
-
-#################################################################
-#    Classes
-#################################################################
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#BoundaryElement
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#BoundaryElement> rdf:type owl:Class ;
-                                                              rdfs:subClassOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#LinearElement> ;
-                                                              owl:disjointWith <http://cdm.ovh/rsm/topology/1.0rc1/topology#NonlinearElement> ;
-                                                              rdfs:label "Boundary Element"@en ;
-                                                              skos:definition """a linear element with zero length. Allows to break up a topology between different infrastructure managers without disturbing the computation of navigabilities, since such boundary elements still have two ports, albeit coinciding ones.
-
-This is, hopefully, the sole concession of topology to \"usability\". It is motivated by the fact that such network boundaries are often knowledge boundaries; when setting up a topology instance, the user is not forced to look beyond the border.
-
-Using boundary elements is, by convention, the only way to break up a linear element into several consecutive linear elements."""@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#Connection
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#Connection> rdf:type owl:Class ;
-                                                         rdfs:subClassOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#PortRelationship> ,
-                                                                         [ rdf:type owl:Restriction ;
-                                                                           owl:onProperty <http://cdm.ovh/rsm/topology/1.0rc1/topology#withPort> ;
-                                                                           owl:qualifiedCardinality "2"^^xsd:nonNegativeInteger ;
-                                                                           owl:onClass <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port>
-                                                                         ] ;
-                                                         owl:disjointWith <http://cdm.ovh/rsm/topology/1.0rc1/topology#Navigability> ;
-                                                         rdfs:label "Connection"@en ;
-                                                         skos:definition "relation between two distinct ports of one (loop case) or two (common case) net  elements. This relation is understood as \"adjacency\", i.e. the related ports are expected to be at the same coordinates or with a minimal gap. A rare exception would be the case of transfer bridges, turntables, or the like."@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#LinearElement
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#LinearElement> rdf:type owl:Class ;
-                                                            rdfs:subClassOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#NetElement> ,
-                                                                            [ rdf:type owl:Restriction ;
-                                                                              owl:onProperty <http://cdm.ovh/rsm/topology/1.0rc1/topology#hasPort> ;
-                                                                              owl:qualifiedCardinality "2"^^xsd:nonNegativeInteger ;
-                                                                              owl:onClass <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port>
-                                                                            ] ;
-                                                            owl:disjointWith <http://cdm.ovh/rsm/topology/1.0rc1/topology#NonlinearElement> ;
-                                                            rdfs:label "Linear element"@en ;
-                                                            skos:definition """<quote ISO19148:2021> one-dimensional object that serves as the axis along which measurements are made </quote>
-In the context of sRSM topology, the extremities of a linear element are called \"ports\"."""@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#LinearElementPart
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#LinearElementPart> rdf:type owl:Class ;
-                                                                rdfs:subClassOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#TopologyComponent> ;
-                                                                rdfs:label "Linear element part"@en ;
-                                                                skos:definition "contiguous part of a linear element"@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#Navigability
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#Navigability> rdf:type owl:Class ;
-                                                           rdfs:subClassOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#PortRelationship> ;
-                                                           rdfs:label "Navigability"@en ;
-                                                           skos:definition "a (reified) relation between two ports of two distinct net elements."@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#NetElement
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#NetElement> rdf:type owl:Class ;
-                                                         rdfs:subClassOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#TopologyComponent> ;
-                                                         owl:disjointUnionOf ( <http://cdm.ovh/rsm/topology/1.0rc1/topology#LinearElement>
-                                                                               <http://cdm.ovh/rsm/topology/1.0rc1/topology#NonlinearElement>
-                                                                             ) ;
-                                                         rdfs:label "Net element"@en ;
-                                                         skos:definition "superclass for the two basic classes of net elements: linear ones and non-linear ones. No direct instances."@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#NonlinearElement
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#NonlinearElement> rdf:type owl:Class ;
-                                                               rdfs:subClassOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#NetElement> ;
-                                                               rdfs:label "Nonlinear element"@en ;
-                                                               skos:definition "Any topology component other than linear. Can be understood, in many cases, as a hub with three or more ports."@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#Port
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#Port> rdf:type owl:Class ;
-                                                   rdfs:subClassOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#TopologyObject> ;
-                                                   rdfs:label "Port"@en ;
-                                                   skos:definition "a Port denotes one extremity of a linear element. Port generalizes to all places where a non-linear element (a \"hub\") can be accessed or egressed, hence the name."@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#PortRelationship
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#PortRelationship> rdf:type owl:Class ;
-                                                               rdfs:subClassOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#TopologyObject> ;
-                                                               rdfs:label "Port relationship"@en ;
-                                                               skos:definition "superclass for all relations between ports"@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#TopologyComponent
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#TopologyComponent> rdf:type owl:Class ;
-                                                                rdfs:subClassOf <http://cdm.ovh/rsm/topology/1.0rc1/topology#TopologyObject> ;
-                                                                owl:disjointUnionOf ( <http://cdm.ovh/rsm/topology/1.0rc1/topology#LinearElementPart>
-                                                                                      <http://cdm.ovh/rsm/topology/1.0rc1/topology#NetElement>
-                                                                                    ) ;
-                                                                rdfs:label "Topology component"@en ;
-                                                                skos:definition "Superclass of all classes taking part in a composite pattern. No direct instances."@en .
-
-
-###  http://cdm.ovh/rsm/topology/1.0rc1/topology#TopologyObject
-<http://cdm.ovh/rsm/topology/1.0rc1/topology#TopologyObject> rdf:type owl:Class ;
-                                                             rdfs:subClassOf <http://cdm.ovh/rsm/adapters/geosparql_adapter#Feature> ;
-                                                             owl:disjointUnionOf ( <http://cdm.ovh/rsm/topology/1.0rc1/topology#Port>
-                                                                                   <http://cdm.ovh/rsm/topology/1.0rc1/topology#PortRelationship>
-                                                                                   <http://cdm.ovh/rsm/topology/1.0rc1/topology#TopologyComponent>
-                                                                                 ) ;
-                                                             rdfs:label "Topology object"@en ;
-                                                             skos:definition "Superclass for all classes belonging to the topology. No direct instances."@en .
-
-
-###  http://www.opengis.net/ont/geosparql#Geometry
-<http://www.opengis.net/ont/geosparql#Geometry> rdf:type owl:Class .
-
-
-###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
+  dc:title "CDM/RSM topology"@en ;
+  dc:type "RDF/OWL ontology" ;
+  dcterms:license "EUPL1.2; see https://interoperable-europe.ec.europa.eu/sites/default/files/custom-page/attachment/eupl_v1.2_en.pdf"@en ;
+  owl:imports <http://cdm.ovh/rsm/adapters/geosparql_adapter> ;
+  owl:versionIRI <http://cdm.ovh/rsm/topology/1.0rc1/topology> ;
+  owl:versionInfo "1.0rc1"@en ;
+  <https://vocab.org/vann/preferredNamespacePrefix> "rsmtopo" ;
+  <https://vocab.org/vann/preferredNamespaceURI> "http://cdm.ovh/rsm/topology/topology#" ;
+.
+topo:connectionRelation
+  a owl:ObjectProperty ;
+  a owl:SymmetricProperty ;
+  rdfs:domain [
+      a owl:Class ;
+      owl:unionOf (
+          topo_rc1:Connection
+          topo_rc1:Port
+        ) ;
+    ] ;
+  rdfs:label "connection relation"@en ;
+  rdfs:range [
+      a owl:Class ;
+      owl:unionOf (
+          topo_rc1:Connection
+          topo_rc1:Port
+        ) ;
+    ] ;
+  skos:definition "super-property for all relations between Connection and Port"@en ;
+.
+topo:hasPart
+  a owl:ObjectProperty ;
+  rdfs:domain topo_rc1:LinearElement ;
+  rdfs:label "has part"@en ;
+  rdfs:range topo_rc1:LinearElementPart ;
+  skos:definition "tells which element parts are defined for the linear element in subject."@en ;
+.
+dc:abstract
+  a owl:AnnotationProperty ;
+.
+dc:contributor
+  a owl:AnnotationProperty ;
+.
+dc:creator
+  a owl:AnnotationProperty ;
+.
+dc:date
+  a owl:AnnotationProperty ;
+.
+dc:relation
+  a owl:AnnotationProperty ;
+.
+dc:title
+  a owl:AnnotationProperty ;
+.
+dc:type
+  a owl:AnnotationProperty ;
+.
+dcterms:license
+  a owl:AnnotationProperty ;
+.
+geosparql:Geometry
+  a owl:Class ;
+.
+skos:definition
+  a owl:AnnotationProperty ;
+.
+<https://vocab.org/vann/preferredNamespacePrefix>
+  a owl:AnnotationProperty ;
+.
+<https://vocab.org/vann/preferredNamespaceURI>
+  a owl:AnnotationProperty ;
+.
