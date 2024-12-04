@@ -11,15 +11,27 @@ See 4x3_IFC_RIO2.ifc.txt log file.
 # Terms (IT : EN)
 
 Canaletta idraulica : (water) gutter
+
 Fosso di guardia : guard ditch
+
 Inerbimento : grassland
+
 Recinzione : fence
+
 Scarpate : escarpments
+
 Ballast : ballast
+
 Scotico : ? scraped ground
+
 Subballast : sublayer
+
 Supercompattato : ?
+
 Pista di servizio : footpath (for staff)
+
 Fondazioni : foundations
+
 Elevazione : height, elevation (check)
+
 Magrone : concrete with low cement contents
