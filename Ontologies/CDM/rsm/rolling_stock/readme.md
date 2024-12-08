@@ -19,7 +19,7 @@ The above aspects are made available at various business __levels__:
 These "levels" and their relationships are illustrated in the "rolling stock level" vocabulary.
 
 Design goals are:
-* each aspect and level shall be pairwise independent from others, as far as possible;
+* each aspect and level shall be pairwise independent of others, as far as possible;
 * each level will be able to document relevant aspects; operation planning will be less detailed, manufacturing (type) level much more so, and fleet inventory level even more so; 
 * each level will document its compatibility with a higher level, e.g. fitness of a manufactured type with respect to operational requirements, or conformity of a delivered vehicle with its type specifications;
 * the ontology user will be able to freely combine, for each use case, the relevant set of aspects with the relevant set of levels;
