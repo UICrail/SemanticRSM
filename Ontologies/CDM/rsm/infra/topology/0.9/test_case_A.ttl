@@ -1,0 +1,452 @@
+@prefix : <http://cdm.ovh/rsm/topology/0.9/test_case_A#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://cdm.ovh/rsm/topology/0.9/test_case_A#> .
+
+<http://cdm.ovh/rsm/topology/0.9/test_case_A> rdf:type owl:Ontology ;
+                                               owl:imports <http://cdm.ovh/rsm/topology/0.9/topology> ;
+                                               rdfs:comment """Station track layout with switches, a crossing, and a sprung switch. All MICRO level (track segments only).
+
+Illustrates the use of property chains:
+
+reified links between ports > object properties between ports > object properties between linear elements."""@en ;
+                                               rdfs:label "Test case for RSM topology, version 0.9"@en .
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#A
+:A rdf:type owl:NamedIndividual ,
+            <http://cdm.ovh/rsm/topology/topology#LinearElement> ;
+   <http://cdm.ovh/rsm/topology/topology#hasPort> :A0 ,
+                                                  :A1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#A0
+:A0 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#A1
+:A1 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#B
+:B rdf:type owl:NamedIndividual ,
+            <http://cdm.ovh/rsm/topology/topology#LinearElement> ;
+   <http://cdm.ovh/rsm/topology/topology#hasPort> :B0 ,
+                                                  :B1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#B0
+:B0 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#B1
+:B1 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#C
+:C rdf:type owl:NamedIndividual ,
+            <http://cdm.ovh/rsm/topology/topology#LinearElement> ;
+   <http://cdm.ovh/rsm/topology/topology#hasPort> :C0 ,
+                                                  :C1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#C0
+:C0 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#C1
+:C1 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#D
+:D rdf:type owl:NamedIndividual ,
+            <http://cdm.ovh/rsm/topology/topology#LinearElement> ;
+   <http://cdm.ovh/rsm/topology/topology#hasPort> :D0 ,
+                                                  :D1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#D0
+:D0 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#D1
+:D1 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#E
+:E rdf:type owl:NamedIndividual ,
+            <http://cdm.ovh/rsm/topology/topology#LinearElement> ;
+   <http://cdm.ovh/rsm/topology/topology#hasPort> :E0 ,
+                                                  :E1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#E0
+:E0 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#E1
+:E1 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#F
+:F rdf:type owl:NamedIndividual ,
+            <http://cdm.ovh/rsm/topology/topology#LinearElement> ;
+   <http://cdm.ovh/rsm/topology/topology#hasPort> :F0 ,
+                                                  :F1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#F0
+:F0 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#F1
+:F1 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#G
+:G rdf:type owl:NamedIndividual ,
+            <http://cdm.ovh/rsm/topology/topology#LinearElement> ;
+   <http://cdm.ovh/rsm/topology/topology#hasPort> :G0 ,
+                                                  :G1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#G0
+:G0 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#G1
+:G1 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#H
+:H rdf:type owl:NamedIndividual ,
+            <http://cdm.ovh/rsm/topology/topology#LinearElement> ;
+   <http://cdm.ovh/rsm/topology/topology#hasPort> :H0 ,
+                                                  :H1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#H0
+:H0 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#H1
+:H1 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#I
+:I rdf:type owl:NamedIndividual ,
+            <http://cdm.ovh/rsm/topology/topology#LinearElement> ;
+   <http://cdm.ovh/rsm/topology/topology#hasPort> :I0 ,
+                                                  :I1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#I0
+:I0 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#I1
+:I1 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#J
+:J rdf:type owl:NamedIndividual ,
+            <http://cdm.ovh/rsm/topology/topology#LinearElement> ;
+   <http://cdm.ovh/rsm/topology/topology#hasPort> :J0 ,
+                                                  :J1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#J0
+:J0 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#J1
+:J1 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#K
+:K rdf:type owl:NamedIndividual ,
+            <http://cdm.ovh/rsm/topology/topology#LinearElement> ;
+   <http://cdm.ovh/rsm/topology/topology#hasPort> :K0 ,
+                                                  :K1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#K0
+:K0 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#K1
+:K1 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#L
+:L rdf:type owl:NamedIndividual ,
+            <http://cdm.ovh/rsm/topology/topology#LinearElement> ;
+   <http://cdm.ovh/rsm/topology/topology#hasPort> :L0 ,
+                                                  :L1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#L0
+:L0 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#L1
+:L1 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_AB
+:N_AB rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :A1 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :B1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_BA
+:N_BA rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :B0 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :A0 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_BC
+:N_BC rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :B1 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :C1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_BH
+:N_BH rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :B1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_BK
+:N_BK rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :B0 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :K0 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_CB
+:N_CB rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :C0 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :B0 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_CD
+:N_CD rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :C1 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :D1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_CL
+:N_CL rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :C1 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :L1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_DC
+:N_DC rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :D0 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :C0 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_DJ
+:N_DJ rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :D0 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :J0 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_EF
+:N_EF rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :E1 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :F1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_EK
+:N_EK rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :E1 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :K1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_FE
+:N_FE rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :F0 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :E0 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_FG
+:N_FG rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :F1 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :G1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_GF
+:N_GF rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :G0 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :F0 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_GL
+:N_GL rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :G0 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :L0 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_HB
+:N_HB rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :H0 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :B0 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_HI
+:N_HI rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :H1 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :I1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_HJ
+:N_HJ rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :H1 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :J1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_IH
+:N_IH rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :I0 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :H0 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_IZ
+:N_IZ rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :I1 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :Z1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_JD
+:N_JD rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :J1 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :D1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_JH
+:N_JH rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :J0 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :H0 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_JL
+:N_JL rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :J1 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :L1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_KB
+:N_KB rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :K1 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :B1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_KE
+:N_KE rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :K0 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :E0 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_LC
+:N_LC rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :L0 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :C0 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_LG
+:N_LG rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :L1 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :G1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_LJ
+:N_LJ rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :L0 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :J0 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#N_ZI
+:N_ZI rdf:type owl:NamedIndividual ,
+               <http://cdm.ovh/rsm/topology/topology#Navigability> ;
+      <http://cdm.ovh/rsm/topology/topology#fromExitPort> :Z1 ;
+      <http://cdm.ovh/rsm/topology/topology#toExitPort> :I0 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#Z
+:Z rdf:type owl:NamedIndividual ,
+            <http://cdm.ovh/rsm/topology/topology#LinearElement> ;
+   <http://cdm.ovh/rsm/topology/topology#hasPort> :Z0 ,
+                                                  :Z1 .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#Z0
+:Z0 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  http://cdm.ovh/rsm/topology/0.9/test_case_A#Z1
+:Z1 rdf:type owl:NamedIndividual ,
+             <http://cdm.ovh/rsm/topology/topology#Port> .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
