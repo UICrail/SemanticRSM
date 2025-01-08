@@ -9,6 +9,7 @@
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix rsmtopo: <http://cdm.ovh/rsm/topology/topology#> .
+@prefix iso19148: <http://cdm.ovh/iso19148/iso19148#> .
 @base <http://cdm.ovh/rsm/localisation/localisation#> .
 
 <http://cdm.ovh/rsm/localisation/localisation> rdf:type owl:Ontology ;
@@ -65,12 +66,46 @@ vann:preferredNamespaceURI rdf:type owl:AnnotationProperty .
 
 
 #################################################################
+#    Object Properties
+#################################################################
+
+###  http://cdm.ovh/rsm/localisation/localisation#baseLocation
+:baseLocation rdf:type owl:ObjectProperty ;
+              owl:inverseOf :locationOnNetElementList ;
+              rdf:type owl:FunctionalProperty ;
+              rdfs:domain :LocationOnElement ;
+              rdfs:range :BaseLocation .
+
+
+###  http://cdm.ovh/rsm/localisation/localisation#linearLocation
+:linearLocation rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :baseLocation .
+
+
+###  http://cdm.ovh/rsm/localisation/localisation#locationOnLinearElementList
+:locationOnLinearElementList rdf:type owl:ObjectProperty ;
+                             rdfs:subPropertyOf :locationOnNetElementList .
+
+
+###  http://cdm.ovh/rsm/localisation/localisation#locationOnNetElementList
+:locationOnNetElementList rdf:type owl:ObjectProperty ,
+                                   owl:FunctionalProperty ;
+                          rdfs:domain :BaseLocation ;
+                          rdfs:range :LocationOnNetElementList .
+
+
+#################################################################
 #    Classes
 #################################################################
 
+###  http://cdm.ovh/iso19148/iso19148#Referent
+iso19148:Referent rdf:type owl:Class .
+
+
 ###  http://cdm.ovh/rsm/localisation/localisation#Anchor
 :Anchor rdf:type owl:Class ;
-        rdfs:subClassOf :SpotLocation .
+        rdfs:subClassOf iso19148:Referent ,
+                        :SpotLocation .
 
 
 ###  http://cdm.ovh/rsm/localisation/localisation#AreaLocation
@@ -103,6 +138,15 @@ vann:preferredNamespaceURI rdf:type owl:AnnotationProperty .
 ###  http://cdm.ovh/rsm/localisation/localisation#LocationOnLinearElement
 :LocationOnLinearElement rdf:type owl:Class ;
                          rdfs:subClassOf :LocationOnElement .
+
+
+###  http://cdm.ovh/rsm/localisation/localisation#LocationOnLinearElementList
+:LocationOnLinearElementList rdf:type owl:Class ;
+                             rdfs:subClassOf :LocationOnNetElementList .
+
+
+###  http://cdm.ovh/rsm/localisation/localisation#LocationOnNetElementList
+:LocationOnNetElementList rdf:type owl:Class .
 
 
 ###  http://cdm.ovh/rsm/localisation/localisation#SpotLocation
