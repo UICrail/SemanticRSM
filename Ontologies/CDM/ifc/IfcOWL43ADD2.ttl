@@ -26,8 +26,8 @@
                                      <http://purl.org/vocab/vann/preferredNamespaceUri> "https://w3id.org/ifc/IFC4X3_ADD2#" ;
                                      owl:versionInfo "1.0" .
 
-#################################################################
 #    Annotation properties
+#################################################################
 #################################################################
 
 ###  http://purl.org/dc/elements/1.1/abstract
