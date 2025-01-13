@@ -37,6 +37,7 @@ However the design, as previously with RSM, emphasizes generality and usability,
 Other important concepts may come from other pieces of EU Law, such as TAF TSI, or from ongoing EU projects.
 
 ## Tools
+* [Eddy](https://github.com/obdasystems/eddy) and [Grapholscape](https://obdasystems.github.io/grapholscape/stable/), both based on the visual language GRAPHOL, for ontology design, checking, and export to RDF/OWL.
 * [Protégé](https://protege.stanford.edu/) desktop 5.x for RDF edition, checking, and saving to different formats.
 * [EasyRdf](https://www.easyrdf.org/converter) for format conversion (between RDF/XML and Turtle, mostly).
 * [OOPS! pitfall scanner](https://oops.linkeddata.es/), in addition to Protégé, for ontology checking.
