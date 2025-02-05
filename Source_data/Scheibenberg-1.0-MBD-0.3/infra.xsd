@@ -1,0 +1,1255 @@
+<?xml version="1.0" ?>
+<xs:schema targetNamespace="https://erju.org/infra" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:infra="https://erju.org/infra" elementFormDefault="qualified" version="1.0">
+	<xs:simpleType name="Direction">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="dirBoth"/>
+			<xs:enumeration value="dirSame"/>
+			<xs:enumeration value="dirReverse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TransitionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="clothoidCurve"/>
+			<xs:enumeration value="biquadraticParabola"/>
+			<xs:enumeration value="blossCurve"/>
+			<xs:enumeration value="cosineCurve"/>
+			<xs:enumeration value="cubicParabola"/>
+			<xs:enumeration value="sineCurve"/>
+			<xs:enumeration value="wienerBogen"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BaliseGroupFunction">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="location"/>
+			<xs:enumeration value="sessionManagement"/>
+			<xs:enumeration value="networkRegistration"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LoadingGaugeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="loadingGaugeIncompatible"/>
+			<xs:enumeration value="g1"/>
+			<xs:enumeration value="gA"/>
+			<xs:enumeration value="gB"/>
+			<xs:enumeration value="gC"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ConditionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="powerlessLowPanthograph"/>
+			<xs:enumeration value="powerlessMainSwitch"/>
+			<xs:enumeration value="airTightness"/>
+			<xs:enumeration value="soundHorn"/>
+			<xs:enumeration value="nonStoppingArea"/>
+			<xs:enumeration value="tunnelStoppingArea"/>
+			<xs:enumeration value="bigMetalMasses"/>
+			<xs:enumeration value="radioHole"/>
+			<xs:enumeration value="switchOffRegenerativeBrake"/>
+			<xs:enumeration value="switchOffEddyCurrentBrakeForServiceBrake"/>
+			<xs:enumeration value="switchOffEddyCurrentBrakeForEmergencyBrake"/>
+			<xs:enumeration value="switchOffMagneticShoeBrake"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BrakeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="serviceBrake"/>
+			<xs:enumeration value="emergencyBrake"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VoltageType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="vtNotFitted"/>
+			<xs:enumeration value="vtAC25kv50Hz"/>
+			<xs:enumeration value="vtAC15kv16_7Hz"/>
+			<xs:enumeration value="vtDC3kv"/>
+			<xs:enumeration value="vtDC1_5kv"/>
+			<xs:enumeration value="vtDC600v"/>
+			<xs:enumeration value="vtDC650v"/>
+			<xs:enumeration value="vtDC750v"/>
+			<xs:enumeration value="vtDC850v"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TrackGaugeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="tgUnknown"/>
+			<xs:enumeration value="tg750"/>
+			<xs:enumeration value="tg1000mm"/>
+			<xs:enumeration value="tg1435mm"/>
+			<xs:enumeration value="tg1520mm"/>
+			<xs:enumeration value="tg1524mm"/>
+			<xs:enumeration value="tg1600mm"/>
+			<xs:enumeration value="tg1680mm"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TrainEndApplicability">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="lengthDelay"/>
+			<xs:enumeration value="noLengthDelay"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OtherSpecificStaticSpeedProfileCategory">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SSSP_freightTrainP"/>
+			<xs:enumeration value="SSSP_freightTrainG"/>
+			<xs:enumeration value="SSSP_passengerTrain"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CantDeficiencyCategory">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CD_Undefined"/>
+			<xs:enumeration value="CD_80mm"/>
+			<xs:enumeration value="CD_100mm"/>
+			<xs:enumeration value="CD_130mm"/>
+			<xs:enumeration value="CD_150mm"/>
+			<xs:enumeration value="CD_165mm"/>
+			<xs:enumeration value="CD_180mm"/>
+			<xs:enumeration value="CD_210mm"/>
+			<xs:enumeration value="CD_225mm"/>
+			<xs:enumeration value="CD_245mm"/>
+			<xs:enumeration value="CD_275mm"/>
+			<xs:enumeration value="CD_300mm"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AxleLoadCategory">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AL_A"/>
+			<xs:enumeration value="AL_HS17"/>
+			<xs:enumeration value="AL_B1"/>
+			<xs:enumeration value="AL_B2"/>
+			<xs:enumeration value="AL_C2"/>
+			<xs:enumeration value="AL_C3"/>
+			<xs:enumeration value="AL_C4"/>
+			<xs:enumeration value="AL_D2"/>
+			<xs:enumeration value="AL_D3"/>
+			<xs:enumeration value="AL_D4"/>
+			<xs:enumeration value="AL_D4XL"/>
+			<xs:enumeration value="AL_E4"/>
+			<xs:enumeration value="AL_E5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TrainSize">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="undefinedTrainSize"/>
+			<xs:enumeration value="shortTrain"/>
+			<xs:enumeration value="halfTrain"/>
+			<xs:enumeration value="fullTrain"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TrainLoadType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="passengerTrain"/>
+			<xs:enumeration value="freightTrain"/>
+			<xs:enumeration value="anyTrain"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DoorOpeningSide">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="noSide"/>
+			<xs:enumeration value="leftSide"/>
+			<xs:enumeration value="rightSide"/>
+			<xs:enumeration value="bothSides"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PlatformHeight">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PH_200mm"/>
+			<xs:enumeration value="PH_300_380mm"/>
+			<xs:enumeration value="PH_550mm"/>
+			<xs:enumeration value="PH_580mm"/>
+			<xs:enumeration value="PH_680mm"/>
+			<xs:enumeration value="PH_685mm"/>
+			<xs:enumeration value="PH_730mm"/>
+			<xs:enumeration value="PH_760mm"/>
+			<xs:enumeration value="PH_840mm"/>
+			<xs:enumeration value="PH_900mm"/>
+			<xs:enumeration value="PH_915mm"/>
+			<xs:enumeration value="PH_920mm"/>
+			<xs:enumeration value="PH_960mm"/>
+			<xs:enumeration value="PH_1100mm"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OPType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="station"/>
+			<xs:enumeration value="depot"/>
+			<xs:enumeration value="siding"/>
+			<xs:enumeration value="trainTechnicalServices"/>
+			<xs:enumeration value="shuntingYard"/>
+			<xs:enumeration value="borderPoint"/>
+			<xs:enumeration value="technicalChange"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TrainDetectorType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="axleCounter"/>
+			<xs:enumeration value="trackCircuitBorder"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="TopoArea">
+		<xs:sequence>
+			<xs:element name="trackEdges" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trackEdge" type="infra:TrackEdge" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="trackEdgeLinks" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trackEdgeLink" type="infra:TrackEdgeLink" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="versionTimestamp" type="xs:dateTime" use="required"/>
+	</xs:complexType>
+	<xs:element name="topoArea" type="infra:TopoArea"/>
+	<xs:complexType name="TrackEdge">
+		<xs:sequence/>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="trackEdgeLength" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="trackEdge" type="infra:TrackEdge"/>
+	<xs:complexType name="TrackEdgeLink">
+		<xs:sequence/>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="trackEdgeA" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Reference to infra:TrackEdge</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="trackEdgeB" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Reference to infra:TrackEdge</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="startOfA" type="xs:boolean" use="required"/>
+		<xs:attribute name="startOfB" type="xs:boolean" use="required"/>
+	</xs:complexType>
+	<xs:element name="trackEdgeLink" type="infra:TrackEdgeLink"/>
+	<xs:complexType name="TrackEdgePoint">
+		<xs:sequence/>
+		<xs:attribute name="trackEdge" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Reference to infra:TrackEdge</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pos" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="trackEdgePoint" type="infra:TrackEdgePoint"/>
+	<xs:complexType name="DirTrackEdgePoint">
+		<xs:sequence/>
+		<xs:attribute name="trackEdge" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Reference to infra:TrackEdge</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pos" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="sameDir" type="xs:boolean" use="required"/>
+	</xs:complexType>
+	<xs:element name="dirTrackEdgePoint" type="infra:DirTrackEdgePoint"/>
+	<xs:complexType name="TrackEdgeSection">
+		<xs:sequence/>
+		<xs:attribute name="trackEdge" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Reference to infra:TrackEdge</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="skipFromStart" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="skipFromEnd" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="trackEdgeSection" type="infra:TrackEdgeSection"/>
+	<xs:complexType name="DirTrackEdgeSection">
+		<xs:sequence/>
+		<xs:attribute name="trackEdge" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Reference to infra:TrackEdge</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="skipFromStart" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="skipFromEnd" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="applicableDirection" type="infra:Direction" use="required"/>
+	</xs:complexType>
+	<xs:element name="dirTrackEdgeSection" type="infra:DirTrackEdgeSection"/>
+	<xs:complexType name="DirTrackEdge">
+		<xs:sequence/>
+		<xs:attribute name="trackEdge" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Reference to infra:TrackEdge</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="sameDir" type="xs:boolean" use="required"/>
+	</xs:complexType>
+	<xs:element name="dirTrackEdge" type="infra:DirTrackEdge"/>
+	<xs:complexType name="LinkedPath">
+		<xs:sequence>
+			<xs:element name="dirTrackEdges" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dirTrackEdge" type="infra:DirTrackEdge" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="skipFromPathStart" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="skipFromPathEnd" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="linkedPath" type="infra:LinkedPath"/>
+	<xs:complexType name="TrackArea">
+		<xs:sequence>
+			<xs:element name="trackEdgeSections" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trackEdgeSection" type="infra:TrackEdgeSection" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="trackArea" type="infra:TrackArea"/>
+	<xs:complexType name="LinkedArea">
+		<xs:sequence>
+			<xs:element name="entireTrackEdges" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Reference to infra:TrackEdge</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="entireTrackEdge" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:attribute name="ref" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="trackEdgeSections" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trackEdgeSection" type="infra:TrackEdgeSection" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="linkedArea" type="infra:LinkedArea"/>
+	<xs:complexType name="GeometryArea">
+		<xs:sequence>
+			<xs:element name="trackEdgeGeometries" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trackEdgeGeometry" type="infra:TrackEdgeGeometry" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="versionTimestamp" type="xs:dateTime" use="required"/>
+		<xs:attribute name="alignment3d" type="xs:boolean" use="required"/>
+	</xs:complexType>
+	<xs:element name="geometryArea" type="infra:GeometryArea"/>
+	<xs:complexType name="TrackEdgeGeometry">
+		<xs:sequence>
+			<xs:element name="horizontalAlignment" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="horizontalAlignmentItem" type="infra:HorizontalSegment" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="verticalAlignment" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="verticalAlignmentItem" type="infra:VerticalSegment" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="cantPoints" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="cantPoint" type="infra:CantPoint" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:element name="trackEdgeGeometry" type="infra:TrackEdgeGeometry"/>
+	<xs:complexType name="HorizontalSegment">
+		<xs:choice>
+			<xs:element name="horizontalSegmentLine" type="infra:HorizontalLine"/>
+			<xs:element name="horizontalSegmentArc" type="infra:HorizontalArc"/>
+			<xs:element name="horizontalSegmentTransition" type="infra:HorizontalTransition"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="horizontalSegment" type="infra:HorizontalSegment"/>
+	<xs:complexType name="HorizontalLine">
+		<xs:sequence/>
+		<xs:attribute name="trackGeometryPos" type="xs:decimal" use="required"/>
+		<xs:attribute name="azimuth" type="xs:decimal" use="required"/>
+	</xs:complexType>
+	<xs:element name="horizontalLine" type="infra:HorizontalLine"/>
+	<xs:complexType name="HorizontalArc">
+		<xs:sequence/>
+		<xs:attribute name="trackGeometryPos" type="xs:decimal" use="required"/>
+		<xs:attribute name="azimuth" type="xs:decimal" use="required"/>
+		<xs:attribute name="radius" type="xs:decimal" use="required"/>
+	</xs:complexType>
+	<xs:element name="horizontalArc" type="infra:HorizontalArc"/>
+	<xs:complexType name="HorizontalTransition">
+		<xs:sequence/>
+		<xs:attribute name="trackGeometryPos" type="xs:decimal" use="required"/>
+		<xs:attribute name="azimuth" type="xs:decimal" use="required"/>
+		<xs:attribute name="radius" type="xs:decimal" use="required"/>
+		<xs:attribute name="transitionType" type="infra:TransitionType" use="required"/>
+	</xs:complexType>
+	<xs:element name="horizontalTransition" type="infra:HorizontalTransition"/>
+	<xs:complexType name="VerticalSegment">
+		<xs:choice>
+			<xs:element name="verticalSegmentLine" type="infra:VerticalLine"/>
+			<xs:element name="verticalSegmentArc" type="infra:VerticalArc"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="verticalSegment" type="infra:VerticalSegment"/>
+	<xs:complexType name="VerticalLine">
+		<xs:sequence/>
+		<xs:attribute name="trackGeometryPos" type="xs:decimal" use="required"/>
+		<xs:attribute name="slope" type="xs:decimal" use="required"/>
+	</xs:complexType>
+	<xs:element name="verticalLine" type="infra:VerticalLine"/>
+	<xs:complexType name="VerticalArc">
+		<xs:sequence/>
+		<xs:attribute name="trackGeometryPos" type="xs:decimal" use="required"/>
+		<xs:attribute name="slope" type="xs:decimal" use="required"/>
+		<xs:attribute name="radius" type="xs:decimal" use="required"/>
+	</xs:complexType>
+	<xs:element name="verticalArc" type="infra:VerticalArc"/>
+	<xs:complexType name="CantPoint">
+		<xs:sequence/>
+		<xs:attribute name="trackGeometryPos" type="xs:decimal" use="required"/>
+		<xs:attribute name="appliedCant" type="xs:decimal" use="required"/>
+	</xs:complexType>
+	<xs:element name="cantPoint" type="infra:CantPoint"/>
+	<xs:complexType name="SampledGeometryArea">
+		<xs:sequence>
+			<xs:element name="sampledTrackEdgeGeometries" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="sampledTrackEdgeGeometry" type="infra:SampledTrackEdgeGeometry" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="versionTimestamp" type="xs:dateTime" use="required"/>
+	</xs:complexType>
+	<xs:element name="sampledGeometryArea" type="infra:SampledGeometryArea"/>
+	<xs:complexType name="SampledTrackEdgeGeometry">
+		<xs:sequence>
+			<xs:element name="slopes" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="slope" type="infra:SlopeSamplePoint" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="curves" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="curve" type="infra:CurveSamplePoint" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="cants" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="cant" type="infra:CantSamplePoint" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:element name="sampledTrackEdgeGeometry" type="infra:SampledTrackEdgeGeometry"/>
+	<xs:complexType name="SlopeSamplePoint">
+		<xs:sequence/>
+		<xs:attribute name="pos" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="samplePointSlope" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:element name="slopeSamplePoint" type="infra:SlopeSamplePoint"/>
+	<xs:complexType name="CantSamplePoint">
+		<xs:sequence/>
+		<xs:attribute name="pos" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="samplePointCant" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:element name="cantSamplePoint" type="infra:CantSamplePoint"/>
+	<xs:complexType name="CurveSamplePoint">
+		<xs:sequence/>
+		<xs:attribute name="pos" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="sampleCurveRadius" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:element name="curveSamplePoint" type="infra:CurveSamplePoint"/>
+	<xs:complexType name="SimplePoint">
+		<xs:sequence/>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="reversalTime" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="pointLeft" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Reference to infra:TrackEdgeLink</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pointRight" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Reference to infra:TrackEdgeLink</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="simplePoint" type="infra:SimplePoint"/>
+	<xs:complexType name="SlipCrossing">
+		<xs:sequence>
+			<xs:element name="simplePoints" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Reference to infra:SimplePoint</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="simplePoint" maxOccurs="4">
+							<xs:complexType>
+								<xs:attribute name="ref" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="crossing" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Reference to infra:Crossing</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="slipCrossing" type="infra:SlipCrossing"/>
+	<xs:complexType name="Derailer">
+		<xs:sequence>
+			<xs:element name="dirSpotLocation" type="infra:DirTrackEdgePoint" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="reversalTime" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="derailToRight" type="xs:boolean" use="required"/>
+	</xs:complexType>
+	<xs:element name="derailer" type="infra:Derailer"/>
+	<xs:complexType name="Crossing">
+		<xs:sequence>
+			<xs:element name="trackEdgePoints" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trackEdgePoint" type="infra:TrackEdgePoint" minOccurs="2" maxOccurs="2"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="isSwitchable" type="xs:boolean" use="required"/>
+	</xs:complexType>
+	<xs:element name="crossing" type="infra:Crossing"/>
+	<xs:complexType name="BaliseGroup">
+		<xs:sequence>
+			<xs:element name="balises" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="balise" type="infra:Balise" minOccurs="1" maxOccurs="8"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="nid_bg" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="nid_c" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="bgFunction" type="infra:BaliseGroupFunction" use="required"/>
+		<xs:attribute name="linkOrientationDirection" type="infra:Direction" use="required"/>
+	</xs:complexType>
+	<xs:element name="baliseGroup" type="infra:BaliseGroup"/>
+	<xs:complexType name="Balise">
+		<xs:sequence>
+			<xs:element name="spotLocation" type="infra:TrackEdgePoint" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:element name="balise" type="infra:Balise"/>
+	<xs:complexType name="PropertiesArea">
+		<xs:sequence>
+			<xs:element name="loadingGaugeTypes" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="loadingGaugeType" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:attribute name="value" type="infra:LoadingGaugeType" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="teSpeedProfiles" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="teSpeedProfile" type="infra:TrackEdgeSpeedProfile" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="trackEdgeGauges" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trackEdgeGauge" type="infra:TrackEdgeGauge" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="trackEdgeLoadingGauges" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trackEdgeLoadingGauge" type="infra:TrackEdgeLoadingGauge" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="trackConditions" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trackCondition" type="infra:TrackCondition" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="currentLimitations" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="currentLimitation" type="infra:CurrentLimitation" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="permittedBrakingDistances" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="permittedBrakingDistance" type="infra:PermittedBrakingDistance" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="tractionSystems" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="tractionSystem" type="infra:TractionSystem" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="versionTimestamp" type="xs:dateTime" use="required"/>
+		<xs:attribute name="gauge" type="infra:TrackGaugeType" use="required"/>
+		<xs:attribute name="defaultVoltage" type="infra:VoltageType" use="required"/>
+		<xs:attribute name="defaultMaxCurrent" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="propertiesArea" type="infra:PropertiesArea"/>
+	<xs:complexType name="TrackEdgeGauge">
+		<xs:sequence>
+			<xs:element name="trackEdgeSections" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trackEdgeSection" type="infra:TrackEdgeSection" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="gauge" type="infra:TrackGaugeType" use="required"/>
+	</xs:complexType>
+	<xs:element name="trackEdgeGauge" type="infra:TrackEdgeGauge"/>
+	<xs:complexType name="TrackEdgeLoadingGauge">
+		<xs:sequence>
+			<xs:element name="trackEdgeSections" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trackEdgeSection" type="infra:TrackEdgeSection" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="loadingGaugeType" type="infra:LoadingGaugeType" use="required"/>
+	</xs:complexType>
+	<xs:element name="trackEdgeLoadingGauge" type="infra:TrackEdgeLoadingGauge"/>
+	<xs:complexType name="TrackCondition">
+		<xs:sequence>
+			<xs:element name="trackEdgeSections" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trackEdgeSection" type="infra:TrackEdgeSection" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="conditionType" type="infra:ConditionType" use="required"/>
+	</xs:complexType>
+	<xs:element name="trackCondition" type="infra:TrackCondition"/>
+	<xs:complexType name="CurrentLimitation">
+		<xs:sequence>
+			<xs:element name="trackEdgeSections" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trackEdgeSection" type="infra:TrackEdgeSection" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="maxCurrent" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="currentLimitation" type="infra:CurrentLimitation"/>
+	<xs:complexType name="PermittedBrakingDistance">
+		<xs:sequence>
+			<xs:element name="trackEdgeSections" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trackEdgeSection" type="infra:TrackEdgeSection" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="distance" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="brakeType" type="infra:BrakeType" use="required"/>
+		<xs:attribute name="gradientValue" type="xs:int" use="required"/>
+		<xs:attribute name="sameDir" type="xs:boolean" use="required"/>
+	</xs:complexType>
+	<xs:element name="permittedBrakingDistance" type="infra:PermittedBrakingDistance"/>
+	<xs:complexType name="TractionSystem">
+		<xs:sequence>
+			<xs:element name="trackEdgeSections" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trackEdgeSection" type="infra:TrackEdgeSection" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="voltageType" type="infra:VoltageType" use="required"/>
+	</xs:complexType>
+	<xs:element name="tractionSystem" type="infra:TractionSystem"/>
+	<xs:complexType name="TrackUsageArea">
+		<xs:sequence>
+			<xs:element name="secondaryTracks" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Reference to infra:TrackEdge</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="secondaryTrack" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:attribute name="ref" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="shuntingTracks" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Reference to infra:TrackEdge</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="shuntingTrack" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:attribute name="ref" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="preferredSameDir" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Reference to infra:TrackEdge</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="preferredSameDirItem" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:attribute name="ref" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="preferredOppositeDir" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Reference to infra:TrackEdge</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="preferredOppositeDirItem" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:attribute name="ref" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="versionTimestamp" type="xs:dateTime" use="required"/>
+	</xs:complexType>
+	<xs:element name="trackUsageArea" type="infra:TrackUsageArea"/>
+	<xs:complexType name="TrackEdgeSpeedProfile">
+		<xs:sequence>
+			<xs:element name="sameDirProfile" type="infra:SpeedProfile" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="oppositeDirProfile" type="infra:SpeedProfile" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:element name="trackEdgeSpeedProfile" type="infra:TrackEdgeSpeedProfile"/>
+	<xs:complexType name="SpeedProfile">
+		<xs:sequence>
+			<xs:element name="staticSpeedProfile" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="staticSpeedProfileItem" type="infra:StaticSpeedLimit" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="axleLoadSpeedProfiles" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="axleLoadSpeedProfile" type="infra:AxleLoadSpeedProfile" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="speedProfile" type="infra:SpeedProfile"/>
+	<xs:complexType name="StaticSpeedLimit">
+		<xs:sequence>
+			<xs:element name="specificStaticSpeedLimits" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="specificStaticSpeedLimit" type="infra:SpecificStaticSpeedLimit" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="pos" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="speed" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="staticSpeedLimit" type="infra:StaticSpeedLimit"/>
+	<xs:complexType name="SpecificStaticSpeedLimit">
+		<xs:sequence>
+			<xs:element name="specificLimitCategory" type="infra:SpeedLimitCategory" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="speed" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="specificStaticSpeedLimit" type="infra:SpecificStaticSpeedLimit"/>
+	<xs:complexType name="SpeedLimitCategory">
+		<xs:choice>
+			<xs:element name="otherCategoryReplacesCantDeficiencySSP">
+				<xs:complexType>
+					<xs:attribute name="value" type="infra:OtherSpecificStaticSpeedProfileCategory" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="otherCategoryDoesNotReplaceCantDeficiencySSP">
+				<xs:complexType>
+					<xs:attribute name="value" type="infra:OtherSpecificStaticSpeedProfileCategory" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="cantDeficiencyCategory">
+				<xs:complexType>
+					<xs:attribute name="value" type="infra:CantDeficiencyCategory" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="AxleLoadSpeedProfile">
+		<xs:sequence/>
+		<xs:attribute name="startPos" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="endPos" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="speed" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="axleLoadCategory" type="infra:AxleLoadCategory" use="required"/>
+	</xs:complexType>
+	<xs:element name="axleLoadSpeedProfile" type="infra:AxleLoadSpeedProfile"/>
+	<xs:complexType name="ETCSMarker">
+		<xs:sequence>
+			<xs:element name="dirSpotLocation" type="infra:DirTrackEdgePoint" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="markerFunctionStop" type="xs:boolean" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSMarker" type="infra:ETCSMarker"/>
+	<xs:complexType name="StopLocation">
+		<xs:sequence>
+			<xs:element name="dirSpotLocation" type="infra:DirTrackEdgePoint" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="stopTrainLimit" type="infra:StopTrainLimit" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="trainLoadType" type="infra:TrainLoadType" use="required"/>
+		<xs:attribute name="doorOpeningSide" type="infra:DoorOpeningSide" use="required"/>
+	</xs:complexType>
+	<xs:element name="stopLocation" type="infra:StopLocation"/>
+	<xs:complexType name="StopTrainLimit">
+		<xs:sequence/>
+		<xs:attribute name="trainMaxLength" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="trainMaxAxles" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="trainMaxWagons" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="trainMaxSize" type="infra:TrainSize" use="required"/>
+	</xs:complexType>
+	<xs:element name="stopTrainLimit" type="infra:StopTrainLimit"/>
+	<xs:complexType name="PlatformEdge">
+		<xs:sequence>
+			<xs:element name="linearLocation" type="infra:LinkedPath" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="stopLocations" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Reference to infra:StopLocation</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="stopLocation" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:attribute name="ref" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="platformId" type="xs:string" use="required"/>
+		<xs:attribute name="name" type="xs:string"/>
+		<xs:attribute name="height" type="infra:PlatformHeight" use="required"/>
+	</xs:complexType>
+	<xs:element name="platformEdge" type="infra:PlatformEdge"/>
+	<xs:complexType name="Platform">
+		<xs:sequence>
+			<xs:element name="platformEdges" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="platformEdge" type="infra:PlatformEdge" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="name" type="xs:string"/>
+	</xs:complexType>
+	<xs:element name="platform" type="infra:Platform"/>
+	<xs:complexType name="OperationalPoint">
+		<xs:sequence>
+			<xs:element name="travelTimeMeasurementPoints" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="travelTimeMeasurementPoint" type="infra:TravelTimeMeasurementPoint" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="platforms" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="platform" type="infra:Platform" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="uopId" type="xs:string" use="required"/>
+		<xs:attribute name="opName" type="xs:string"/>
+		<xs:attribute name="operationalPointType" type="infra:OPType" use="required"/>
+	</xs:complexType>
+	<xs:element name="operationalPoint" type="infra:OperationalPoint"/>
+	<xs:complexType name="TravelTimeMeasurementPoint">
+		<xs:sequence>
+			<xs:element name="spotLocation" type="infra:TrackEdgePoint" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:element name="travelTimeMeasurementPoint" type="infra:TravelTimeMeasurementPoint"/>
+	<xs:complexType name="TimingPoint">
+		<xs:sequence>
+			<xs:element name="spotLocation" type="infra:TrackEdgePoint" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="activeObject" type="infra:TPActiveObject" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:element name="timingPoint" type="infra:TimingPoint"/>
+	<xs:complexType name="TPActiveObject">
+		<xs:choice>
+			<xs:element name="etcsMarker">
+				<xs:complexType>
+					<xs:attribute name="ref" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="stopLocation">
+				<xs:complexType>
+					<xs:attribute name="ref" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="timeMeasurePoint">
+				<xs:complexType>
+					<xs:attribute name="ref" type="xs:string" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="Tunnel">
+		<xs:sequence>
+			<xs:element name="tunnelTubes" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="tunnelTube" type="infra:TunnelTube" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="tunnelIdentification" type="xs:string" use="required"/>
+		<xs:attribute name="name" type="xs:string"/>
+	</xs:complexType>
+	<xs:element name="tunnel" type="infra:Tunnel"/>
+	<xs:complexType name="TunnelTube">
+		<xs:sequence>
+			<xs:element name="trackArea" type="infra:TrackArea" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="crossSection" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="tunnelTube" type="infra:TunnelTube"/>
+	<xs:complexType name="Bridge">
+		<xs:sequence>
+			<xs:element name="trackArea" type="infra:TrackArea" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="name" type="xs:string"/>
+	</xs:complexType>
+	<xs:element name="bridge" type="infra:Bridge"/>
+	<xs:complexType name="Underpass">
+		<xs:sequence>
+			<xs:element name="trackArea" type="infra:TrackArea" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="name" type="xs:string"/>
+	</xs:complexType>
+	<xs:element name="underpass" type="infra:Underpass"/>
+	<xs:complexType name="TvpSection">
+		<xs:sequence>
+			<xs:element name="linkedArea" type="infra:LinkedArea" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="trainDetectors" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Reference to infra:TrainDetector</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trainDetector" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:attribute name="ref" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="name" type="xs:string"/>
+	</xs:complexType>
+	<xs:element name="tvpSection" type="infra:TvpSection"/>
+	<xs:complexType name="TrainDetector">
+		<xs:sequence>
+			<xs:element name="spotLocation" type="infra:TrackEdgePoint" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="trainDetectorType" type="infra:TrainDetectorType" use="required"/>
+		<xs:attribute name="countUpDir" type="infra:Direction" use="required"/>
+	</xs:complexType>
+	<xs:element name="trainDetector" type="infra:TrainDetector"/>
+	<xs:complexType name="LevelCrossing">
+		<xs:sequence>
+			<xs:element name="trackArea" type="infra:TrackArea" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:element name="levelCrossing" type="infra:LevelCrossing"/>
+	<xs:complexType name="NationalBorder">
+		<xs:sequence>
+			<xs:element name="spotLocation" type="infra:TrackEdgePoint" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="fromCountryCode" type="xs:string" use="required"/>
+		<xs:attribute name="toCountryCode" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:element name="nationalBorder" type="infra:NationalBorder"/>
+	<xs:complexType name="BufferStop">
+		<xs:sequence>
+			<xs:element name="dirSpotLocation" type="infra:DirTrackEdgePoint" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="isSwitchable" type="xs:boolean" use="required"/>
+	</xs:complexType>
+	<xs:element name="bufferStop" type="infra:BufferStop"/>
+	<xs:complexType name="FunctionalArea">
+		<xs:sequence>
+			<xs:element name="opPoints" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="opPoint" type="infra:OperationalPoint" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="simplePoints" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="simplePoint" type="infra:SimplePoint" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="slipCrossings" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="slipCrossing" type="infra:SlipCrossing" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="derailers" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="derailer" type="infra:Derailer" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="crossings" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="crossing" type="infra:Crossing" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="trainDetectors" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trainDetector" type="infra:TrainDetector" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="baliseGroups" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="baliseGroup" type="infra:BaliseGroup" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="etcsMarkers" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="etcsMarker" type="infra:ETCSMarker" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="stopLocations" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="stopLocation" type="infra:StopLocation" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="tunnels" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="tunnel" type="infra:Tunnel" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="bridges" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="bridge" type="infra:Bridge" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="underpasses" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="underpass" type="infra:Underpass" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="tvps" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="tvp" type="infra:TvpSection" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="levelCrossings" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="levelCrossing" type="infra:LevelCrossing" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="nationalBorders" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="nationalBorder" type="infra:NationalBorder" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="bufferStops" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="bufferStop" type="infra:BufferStop" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="timingPoints" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="timingPoint" type="infra:TimingPoint" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="versionTimestamp" type="xs:dateTime" use="required"/>
+	</xs:complexType>
+	<xs:element name="functionalArea" type="infra:FunctionalArea"/>
+	<xs:complexType name="Infrastructure">
+		<xs:sequence>
+			<xs:element name="topoAreas" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="topoArea" type="infra:TopoArea" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="geometryAreas" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="geometryArea" type="infra:GeometryArea" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="sampledGeometryAreas" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="sampledGeometryArea" type="infra:SampledGeometryArea" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="functionalAreas" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="functionalArea" type="infra:FunctionalArea" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="propertiesAreas" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="propertiesArea" type="infra:PropertiesArea" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="trackUsageAreas" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trackUsageArea" type="infra:TrackUsageArea" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="infrastructure" type="infra:Infrastructure"/>
+</xs:schema>

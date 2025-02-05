@@ -1,0 +1,602 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<trainProtection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns="https://erju.org/tp"
+  xsi:schemaLocation="https://erju.org/tp tp.xsd">
+  <tpArea>
+    <tpAreaItem id="cc895b50-d90e-4a6c-8c9b-0c85b8253a13">
+      <dpsGroups>
+        <dpsGroup id="DPSG_W1" name="DPSG_W1" dependenciesType="Exclusive" runTime="0">
+          <driveProtectionSections>
+            <driveProtectionSection id="DPSG_W1_DPS1" name="DPSG_W1_DPS1"
+              maxFlankProtectionSpeed="0">
+              <trackEdgeSection trackEdge="T2 _ W1 ]-[ W10" skipFromStart="1000"
+                skipFromEnd="347401" />
+            </driveProtectionSection>
+            <driveProtectionSection id="DPSG_W1_DPS2" name="DPSG_W1_DPS2"
+              maxFlankProtectionSpeed="0">
+              <trackEdgeSection trackEdge="T11 _ W1 ]-[ W11" skipFromStart="1000"
+                skipFromEnd="514233" />
+            </driveProtectionSection>
+          </driveProtectionSections>
+          <protectedInfraElements>
+            <simplePoint ref="DEDEMIPDRPOI27##0001" />
+          </protectedInfraElements>
+        </dpsGroup>
+        <dpsGroup id="DPSG_W6" name="DPSG_W6" dependenciesType="Exclusive" runTime="0">
+          <driveProtectionSections>
+            <driveProtectionSection id="DPSG_W6_DPS1" name="DPSG_W6_DPS1"
+              maxFlankProtectionSpeed="0">
+              <trackEdgeSection trackEdge="T9 _ W6 ]-[ W9" skipFromStart="1000" skipFromEnd="166825" />
+            </driveProtectionSection>
+            <driveProtectionSection id="DPSG_W6_DPS2" name="DPSG_W6_DPS2"
+              maxFlankProtectionSpeed="0">
+              <trackEdgeSection trackEdge="T10 _ W6 ]-[ W7" skipFromStart="1000" skipFromEnd="32217" />
+            </driveProtectionSection>
+          </driveProtectionSections>
+          <protectedInfraElements>
+            <simplePoint ref="DEDEMIPDRPOI27##0002" />
+          </protectedInfraElements>
+        </dpsGroup>
+        <dpsGroup id="DPSG_W7" name="DPSG_W7" dependenciesType="Exclusive" runTime="0">
+          <driveProtectionSections>
+            <driveProtectionSection id="DPSG_W7_DPS1" name="DPSG_W7_DPS1"
+              maxFlankProtectionSpeed="0">
+              <trackEdgeSection trackEdge="T5 _ W7 ]-[ " skipFromStart="114521" skipFromEnd="1000" />
+            </driveProtectionSection>
+            <driveProtectionSection id="DPSG_W7_DPS2" name="DPSG_W7_DPS2"
+              maxFlankProtectionSpeed="0">
+              <trackEdgeSection trackEdge="T10 _ W6 ]-[ W7" skipFromStart="32217" skipFromEnd="1000" />
+            </driveProtectionSection>
+          </driveProtectionSections>
+          <protectedInfraElements>
+            <simplePoint ref="DEDEMIPDRPOI27##0003" />
+          </protectedInfraElements>
+        </dpsGroup>
+        <dpsGroup id="DPSG_W9" name="DPSG_W9" dependenciesType="Exclusive" runTime="0">
+          <driveProtectionSections>
+            <driveProtectionSection id="DPSG_W9_DPS1" name="DPSG_W9_DPS1"
+              maxFlankProtectionSpeed="0">
+              <trackEdgeSection trackEdge="T6 _ W7 ]-[ W9" skipFromStart="131936" skipFromEnd="1000" />
+            </driveProtectionSection>
+            <driveProtectionSection id="DPSG_W9_DPS2" name="DPSG_W9_DPS2"
+              maxFlankProtectionSpeed="0">
+              <trackEdgeSection trackEdge="T9 _ W6 ]-[ W9" skipFromStart="166825" skipFromEnd="1000" />
+            </driveProtectionSection>
+          </driveProtectionSections>
+          <protectedInfraElements>
+            <simplePoint ref="DEDEMIPDRPOI27##0004" />
+          </protectedInfraElements>
+        </dpsGroup>
+        <dpsGroup id="DPSG_W10" name="DPSG_W10" dependenciesType="Exclusive" runTime="0">
+          <driveProtectionSections>
+            <driveProtectionSection id="DPSG_W10_DPS1" name="DPSG_W10_DPS1"
+              maxFlankProtectionSpeed="0">
+              <trackEdgeSection trackEdge="T2 _ W1 ]-[ W10" skipFromStart="347401"
+                skipFromEnd="1000" />
+            </driveProtectionSection>
+            <driveProtectionSection id="DPSG_W10_DPS2" name="DPSG_W10_DPS2"
+              maxFlankProtectionSpeed="0">
+              <trackEdgeSection trackEdge="T7 _ W9 ]-[ W10" skipFromStart="37066" skipFromEnd="1000" />
+            </driveProtectionSection>
+          </driveProtectionSections>
+          <protectedInfraElements>
+            <simplePoint ref="DEDEMIPDRPOI27##0005" />
+          </protectedInfraElements>
+        </dpsGroup>
+        <dpsGroup id="DPSG_W11" name="DPSG_W11" dependenciesType="Exclusive" runTime="0">
+          <driveProtectionSections>
+            <driveProtectionSection id="DPSG_W11_DPS1" name="DPSG_W11_DPS1"
+              maxFlankProtectionSpeed="0">
+              <trackEdgeSection trackEdge="T3 _ W10 ]-[ W11" skipFromStart="1020116"
+                skipFromEnd="1000" />
+            </driveProtectionSection>
+            <driveProtectionSection id="DPSG_W11_DPS2" name="DPSG_W11_DPS2"
+              maxFlankProtectionSpeed="0">
+              <trackEdgeSection trackEdge="T11 _ W1 ]-[ W11" skipFromStart="871850"
+                skipFromEnd="1000" />
+            </driveProtectionSection>
+          </driveProtectionSections>
+          <protectedInfraElements>
+            <simplePoint ref="DEDEMIPDRPOI27##0006" />
+          </protectedInfraElements>
+        </dpsGroup>
+      </dpsGroups>
+      <allocationSections>
+        <allocationSection id="AS_W1 on T2 _ W1 ]-[ W10" name="AS_W1 on T2 _ W1 ]-[ W10">
+          <linearLocation skipFromPathStart="0" skipFromPathEnd="306756">
+            <dirTrackEdges xmlns="https://erju.org/infra">
+              <dirTrackEdge trackEdge="T2 _ W1 ]-[ W10" sameDir="true" />
+            </dirTrackEdges>
+          </linearLocation>
+          <dependencies>
+            <dependency ref="AS_W1 on T11 _ W1 ]-[ W11" />
+          </dependencies>
+        </allocationSection>
+        <allocationSection id="AS_W1 on T11 _ W1 ]-[ W11" name="AS_W1 on T11 _ W1 ]-[ W11">
+          <linearLocation skipFromPathStart="0" skipFromPathEnd="1344877">
+            <dirTrackEdges xmlns="https://erju.org/infra">
+              <dirTrackEdge trackEdge="T11 _ W1 ]-[ W11" sameDir="true" />
+            </dirTrackEdges>
+          </linearLocation>
+          <dependencies>
+            <dependency ref="AS_W1 on T2 _ W1 ]-[ W10" />
+          </dependencies>
+        </allocationSection>
+        <allocationSection id="AS_W6 on T9 _ W6 ]-[ W9" name="AS_W6 on T9 _ W6 ]-[ W9">
+          <linearLocation skipFromPathStart="0" skipFromPathEnd="139232">
+            <dirTrackEdges xmlns="https://erju.org/infra">
+              <dirTrackEdge trackEdge="T9 _ W6 ]-[ W9" sameDir="true" />
+            </dirTrackEdges>
+          </linearLocation>
+          <dependencies>
+            <dependency ref="AS_W6 on T10 _ W6 ]-[ W7" />
+          </dependencies>
+        </allocationSection>
+        <allocationSection id="AS_W6 on T10 _ W6 ]-[ W7" name="AS_W6 on T10 _ W6 ]-[ W7">
+          <linearLocation skipFromPathStart="0" skipFromPathEnd="4624">
+            <dirTrackEdges xmlns="https://erju.org/infra">
+              <dirTrackEdge trackEdge="T10 _ W6 ]-[ W7" sameDir="true" />
+            </dirTrackEdges>
+          </linearLocation>
+          <dependencies>
+            <dependency ref="AS_W6 on T9 _ W6 ]-[ W9" />
+          </dependencies>
+        </allocationSection>
+        <allocationSection id="AS_W7 on T5 _ W7 ]-[ " name="AS_W7 on T5 _ W7 ]-[ ">
+          <linearLocation skipFromPathStart="86929" skipFromPathEnd="0">
+            <dirTrackEdges xmlns="https://erju.org/infra">
+              <dirTrackEdge trackEdge="T5 _ W7 ]-[ " sameDir="false" />
+            </dirTrackEdges>
+          </linearLocation>
+          <dependencies>
+            <dependency ref="AS_W7 on T10 _ W6 ]-[ W7" />
+          </dependencies>
+        </allocationSection>
+        <allocationSection id="AS_W7 on T10 _ W6 ]-[ W7" name="AS_W7 on T10 _ W6 ]-[ W7">
+          <linearLocation skipFromPathStart="31593" skipFromPathEnd="0">
+            <dirTrackEdges xmlns="https://erju.org/infra">
+              <dirTrackEdge trackEdge="T10 _ W6 ]-[ W7" sameDir="false" />
+            </dirTrackEdges>
+          </linearLocation>
+          <dependencies>
+            <dependency ref="AS_W7 on T5 _ W7 ]-[ " />
+          </dependencies>
+        </allocationSection>
+        <allocationSection id="AS_W9 on T6 _ W7 ]-[ W9" name="AS_W9 on T6 _ W7 ]-[ W9">
+          <linearLocation skipFromPathStart="55129" skipFromPathEnd="0">
+            <dirTrackEdges xmlns="https://erju.org/infra">
+              <dirTrackEdge trackEdge="T6 _ W7 ]-[ W9" sameDir="false" />
+            </dirTrackEdges>
+          </linearLocation>
+          <dependencies>
+            <dependency ref="AS_W9 on T9 _ W6 ]-[ W9" />
+          </dependencies>
+        </allocationSection>
+        <allocationSection id="AS_W9 on T9 _ W6 ]-[ W9" name="AS_W9 on T9 _ W6 ]-[ W9">
+          <linearLocation skipFromPathStart="31593" skipFromPathEnd="0">
+            <dirTrackEdges xmlns="https://erju.org/infra">
+              <dirTrackEdge trackEdge="T9 _ W6 ]-[ W9" sameDir="false" />
+            </dirTrackEdges>
+          </linearLocation>
+          <dependencies>
+            <dependency ref="AS_W9 on T6 _ W7 ]-[ W9" />
+          </dependencies>
+        </allocationSection>
+        <allocationSection id="AS_W10 on T2 _ W1 ]-[ W10" name="AS_W10 on T2 _ W1 ]-[ W10">
+          <linearLocation skipFromPathStart="44645" skipFromPathEnd="0">
+            <dirTrackEdges xmlns="https://erju.org/infra">
+              <dirTrackEdge trackEdge="T2 _ W1 ]-[ W10" sameDir="false" />
+            </dirTrackEdges>
+          </linearLocation>
+          <dependencies>
+            <dependency ref="AS_W10 on T7 _ W9 ]-[ W10" />
+          </dependencies>
+        </allocationSection>
+        <allocationSection id="AS_W10 on T7 _ W9 ]-[ W10" name="AS_W10 on T7 _ W9 ]-[ W10">
+          <linearLocation skipFromPathStart="8996" skipFromPathEnd="0">
+            <dirTrackEdges xmlns="https://erju.org/infra">
+              <dirTrackEdge trackEdge="T7 _ W9 ]-[ W10" sameDir="false" />
+            </dirTrackEdges>
+          </linearLocation>
+          <dependencies>
+            <dependency ref="AS_W10 on T2 _ W1 ]-[ W10" />
+          </dependencies>
+        </allocationSection>
+        <allocationSection id="AS_W11 on T3 _ W10 ]-[ W11" name="AS_W11 on T3 _ W10 ]-[ W11">
+          <linearLocation skipFromPathStart="971642" skipFromPathEnd="0">
+            <dirTrackEdges xmlns="https://erju.org/infra">
+              <dirTrackEdge trackEdge="T3 _ W10 ]-[ W11" sameDir="false" />
+            </dirTrackEdges>
+          </linearLocation>
+          <dependencies>
+            <dependency ref="AS_W11 on T11 _ W1 ]-[ W11" />
+          </dependencies>
+        </allocationSection>
+        <allocationSection id="AS_W11 on T11 _ W1 ]-[ W11" name="AS_W11 on T11 _ W1 ]-[ W11">
+          <linearLocation skipFromPathStart="1332130" skipFromPathEnd="0">
+            <dirTrackEdges xmlns="https://erju.org/infra">
+              <dirTrackEdge trackEdge="T11 _ W1 ]-[ W11" sameDir="false" />
+            </dirTrackEdges>
+          </linearLocation>
+          <dependencies>
+            <dependency ref="AS_W11 on T3 _ W10 ]-[ W11" />
+          </dependencies>
+        </allocationSection>
+      </allocationSections>
+      <fieldObjectControllers>
+        <fieldObjectController id="DEDEMIPDRFOC27##0001" rastaServerId="201" rastaOCId="101"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <dpsGroup ref="DPSG_W1" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0002" rastaServerId="201" rastaOCId="102"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0001" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0003" rastaServerId="201" rastaOCId="103"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <dpsGroup ref="DPSG_W6" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0004" rastaServerId="201" rastaOCId="104"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0002" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0005" rastaServerId="201" rastaOCId="105"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <dpsGroup ref="DPSG_W7" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0006" rastaServerId="201" rastaOCId="106"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0003" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0007" rastaServerId="201" rastaOCId="107"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <dpsGroup ref="DPSG_W9" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0008" rastaServerId="201" rastaOCId="108"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0004" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0009" rastaServerId="201" rastaOCId="109"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <dpsGroup ref="DPSG_W10" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0010" rastaServerId="201" rastaOCId="110"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0005" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0011" rastaServerId="201" rastaOCId="111"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0006" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0012" rastaServerId="201" rastaOCId="112"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <dpsGroup ref="DPSG_W11" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0013" rastaServerId="201" rastaOCId="113"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0007" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0014" rastaServerId="201" rastaOCId="114"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0008" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0015" rastaServerId="201" rastaOCId="115"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0009" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0016" rastaServerId="201" rastaOCId="116"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0010" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0017" rastaServerId="201" rastaOCId="117"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0011" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0018" rastaServerId="201" rastaOCId="118"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0012" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0019" rastaServerId="201" rastaOCId="119"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0013" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0020" rastaServerId="201" rastaOCId="120"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0014" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0021" rastaServerId="201" rastaOCId="121"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0015" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0022" rastaServerId="201" rastaOCId="122"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0016" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0023" rastaServerId="201" rastaOCId="123"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0017" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0024" rastaServerId="201" rastaOCId="124"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0018" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0025" rastaServerId="201" rastaOCId="125"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0019" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0026" rastaServerId="201" rastaOCId="126"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0020" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0027" rastaServerId="201" rastaOCId="127"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0021" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0028" rastaServerId="201" rastaOCId="128"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0022" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0029" rastaServerId="201" rastaOCId="129"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0023" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0030" rastaServerId="201" rastaOCId="130"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0024" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0031" rastaServerId="201" rastaOCId="131"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0025" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0032" rastaServerId="201" rastaOCId="132"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0026" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0033" rastaServerId="201" rastaOCId="133"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0027" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0034" rastaServerId="201" rastaOCId="134"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0028" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0035" rastaServerId="201" rastaOCId="135"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0029" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0036" rastaServerId="201" rastaOCId="136"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0030" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0037" rastaServerId="201" rastaOCId="137"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0031" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0038" rastaServerId="201" rastaOCId="138"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0032" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0039" rastaServerId="201" rastaOCId="139"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0033" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0040" rastaServerId="201" rastaOCId="140"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0034" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0041" rastaServerId="201" rastaOCId="141"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0035" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0042" rastaServerId="201" rastaOCId="142"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0036" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0043" rastaServerId="201" rastaOCId="143"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0037" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0044" rastaServerId="201" rastaOCId="144"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0038" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0045" rastaServerId="201" rastaOCId="145"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0039" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+        <fieldObjectController id="DEDEMIPDRFOC27##0046" rastaServerId="201" rastaOCId="146"
+          version="1">
+          <controlledInfraElements>
+            <controlledInfraElement>
+              <tvpSection ref="DEDEMIPDRTVP27##0040" />
+            </controlledInfraElement>
+          </controlledInfraElements>
+        </fieldObjectController>
+      </fieldObjectControllers>
+      <routes />
+      <simplePoints />
+      <transits />
+    </tpAreaItem>
+  </tpArea>
+</trainProtection>

@@ -32,13 +32,15 @@ def rotate(some_list: list, shift: int) -> list:
     return some_list[shift:] + some_list[:shift]
 
 
-def timestamp_from_date(yyyy_mm_dd: str) -> int:
+def timestamp_from_date(yyyy_mm_ddThh_mm_ss: str) -> int:
     """returns number of seconds elapsed since 1/1/1970 00:00:00 UTC+0, as defined in IEEE Std 1003.1.
-    :param yyyy_mm_dd: 'YYYY-MM-DD', assumed to be in UTC+0
+    :param yyyy_mm_ddThh_mm_ss: assumed to be in UTC+0
     :return: integer number of seconds, conforming IfcTimeStamp definition"""
     # TODO: use explicit timezone info (in the present version, local timezone is assumed)
+    yyyy_mm_dd, time = yyyy_mm_ddThh_mm_ss.split('T')
     year, month, day = [int(x) for x in yyyy_mm_dd.split('-')]
     this_date = datetime.datetime(year, month, day)
+    this_date += datetime.timedelta(hours=int(time[:2]), minutes=int(time[3:5]), seconds=int(time[6:8]))
     return int(this_date.timestamp())
 
 

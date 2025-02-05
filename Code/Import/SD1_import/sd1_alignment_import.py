@@ -58,7 +58,7 @@ class AlignmentGraph(SubGraph):
 
     def compute_trackedge_length_dict(self) -> dict:
         trackedge_list = self.infra_dict[TOPO_AREAS_KEY][TOPO_AREA_KEY][TRACK_EDGES_KEY][TRACK_EDGE_KEY]
-        trackedge_length_dict = {create_uri(trackedge['@id'], SD1_NAMESPACE): float(trackedge['@length']) for trackedge
+        trackedge_length_dict = {create_uri(trackedge['@id'], SD1_NAMESPACE): float(trackedge['@trackEdgeLength']) for trackedge
                                  in trackedge_list}
         return trackedge_length_dict
 
@@ -160,9 +160,9 @@ class AlignmentGraph(SubGraph):
 
             # Handle the various IFC predefined types for segments
             # TODO: complete the handling of all predefined segment types
-            if 'ns0:line' in segment_geometry.keys():
+            if 'ns0:horizontalSegmentLine' in segment_geometry.keys():
                 pos, azimuth, radius = self.handle_line_case(segment_params_uri, segment_geometry, start)
-            elif 'ns0:arc' in segment_geometry.keys():
+            elif 'ns0:horizontalSegmentArc' in segment_geometry.keys():
                 pos, azimuth, radius = self.handle_arc_case(segment_params_uri, segment_geometry, start)
             else:
                 raise f'ERROR: geometry variant not yet implemented: {next(iter(segment_geometry))}'
@@ -202,16 +202,16 @@ class AlignmentGraph(SubGraph):
 
     def handle_line_case(self, segment_params_uri, segment_geometry, start) -> tuple[float, float, float]:
         """returns the position (expressed in the SD1 linear referencing system) of the start of segment"""
-        pos = float(segment_geometry['ns0:line']['@pos'])
-        azimuth = float(segment_geometry['ns0:line']['@azimuth']) / 1000.0
+        pos = float(segment_geometry['ns0:horizontalSegmentLine']['@trackGeometryPos'])
+        azimuth = float(segment_geometry['ns0:horizontalSegmentLine']['@azimuth'])
         self.add_triple(segment_params_uri, IFC_NAMESPACE.predefinedType_IfcActionRequest, IFC_NAMESPACE.LINE)
         self.generate_alignment_parameter_segment_horizontal(segment_params_uri, azimuth, radius=0)
         return pos, azimuth, 0
 
     def handle_arc_case(self, segment_params_uri, segment_geometry, start) -> tuple[float, float, float]:
-        pos = float(segment_geometry['ns0:arc']['@pos'])
-        azimuth = float(segment_geometry['ns0:arc']['@azimuth']) / 1000.0
-        radius = float(segment_geometry['ns0:arc']['@radius'])
+        pos = float(segment_geometry['ns0:horizontalSegmentArc']['@trackGeometryPos'])
+        azimuth = float(segment_geometry['ns0:horizontalSegmentArc']['@azimuth'])
+        radius = float(segment_geometry['ns0:horizontalSegmentArc']['@radius'])
         self.add_triple(segment_params_uri, IFC_NAMESPACE.predefinedType_IfcActionRequest, IFC_NAMESPACE.CIRCULARARC)
         self.generate_alignment_parameter_segment_horizontal(segment_params_uri, azimuth, radius)
         return pos, azimuth, radius

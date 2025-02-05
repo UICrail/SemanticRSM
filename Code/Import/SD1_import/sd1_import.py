@@ -4,6 +4,7 @@ from collections import Counter
 import xmltodict
 from rdflib import Graph
 
+from Export.export_ifcAlignment_to_kml import alignment_to_kml
 # from Export.export_ifcAlignment_to_kml import alignment_to_kml
 # from Export.export_wkt_to_kml import wkt_to_kml
 from Import.SD1_import.cdm_namespaces import SD1_NAMESPACE, IFC_ADAPTER_NAMESPACE
@@ -78,7 +79,7 @@ def generate_linear_elements_from_track_edges(infra_dict: dict, topology_graph: 
     trackedges = get_trackedges(infra_dict)
     for trackedge in trackedges:
         sd1_id = trackedge['@id']
-        length = trackedge['@length']
+        length = trackedge['@trackEdgeLength']  ## changed attribute name in 1.0
         unit_repr = 'qudt'
         topology_graph.add_trackedge_as_linearelement(sd1_id, length, SD1_NAMESPACE, unit_repr)
     topology_graph.create_ports()
@@ -123,7 +124,8 @@ def import_sd1_infra_data(infrastructure_path: str, map_path: str):
     # RSM import statement; not used
     # sd1_graph.add((URIRef(SD1_NAMESPACE), OWL.imports, URIRef(RSM_TOPOLOGY_NAMESPACE)))
 
-    # TODO: grid reference system should be in the signature too. For the time being, we assume EPSG:25833 to be always valid.
+    # TODO: grid reference system should be in the signature too. For the time being, we assume EPSG:25833 to be always valid
+    # TODO: the above TODO is no longer correct, EPSG:25833 is irrelevant
 
     topology_graph = TopologyGraph(sd1_graph)
     generate_linear_elements_from_track_edges(sd1_infra_dict, topology_graph)
@@ -138,11 +140,13 @@ def import_sd1_infra_data(infrastructure_path: str, map_path: str):
 if __name__ == '__main__':
     sd1_graph = Graph()
     create_bindings(sd1_graph)
-    infra_path = data_root + "/scheibenberg/infra_v0.4.2.xml"
-    map_path = data_root + "/scheibenberg/map_v0.4.2.xml"
+    infra_path = data_root + "/Scheibenberg-1.0-MBD-0.3/infra_v1.0.xml"
+    map_path = data_root + "/Scheibenberg-1.0-MBD-0.3/map_v1.0.xml"
     # SD1 seems to use EPSG:31468 (a Gauss-Krüger projection, based on Bessel 1841 ellipsoid)
+    # at version 1.0, they stipulate EPSG 31493
     import_sd1_infra_data(infra_path, map_path)
-    sd1_graph.serialize('scheibenberg.ttl')
- #   wkt_to_kml('scheibenberg.ttl', 'scheibenberg_from_wkt.kml')
- #   alignment_to_kml('scheibenberg.ttl', 'scheibenberg_alignment_export_from_CDM_IFC.kml')
+    sd1_graph.serialize('scheibenberg-1.0.ttl')
+
+#    wkt_to_kml('scheibenberg-1.0.ttl', 'scheibenberg_from_wkt.kml')
+    alignment_to_kml('scheibenberg-1.0.ttl', 'scheibenberg_alignment_export_from_CDM_IFC.kml', 31468)
 

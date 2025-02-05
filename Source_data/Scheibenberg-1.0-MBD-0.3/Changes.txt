@@ -1,0 +1,13 @@
+versionTimestamp value
+ 
+infra.xml
+	trackEdge.length => trackEdge.trackEdgeLength
+	horizontalAlignmentItem(line)=>horizontalAlignmentItem(horizontalSegmentLine)
+	horizontalAlignmentItem(arc)=>horizontalAlignmentItem(horizontalSegmentArc)
+	horizontalSegmentLine/horizontalSegmentArc.pos =>horizontalSegmentLine/horizontalSegmentArc.trackGeometryPos
+	slope.slpoe => slope.samplePointSlope
+	baliseGroup.linkOrientationDirection
+	baliseGroup.nidBG => baliseGroup.nid_bg
+	baliseGroup.nidC => baliseGroup.nid_c
+	tvp(trackEdgeSections) => tvp(linkedArea(trackEdgeSections))
+	

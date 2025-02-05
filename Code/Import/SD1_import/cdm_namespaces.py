@@ -20,8 +20,9 @@ IFC_ADAPTER_NAMESPACE = Namespace('https://cdm.ovh/adapters/ifcowl_rsm#')
 
 # URI management: dictionary of reserved characters in URIs and their ASCII hexadecimal equivalents.
 # Only those reserved characters that are currently found in SD1 identifiers are listed.
+# version 1.0 of Scheibenberg data uses white space, added to the list
 
-URI_RESERVED_CHARACTERS = {'[': '%5B', ']': '%5D', '(': '%28', ')': '%29', '>': '%3F'}
+URI_RESERVED_CHARACTERS = {' ': '%20', '[': '%5B', ']': '%5D', '(': '%28', ')': '%29', '>': '%3F'}
 
 
 def create_uri(sd1_identifier: str, uri_namespace: str = '') -> URIRef:

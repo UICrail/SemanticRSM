@@ -1,6 +1,6 @@
 Import modules from CCS/TMS (SD1) sources.
 
-Valid for CCS/TMS model version 0.4.2 (July 2024)
+Valid for CCS/TMS model version 1.0 (December 2024)
 
 # Import status
 * infra.xml
@@ -20,5 +20,8 @@ The import is rather uneventful, as the CCS/TMS data model borrows many elements
 * CCS/TMS geometry (not to be confused with: sampled geometry) matches IFC Alignment classes pretty well. The provided sample data are however questionable.
 
 On the other hand, CCS/TMS elements are "packaged" differently; for instance:
-* Nearly all IFC Alignment information can be found in the infrastructure / geometry area, except for the track edge element start (and end) coordinates that are in the map area
-* Nearly all CDM/RSM topology information can be found in infrastructure / topo area, except for the navigabilities that are stored in infra / functional area / simple point, slip crossings, crossings area
+* Most IFC Alignment information can be found in the infrastructure / geometry area, except for the track edge element start (and end) coordinates that are in the map area
+* Most CDM/RSM topology information can be found in infrastructure / topo area, except for the navigabilities that are stored in infra / functional area / simple point, slip crossings, crossings area
+
+Elements and attributes names in the CCS/TMS XSD differ from class and property names in the original models, and the presence of reserved characters in identifiers requires some changes to turn them into valid URIs
+(most common case bein white space ' ', to be encoded as '%20')

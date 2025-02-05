@@ -1,0 +1,1185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphol version="3">
+  <project version="http://cdm.ovh/rsm/rolling_tock/typology/0.2" name="RollingStock">
+    <ontology iri="http://cdm.ovh/rsm/rolling_tock/typology" addLabelFromSimpleName="0" addLabelFromUserInput="0" lang="en">
+      <imports/>
+      <prefixes>
+        <prefix>
+          <value>list</value>
+          <namespace>https://w3id.org/list#</namespace>
+        </prefix>
+        <prefix>
+          <value>owl</value>
+          <namespace>http://www.w3.org/2002/07/owl#</namespace>
+        </prefix>
+        <prefix>
+          <value>rdf</value>
+          <namespace>http://www.w3.org/1999/02/22-rdf-syntax-ns#</namespace>
+        </prefix>
+        <prefix>
+          <value>rdfs</value>
+          <namespace>http://www.w3.org/2000/01/rdf-schema#</namespace>
+        </prefix>
+        <prefix>
+          <value>rst_comp</value>
+          <namespace>http://cdm.ovh/rsm/rolling_stock/rolling_stock_components#</namespace>
+        </prefix>
+        <prefix>
+          <value>rst_cons</value>
+          <namespace>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#</namespace>
+        </prefix>
+        <prefix>
+          <value>rst_geom</value>
+          <namespace>http://cdm.ovh/rsm/rolling_stock/rolling_stock_geometry#</namespace>
+        </prefix>
+        <prefix>
+          <value>rst_levl</value>
+          <namespace>http://cdm.ovh/rsm/rolling_stock/rolling_stock_levels#</namespace>
+        </prefix>
+        <prefix>
+          <value>rst_payl</value>
+          <namespace>http://cdm.ovh/rsm/rolling_stock/rolling_stock_payloads#</namespace>
+        </prefix>
+        <prefix>
+          <value>rst_perf</value>
+          <namespace>http://cdm.ovh/rsm/rolling_stock/rolling_stock_performance#</namespace>
+        </prefix>
+        <prefix>
+          <value>rst_typo</value>
+          <namespace>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#</namespace>
+        </prefix>
+        <prefix>
+          <value>xml</value>
+          <namespace>http://www.w3.org/XML/1998/namespace</namespace>
+        </prefix>
+        <prefix>
+          <value>xsd</value>
+          <namespace>http://www.w3.org/2001/XMLSchema#</namespace>
+        </prefix>
+      </prefixes>
+      <datatypes>
+        <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+        <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral</datatype>
+        <datatype>http://www.w3.org/2000/01/rdf-schema#Literal</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#NCName</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#NMTOKEN</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#Name</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#anyURI</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#base64Binary</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#boolean</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#byte</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#dateTime</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#dateTimeStamp</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#decimal</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#double</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#float</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#hexBinary</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#int</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#integer</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#language</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#long</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#negativeInteger</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#nonNegativeInteger</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#nonPositiveInteger</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#normalizedString</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#positiveInteger</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#short</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#string</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#token</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#unsignedByte</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#unsignedInt</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#unsignedLong</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#unsignedShort</datatype>
+        <datatype>http://www.w3.org/2002/07/owl#rational</datatype>
+        <datatype>http://www.w3.org/2002/07/owl#real</datatype>
+      </datatypes>
+      <languages>
+        <language>de</language>
+        <language>en</language>
+        <language>es</language>
+        <language>fr</language>
+        <language>it</language>
+      </languages>
+      <facets>
+        <facet>http://www.w3.org/2001/XMLSchema#langRange</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#length</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#maxExclusive</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#maxInclusive</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#maxLength</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#minExclusive</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#minInclusive</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#minLength</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#pattern</facet>
+      </facets>
+      <annotationProperties>
+        <annotationProperty>http://www.w3.org/2000/01/rdf-schema#backwardCompatibleWith</annotationProperty>
+        <annotationProperty>http://www.w3.org/2000/01/rdf-schema#comment</annotationProperty>
+        <annotationProperty>http://www.w3.org/2000/01/rdf-schema#isDefinedBy</annotationProperty>
+        <annotationProperty>http://www.w3.org/2000/01/rdf-schema#label</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#backwardCompatibleWith</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#deprecated</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#incompatibleWith</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#priorVersion</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#versionInfo</annotationProperty>
+      </annotationProperties>
+      <iris>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#Extremity</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#Extremity</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Extremity</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#Formation</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#Formation</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Formation</lexicalForm>
+                <datatype/>
+                <language/>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#ListedFormation</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#ListedFormation</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Listed formation</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#ListedRollingStock</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#ListedRollingStock</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Listed rolling stock</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#ListedVehicle</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#ListedVehicle</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Listed vehicle</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#RollingStock</value>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#Vehicle</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#Vehicle</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>Common definition in Directives 2016/797, 2016/798:
+ a railway vehicle suitable for circulation on wheels on railway lines, with or without traction; a vehicle is composed of one or more structural and functional subsystems
+
+ERA vocabulary 3.0.0: A specific vehicle or wagon able to operate over railway lines.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#Vehicle</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Vehicle</lexicalForm>
+                <datatype/>
+                <language/>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#atExtremity</value>
+          <functional/>
+          <inverseFunctional/>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#atExtremity</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>atExtremity</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#coincidesWith</value>
+          <symmetric/>
+          <transitive/>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#coincidesWith</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>coincides with</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#extremity_1</value>
+          <functional/>
+          <inverseFunctional/>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#extremity_1</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>extremity_1</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#extremity_2</value>
+          <functional/>
+          <inverseFunctional/>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#extremity_2</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>extremity_2</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#hasNextRollingStock</value>
+          <functional/>
+          <inverseFunctional/>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#hasNextRollingStock</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>has next rolling stock</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#headRollingStock</value>
+          <functional/>
+          <inverseFunctional/>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#headRollingStock</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>head rolling stock</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#includesRollingStock</value>
+          <transitive/>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#includesRollingStock</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>transitive. Also inverse functional (not formally stated, since not compatible with transitive in OWL2)</lexicalForm>
+                <datatype/>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#Coach</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#Coach</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>TSI LOCPAS 2020:
+a vehicle without traction in a fixed or variable formation capable of carrying passengers (by extension, requirements specified to apply to coaches in this TSI are deemed to apply also to restaurant cars, sleeping cars, couchettes cars, etc.)
+
+Note: was "passenger carriage" in earlier versions.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#FreightCarryingRollingStock</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#FreightCarryingRollingStock</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>Feature of Rolling stock: ability to carry freight, by design.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#Locomotive</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#Locomotive</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>Powered vehicle having a driving desk and can be used standalone (e.g. for shunting or ferrying movements), but is normally used for hauling other vehicles or formations.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#MotorCar</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#MotorCar</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>Powered vehicle that cannot be used standalone, as can be found in trainset (EMUs or DMUs).
+May or may not carry passengers.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#MotoredRollingStock</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#MotoredRollingStock</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>Feature of rolling stock that is able by design to exert tractive effort on wheels or (rarely) cogwheels.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#OnTrackMachine</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#OnTrackMachine</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>a motored railway vehicle used for infrastructure maintenance</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#PassengerCarryingRollingStock</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#PassengerCarryingRollingStock</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>Feature of Rolling stock: ability to carry freight, by design.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#RailCar</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#RailCar</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>Wikipedia (12/3/2024): self-propelled railway vehicle designed to transport passengers.
+Equiv. to FR: Autorail, DE: Schienenbus (narrower meaning: two axles only).
+Note however the numerous variants and ambiguities.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#Rake</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#Rake</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>Any non-powered formation. Examples:
+wagon rake;
+(fixed consist) set of TGV trailers;
+(fixed or variable consist) rake of coaches.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#RoadRailVehicle</value>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#RoadVehicleRake</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#RoadVehicleRake</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>From TSI WAG 2023, "unit", 3rd entry:
+separate rail bogies connected to compatible road vehicle(s), the combination of which forms a rake of a rail compatible system.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#RollingStockFeature</value>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#SlaveLocomotive</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#SlaveLocomotive</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>Powered vehicle without driving desk, with energy possibly fed from master locomotive ( = subclass "slug").
+Also called "truck" in France, e.g. TC61000.
+Do not confuse with master/slave configuration of two normal locomotives ("multiple working" in the UK).</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#Trailer</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#Trailer</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>non-traction, passenger-carrying vehicle that is part of a trainset or of a fixed-consist rake, such as TGV trailer or ICE3 trailer or Talgo trailer.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#Trainset</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#Trainset</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>TSI LOC&amp;PAS, 2020: a fixed formation that can operate as a train; it is by definition not intended to be reconfigured, except within a workshop environment. It is composed of only motored or of motored and non-motored vehicles.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#Van</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#Van</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>TSI LOCPAS 2020: a vehicle without traction capable of carrying payload other than passengers, e.g. luggage or mail, intended to be integrated into a fixed or variable formation which is intended to transport passengers.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#Wagon</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#Wagon</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>A non-powered vehicle designed for carrying freight.</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#hasFixedConsist</value>
+          <functional/>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#hasFixedConsist</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>Train formation, the consist of which cannot be changed while in operations as it would require interventions in a workshop.</lexicalForm>
+                <datatype/>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/rolling_tock/typology</value>
+        </iri>
+        <iri>
+          <value>https://w3id.org/list#EmptyList</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/list#EmptyList</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Empty list</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/list#OWLList</value>
+        </iri>
+        <iri>
+          <value>https://w3id.org/list#hasNext</value>
+          <annotations>
+            <annotation>
+              <subject>https://w3id.org/list#hasNext</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>has next</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+      </iris>
+    </ontology>
+    <diagrams>
+      <diagram name="Components" width="5000" height="5000"/>
+      <diagram name="Consist" width="5000" height="5000">
+        <node type="concept" color="#fcfcfc" id="n0">
+          <geometry x="-160" width="175" height="50" y="-220"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#RollingStock</iri>
+          <label size="12" x="-160" width="175" height="23" customSize="0" y="-220"/>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n1">
+          <geometry x="-290" width="135" height="50" y="-60"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#Formation</iri>
+          <label size="12" x="-290" width="135" height="23" customSize="0" y="-60"/>
+        </node>
+        <node type="concept" color="#646b63" id="n12">
+          <geometry x="-140" width="110" height="50" y="-60"/>
+          <iri>https://w3id.org/list#OWLList</iri>
+          <label size="12" x="-140" width="110" height="23" customSize="0" y="-60"/>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n13">
+          <geometry x="80" width="136" height="50" y="30"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#ListedVehicle</iri>
+          <label size="12" x="80" width="136" height="23" customSize="0" y="30"/>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n19">
+          <geometry x="-50" width="165" height="50" y="220"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#ListedRollingStock</iri>
+          <label size="12" x="-50" width="165" height="23" customSize="0" y="220"/>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n2">
+          <geometry x="80" width="135" height="50" y="-60"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#Vehicle</iri>
+          <label size="12" x="80" width="135" height="23" customSize="0" y="-60"/>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n20">
+          <geometry x="-212" width="145" height="50" y="40"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#ListedFormation</iri>
+          <label size="12" x="-212" width="145" height="23" customSize="0" y="40"/>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n22">
+          <geometry x="240" width="110" height="50" y="-210"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#Extremity</iri>
+          <label size="12" x="240" width="110" height="23" customSize="0" y="-210"/>
+        </node>
+        <node type="role" color="#fcfcfc" id="n23">
+          <geometry x="60" width="70" height="50" y="-250"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#extremity_1</iri>
+          <label size="12" x="60" width="117" height="23" customSize="0" y="-280"/>
+        </node>
+        <node type="role" color="#fcfcfc" id="n24">
+          <geometry x="60" width="70" height="50" y="-160"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#extremity_2</iri>
+          <label size="12" x="60" width="117" height="23" customSize="0" y="-190"/>
+        </node>
+        <node type="range-restriction" color="#000000" id="n25">
+          <geometry x="130" width="20" height="20" y="-250"/>
+          <label size="12" x="130" width="39" height="23" customSize="0" y="-272">exists</label>
+        </node>
+        <node type="range-restriction" color="#000000" id="n26">
+          <geometry x="130" width="20" height="20" y="-160"/>
+          <label size="12" x="130" width="39" height="23" customSize="0" y="-182">exists</label>
+        </node>
+        <node type="domain-restriction" color="#fcfcfc" id="n27">
+          <geometry x="-20" width="20" height="20" y="-250"/>
+          <label size="12" x="-20" width="39" height="23" customSize="0" y="-272">exists</label>
+        </node>
+        <node type="domain-restriction" color="#fcfcfc" id="n28">
+          <geometry x="-20" width="20" height="20" y="-160"/>
+          <label size="12" x="-20" width="39" height="23" customSize="0" y="-182">exists</label>
+        </node>
+        <node type="role" color="#fcfcfc" id="n29">
+          <geometry x="410" width="70" height="50" y="-210"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#coincidesWith</iri>
+          <label size="12" x="410" width="131" height="23" customSize="0" y="-240"/>
+        </node>
+        <node type="disjoint-union" color="#000000" id="n3">
+          <geometry x="-160" width="50" height="30" y="-130"/>
+        </node>
+        <node type="domain-restriction" color="#fcfcfc" id="n30">
+          <geometry x="330" width="20" height="20" y="-250"/>
+          <label size="12" x="330" width="39" height="23" customSize="0" y="-272">exists</label>
+        </node>
+        <node type="range-restriction" color="#000000" id="n31">
+          <geometry x="330" width="20" height="20" y="-170"/>
+          <label size="12" x="330" width="39" height="23" customSize="0" y="-192">exists</label>
+        </node>
+        <node type="role" color="#fcfcfc" id="n32">
+          <geometry x="-330" width="70" height="50" y="220"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#headRollingStock</iri>
+          <label size="12" x="-330" width="148" height="23" customSize="0" y="190"/>
+        </node>
+        <node type="domain-restriction" color="#fcfcfc" id="n33">
+          <geometry x="-330" width="20" height="20" y="140"/>
+          <label size="12" x="-330" width="39" height="23" customSize="0" y="118">exists</label>
+        </node>
+        <node type="range-restriction" color="#000000" id="n34">
+          <geometry x="-260" width="20" height="20" y="220"/>
+          <label size="12" x="-260" width="39" height="23" customSize="0" y="198">exists</label>
+        </node>
+        <node type="role" color="#646b63" id="n36">
+          <geometry x="310" width="70" height="50" y="140"/>
+          <iri>https://w3id.org/list#hasNext</iri>
+          <label size="12" x="310" width="70" height="23" customSize="0" y="110"/>
+        </node>
+        <node type="role" color="#fcfcfc" id="n4">
+          <geometry x="-420" width="70" height="50" y="-140"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#includesRollingStock</iri>
+          <label size="12" x="-420" width="167" height="23" customSize="0" y="-170"/>
+        </node>
+        <node type="domain-restriction" color="#fcfcfc" id="n5">
+          <geometry x="-420" width="20" height="20" y="-60"/>
+          <label size="12" x="-420" width="39" height="23" customSize="0" y="-82">exists</label>
+        </node>
+        <node type="role" color="#fcfcfc" id="n56">
+          <geometry x="310" width="70" height="50" y="240"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#hasNextRollingStock</iri>
+          <label size="12" x="310" width="166" height="23" customSize="0" y="210"/>
+        </node>
+        <node type="range-restriction" color="#000000" id="n57">
+          <geometry x="200" width="20" height="20" y="220"/>
+          <label size="12" x="200" width="39" height="23" customSize="0" y="198">exists</label>
+        </node>
+        <node type="domain-restriction" color="#fcfcfc" id="n58">
+          <geometry x="200" width="20" height="20" y="270"/>
+          <label size="12" x="200" width="39" height="23" customSize="0" y="248">exists</label>
+        </node>
+        <node type="range-restriction" color="#000000" id="n6">
+          <geometry x="-420" width="20" height="20" y="-220"/>
+          <label size="12" x="-420" width="39" height="23" customSize="0" y="-242">exists</label>
+        </node>
+        <node type="union" color="#fcfcfc" id="n60">
+          <geometry x="110" width="50" height="30" y="220"/>
+          <label size="12" x="110" width="18" height="23" customSize="0" y="220"/>
+        </node>
+        <node type="concept" color="#646b63" id="n61">
+          <geometry x="110" width="110" height="50" y="140"/>
+          <iri>https://w3id.org/list#EmptyList</iri>
+          <label size="12" x="110" width="110" height="23" customSize="0" y="140"/>
+        </node>
+        <node type="role" color="#fcfcfc" id="n62">
+          <geometry x="240" width="70" height="50" y="10"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#atExtremity</iri>
+          <label size="12" x="240" width="116" height="23" customSize="0" y="-20"/>
+        </node>
+        <node type="domain-restriction" color="#fcfcfc" id="n63">
+          <geometry x="240" width="20" height="20" y="80"/>
+          <label size="12" x="240" width="39" height="23" customSize="0" y="58">exists</label>
+        </node>
+        <node type="range-restriction" color="#000000" id="n64">
+          <geometry x="240" width="20" height="20" y="-60"/>
+          <label size="12" x="240" width="39" height="23" customSize="0" y="-82">exists</label>
+        </node>
+        <edge type="inclusion" id="e0" target="n0" source="n3">
+          <point x="-160" y="-130"/>
+          <point x="-160" y="-220"/>
+        </edge>
+        <edge type="input" id="e1" target="n3" source="n1">
+          <point x="-290" y="-60"/>
+          <point x="-160" y="-130"/>
+        </edge>
+        <edge type="inclusion" id="e12" target="n2" source="n13">
+          <point x="80" y="30"/>
+          <point x="80" y="-60"/>
+        </edge>
+        <edge type="inclusion" id="e13" target="n12" source="n13">
+          <point x="80" y="30"/>
+          <point x="-140" y="-60"/>
+        </edge>
+        <edge type="input" id="e2" target="n3" source="n2">
+          <point x="80" y="-60"/>
+          <point x="-160" y="-130"/>
+        </edge>
+        <edge type="inclusion" id="e27" target="n12" source="n19">
+          <point x="-50" y="220"/>
+          <point x="-140" y="-60"/>
+        </edge>
+        <edge type="inclusion" id="e28" target="n12" source="n20">
+          <point x="-212" y="40"/>
+          <point x="-140" y="-60"/>
+        </edge>
+        <edge type="inclusion" id="e29" target="n1" source="n20">
+          <point x="-212" y="40"/>
+          <point x="-290" y="-60"/>
+        </edge>
+        <edge type="input" id="e3" target="n5" source="n4">
+          <point x="-420" y="-140"/>
+          <point x="-420" y="-60"/>
+        </edge>
+        <edge type="inclusion" id="e31" target="n0" source="n27">
+          <point x="-20" y="-250"/>
+          <point x="-160" y="-220"/>
+        </edge>
+        <edge type="inclusion" id="e32" target="n0" source="n28">
+          <point x="-20" y="-160"/>
+          <point x="-160" y="-220"/>
+        </edge>
+        <edge type="inclusion" id="e33" target="n22" source="n25">
+          <point x="130" y="-250"/>
+          <point x="240" y="-210"/>
+        </edge>
+        <edge type="inclusion" id="e34" target="n22" source="n26">
+          <point x="130" y="-160"/>
+          <point x="240" y="-210"/>
+        </edge>
+        <edge type="input" id="e35" target="n27" source="n23">
+          <point x="60" y="-250"/>
+          <point x="-20" y="-250"/>
+        </edge>
+        <edge type="input" id="e36" target="n28" source="n24">
+          <point x="60" y="-160"/>
+          <point x="-20" y="-160"/>
+        </edge>
+        <edge type="input" id="e37" target="n25" source="n23">
+          <point x="60" y="-250"/>
+          <point x="130" y="-250"/>
+        </edge>
+        <edge type="input" id="e38" target="n26" source="n24">
+          <point x="60" y="-160"/>
+          <point x="130" y="-160"/>
+        </edge>
+        <edge type="input" id="e39" target="n31" source="n29">
+          <point x="410" y="-210"/>
+          <point x="330" y="-170"/>
+        </edge>
+        <edge type="input" id="e4" target="n6" source="n4">
+          <point x="-420" y="-140"/>
+          <point x="-420" y="-220"/>
+        </edge>
+        <edge type="input" id="e41" target="n30" source="n29">
+          <point x="410" y="-210"/>
+          <point x="330" y="-250"/>
+        </edge>
+        <edge type="inclusion" id="e42" target="n22" source="n31">
+          <point x="330" y="-170"/>
+          <point x="240" y="-210"/>
+        </edge>
+        <edge type="inclusion" id="e43" target="n22" source="n30">
+          <point x="330" y="-250"/>
+          <point x="240" y="-210"/>
+        </edge>
+        <edge type="inclusion" id="e44" target="n0" source="n19">
+          <point x="-50" y="220"/>
+          <point x="-50" y="50"/>
+          <point x="-50" y="-130"/>
+          <point x="-160" y="-220"/>
+        </edge>
+        <edge type="input" id="e46" target="n34" source="n32">
+          <point x="-330" y="220"/>
+          <point x="-260" y="220"/>
+        </edge>
+        <edge type="input" id="e47" target="n33" source="n32">
+          <point x="-330" y="220"/>
+          <point x="-330" y="140"/>
+        </edge>
+        <edge type="inclusion" id="e5" target="n0" source="n6">
+          <point x="-420" y="-220"/>
+          <point x="-160" y="-220"/>
+        </edge>
+        <edge type="inclusion" id="e6" target="n1" source="n5">
+          <point x="-420" y="-60"/>
+          <point x="-290" y="-60"/>
+        </edge>
+        <edge type="inclusion" id="e61" target="n36" source="n56">
+          <point x="310" y="240"/>
+          <point x="310" y="140"/>
+        </edge>
+        <edge type="input" id="e68" target="n57" source="n56">
+          <point x="310" y="240"/>
+          <point x="200" y="220"/>
+        </edge>
+        <edge type="input" id="e69" target="n58" source="n56">
+          <point x="310" y="240"/>
+          <point x="200" y="270"/>
+        </edge>
+        <edge type="inclusion" id="e70" target="n19" source="n58">
+          <point x="200" y="270"/>
+          <point x="60" y="270"/>
+          <point x="-50" y="220"/>
+        </edge>
+        <edge type="inclusion" id="e72" target="n1" source="n33">
+          <point x="-330" y="140"/>
+          <point x="-330" y="-36"/>
+        </edge>
+        <edge type="inclusion" id="e73" target="n19" source="n34">
+          <point x="-260" y="220"/>
+          <point x="-50" y="220"/>
+        </edge>
+        <edge type="input" id="e76" target="n60" source="n61">
+          <point x="110" y="140"/>
+          <point x="110" y="220"/>
+        </edge>
+        <edge type="input" id="e77" target="n60" source="n19">
+          <point x="-50" y="220"/>
+          <point x="5" y="220"/>
+          <point x="110" y="220"/>
+        </edge>
+        <edge type="inclusion" id="e78" target="n60" source="n57">
+          <point x="200" y="220"/>
+          <point x="110" y="220"/>
+        </edge>
+        <edge type="input" id="e79" target="n64" source="n62">
+          <point x="240" y="10"/>
+          <point x="240" y="-60"/>
+        </edge>
+        <edge type="input" id="e80" target="n63" source="n62">
+          <point x="240" y="10"/>
+          <point x="240" y="80"/>
+        </edge>
+        <edge type="inclusion" id="e81" target="n22" source="n64">
+          <point x="240" y="-60"/>
+          <point x="240" y="-210"/>
+        </edge>
+        <edge type="inclusion" id="e82" target="n19" source="n63">
+          <point x="240" y="80"/>
+          <point x="20" y="80"/>
+          <point x="-50" y="220"/>
+        </edge>
+      </diagram>
+      <diagram name="ERATV_adapter" width="5000" height="5000"/>
+      <diagram name="EVR_adapter" width="5000" height="5000"/>
+      <diagram name="Geometry" width="5000" height="5000"/>
+      <diagram name="Levels" width="5000" height="5000"/>
+      <diagram name="Payloads" width="5000" height="5000"/>
+      <diagram name="Performance" width="5000" height="5000"/>
+      <diagram name="Typology" width="12750" height="12750">
+        <node type="concept" color="#fcfcfc" id="n0">
+          <geometry x="-240" width="165" height="50" y="-240"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#RailCar</iri>
+          <label size="12" x="-240" width="165" height="23" customSize="0" y="-240"/>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n1">
+          <geometry x="-240" width="165" height="50" y="140"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#Van</iri>
+          <label size="12" x="-240" width="165" height="23" customSize="0" y="140"/>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n10">
+          <geometry x="-510" width="110" height="50" y="-300"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#Vehicle</iri>
+          <label size="12" x="-510" width="110" height="23" customSize="0" y="-300"/>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n11">
+          <geometry x="-240" width="165" height="50" y="340"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#RoadVehicleRake</iri>
+          <label size="12" x="-240" width="165" height="23" customSize="0" y="332"/>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n12">
+          <geometry x="-240" width="165" height="50" y="220"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#Trainset</iri>
+          <label size="12" x="-240" width="165" height="23" customSize="0" y="220"/>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n13">
+          <geometry x="-240" width="165" height="50" y="280"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#Rake</iri>
+          <label size="12" x="-240" width="165" height="23" customSize="0" y="280"/>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n18">
+          <geometry x="150" width="225" height="50" y="70"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#FreightCarryingRollingStock</iri>
+          <label size="12" x="150" width="225" height="23" customSize="0" y="62"/>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n2">
+          <geometry x="-240" width="165" height="50" y="-420"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#SlaveLocomotive</iri>
+          <label size="12" x="-240" width="165" height="23" customSize="0" y="-427"/>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n25">
+          <geometry x="150" width="225" height="50" y="-340"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#MotoredRollingStock</iri>
+          <label size="12" x="150" width="225" height="23" customSize="0" y="-347"/>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n29">
+          <geometry x="160" width="250" height="50" y="-100"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#PassengerCarryingRollingStock</iri>
+          <label size="12" x="145" width="250" height="23" customSize="0" y="-115"/>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n3">
+          <geometry x="-240" width="165" height="50" y="80"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#RoadRailVehicle</iri>
+          <label size="12" x="-240" width="165" height="23" customSize="0" y="72"/>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n30">
+          <geometry x="460" width="175" height="115" y="-100"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#RollingStockFeature</iri>
+          <label size="12" x="460" width="175" height="23" customSize="0" y="-140"/>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n35">
+          <geometry x="-520" width="145" height="50" y="270"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_consist#Formation</iri>
+          <label size="12" x="-520" width="145" height="23" customSize="0" y="270"/>
+        </node>
+        <node type="attribute" color="#fcfcfc" id="n39">
+          <geometry x="-520" width="20" height="20" y="420"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#hasFixedConsist</iri>
+          <label size="12" x="-520" width="141" height="23" customSize="0" y="398"/>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n4">
+          <geometry x="-240" width="165" height="50" y="-300"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#OnTrackMachine</iri>
+          <label size="12" x="-240" width="165" height="23" customSize="0" y="-307"/>
+        </node>
+        <node type="domain-restriction" color="#fcfcfc" id="n40">
+          <geometry x="-520" width="20" height="20" y="360"/>
+          <label size="12" x="-520" width="39" height="23" customSize="0" y="338">exists</label>
+        </node>
+        <node type="value-domain" color="#fcfcfc" id="n41">
+          <geometry x="-410" width="90" height="40" y="480"/>
+          <iri>http://www.w3.org/2001/XMLSchema#boolean</iri>
+          <label size="12" x="-410" width="90" height="23" customSize="0" y="480"/>
+        </node>
+        <node type="range-restriction" color="#000000" id="n42">
+          <geometry x="-520" width="20" height="20" y="480"/>
+          <label size="12" x="-520" width="39" height="23" customSize="0" y="458">exists</label>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n5">
+          <geometry x="-240" width="165" height="50" y="-480"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#Locomotive</iri>
+          <label size="12" x="-240" width="165" height="23" customSize="0" y="-487"/>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n6">
+          <geometry x="-240" width="165" height="50" y="-120"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#Coach</iri>
+          <label size="12" x="-240" width="165" height="23" customSize="0" y="-120"/>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n7">
+          <geometry x="-240" width="165" height="50" y="-60"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#Trailer</iri>
+          <label size="12" x="-240" width="165" height="23" customSize="0" y="-60"/>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n8">
+          <geometry x="-240" width="165" height="50" y="20"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#Wagon</iri>
+          <label size="12" x="-240" width="165" height="23" customSize="0" y="20"/>
+        </node>
+        <node type="concept" color="#fcfcfc" id="n9">
+          <geometry x="-240" width="165" height="50" y="-360"/>
+          <iri>http://cdm.ovh/rsm/rolling_stock/rolling_stock_typology#MotorCar</iri>
+          <label size="12" x="-240" width="165" height="23" customSize="0" y="-360"/>
+        </node>
+        <edge type="inclusion" id="e0" target="n10" source="n0">
+          <point x="-240" y="-240"/>
+          <point x="-510" y="-300"/>
+        </edge>
+        <edge type="inclusion" id="e1" target="n10" source="n1">
+          <point x="-322" y="144"/>
+          <point x="-510" y="-300"/>
+        </edge>
+        <edge type="inclusion" id="e2" target="n10" source="n2">
+          <point x="-322" y="-420"/>
+          <point x="-510" y="-300"/>
+        </edge>
+        <edge type="inclusion" id="e26" target="n30" source="n18">
+          <point x="150" y="70"/>
+          <point x="460" y="-100"/>
+        </edge>
+        <edge type="inclusion" id="e27" target="n30" source="n25">
+          <point x="150" y="-340"/>
+          <point x="460" y="-100"/>
+        </edge>
+        <edge type="inclusion" id="e28" target="n30" source="n29">
+          <point x="160" y="-100"/>
+          <point x="460" y="-100"/>
+        </edge>
+        <edge type="inclusion" id="e3" target="n10" source="n3">
+          <point x="-322" y="84"/>
+          <point x="-510" y="-300"/>
+        </edge>
+        <edge type="inclusion" id="e37" target="n25" source="n12">
+          <point x="-240" y="220"/>
+          <point x="600" y="220"/>
+          <point x="600" y="-340"/>
+          <point x="150" y="-340"/>
+        </edge>
+        <edge type="inclusion" id="e39" target="n25" source="n4">
+          <point x="-158" y="-300"/>
+          <point x="150" y="-340"/>
+        </edge>
+        <edge type="inclusion" id="e4" target="n10" source="n4">
+          <point x="-240" y="-300"/>
+          <point x="-510" y="-300"/>
+        </edge>
+        <edge type="inclusion" id="e40" target="n18" source="n1">
+          <point x="-158" y="139"/>
+          <point x="150" y="70"/>
+        </edge>
+        <edge type="inclusion" id="e41" target="n18" source="n8">
+          <point x="-158" y="19"/>
+          <point x="150" y="70"/>
+        </edge>
+        <edge type="inclusion" id="e42" target="n18" source="n3">
+          <point x="-158" y="79"/>
+          <point x="150" y="70"/>
+        </edge>
+        <edge type="inclusion" id="e43" target="n25" source="n9">
+          <point x="-158" y="-360"/>
+          <point x="150" y="-340"/>
+        </edge>
+        <edge type="inclusion" id="e44" target="n29" source="n6">
+          <point x="-158" y="-120"/>
+          <point x="160" y="-100"/>
+        </edge>
+        <edge type="inclusion" id="e45" target="n29" source="n7">
+          <point x="-158" y="-59"/>
+          <point x="160" y="-100"/>
+        </edge>
+        <edge type="inclusion" id="e46" target="n29" source="n0">
+          <point x="-158" y="-229"/>
+          <point x="35" y="-114"/>
+        </edge>
+        <edge type="inclusion" id="e47" target="n25" source="n5">
+          <point x="-158" y="-480"/>
+          <point x="150" y="-340"/>
+        </edge>
+        <edge type="inclusion" id="e48" target="n25" source="n2">
+          <point x="-158" y="-420"/>
+          <point x="150" y="-340"/>
+        </edge>
+        <edge type="inclusion" id="e49" target="n25" source="n0">
+          <point x="-158" y="-250"/>
+          <point x="150" y="-340"/>
+        </edge>
+        <edge type="inclusion" id="e5" target="n10" source="n5">
+          <point x="-322" y="-480"/>
+          <point x="-510" y="-300"/>
+        </edge>
+        <edge type="inclusion" id="e50" target="n35" source="n12">
+          <point x="-240" y="220"/>
+          <point x="-520" y="270"/>
+        </edge>
+        <edge type="inclusion" id="e51" target="n35" source="n13">
+          <point x="-240" y="280"/>
+          <point x="-520" y="270"/>
+        </edge>
+        <edge type="inclusion" id="e52" target="n35" source="n11">
+          <point x="-240" y="340"/>
+          <point x="-520" y="270"/>
+        </edge>
+        <edge type="input" id="e55" target="n40" source="n39">
+          <point x="-520" y="420"/>
+          <point x="-520" y="360"/>
+        </edge>
+        <edge type="input" id="e57" target="n42" source="n39">
+          <point x="-520" y="420"/>
+          <point x="-520" y="480"/>
+        </edge>
+        <edge type="inclusion" id="e58" target="n41" source="n42">
+          <point x="-520" y="480"/>
+          <point x="-410" y="480"/>
+        </edge>
+        <edge type="inclusion" id="e6" target="n10" source="n6">
+          <point x="-322" y="-124"/>
+          <point x="-510" y="-300"/>
+        </edge>
+        <edge type="inclusion" id="e63" target="n35" source="n40">
+          <point x="-520" y="360"/>
+          <point x="-520" y="270"/>
+        </edge>
+        <edge type="inclusion" id="e7" target="n10" source="n7">
+          <point x="-322" y="-56"/>
+          <point x="-510" y="-300"/>
+        </edge>
+        <edge type="inclusion" id="e8" target="n10" source="n8">
+          <point x="-322" y="21"/>
+          <point x="-510" y="-300"/>
+        </edge>
+        <edge type="inclusion" id="e9" target="n10" source="n9">
+          <point x="-322" y="-358"/>
+          <point x="-510" y="-300"/>
+        </edge>
+      </diagram>
+    </diagrams>
+  </project>
+</graphol>

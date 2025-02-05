@@ -1,16 +1,21 @@
 import numpy as np
-from fastkml import kml
+import simplekml
+from pyproj import Transformer
 from rdflib import Graph
 from rdflib.namespace import RDF
 from shapely.wkt import loads
 
 from Code.Import.SD1_import.cdm_namespaces import *
+from Graph_transformation.step03_add_ports import wgs84_geod
 from Import.SD1_import.helper_functions import arc_end_coords
 
 
-def alignment_to_kml(source_file_path: str, output_file: str) -> None:
+def alignment_to_kml(source_file_path: str, output_file: str, source_epsg: int = 4326) -> None:
     # code to export ifc alignment to kml
     segments = parse_ttl_for_horizontal_segments(source_file_path)
+    output = linestrings_to_kml(generate_wkt(segments), Transformer.from_crs(source_epsg, 4326, always_xy=True))
+    output.save(output_file)
+    print(f"KML file was successfully generated: {output_file}")
 
 
 def parse_ttl_for_horizontal_segments(source_file_path: str, arcs_only: bool = False) -> dict:
@@ -92,37 +97,30 @@ def generate_wkt(segment_dict) -> list[str]:
     return result
 
 
-def linestrings_to_kml(wkts) -> str:
-    # Create a new KML object
-    k = kml.KML()
+def linestrings_to_kml(wkts, transformer: Transformer) -> simplekml.Kml:
+    """
+    Function to convert a list of WKT LineStrings into a KML object using simplekml.
+    :param wkts: List of WKT (Well-Known Text) geometries.
+    :param transformer: A Transformer object for converting coordinates from one CRS to (here) EPSG:4326, i.e. WGS84
+    :return: A simplekml.Kml object.
+    """
+    # Create a KML object
+    kml = simplekml.Kml()
 
-    # Create a new document for the KML object
-    document = kml.Document()
-    k.append(document)
+    # Process each WKT Linestring
+    for idx, linestring_wkt in enumerate(wkts):
+        # Convert the WKT to a Shapely LineString
+        linestring_geom = loads(linestring_wkt)
 
-    # Go through each of the WKT LineStrings
-    for linestring_wkt in wkts:
-        # Convert the WKT to a shapely geometry (LineString)
-        linestring_geometry = loads(linestring_wkt)
+        # Extract coordinates from the LineString
+        coords = [(x, y) for x, y in linestring_geom.coords]  # simplekml requires tuples of (lon, lat)
+        # Convert coords to EPSG:4326
+        wgs84_coords = [transformer.transform(x, y) for x, y in coords]
 
-        # Create a new KML place mark object
-        placemark = kml.Placemark()
+        # Add a LineString to the KML
+        linestring = kml.newlinestring(name=f"Linestring {idx + 1}", description="Generated from WKT")
+        linestring.coords = wgs84_coords  # Assign the coordinates to the LineString
+        linestring.extrude = 1  # Optional (for 3D viewing)
 
-        # Assign the LineString geometry to the place mark
-        # TODO: correct (geometry property cannot be set)
-        placemark.geometry = linestring_geometry
-
-        # Add the place mark to the KML Document
-        document.append(placemark)
-
-    # Return the KML Document as a string
-    return k.to_string(prettyprint=True)
-
-
-if __name__ == '__main__':
-    segment_dict = parse_ttl_for_horizontal_segments(
-        '/Users/airymagnien/PycharmProjects/SemanticRSM/Code/Import/SD1_import/scheibenberg.ttl', arcs_only=False)
-    wkts = generate_wkt(segment_dict)
-    kml_data = linestrings_to_kml(wkts)
-    with open('/Users/airymagnien/PycharmProjects/SemanticRSM/Code/Export/scheibenberg_all.kml', 'w') as file:
-        file.write(kml_data)
+    # Return the KML object (can later be saved or converted to a string)
+    return kml

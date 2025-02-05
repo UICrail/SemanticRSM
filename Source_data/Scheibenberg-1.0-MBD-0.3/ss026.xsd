@@ -1,0 +1,1089 @@
+<?xml version="1.0" ?>
+<xs:schema targetNamespace="https://erju.org/ss026" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ss026="https://erju.org/ss026" elementFormDefault="qualified" version="1.0">
+	<xs:simpleType name="QDir">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="reverse"/>
+			<xs:enumeration value="nominal"/>
+			<xs:enumeration value="both"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ETCSVersion">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="v1_0"/>
+			<xs:enumeration value="v1_1"/>
+			<xs:enumeration value="v2_0"/>
+			<xs:enumeration value="v2_1"/>
+			<xs:enumeration value="v_previous"/>
+			<xs:enumeration value="v_reserved"/>
+			<xs:enumeration value="v_invalid"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="KVType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="freightTrains"/>
+			<xs:enumeration value="conventionalPassengerTrains"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LinkReaction">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="trainTrip"/>
+			<xs:enumeration value="applyServiceBrake"/>
+			<xs:enumeration value="noReaction"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EtcsLevel">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Level0"/>
+			<xs:enumeration value="LevelNTC"/>
+			<xs:enumeration value="Level1"/>
+			<xs:enumeration value="Level2"/>
+			<xs:enumeration value="Level3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AxleLoadCategory">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="A"/>
+			<xs:enumeration value="HS17"/>
+			<xs:enumeration value="B1"/>
+			<xs:enumeration value="B2"/>
+			<xs:enumeration value="C2"/>
+			<xs:enumeration value="C3"/>
+			<xs:enumeration value="C4"/>
+			<xs:enumeration value="D2"/>
+			<xs:enumeration value="D3"/>
+			<xs:enumeration value="D4"/>
+			<xs:enumeration value="D4XL"/>
+			<xs:enumeration value="E4"/>
+			<xs:enumeration value="E5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PlatformPosition">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ppLeft"/>
+			<xs:enumeration value="ppRight"/>
+			<xs:enumeration value="ppBoth"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TextClass">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="auxiliary"/>
+			<xs:enumeration value="important"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DisplayOperatingMode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DOM_fullSupervision"/>
+			<xs:enumeration value="DOM_onSight"/>
+			<xs:enumeration value="DOM_staffResponsible"/>
+			<xs:enumeration value="DOM_spare"/>
+			<xs:enumeration value="DOM_unfitted"/>
+			<xs:enumeration value="DOM_spare1"/>
+			<xs:enumeration value="DOM_standBy"/>
+			<xs:enumeration value="DOM_trip"/>
+			<xs:enumeration value="DOM_postTrip"/>
+			<xs:enumeration value="DOM_spare2"/>
+			<xs:enumeration value="DOM_spare3"/>
+			<xs:enumeration value="DOM_spare4"/>
+			<xs:enumeration value="DOM_limitedSupervision"/>
+			<xs:enumeration value="DOM_spare5"/>
+			<xs:enumeration value="DOM_reversing"/>
+			<xs:enumeration value="DOM_notLimitedByMode"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DisplayOperatingLevel">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DOL_level0"/>
+			<xs:enumeration value="DOL_levelNTC"/>
+			<xs:enumeration value="DOL_level1"/>
+			<xs:enumeration value="DOL_level2"/>
+			<xs:enumeration value="DOL_level3"/>
+			<xs:enumeration value="DOL_notLimited"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MAMode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="OnSight"/>
+			<xs:enumeration value="Shunting"/>
+			<xs:enumeration value="LimitedSupervision"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Q_Suitability">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="LoadingGuage"/>
+			<xs:enumeration value="MaxAxleLoad"/>
+			<xs:enumeration value="TractionSystem"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LineGuage">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="g1"/>
+			<xs:enumeration value="gA"/>
+			<xs:enumeration value="gB"/>
+			<xs:enumeration value="gC"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="BalisePacket">
+		<xs:sequence>
+			<xs:element name="packet" type="ss026:Packet" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="nid" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="q_dir" type="ss026:QDir"/>
+		<xs:attribute name="q_scale" type="xs:unsignedInt"/>
+	</xs:complexType>
+	<xs:element name="balisePacket" type="ss026:BalisePacket"/>
+	<xs:complexType name="Packet">
+		<xs:choice>
+			<xs:element name="packet_0" type="ss026:ETCSPacket_0"/>
+			<xs:element name="packet_2" type="ss026:ETCSPacket_2"/>
+			<xs:element name="packet_3" type="ss026:ETCSPacket_3"/>
+			<xs:element name="packet_5" type="ss026:ETCSPacket_5"/>
+			<xs:element name="packet_6" type="ss026:ETCSPacket_6"/>
+			<xs:element name="packet_16" type="ss026:ETCSPacket_16"/>
+			<xs:element name="packet_39" type="ss026:ETCSPacket_39"/>
+			<xs:element name="packet_40" type="ss026:ETCSPacket_40"/>
+			<xs:element name="packet_41" type="ss026:ETCSPacket_41"/>
+			<xs:element name="packet_42" type="ss026:ETCSPacket_42"/>
+			<xs:element name="packet_44" type="ss026:ETCSPacket_44"/>
+			<xs:element name="packet_45" type="ss026:ETCSPacket_45"/>
+			<xs:element name="packet_46" type="ss026:ETCSPacket_46"/>
+			<xs:element name="packet_49" type="ss026:ETCSPacket_49"/>
+			<xs:element name="packet_51" type="ss026:ETCSPacket_51"/>
+			<xs:element name="packet_52" type="ss026:ETCSPacket_52"/>
+			<xs:element name="packet_65" type="ss026:ETCSPacket_65"/>
+			<xs:element name="packet_66" type="ss026:ETCSPacket_66"/>
+			<xs:element name="packet_67" type="ss026:ETCSPacket_67"/>
+			<xs:element name="packet_68" type="ss026:ETCSPacket_68"/>
+			<xs:element name="packet_69" type="ss026:ETCSPacket_69"/>
+			<xs:element name="packet_70" type="ss026:ETCSPacket_70"/>
+			<xs:element name="packet_71" type="ss026:ETCSPacket_71"/>
+			<xs:element name="packet_72" type="ss026:ETCSPacket_72"/>
+			<xs:element name="packet_76" type="ss026:ETCSPacket_76"/>
+			<xs:element name="packet_79" type="ss026:ETCSPacket_79"/>
+			<xs:element name="packet_80" type="ss026:ETCSPacket_80"/>
+			<xs:element name="packet_88" type="ss026:ETCSPacket_88"/>
+			<xs:element name="packet_90" type="ss026:ETCSPacket_90"/>
+			<xs:element name="packet_131" type="ss026:ETCSPacket_131"/>
+			<xs:element name="packet_132" type="ss026:ETCSPacket_132"/>
+			<xs:element name="packet_133" type="ss026:ETCSPacket_133"/>
+			<xs:element name="packet_134" type="ss026:ETCSPacket_134"/>
+			<xs:element name="packet_135" type="ss026:ETCSPacket_135"/>
+			<xs:element name="packet_136" type="ss026:ETCSPacket_136"/>
+			<xs:element name="packet_137" type="ss026:ETCSPacket_137"/>
+			<xs:element name="packet_138" type="ss026:ETCSPacket_138"/>
+			<xs:element name="packet_139" type="ss026:ETCSPacket_139"/>
+			<xs:element name="packet_141" type="ss026:ETCSPacket_141"/>
+			<xs:element name="packet_145" type="ss026:ETCSPacket_145"/>
+			<xs:element name="packet_180" type="ss026:ETCSPacket_180"/>
+			<xs:element name="packet_181" type="ss026:ETCSPacket_181"/>
+			<xs:element name="packet_254" type="ss026:ETCSPacket_254"/>
+			<xs:element name="packet_255" type="ss026:ETCSPacket_255"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="packet" type="ss026:Packet"/>
+	<xs:complexType name="ETCSPacket_0">
+		<xs:sequence/>
+		<xs:attribute name="nid_vbcmk" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_0" type="ss026:ETCSPacket_0"/>
+	<xs:complexType name="ETCSPacket_2">
+		<xs:sequence/>
+		<xs:attribute name="m_version" type="ss026:ETCSVersion" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_2" type="ss026:ETCSPacket_2"/>
+	<xs:complexType name="CorrectionFactor">
+		<xs:sequence/>
+		<xs:attribute name="l_nvkrint" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="m_nvkrint" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="correctionFactor" type="ss026:CorrectionFactor"/>
+	<xs:complexType name="NVKSubItem">
+		<xs:sequence/>
+		<xs:attribute name="v_nvkvint" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="m_nvkvint" type="xs:unsignedInt"/>
+		<xs:attribute name="m_nvkvint_2" type="xs:unsignedInt"/>
+	</xs:complexType>
+	<xs:element name="nVKSubItem" type="ss026:NVKSubItem"/>
+	<xs:complexType name="NVKItem">
+		<xs:sequence>
+			<xs:element name="nvkSubItems" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="nvkSubItem" type="ss026:NVKSubItem" minOccurs="0" maxOccurs="31"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="q_nvkvintset" type="ss026:KVType" use="required"/>
+		<xs:attribute name="a_nvp12" type="xs:unsignedInt"/>
+		<xs:attribute name="a_nvp23" type="xs:unsignedInt"/>
+		<xs:attribute name="v_nvkvint" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="m_nvkvint" type="xs:unsignedInt"/>
+		<xs:attribute name="m_nvkvint_2" type="xs:unsignedInt"/>
+	</xs:complexType>
+	<xs:element name="nVKItem" type="ss026:NVKItem"/>
+	<xs:complexType name="NVK">
+		<xs:sequence>
+			<xs:element name="nvkItems" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="nvkItem" type="ss026:NVKItem" minOccurs="1" maxOccurs="32"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="correctionFactors" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="correctionFactor" type="ss026:CorrectionFactor" minOccurs="0" maxOccurs="31"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="l_nvkrint" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="m_nvkrint" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="m_nvktint" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="nVK" type="ss026:NVK"/>
+	<xs:complexType name="ETCSPacket_3">
+		<xs:sequence>
+			<xs:element name="nid_c_next" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="nid_c_nextItem" maxOccurs="31">
+							<xs:complexType>
+								<xs:attribute name="value" type="xs:unsignedInt" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="nVKs" type="ss026:NVK" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="d_validnv" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="nid_c" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="v_nvshunt" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="v_nvstff" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="v_nvonsight" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="v_nvlimsuperv" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="v_nvunfit" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="v_nvrel" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="d_nvroll" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="q_nvsbtsmperm" type="xs:boolean" use="required"/>
+		<xs:attribute name="q_nvemrrls" type="xs:boolean" use="required"/>
+		<xs:attribute name="q_nvguiperm" type="xs:boolean" use="required"/>
+		<xs:attribute name="q_nvsbfbperm" type="xs:boolean" use="required"/>
+		<xs:attribute name="q_nvinhsmicperm" type="xs:boolean" use="required"/>
+		<xs:attribute name="v_nvallowovtrp" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="v_nvsupovtrp" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="d_nvovtrp" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="t_nvovtrp" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="d_nvpotrp" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="m_nvcontact" type="ss026:LinkReaction" use="required"/>
+		<xs:attribute name="t_nvcontact" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="m_nvderun" type="xs:boolean" use="required"/>
+		<xs:attribute name="d_nvstff" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="q_nvdriver_adhes" type="xs:boolean" use="required"/>
+		<xs:attribute name="a_nvmaxredadh1" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="a_nvmaxredadh2" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="a_nvmaxredadh3" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="q_nvlocacc" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="m_nvavadh" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="m_nvebcl" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="q_nvkint" type="xs:boolean" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_3" type="ss026:ETCSPacket_3"/>
+	<xs:complexType name="LinkItem">
+		<xs:sequence/>
+		<xs:attribute name="d_link" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="nid_c" type="xs:unsignedInt"/>
+		<xs:attribute name="nid_bg" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="q_linkorientation" type="xs:boolean" use="required"/>
+		<xs:attribute name="q_linkreaction" type="ss026:LinkReaction" use="required"/>
+		<xs:attribute name="q_locacc" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="linkItem" type="ss026:LinkItem"/>
+	<xs:complexType name="ETCSPacket_5">
+		<xs:sequence>
+			<xs:element name="links" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="link" type="ss026:LinkItem" minOccurs="1" maxOccurs="33"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_5" type="ss026:ETCSPacket_5"/>
+	<xs:complexType name="ETCSPacket_6">
+		<xs:sequence/>
+		<xs:attribute name="q_vbco" type="xs:boolean" use="required"/>
+		<xs:attribute name="nid_vbcmk" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="nid_c" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="t_vbc" type="xs:unsignedInt"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_6" type="ss026:ETCSPacket_6"/>
+	<xs:complexType name="ETCSPacket_16">
+		<xs:sequence/>
+		<xs:attribute name="l_section" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_16" type="ss026:ETCSPacket_16"/>
+	<xs:complexType name="ETCSPacket_39">
+		<xs:sequence/>
+		<xs:attribute name="d_traction" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="m_voltage" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="nid_ctraction" type="xs:unsignedInt"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_39" type="ss026:ETCSPacket_39"/>
+	<xs:complexType name="ETCSPacket_40">
+		<xs:sequence/>
+		<xs:attribute name="d_current" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="m_current" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_40" type="ss026:ETCSPacket_40"/>
+	<xs:complexType name="LevelTransitionWithAck">
+		<xs:sequence/>
+		<xs:attribute name="m_leveltr" type="ss026:EtcsLevel" use="required"/>
+		<xs:attribute name="nid_ntc" type="xs:unsignedInt"/>
+		<xs:attribute name="l_ackleveltr" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="levelTransitionWithAck" type="ss026:LevelTransitionWithAck"/>
+	<xs:complexType name="ETCSPacket_41">
+		<xs:sequence>
+			<xs:element name="levelTransitionWithAck" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="levelTransitionWithAckItem" type="ss026:LevelTransitionWithAck" minOccurs="0" maxOccurs="32"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="d_leveltr" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="m_leveltr" type="ss026:EtcsLevel" use="required"/>
+		<xs:attribute name="nid_ntc" type="xs:unsignedInt"/>
+		<xs:attribute name="l_ackleveltr" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_41" type="ss026:ETCSPacket_41"/>
+	<xs:complexType name="ETCSPacket_42">
+		<xs:sequence/>
+		<xs:attribute name="q_rbc" type="xs:boolean" use="required"/>
+		<xs:attribute name="nid_c" type="xs:unsignedInt"/>
+		<xs:attribute name="nid_rbc" type="xs:unsignedInt"/>
+		<xs:attribute name="nid_radio" type="xs:string"/>
+		<xs:attribute name="q_sleepsession" type="xs:boolean" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_42" type="ss026:ETCSPacket_42"/>
+	<xs:complexType name="ETCSPacket_44">
+		<xs:sequence/>
+		<xs:attribute name="nid_xuser" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="nid_ntc" type="xs:unsignedInt"/>
+		<xs:attribute name="otherData" type="xs:base64Binary" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_44" type="ss026:ETCSPacket_44"/>
+	<xs:complexType name="ETCSPacket_45">
+		<xs:sequence/>
+		<xs:attribute name="nid_mn" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_45" type="ss026:ETCSPacket_45"/>
+	<xs:complexType name="LevelTransition">
+		<xs:sequence/>
+		<xs:attribute name="m_leveltr" type="ss026:EtcsLevel" use="required"/>
+		<xs:attribute name="nid_ntc" type="xs:unsignedInt"/>
+	</xs:complexType>
+	<xs:element name="levelTransition" type="ss026:LevelTransition"/>
+	<xs:complexType name="ETCSPacket_46">
+		<xs:sequence>
+			<xs:element name="levelTransitions" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="levelTransition" type="ss026:LevelTransition" minOccurs="0" maxOccurs="31"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="m_leveltr" type="ss026:EtcsLevel" use="required"/>
+		<xs:attribute name="nid_ntc" type="xs:unsignedInt"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_46" type="ss026:ETCSPacket_46"/>
+	<xs:complexType name="CountryBalise">
+		<xs:sequence/>
+		<xs:attribute name="nid_c" type="xs:unsignedInt"/>
+		<xs:attribute name="nid_bg" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="countryBalise" type="ss026:CountryBalise"/>
+	<xs:complexType name="ETCSPacket_49">
+		<xs:sequence>
+			<xs:element name="countryBalises" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="countryBalise" type="ss026:CountryBalise" minOccurs="0" maxOccurs="31"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_49" type="ss026:ETCSPacket_49"/>
+	<xs:complexType name="AxleLoadRestriction">
+		<xs:sequence/>
+		<xs:attribute name="m_axleLoadCat" type="ss026:AxleLoadCategory" use="required"/>
+		<xs:attribute name="v_axleLoad" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="axleLoadRestriction" type="ss026:AxleLoadRestriction"/>
+	<xs:complexType name="AxleLoadSelection">
+		<xs:sequence>
+			<xs:element name="axleLoadRestrictions" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="axleLoadRestriction" type="ss026:AxleLoadRestriction" minOccurs="0" maxOccurs="31"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="d_axleload" type="xs:unsignedInt"/>
+		<xs:attribute name="l_axleload" type="xs:unsignedInt"/>
+		<xs:attribute name="q_front" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:element name="axleLoadSelection" type="ss026:AxleLoadSelection"/>
+	<xs:complexType name="ETCSPacket_51">
+		<xs:sequence>
+			<xs:element name="axleLoadRestrictions" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="axleLoadRestriction" type="ss026:AxleLoadRestriction" minOccurs="0" maxOccurs="31"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="axleLoadSelections" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="axleLoadSelection" type="ss026:AxleLoadSelection" minOccurs="0" maxOccurs="31"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="q_trackinit" type="xs:boolean" use="required"/>
+		<xs:attribute name="d_trackinit" type="xs:unsignedInt"/>
+		<xs:attribute name="d_axleload" type="xs:unsignedInt"/>
+		<xs:attribute name="l_axleload" type="xs:unsignedInt"/>
+		<xs:attribute name="q_front" type="xs:boolean"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_51" type="ss026:ETCSPacket_51"/>
+	<xs:complexType name="PBDSelection">
+		<xs:sequence/>
+		<xs:attribute name="d_pbd" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="q_gdir" type="xs:boolean" use="required"/>
+		<xs:attribute name="g_pbdsr" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="q_pbdsr" type="xs:boolean" use="required"/>
+		<xs:attribute name="d_pbdsr" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="l_pbdsr" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="pBDSelection" type="ss026:PBDSelection"/>
+	<xs:complexType name="ETCSPacket_52">
+		<xs:sequence>
+			<xs:element name="pbdSelection" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="pbdSelectionItem" type="ss026:PBDSelection" minOccurs="0" maxOccurs="32"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="q_trackinit" type="xs:boolean" use="required"/>
+		<xs:attribute name="d_trackinit" type="xs:unsignedInt"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_52" type="ss026:ETCSPacket_52"/>
+	<xs:complexType name="ETCSPacket_65">
+		<xs:sequence/>
+		<xs:attribute name="nid_tsr" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="d_tsr" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="l_tsr" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="q_front" type="xs:boolean" use="required"/>
+		<xs:attribute name="v_tsr" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_65" type="ss026:ETCSPacket_65"/>
+	<xs:complexType name="ETCSPacket_66">
+		<xs:sequence/>
+		<xs:attribute name="nid_tsr" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_66" type="ss026:ETCSPacket_66"/>
+	<xs:complexType name="DLTrackCond">
+		<xs:sequence/>
+		<xs:attribute name="d_trackcond" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="l_trackcond" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="dLTrackCond" type="ss026:DLTrackCond"/>
+	<xs:complexType name="ETCSPacket_67">
+		<xs:sequence>
+			<xs:element name="dlTrackConditions" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dlTrackCondition" type="ss026:DLTrackCond" minOccurs="1" maxOccurs="32"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_67" type="ss026:ETCSPacket_67"/>
+	<xs:complexType name="DLMCondition">
+		<xs:sequence/>
+		<xs:attribute name="d_trackcond" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="l_trackcond" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="m_trackcond" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="dLMCondition" type="ss026:DLMCondition"/>
+	<xs:complexType name="ETCSPacket_68">
+		<xs:sequence>
+			<xs:element name="trackCondSelection" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trackCondSelectionItem" type="ss026:DLMCondition" minOccurs="0" maxOccurs="32"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="q_trackinit" type="xs:boolean" use="required"/>
+		<xs:attribute name="d_trackinit" type="xs:unsignedInt"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_68" type="ss026:ETCSPacket_68"/>
+	<xs:complexType name="TCSPCondition">
+		<xs:sequence/>
+		<xs:attribute name="d_trackcond" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="l_trackcond" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="m_platform" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="q_platform" type="ss026:PlatformPosition" use="required"/>
+	</xs:complexType>
+	<xs:element name="tCSPCondition" type="ss026:TCSPCondition"/>
+	<xs:complexType name="ETCSPacket_69">
+		<xs:sequence>
+			<xs:element name="trackCondPlatformSelection" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trackCondPlatformSelectionItem" type="ss026:TCSPCondition" minOccurs="0" maxOccurs="32"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="q_trackinit" type="xs:boolean" use="required"/>
+		<xs:attribute name="d_trackinit" type="xs:unsignedInt"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_69" type="ss026:ETCSPacket_69"/>
+	<xs:complexType name="RouteSuitability">
+		<xs:sequence/>
+		<xs:attribute name="d_suitability" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="q_suitability" type="ss026:Q_Suitability" use="required"/>
+		<xs:attribute name="m_lineGuage" type="ss026:LineGuage"/>
+		<xs:attribute name="m_axleLoadCat" type="ss026:AxleLoadCategory"/>
+		<xs:attribute name="m_voltage" type="xs:unsignedInt"/>
+		<xs:attribute name="nid_ctraction" type="xs:unsignedInt"/>
+	</xs:complexType>
+	<xs:element name="routeSuitability" type="ss026:RouteSuitability"/>
+	<xs:complexType name="ETCSPacket_70">
+		<xs:sequence>
+			<xs:element name="routeSuitabilities" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="routeSuitability" type="ss026:RouteSuitability" minOccurs="0" maxOccurs="32"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="q_trackinit" type="xs:boolean" use="required"/>
+		<xs:attribute name="d_trackinit" type="xs:unsignedInt"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_70" type="ss026:ETCSPacket_70"/>
+	<xs:complexType name="ETCSPacket_71">
+		<xs:sequence/>
+		<xs:attribute name="d_adhesion" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="l_adhesion" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="m_adhesion" type="xs:boolean" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_71" type="ss026:ETCSPacket_71"/>
+	<xs:complexType name="TextMessageConfig">
+		<xs:sequence/>
+		<xs:attribute name="q_textclass" type="ss026:TextClass" use="required"/>
+		<xs:attribute name="q_textdisplay" type="xs:boolean" use="required"/>
+		<xs:attribute name="d_textdisplay" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="m_modetextdisplay" type="ss026:DisplayOperatingMode" use="required"/>
+		<xs:attribute name="m_leveltextdisplay" type="ss026:DisplayOperatingLevel" use="required"/>
+		<xs:attribute name="nid_ntc" type="xs:unsignedInt"/>
+		<xs:attribute name="l_textdisplay" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="t_textdisplay" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="m_modetextdisplay_e" type="ss026:DisplayOperatingMode" use="required"/>
+		<xs:attribute name="m_leveltextdisplay_e" type="ss026:DisplayOperatingLevel" use="required"/>
+		<xs:attribute name="nid_ntc_e" type="xs:unsignedInt"/>
+		<xs:attribute name="q_textconfirm" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="q_conftextdisplay" type="xs:boolean"/>
+		<xs:attribute name="q_textreport" type="xs:boolean"/>
+		<xs:attribute name="nid_textmessage" type="xs:unsignedInt"/>
+		<xs:attribute name="nid_c" type="xs:unsignedInt"/>
+		<xs:attribute name="nid_rbc" type="xs:unsignedInt"/>
+	</xs:complexType>
+	<xs:element name="textMessageConfig" type="ss026:TextMessageConfig"/>
+	<xs:complexType name="ETCSPacket_72">
+		<xs:sequence>
+			<xs:element name="textMessageConfig" type="ss026:TextMessageConfig" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="l_text" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="x_text" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_72" type="ss026:ETCSPacket_72"/>
+	<xs:complexType name="ETCSPacket_76">
+		<xs:sequence>
+			<xs:element name="textMessageConfig" type="ss026:TextMessageConfig" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="q_text" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_76" type="ss026:ETCSPacket_76"/>
+	<xs:complexType name="GeoPosItem">
+		<xs:sequence/>
+		<xs:attribute name="nid_c" type="xs:unsignedInt"/>
+		<xs:attribute name="nid_bg" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="d_posoff" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="q_mposition" type="xs:boolean" use="required"/>
+		<xs:attribute name="m_position" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="geoPosItem" type="ss026:GeoPosItem"/>
+	<xs:complexType name="ETCSPacket_79">
+		<xs:sequence>
+			<xs:element name="geoPosItems" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="geoPosItem" type="ss026:GeoPosItem" minOccurs="1" maxOccurs="32"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_79" type="ss026:ETCSPacket_79"/>
+	<xs:complexType name="ModeProfileItem">
+		<xs:sequence/>
+		<xs:attribute name="d_mamode" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="m_mamode" type="ss026:MAMode" use="required"/>
+		<xs:attribute name="v_mamode" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="l_mamode" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="l_ackmamode" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="q_mamode" type="xs:boolean" use="required"/>
+	</xs:complexType>
+	<xs:element name="modeProfileItem" type="ss026:ModeProfileItem"/>
+	<xs:complexType name="ETCSPacket_80">
+		<xs:sequence>
+			<xs:element name="modeProfiles" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="modeProfile" type="ss026:ModeProfileItem" minOccurs="1" maxOccurs="32"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_80" type="ss026:ETCSPacket_80"/>
+	<xs:complexType name="LXStatus">
+		<xs:sequence/>
+		<xs:attribute name="v_lx" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="q_stoplx" type="xs:boolean" use="required"/>
+		<xs:attribute name="l_stoplx" type="xs:unsignedInt"/>
+	</xs:complexType>
+	<xs:element name="lXStatus" type="ss026:LXStatus"/>
+	<xs:complexType name="ETCSPacket_88">
+		<xs:sequence>
+			<xs:element name="lx_Status" type="ss026:LXStatus" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="nid_lx" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="d_lx" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="l_lx" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="q_lxstatus" type="xs:boolean" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_88" type="ss026:ETCSPacket_88"/>
+	<xs:complexType name="ETCSPacket_90">
+		<xs:sequence/>
+		<xs:attribute name="nid_c" type="xs:unsignedInt"/>
+		<xs:attribute name="nid_bg" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_90" type="ss026:ETCSPacket_90"/>
+	<xs:complexType name="ETCSPacket_131">
+		<xs:sequence/>
+		<xs:attribute name="d_rbctr" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="nid_c" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="nid_rbc" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="nid_radio" type="xs:string" use="required"/>
+		<xs:attribute name="q_sleepsession" type="xs:boolean" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_131" type="ss026:ETCSPacket_131"/>
+	<xs:complexType name="ETCSPacket_132">
+		<xs:sequence/>
+		<xs:attribute name="q_aspect" type="xs:boolean" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_132" type="ss026:ETCSPacket_132"/>
+	<xs:complexType name="ETCSPacket_133">
+		<xs:sequence/>
+		<xs:attribute name="q_riu" type="xs:boolean" use="required"/>
+		<xs:attribute name="nid_c" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="nid_riu" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="nid_radio" type="xs:string" use="required"/>
+		<xs:attribute name="d_infill" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="nid_c_next" type="xs:unsignedInt"/>
+		<xs:attribute name="nid_bg" type="xs:unsignedInt"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_133" type="ss026:ETCSPacket_133"/>
+	<xs:complexType name="ETCSPacket_134">
+		<xs:sequence/>
+		<xs:attribute name="nid_loop" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="d_loop" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="l_loop" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="q_loopdir" type="xs:boolean" use="required"/>
+		<xs:attribute name="q_sscode" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_134" type="ss026:ETCSPacket_134"/>
+	<xs:complexType name="ETCSPacket_135">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_135" type="ss026:ETCSPacket_135"/>
+	<xs:complexType name="ETCSPacket_136">
+		<xs:sequence/>
+		<xs:attribute name="nid_c" type="xs:unsignedInt"/>
+		<xs:attribute name="nid_bg" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_136" type="ss026:ETCSPacket_136"/>
+	<xs:complexType name="ETCSPacket_137">
+		<xs:sequence/>
+		<xs:attribute name="q_srstop" type="xs:boolean" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_137" type="ss026:ETCSPacket_137"/>
+	<xs:complexType name="ETCSPacket_138">
+		<xs:sequence/>
+		<xs:attribute name="d_startreverse" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="l_reversearea" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_138" type="ss026:ETCSPacket_138"/>
+	<xs:complexType name="ETCSPacket_139">
+		<xs:sequence/>
+		<xs:attribute name="d_reverse" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="v_reverse" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_139" type="ss026:ETCSPacket_139"/>
+	<xs:complexType name="ETCSPacket_141">
+		<xs:sequence/>
+		<xs:attribute name="q_gdir" type="xs:boolean" use="required"/>
+		<xs:attribute name="g_tsr" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_141" type="ss026:ETCSPacket_141"/>
+	<xs:complexType name="ETCSPacket_145">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_145" type="ss026:ETCSPacket_145"/>
+	<xs:complexType name="ETCSPacket_180">
+		<xs:sequence/>
+		<xs:attribute name="q_lssma" type="xs:boolean" use="required"/>
+		<xs:attribute name="t_lssma" type="xs:unsignedInt"/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_180" type="ss026:ETCSPacket_180"/>
+	<xs:complexType name="ETCSPacket_181">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_181" type="ss026:ETCSPacket_181"/>
+	<xs:complexType name="ETCSPacket_254">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_254" type="ss026:ETCSPacket_254"/>
+	<xs:complexType name="ETCSPacket_255">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:element name="eTCSPacket_255" type="ss026:ETCSPacket_255"/>
+	<xs:complexType name="PacketMgmt">
+		<xs:sequence>
+			<xs:element name="packets_0" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_0Item" type="ss026:ETCSPacket_0" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_2" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_2Item" type="ss026:ETCSPacket_2" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_3" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_3Item" type="ss026:ETCSPacket_3" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_5" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_5Item" type="ss026:ETCSPacket_5" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_6" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_6Item" type="ss026:ETCSPacket_6" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_16" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_16Item" type="ss026:ETCSPacket_16" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_39" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_39Item" type="ss026:ETCSPacket_39" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_40" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_40Item" type="ss026:ETCSPacket_40" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_41" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_41Item" type="ss026:ETCSPacket_41" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_42" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_42Item" type="ss026:ETCSPacket_42" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_44" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_44Item" type="ss026:ETCSPacket_44" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_45" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_45Item" type="ss026:ETCSPacket_45" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_46" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_46Item" type="ss026:ETCSPacket_46" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_49" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_49Item" type="ss026:ETCSPacket_49" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_51" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_51Item" type="ss026:ETCSPacket_51" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_52" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_52Item" type="ss026:ETCSPacket_52" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_65" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_65Item" type="ss026:ETCSPacket_65" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_66" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_66Item" type="ss026:ETCSPacket_66" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_67" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_67Item" type="ss026:ETCSPacket_67" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_68" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_68Item" type="ss026:ETCSPacket_68" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_69" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_69Item" type="ss026:ETCSPacket_69" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_70" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_70Item" type="ss026:ETCSPacket_70" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_71" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_71Item" type="ss026:ETCSPacket_72" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_76" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_76Item" type="ss026:ETCSPacket_76" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_79" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_79Item" type="ss026:ETCSPacket_79" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_80" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_80Item" type="ss026:ETCSPacket_80" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_88" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_88Item" type="ss026:ETCSPacket_88" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_90" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_90Item" type="ss026:ETCSPacket_90" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_131" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_131Item" type="ss026:ETCSPacket_131" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_132" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_132Item" type="ss026:ETCSPacket_132" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_133" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_133Item" type="ss026:ETCSPacket_133" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_134" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_134Item" type="ss026:ETCSPacket_134" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_135" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_135Item" type="ss026:ETCSPacket_135" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_137" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_137Item" type="ss026:ETCSPacket_137" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_138" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_138Item" type="ss026:ETCSPacket_138" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_139" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_139Item" type="ss026:ETCSPacket_139" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_141" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_141Item" type="ss026:ETCSPacket_141" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_145" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_145Item" type="ss026:ETCSPacket_145" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_180" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_180Item" type="ss026:ETCSPacket_180" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_181" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_181Item" type="ss026:ETCSPacket_181" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_254" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_254Item" type="ss026:ETCSPacket_254" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="packets_255" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packets_255Item" type="ss026:ETCSPacket_255" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="packetMgmt" type="ss026:PacketMgmt"/>
+</xs:schema>

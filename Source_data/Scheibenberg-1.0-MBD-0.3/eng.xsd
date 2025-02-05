@@ -1,0 +1,386 @@
+<?xml version="1.0" ?>
+<xs:schema targetNamespace="https://erju.org/eng" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eng="https://erju.org/eng" elementFormDefault="qualified" version="1.0" xmlns:infra="https://erju.org/infra" xmlns:ss026="https://erju.org/ss026">
+	<xs:import namespace="https://erju.org/infra" schemaLocation="infra.xsd"/>
+	<xs:import namespace="https://erju.org/ss026" schemaLocation="ss026.xsd"/>
+	<xs:simpleType name="BufferStopType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="friction"/>
+			<xs:enumeration value="hydraulic"/>
+			<xs:enumeration value="fixated"/>
+			<xs:enumeration value="other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DuplicationType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="noDuplicates"/>
+			<xs:enumeration value="duplicateNextBalise"/>
+			<xs:enumeration value="duplicatePreviousBalise"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SleepersType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="unknownSleepersType"/>
+			<xs:enumeration value="composite"/>
+			<xs:enumeration value="concrete"/>
+			<xs:enumeration value="steel"/>
+			<xs:enumeration value="wood"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="BufferStop">
+		<xs:sequence>
+			<xs:element name="dangerPoints" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Reference to eng:DangerPoint</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dangerPoint" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:attribute name="ref" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="trackEdgeSections" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trackEdgeSection" type="infra:TrackEdgeSection" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="bsType" type="eng:BufferStopType" use="required"/>
+	</xs:complexType>
+	<xs:element name="bufferStop" type="eng:BufferStop"/>
+	<xs:complexType name="SimplePoint">
+		<xs:sequence>
+			<xs:element name="foulingPoints" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Reference to eng:FoulingPoint</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="foulingPoint" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:attribute name="ref" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="tipShift" type="xs:decimal" use="required"/>
+		<xs:attribute name="bladeLength" type="xs:decimal" use="required"/>
+	</xs:complexType>
+	<xs:element name="simplePoint" type="eng:SimplePoint"/>
+	<xs:complexType name="Crossing">
+		<xs:sequence>
+			<xs:element name="foulingPoints" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Reference to eng:FoulingPoint</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="foulingPoint" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:attribute name="ref" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:element name="crossing" type="eng:Crossing"/>
+	<xs:complexType name="LevelCrossing">
+		<xs:sequence>
+			<xs:element name="dangerPoints" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Reference to eng:DangerPoint</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dangerPoint" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:attribute name="ref" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:element name="levelCrossing" type="eng:LevelCrossing"/>
+	<xs:complexType name="BaliseGroup">
+		<xs:sequence/>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="m_version" type="ss026:ETCSVersion" use="required"/>
+		<xs:attribute name="q_link" type="xs:boolean" use="required"/>
+		<xs:attribute name="q_updown" type="xs:boolean" use="required"/>
+	</xs:complexType>
+	<xs:element name="baliseGroup" type="eng:BaliseGroup"/>
+	<xs:complexType name="Balise">
+		<xs:sequence>
+			<xs:element name="etcsPackets" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="etcsPacket" type="ss026:BalisePacket" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="fixed" type="xs:boolean" use="required"/>
+		<xs:attribute name="m_dup" type="eng:DuplicationType" use="required"/>
+		<xs:attribute name="m_mcount" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="n_pig" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="verticallyOriented" type="xs:boolean" use="required"/>
+		<xs:attribute name="standardSize" type="xs:boolean" use="required"/>
+		<xs:attribute name="telegram" type="xs:base64Binary" use="required"/>
+		<xs:attribute name="telegramChecksum" type="xs:string" use="required"/>
+		<xs:attribute name="sleeperFastening" type="xs:string" use="required"/>
+		<xs:attribute name="baliseMountingSystem" type="xs:string" use="required"/>
+		<xs:attribute name="designType" type="xs:string" use="required"/>
+		<xs:attribute name="kmReferenceMarker" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Reference to eng:KmSign</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="balise" type="eng:Balise"/>
+	<xs:complexType name="Sleepers">
+		<xs:sequence>
+			<xs:element name="trackEdgeSection" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trackEdgeSectionItem" type="infra:TrackEdgeSection" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="sleepersType" type="eng:SleepersType" use="required"/>
+	</xs:complexType>
+	<xs:element name="sleepers" type="eng:Sleepers"/>
+	<xs:complexType name="DangerPoint">
+		<xs:sequence>
+			<xs:element name="spotLocation" type="infra:TrackEdgePoint" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:element name="dangerPoint" type="eng:DangerPoint"/>
+	<xs:complexType name="FoulingPoint">
+		<xs:sequence>
+			<xs:element name="spotLocation" type="infra:TrackEdgePoint" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="name" type="xs:string"/>
+		<xs:attribute name="clearancePoint" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="foulingPoint" type="eng:FoulingPoint"/>
+	<xs:complexType name="EngArea">
+		<xs:sequence>
+			<xs:element name="simplePoints" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="simplePoint" type="eng:SimplePoint" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="crossings" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="crossing" type="eng:Crossing" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="levelCrossings" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="levelCrossing" type="eng:LevelCrossing" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="baliseGroup" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="baliseGroupItem" type="eng:BaliseGroup" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="balises" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="balise" type="eng:Balise" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="sleepers" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="sleeper" type="eng:Sleepers" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dangerPoints" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dangerPoint" type="eng:DangerPoint" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="foulingPoints" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="foulingPoint" type="eng:FoulingPoint" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="bufferStops" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="bufferStop" type="eng:BufferStop" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+		<xs:attribute name="defaultSleepersType" type="eng:SleepersType" use="required"/>
+	</xs:complexType>
+	<xs:element name="engArea" type="eng:EngArea"/>
+	<xs:complexType name="LocationAccuracyArea">
+		<xs:sequence>
+			<xs:element name="baliseAccuracies" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="baliseAccuracy" type="eng:BaliseAccuracy" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="etcsMarkerAccuracies" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="etcsMarkerAccuracy" type="eng:EtcsMarkerAccuracy" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="stopLocationAccuracies" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="stopLocationAccuracy" type="eng:StopLocationAccuracy" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="nationalBorderAccuracies" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="nationalBorderAccuracy" type="eng:NationalBorderAccuracy" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="bufferStopAccuracies" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="bufferStopAccuracy" type="eng:BufferStopAccuracy" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:element name="locationAccuracyArea" type="eng:LocationAccuracyArea"/>
+	<xs:complexType name="BaliseAccuracy">
+		<xs:sequence/>
+		<xs:attribute name="baliseId" type="xs:string" use="required"/>
+		<xs:attribute name="accuracy" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="baliseAccuracy" type="eng:BaliseAccuracy"/>
+	<xs:complexType name="EtcsMarkerAccuracy">
+		<xs:sequence/>
+		<xs:attribute name="markerId" type="xs:string" use="required"/>
+		<xs:attribute name="accuracy" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="etcsMarkerAccuracy" type="eng:EtcsMarkerAccuracy"/>
+	<xs:complexType name="StopLocationAccuracy">
+		<xs:sequence/>
+		<xs:attribute name="stopLocationId" type="xs:string" use="required"/>
+		<xs:attribute name="accuracy" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="stopLocationAccuracy" type="eng:StopLocationAccuracy"/>
+	<xs:complexType name="NationalBorderAccuracy">
+		<xs:sequence/>
+		<xs:attribute name="nationalBorderId" type="xs:string" use="required"/>
+		<xs:attribute name="accuracy" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="nationalBorderAccuracy" type="eng:NationalBorderAccuracy"/>
+	<xs:complexType name="BufferStopAccuracy">
+		<xs:sequence/>
+		<xs:attribute name="bufferStopId" type="xs:string" use="required"/>
+		<xs:attribute name="accuracy" type="xs:unsignedInt" use="required"/>
+	</xs:complexType>
+	<xs:element name="bufferStopAccuracy" type="eng:BufferStopAccuracy"/>
+	<xs:complexType name="TrackEdgeKmSigns">
+		<xs:sequence>
+			<xs:element name="kmSigns" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="kmSign" type="eng:KmSign" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:element name="trackEdgeKmSigns" type="eng:TrackEdgeKmSigns"/>
+	<xs:complexType name="KmSign">
+		<xs:sequence/>
+		<xs:attribute name="pos" type="xs:unsignedInt" use="required"/>
+		<xs:attribute name="label" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:element name="kmSign" type="eng:KmSign"/>
+	<xs:complexType name="KmArea">
+		<xs:sequence>
+			<xs:element name="trackEdgeKmSigns" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="trackEdgeKmSign" type="eng:TrackEdgeKmSigns" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:element name="kmArea" type="eng:KmArea"/>
+	<xs:complexType name="ETCSEngineering">
+		<xs:sequence>
+			<xs:element name="engAreas" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="engArea" type="eng:EngArea" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="locationAccuracyAreas" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="locationAccuracyArea" type="eng:LocationAccuracyArea" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="kmAreas" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="kmArea" type="eng:KmArea" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="eTCSEngineering" type="eng:ETCSEngineering"/>
+</xs:schema>
