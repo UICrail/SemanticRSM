@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphol version="3">
+  <project version="0.3" name="sRSM">
+    <ontology addLabelFromSimpleName="0" lang="en" iri="http://cdm.ovh/rsm/localisation/localisation" addLabelFromUserInput="1">
+      <imports>
+        <import version="" isLocal="0" iri="http://cdm.ovh/rsm/adapters/geosparql_adapter" location="http://cdm.ovh/rsm/adapters/geosparql_adapter"/>
+      </imports>
+      <prefixes>
+        <prefix>
+          <value>dc</value>
+          <namespace>http://purl.org/dc/elements/1.1/</namespace>
+        </prefix>
+        <prefix>
+          <value>dcterms</value>
+          <namespace>http://purl.org/dc/terms/</namespace>
+        </prefix>
+        <prefix>
+          <value>geosparql</value>
+          <namespace>http://www.opengis.net/ont/geosparql#</namespace>
+        </prefix>
+        <prefix>
+          <value>list</value>
+          <namespace>https://w3id.org/list#</namespace>
+        </prefix>
+        <prefix>
+          <value>loca</value>
+          <namespace>https://cdm.ovh/rsm/localisation/localisation#</namespace>
+        </prefix>
+        <prefix>
+          <value>owl</value>
+          <namespace>http://www.w3.org/2002/07/owl#</namespace>
+        </prefix>
+        <prefix>
+          <value>rdf</value>
+          <namespace>http://www.w3.org/1999/02/22-rdf-syntax-ns#</namespace>
+        </prefix>
+        <prefix>
+          <value>rdfs</value>
+          <namespace>http://www.w3.org/2000/01/rdf-schema#</namespace>
+        </prefix>
+        <prefix>
+          <value>skos</value>
+          <namespace>http://www.w3.org/2004/02/skos/core#</namespace>
+        </prefix>
+        <prefix>
+          <value>topo</value>
+          <namespace>http://cdm.ovh/rsm/topology/topology#</namespace>
+        </prefix>
+        <prefix>
+          <value>xml</value>
+          <namespace>http://www.w3.org/XML/1998/namespace</namespace>
+        </prefix>
+        <prefix>
+          <value>xsd</value>
+          <namespace>http://www.w3.org/2001/XMLSchema#</namespace>
+        </prefix>
+      </prefixes>
+      <datatypes>
+        <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+        <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral</datatype>
+        <datatype>http://www.w3.org/2000/01/rdf-schema#Literal</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#NCName</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#NMTOKEN</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#Name</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#anyURI</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#base64Binary</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#boolean</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#byte</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#dateTime</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#dateTimeStamp</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#decimal</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#double</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#float</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#hexBinary</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#int</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#integer</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#language</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#long</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#negativeInteger</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#nonNegativeInteger</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#nonPositiveInteger</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#normalizedString</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#positiveInteger</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#short</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#string</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#token</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#unsignedByte</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#unsignedInt</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#unsignedLong</datatype>
+        <datatype>http://www.w3.org/2001/XMLSchema#unsignedShort</datatype>
+        <datatype>http://www.w3.org/2002/07/owl#rational</datatype>
+        <datatype>http://www.w3.org/2002/07/owl#real</datatype>
+      </datatypes>
+      <languages>
+        <language>de</language>
+        <language>en</language>
+        <language>es</language>
+        <language>fr</language>
+        <language>it</language>
+      </languages>
+      <facets>
+        <facet>http://www.w3.org/2001/XMLSchema#langRange</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#length</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#maxExclusive</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#maxInclusive</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#maxLength</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#minExclusive</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#minInclusive</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#minLength</facet>
+        <facet>http://www.w3.org/2001/XMLSchema#pattern</facet>
+      </facets>
+      <annotationProperties>
+        <annotationProperty>http://purl.org/dc/elements/1.1/abstract</annotationProperty>
+        <annotationProperty>http://purl.org/dc/elements/1.1/contributor</annotationProperty>
+        <annotationProperty>http://purl.org/dc/elements/1.1/creator</annotationProperty>
+        <annotationProperty>http://purl.org/dc/elements/1.1/date</annotationProperty>
+        <annotationProperty>http://purl.org/dc/elements/1.1/relation</annotationProperty>
+        <annotationProperty>http://purl.org/dc/elements/1.1/title</annotationProperty>
+        <annotationProperty>http://purl.org/dc/elements/1.1/type</annotationProperty>
+        <annotationProperty>http://purl.org/dc/terms/license</annotationProperty>
+        <annotationProperty>http://www.w3.org/2000/01/rdf-schema#backwardCompatibleWith</annotationProperty>
+        <annotationProperty>http://www.w3.org/2000/01/rdf-schema#comment</annotationProperty>
+        <annotationProperty>http://www.w3.org/2000/01/rdf-schema#isDefinedBy</annotationProperty>
+        <annotationProperty>http://www.w3.org/2000/01/rdf-schema#label</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#backwardCompatibleWith</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#deprecated</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#incompatibleWith</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#priorVersion</annotationProperty>
+        <annotationProperty>http://www.w3.org/2002/07/owl#versionInfo</annotationProperty>
+        <annotationProperty>http://www.w3.org/2004/02/skos/core#definition</annotationProperty>
+        <annotationProperty>https://vocab.org/vann/preferredNamespacePrefix</annotationProperty>
+        <annotationProperty>https://vocab.org/vann/preferredNamespaceURI</annotationProperty>
+      </annotationProperties>
+      <iris>
+        <iri>
+          <value>http://cdm.ovh/rsm/eddy/AreaLocation</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/eddy/AreaLocation</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Area location</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/eddy/BaseLocation</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/eddy/BaseLocation</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Base location</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/eddy/LinearLocation</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/eddy/LinearLocation</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Linear location</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/eddy/ListedElement</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/eddy/ListedElement</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Listed element</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/eddy/ListedLinearElement</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/eddy/ListedLinearElement</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Listed linear element</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/eddy/SpotLocation</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/eddy/SpotLocation</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>Spot location</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/eddy/endsAt</value>
+          <functional/>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/eddy/endsAt</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>endsAt</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/eddy/linearElement</value>
+          <functional/>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/eddy/linearElement</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>linear element</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/eddy/listedElement</value>
+          <functional/>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/eddy/listedElement</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>listed element</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/eddy/listedLinearElement</value>
+          <functional/>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/eddy/listedLinearElement</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>listed linear element</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/eddy/netElement</value>
+          <functional/>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/eddy/netElement</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>net element</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/eddy/startsAt</value>
+          <functional/>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/eddy/startsAt</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>startsAt</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/localisation/localisation</value>
+          <annotations>
+            <annotation>
+              <subject>http://cdm.ovh/rsm/localisation/localisation</subject>
+              <property>https://vocab.org/vann/preferredNamespacePrefix</property>
+              <object>
+                <lexicalForm>loca</lexicalForm>
+                <datatype/>
+                <language/>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/topology/topology#LinearElement</value>
+        </iri>
+        <iri>
+          <value>http://cdm.ovh/rsm/topology/topology#NetElement</value>
+        </iri>
+        <iri>
+          <value>https://cdm.ovh/rsm/localisation/localisation#definedByLocation</value>
+          <annotations>
+            <annotation>
+              <subject>https://cdm.ovh/rsm/localisation/localisation#definedByLocation</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>defined by location</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://w3id.org/list#EmptyList</value>
+        </iri>
+        <iri>
+          <value>https://w3id.org/list#OWLList</value>
+        </iri>
+        <iri>
+          <value>https://w3id.org/list#hasContents</value>
+          <functional/>
+        </iri>
+        <iri>
+          <value>https://w3id.org/list#hasListProperty</value>
+        </iri>
+        <iri>
+          <value>https://w3id.org/list#hasNext</value>
+          <functional/>
+        </iri>
+        <iri>
+          <value>https://w3id.org/list#isFollowedBy</value>
+          <transitive/>
+        </iri>
+      </iris>
+    </ontology>
+    <diagrams>
+      <diagram name="List" width="5000" height="5000">
+        <node type="role" id="n1" color="#fcfcfc">
+          <geometry x="90" y="-10" width="70" height="50"/>
+          <iri>https://w3id.org/list#isFollowedBy</iri>
+          <label x="90" customSize="0" size="12" y="-40" width="97" height="23"/>
+        </node>
+        <node type="concept" id="n18" color="#fcfcfc">
+          <geometry x="-200" y="110" width="110" height="50"/>
+          <iri>https://w3id.org/list#EmptyList</iri>
+          <label x="-200" customSize="0" size="12" y="110" width="110" height="23"/>
+        </node>
+        <node type="role" id="n2" color="#fcfcfc">
+          <geometry x="200" y="290" width="70" height="50"/>
+          <iri>https://w3id.org/list#hasContents</iri>
+          <label x="200" customSize="0" size="12" y="260" width="94" height="23"/>
+        </node>
+        <node type="domain-restriction" id="n27" color="#fcfcfc">
+          <geometry x="-80" y="180" width="20" height="20"/>
+          <label x="-80" customSize="0" size="12" y="158" width="39" height="23">forall</label>
+        </node>
+        <node type="concept" id="n29" color="#fcfcfc">
+          <geometry x="0" y="110" width="110" height="50"/>
+          <iri>http://www.w3.org/2002/07/owl#Nothing</iri>
+          <label x="0" customSize="0" size="12" y="110" width="110" height="23"/>
+        </node>
+        <node type="role" id="n3" color="#fcfcfc">
+          <geometry x="90" y="-180" width="70" height="50"/>
+          <iri>https://w3id.org/list#hasListProperty</iri>
+          <label x="90" customSize="0" size="12" y="-210" width="110" height="23"/>
+        </node>
+        <node type="domain-restriction" id="n30" color="#fcfcfc">
+          <geometry x="-80" y="40" width="20" height="20"/>
+          <label x="-80" customSize="0" size="12" y="18" width="39" height="23">forall</label>
+        </node>
+        <node type="domain-restriction" id="n31" color="#fcfcfc">
+          <geometry x="-80" y="250" width="20" height="20"/>
+          <label x="-80" customSize="0" size="12" y="228" width="39" height="23">forall</label>
+        </node>
+        <node type="concept" id="n4" color="#fcfcfc">
+          <geometry x="-200" y="-100" width="110" height="50"/>
+          <iri>https://w3id.org/list#OWLList</iri>
+          <label x="-200" customSize="0" size="12" y="-100" width="110" height="23"/>
+        </node>
+        <node type="role" id="n6" color="#fcfcfc">
+          <geometry x="90" y="200" width="70" height="50"/>
+          <iri>https://w3id.org/list#hasNext</iri>
+          <label x="90" customSize="0" size="12" y="170" width="70" height="23"/>
+        </node>
+        <node type="domain-restriction" id="n7" color="#fcfcfc">
+          <geometry x="-10" y="-180" width="20" height="20"/>
+          <label x="-10" customSize="0" size="12" y="-202" width="39" height="23">exists</label>
+        </node>
+        <node type="range-restriction" id="n8" color="#000000">
+          <geometry x="-10" y="-10" width="20" height="20"/>
+          <label x="-10" customSize="0" size="12" y="-32" width="39" height="23">exists</label>
+        </node>
+        <edge type="inclusion" target="n1" id="e1" source="n6">
+          <point x="90" y="200"/>
+          <point x="90" y="-10"/>
+        </edge>
+        <edge type="inclusion" target="n3" id="e10" source="n2">
+          <point x="200" y="290"/>
+          <point x="200" y="-110"/>
+          <point x="90" y="-180"/>
+        </edge>
+        <edge type="inclusion" target="n3" id="e2" source="n1">
+          <point x="90" y="-10"/>
+          <point x="90" y="-180"/>
+        </edge>
+        <edge type="inclusion" target="n4" id="e31" source="n18">
+          <point x="-200" y="110"/>
+          <point x="-200" y="-100"/>
+        </edge>
+        <edge type="input" target="n7" id="e4" source="n3">
+          <point x="90" y="-180"/>
+          <point x="-10" y="-180"/>
+        </edge>
+        <edge type="inclusion" target="n4" id="e5" source="n7">
+          <point x="-10" y="-180"/>
+          <point x="-200" y="-100"/>
+        </edge>
+        <edge type="input" target="n8" id="e6" source="n1">
+          <point x="90" y="-10"/>
+          <point x="-10" y="-10"/>
+        </edge>
+        <edge type="inclusion" target="n27" id="e60" source="n18">
+          <point x="-200" y="110"/>
+          <point x="-80" y="180"/>
+        </edge>
+        <edge type="input" target="n27" id="e64" source="n6">
+          <point x="90" y="200"/>
+          <point x="-40" y="200"/>
+          <point x="-80" y="180"/>
+        </edge>
+        <edge type="input" target="n27" id="e65" source="n29">
+          <point x="0" y="110"/>
+          <point x="-80" y="180"/>
+        </edge>
+        <edge type="inclusion" target="n30" id="e66" source="n18">
+          <point x="-200" y="110"/>
+          <point x="-80" y="40"/>
+        </edge>
+        <edge type="inclusion" target="n4" id="e7" source="n8">
+          <point x="-10" y="-10"/>
+          <point x="-200" y="-100"/>
+        </edge>
+        <edge type="input" target="n30" id="e72" source="n1">
+          <point x="90" y="-10"/>
+          <point x="40" y="40"/>
+          <point x="-80" y="40"/>
+        </edge>
+        <edge type="input" target="n30" id="e73" source="n29">
+          <point x="0" y="110"/>
+          <point x="-80" y="40"/>
+        </edge>
+        <edge type="input" target="n31" id="e74" source="n2">
+          <point x="200" y="290"/>
+          <point x="-30" y="290"/>
+          <point x="-80" y="250"/>
+        </edge>
+        <edge type="inclusion" target="n31" id="e75" source="n18">
+          <point x="-200" y="110"/>
+          <point x="-80" y="250"/>
+        </edge>
+        <edge type="input" target="n31" id="e76" source="n29">
+          <point x="0" y="110"/>
+          <point x="-80" y="250"/>
+        </edge>
+      </diagram>
+      <diagram name="localisation" width="5000" height="5000">
+        <node type="concept" id="n12" color="#fcfcfc">
+          <geometry x="-60" y="-60" width="117" height="50"/>
+          <iri>http://cdm.ovh/rsm/eddy/ListedElement</iri>
+          <label x="-60" customSize="0" size="12" y="-60" width="117" height="23"/>
+        </node>
+        <node type="concept" id="n13" color="#fcfcfc">
+          <geometry x="-60" y="90" width="150" height="50"/>
+          <iri>http://cdm.ovh/rsm/eddy/ListedLinearElement</iri>
+          <label x="-60" customSize="0" size="12" y="90" width="150" height="23"/>
+        </node>
+        <node type="role" id="n14" color="#fcfcfc">
+          <geometry x="160" y="-60" width="70" height="50"/>
+          <iri>http://cdm.ovh/rsm/eddy/listedElement</iri>
+          <label x="160" customSize="0" size="12" y="-89" width="82" height="23"/>
+        </node>
+        <node type="domain-restriction" id="n15" color="#fcfcfc">
+          <geometry x="230" y="-60" width="20" height="20"/>
+          <label x="230" customSize="0" size="12" y="-81" width="39" height="23">exists</label>
+        </node>
+        <node type="range-restriction" id="n16" color="#000000">
+          <geometry x="70" y="-60" width="20" height="20"/>
+          <label x="70" customSize="0" size="12" y="-81" width="39" height="23">exists</label>
+        </node>
+        <node type="role" id="n18" color="#fcfcfc">
+          <geometry x="-270" y="-60" width="70" height="50"/>
+          <iri>http://cdm.ovh/rsm/eddy/netElement</iri>
+          <label x="-270" customSize="0" size="12" y="-90" width="70" height="23"/>
+        </node>
+        <node type="domain-restriction" id="n19" color="#fcfcfc">
+          <geometry x="-200" y="-60" width="20" height="20"/>
+          <label x="-200" customSize="0" size="12" y="-82" width="39" height="23">exists</label>
+        </node>
+        <node type="range-restriction" id="n20" color="#000000">
+          <geometry x="-350" y="-60" width="20" height="20"/>
+          <label x="-350" customSize="0" size="12" y="-82" width="39" height="23">exists</label>
+        </node>
+        <node type="domain-restriction" id="n22" color="#fcfcfc">
+          <geometry x="-180" y="-160" width="20" height="20"/>
+          <label x="-180" customSize="0" size="12" y="-182" width="39" height="23">exists</label>
+        </node>
+        <node type="role" id="n23" color="#fcfcfc">
+          <geometry x="-270" y="90" width="70" height="50"/>
+          <iri>http://cdm.ovh/rsm/eddy/linearElement</iri>
+          <label x="-270" customSize="0" size="12" y="60" width="83" height="23"/>
+        </node>
+        <node type="domain-restriction" id="n24" color="#fcfcfc">
+          <geometry x="-190" y="90" width="20" height="20"/>
+          <label x="-190" customSize="0" size="12" y="68" width="39" height="23">exists</label>
+        </node>
+        <node type="range-restriction" id="n25" color="#000000">
+          <geometry x="-350" y="90" width="20" height="20"/>
+          <label x="-350" customSize="0" size="12" y="68" width="39" height="23">exists</label>
+        </node>
+        <node type="role" id="n31" color="#fcfcfc">
+          <geometry x="160" y="90" width="70" height="50"/>
+          <iri>http://cdm.ovh/rsm/eddy/listedLinearElement</iri>
+          <label x="160" customSize="0" size="12" y="60" width="115" height="23"/>
+        </node>
+        <node type="range-restriction" id="n32" color="#000000">
+          <geometry x="70" y="90" width="20" height="20"/>
+          <label x="70" customSize="0" size="12" y="68" width="39" height="23">exists</label>
+        </node>
+        <node type="domain-restriction" id="n33" color="#fcfcfc">
+          <geometry x="230" y="90" width="20" height="20"/>
+          <label x="230" customSize="0" size="12" y="68" width="39" height="23">exists</label>
+        </node>
+        <node type="attribute" id="n39" color="#fcfcfc">
+          <geometry x="-22" y="159" width="20" height="20"/>
+          <iri>http://cdm.ovh/rsm/eddy/startsAt</iri>
+          <label x="-22" customSize="0" size="12" y="137" width="50" height="23"/>
+        </node>
+        <node type="attribute" id="n40" color="#fcfcfc">
+          <geometry x="-19" y="200" width="20" height="20"/>
+          <iri>http://cdm.ovh/rsm/eddy/endsAt</iri>
+          <label x="-19" customSize="0" size="12" y="178" width="45" height="23"/>
+        </node>
+        <node type="domain-restriction" id="n41" color="#fcfcfc">
+          <geometry x="-70" y="160" width="20" height="20"/>
+          <label x="-70" customSize="0" size="12" y="138" width="39" height="23">exists</label>
+        </node>
+        <node type="domain-restriction" id="n42" color="#fcfcfc">
+          <geometry x="-100" y="199" width="20" height="20"/>
+          <label x="-100" customSize="0" size="12" y="177" width="39" height="23">exists</label>
+        </node>
+        <node type="range-restriction" id="n43" color="#000000">
+          <geometry x="40" y="160" width="20" height="20"/>
+          <label x="40" customSize="0" size="12" y="138" width="39" height="23">exists</label>
+        </node>
+        <node type="range-restriction" id="n44" color="#000000">
+          <geometry x="39" y="200" width="20" height="20"/>
+          <label x="39" customSize="0" size="12" y="178" width="39" height="23">exists</label>
+        </node>
+        <node type="value-domain" id="n45" color="#fcfcfc">
+          <geometry x="123" y="177" width="90" height="40"/>
+          <iri>http://www.w3.org/2001/XMLSchema#float</iri>
+          <label x="123" customSize="0" size="12" y="177" width="90" height="23"/>
+        </node>
+        <node type="concept" id="n46" color="#fcfcfc">
+          <geometry x="-480" y="-60" width="110" height="50"/>
+          <iri>http://cdm.ovh/rsm/topology/topology#NetElement</iri>
+          <label x="-480" customSize="0" size="12" y="-60" width="110" height="23"/>
+        </node>
+        <node type="concept" id="n47" color="#fcfcfc">
+          <geometry x="-480" y="90" width="135" height="50"/>
+          <iri>http://cdm.ovh/rsm/topology/topology#LinearElement</iri>
+          <label x="-480" customSize="0" size="12" y="90" width="135" height="23"/>
+        </node>
+        <node type="concept" id="n49" color="#c2b078">
+          <geometry x="-60" y="-160" width="110" height="50"/>
+          <iri>https://w3id.org/list#OWLList</iri>
+          <label x="-60" customSize="0" size="12" y="-160" width="110" height="23"/>
+        </node>
+        <node type="concept" id="n5" color="#fcfcfc">
+          <geometry x="350" y="-60" width="110" height="50"/>
+          <iri>http://cdm.ovh/rsm/eddy/BaseLocation</iri>
+          <label x="350" customSize="0" size="12" y="-60" width="110" height="23"/>
+        </node>
+        <node type="role" id="n50" color="#c2b078">
+          <geometry x="-270" y="-160" width="70" height="50"/>
+          <iri>https://w3id.org/list#hasContents</iri>
+          <label x="-270" customSize="0" size="12" y="-190" width="94" height="23"/>
+        </node>
+        <node type="concept" id="n6" color="#fcfcfc">
+          <geometry x="350" y="90" width="122" height="50"/>
+          <iri>http://cdm.ovh/rsm/eddy/LinearLocation</iri>
+          <label x="350" customSize="0" size="12" y="90" width="122" height="23"/>
+        </node>
+        <node type="role" id="n60" color="#fcfcfc">
+          <geometry x="490" y="220" width="70" height="50"/>
+          <iri>https://cdm.ovh/rsm/localisation/localisation#definedByLocation</iri>
+          <label x="490" customSize="0" size="12" y="190" width="108" height="23"/>
+        </node>
+        <node type="concept" id="n61" color="#fcfcfc">
+          <geometry x="490" y="340" width="110" height="50"/>
+          <iri>http://cdm.ovh/rsm/topology/topology#NetElement</iri>
+          <label x="490" customSize="0" size="12" y="340" width="110" height="23"/>
+        </node>
+        <node type="range-restriction" id="n62" color="#000000">
+          <geometry x="490" y="160" width="20" height="20"/>
+          <label x="490" customSize="0" size="12" y="138" width="39" height="23">exists</label>
+        </node>
+        <node type="domain-restriction" id="n63" color="#fcfcfc">
+          <geometry x="490" y="280" width="20" height="20"/>
+          <label x="490" customSize="0" size="12" y="258" width="39" height="23">exists</label>
+        </node>
+        <node type="concept" id="n7" color="#fcfcfc">
+          <geometry x="490" y="90" width="110" height="50"/>
+          <iri>http://cdm.ovh/rsm/eddy/AreaLocation</iri>
+          <label x="490" customSize="0" size="12" y="90" width="110" height="23"/>
+        </node>
+        <node type="concept" id="n8" color="#fcfcfc">
+          <geometry x="490" y="10" width="110" height="50"/>
+          <iri>http://cdm.ovh/rsm/eddy/SpotLocation</iri>
+          <label x="490" customSize="0" size="12" y="10" width="110" height="23"/>
+        </node>
+        <node type="disjoint-union" id="n9" color="#000000">
+          <geometry x="350" y="10" width="50" height="30"/>
+        </node>
+        <edge type="input" target="n9" id="e10" source="n7">
+          <point x="490" y="90"/>
+          <point x="350" y="10"/>
+        </edge>
+        <edge type="input" target="n62" id="e101" source="n60">
+          <point x="490" y="220"/>
+          <point x="490" y="160"/>
+        </edge>
+        <edge type="input" target="n63" id="e102" source="n60">
+          <point x="490" y="220"/>
+          <point x="490" y="280"/>
+        </edge>
+        <edge type="inclusion" target="n7" id="e103" source="n62">
+          <point x="490" y="160"/>
+          <point x="490" y="90"/>
+        </edge>
+        <edge type="inclusion" target="n61" id="e104" source="n63">
+          <point x="490" y="280"/>
+          <point x="490" y="340"/>
+        </edge>
+        <edge type="input" target="n9" id="e11" source="n8">
+          <point x="490" y="10"/>
+          <point x="350" y="10"/>
+        </edge>
+        <edge type="inclusion" target="n12" id="e12" source="n13">
+          <point x="-60" y="90"/>
+          <point x="-60" y="-60"/>
+        </edge>
+        <edge type="input" target="n15" id="e20" source="n14">
+          <point x="160" y="-60"/>
+          <point x="230" y="-60"/>
+        </edge>
+        <edge type="input" target="n16" id="e21" source="n14">
+          <point x="160" y="-60"/>
+          <point x="70" y="-60"/>
+        </edge>
+        <edge type="inclusion" target="n5" id="e22" source="n15">
+          <point x="230" y="-60"/>
+          <point x="350" y="-60"/>
+        </edge>
+        <edge type="inclusion" target="n12" id="e23" source="n16">
+          <point x="70" y="-60"/>
+          <point x="-60" y="-60"/>
+        </edge>
+        <edge type="inclusion" target="n12" id="e25" source="n19">
+          <point x="-200" y="-60"/>
+          <point x="-60" y="-60"/>
+        </edge>
+        <edge type="input" target="n20" id="e27" source="n18">
+          <point x="-270" y="-60"/>
+          <point x="-350" y="-60"/>
+        </edge>
+        <edge type="input" target="n19" id="e28" source="n18">
+          <point x="-270" y="-60"/>
+          <point x="-200" y="-60"/>
+        </edge>
+        <edge type="inclusion" target="n13" id="e32" source="n24">
+          <point x="-190" y="90"/>
+          <point x="-60" y="90"/>
+        </edge>
+        <edge type="input" target="n25" id="e34" source="n23">
+          <point x="-270" y="90"/>
+          <point x="-350" y="90"/>
+        </edge>
+        <edge type="input" target="n24" id="e35" source="n23">
+          <point x="-270" y="90"/>
+          <point x="-190" y="90"/>
+        </edge>
+        <edge type="inclusion" target="n18" id="e36" source="n23">
+          <point x="-270" y="90"/>
+          <point x="-270" y="-60"/>
+        </edge>
+        <edge type="inclusion" target="n6" id="e43" source="n33">
+          <point x="230" y="90"/>
+          <point x="350" y="90"/>
+        </edge>
+        <edge type="inclusion" target="n13" id="e44" source="n32">
+          <point x="70" y="90"/>
+          <point x="-60" y="90"/>
+        </edge>
+        <edge type="input" target="n32" id="e47" source="n31">
+          <point x="160" y="90"/>
+          <point x="70" y="90"/>
+        </edge>
+        <edge type="input" target="n33" id="e48" source="n31">
+          <point x="160" y="90"/>
+          <point x="230" y="90"/>
+        </edge>
+        <edge type="inclusion" target="n14" id="e49" source="n31">
+          <point x="160" y="90"/>
+          <point x="160" y="-60"/>
+        </edge>
+        <edge type="inclusion" target="n13" id="e61" source="n41">
+          <point x="-70" y="159"/>
+          <point x="-69" y="114"/>
+        </edge>
+        <edge type="inclusion" target="n13" id="e62" source="n42">
+          <point x="-100" y="199"/>
+          <point x="-99" y="114"/>
+        </edge>
+        <edge type="input" target="n41" id="e63" source="n39">
+          <point x="-22" y="159"/>
+          <point x="-70" y="159"/>
+        </edge>
+        <edge type="input" target="n42" id="e64" source="n40">
+          <point x="-19" y="200"/>
+          <point x="-100" y="199"/>
+        </edge>
+        <edge type="input" target="n43" id="e65" source="n39">
+          <point x="-22" y="159"/>
+          <point x="40" y="159"/>
+        </edge>
+        <edge type="input" target="n44" id="e66" source="n40">
+          <point x="-19" y="200"/>
+          <point x="39" y="200"/>
+        </edge>
+        <edge type="inclusion" target="n45" id="e67" source="n43">
+          <point x="40" y="160"/>
+          <point x="123" y="177"/>
+        </edge>
+        <edge type="inclusion" target="n45" id="e68" source="n44">
+          <point x="39" y="200"/>
+          <point x="123" y="177"/>
+        </edge>
+        <edge type="inclusion" target="n46" id="e69" source="n20">
+          <point x="-350" y="-60"/>
+          <point x="-480" y="-60"/>
+        </edge>
+        <edge type="inclusion" target="n47" id="e70" source="n25">
+          <point x="-350" y="90"/>
+          <point x="-480" y="90"/>
+        </edge>
+        <edge type="inclusion" target="n49" id="e71" source="n12">
+          <point x="-60" y="-60"/>
+          <point x="-60" y="-160"/>
+        </edge>
+        <edge type="inclusion" target="n49" id="e72" source="n22">
+          <point x="-180" y="-160"/>
+          <point x="-60" y="-160"/>
+        </edge>
+        <edge type="inclusion" target="n50" id="e73" source="n18">
+          <point x="-270" y="-60"/>
+          <point x="-270" y="-160"/>
+        </edge>
+        <edge type="input" target="n22" id="e74" source="n50">
+          <point x="-270" y="-160"/>
+          <point x="-180" y="-160"/>
+        </edge>
+        <edge type="inclusion" target="n5" id="e8" source="n9">
+          <point x="350" y="10"/>
+          <point x="350" y="-60"/>
+        </edge>
+        <edge type="input" target="n9" id="e9" source="n6">
+          <point x="350" y="90"/>
+          <point x="350" y="10"/>
+        </edge>
+      </diagram>
+    </diagrams>
+  </project>
+</graphol>
