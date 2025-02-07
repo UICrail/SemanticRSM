@@ -13,7 +13,7 @@
   <key attr.name="description" attr.type="string" for="edge" id="d9"/>
   <key for="edge" id="d10" yfiles.type="edgegraphics"/>
   <graph edgedefault="directed" id="G">
-    <data key="d0"/>
+    <data key="d0" xml:space="preserve"/>
     <node id="n0">
       <data key="d6">
         <y:ShapeNode>
@@ -164,8 +164,8 @@
       <data key="d5" xml:space="preserve"><![CDATA[UMLNote]]></data>
       <data key="d6">
         <y:UMLNoteNode>
-          <y:Geometry height="55.70263671875" width="1068.3120435967303" x="-164.3279330824073" y="-367.70263671875"/>
-          <y:Fill color="#CCFFFF" transparent="false"/>
+          <y:Geometry height="55.70263671875" width="1068.3120435967303" x="21.49522481232958" y="11.851047491776399"/>
+          <y:Fill color="#C0C0C0" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="Dialog" fontSize="16" fontStyle="italic" hasBackgroundColor="false" hasLineColor="false" height="41.6875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="tl" textColor="#000000" verticalTextPosition="bottom" visible="true" width="1043.3828125" x="4.0" xml:space="preserve" y="4.0">Diagram drawn with yEd + Graffoo plug-in.
 rdf:type predicates (using normal arrows) were replaced by UML generalization arrows (black line, with hollow head), for convenience.</y:NodeLabel>
@@ -173,33 +173,6 @@ rdf:type predicates (using normal arrows) were replaced by UML generalization ar
       </data>
     </node>
     <node id="n14">
-      <data key="d4" xml:space="preserve"/>
-      <data key="d5" xml:space="preserve"><![CDATA[UMLNote]]></data>
-      <data key="d6">
-        <y:UMLNoteNode>
-          <y:Geometry height="394.70263671875" width="1570.3120435967303" x="-164.3279330824073" y="-276.351318359375"/>
-          <y:Fill color="#CCFFFF" transparent="false"/>
-          <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="left" autoSizePolicy="node_size" fontFamily="Dialog" fontSize="16" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="394.70263671875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="tl" textColor="#000000" verticalTextPosition="bottom" visible="true" width="1570.3120435967303" x="4.0" xml:space="preserve" y="4.0">This is a simplified representation of the Localisation package.
-
-Locations are "places on earth" associated with spatial objects, also called "Features" in GeoSPARQL, hence the geo:Feature superclass. Locations can be expressed by coordinates or other means,
-such as a position along a track.
-Locations should not be confused with the coordinates used to express them: these can vary (think of a moving object), can use various reference systems, be subject to measuring errors, etc.
-
-We distinguish spot, linear, and area locations, excluding "volumes" (a subject better covered by BIM), in relation with the number of dimensions needed to describe them.
-Since dimensionality is different, spot, linear, and area locations are disjoint. Class BaseLocation is the disjoint union of spot-, linear-, and area location, equivalent
-to an abstract superclass in UML.
-
-Please note that the same object can have several locations, according to the level of detail: e.g. a station would have an area location on a track plan, but a mere spot on a passenger information map.
-
-The Localisation vocabulary allows to express the location of spatial objects with respect to the network topology, if relevant.
-If the network topology is irrelevant (example: the location of a downtown ticket vendor), there is not need to refer to it, as GeoSPARQL will express the geographic positioning
-using some standard serialization (WKT, GML...).
-</y:NodeLabel>
-        </y:UMLNoteNode>
-      </data>
-    </node>
-    <node id="n15">
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="44.0" width="132.96822102864598" x="1329.015889485677" y="162.5"/>
@@ -211,7 +184,6 @@ using some standard serialization (WKT, GML...).
       </data>
     </node>
     <edge id="e0" source="n9" target="n8">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="26.0" sy="6.0" tx="12.5" ty="-13.5">
@@ -225,7 +197,6 @@ using some standard serialization (WKT, GML...).
       </data>
     </edge>
     <edge id="e1" source="n9" target="n8">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-4.0" sy="11.0" tx="0.0" ty="13.5">
@@ -239,7 +210,6 @@ using some standard serialization (WKT, GML...).
       </data>
     </edge>
     <edge id="e2" source="n0" target="n6">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -251,7 +221,6 @@ using some standard serialization (WKT, GML...).
       </data>
     </edge>
     <edge id="e3" source="n2" target="n9">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -263,7 +232,6 @@ using some standard serialization (WKT, GML...).
       </data>
     </edge>
     <edge id="e4" source="n2" target="n1">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -275,7 +243,6 @@ using some standard serialization (WKT, GML...).
       </data>
     </edge>
     <edge id="e5" source="n1" target="n3">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -289,7 +256,6 @@ using some standard serialization (WKT, GML...).
       </data>
     </edge>
     <edge id="e6" source="n3" target="n2">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -303,7 +269,6 @@ using some standard serialization (WKT, GML...).
       </data>
     </edge>
     <edge id="e7" source="n6" target="n7">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -314,7 +279,6 @@ using some standard serialization (WKT, GML...).
       </data>
     </edge>
     <edge id="e8" source="n9" target="n6">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -325,7 +289,6 @@ using some standard serialization (WKT, GML...).
       </data>
     </edge>
     <edge id="e9" source="n2" target="n0">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -336,7 +299,6 @@ using some standard serialization (WKT, GML...).
       </data>
     </edge>
     <edge id="e10" source="n3" target="n0">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -347,7 +309,6 @@ using some standard serialization (WKT, GML...).
       </data>
     </edge>
     <edge id="e11" source="n1" target="n0">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -358,7 +319,6 @@ using some standard serialization (WKT, GML...).
       </data>
     </edge>
     <edge id="e12" source="n5" target="n4">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -369,7 +329,6 @@ using some standard serialization (WKT, GML...).
       </data>
     </edge>
     <edge id="e13" source="n11" target="n4">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="-33.5" ty="1.0">
@@ -383,7 +342,6 @@ using some standard serialization (WKT, GML...).
       </data>
     </edge>
     <edge id="e14" source="n6" target="n4">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -395,7 +353,6 @@ using some standard serialization (WKT, GML...).
       </data>
     </edge>
     <edge id="e15" source="n9" target="n5">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -407,7 +364,6 @@ using some standard serialization (WKT, GML...).
       </data>
     </edge>
     <edge id="e16" source="n11" target="n5">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="-33.5" ty="3.0">
@@ -420,8 +376,7 @@ using some standard serialization (WKT, GML...).
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e17" source="n0" target="n15">
-      <data key="d9"/>
+    <edge id="e17" source="n0" target="n14">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
