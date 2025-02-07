@@ -1,0 +1,285 @@
+@prefix : <https://cdm.ovh/rsm/topology/topology#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix list: <https://w3id.org/list#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix topo: <http://cdm.ovh/rsm/topology/topology#> .
+@prefix geo_ad: <http://cdm.ovh/rsm/adapters/geosparql_adapter#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@base <https://cdm.ovh/rsm/topology/topology> .
+
+<https://cdm.ovh/rsm/topology/topology> rdf:type owl:Ontology ;
+                                         owl:versionIRI <https://cdm.ovh/rsm/topology/1.0rc2/topology> ;
+                                         owl:imports <http://cdm.ovh/rsm/adapters/geosparql_adapter> ;
+                                         dc:abstract "Most complete RSM topology vocabulary to date, with reified relations between net elements ports, and property chains (2 levels) to simplify querying for basic usages.RSM is a member of the CDM (Conceptual Data Model), under development under the ERJU MOTIONAL project.Some properties that are most likely to be used are chained properties (equivalent to derived associations in UML). However, using reified relationships between net elements guarantees highest expressiveness. Such reification allows to handle evolutions of the topology (relations being time-dependent objects or \"endurants\" in UFO parlance).Superclasses for time-dependency are yet to be chosen and introduced."@en ;
+                                         dc:contributor "Pierre Tane, UIC"@en ;
+                                         dc:creator "Airy Magnien, UIC"@en ;
+                                         dc:date "4 February 2025"@en ;
+                                         dc:relation "MOTIONAL project: https://rail-research.europa.eu/eu-rail-projects/ ONTORAIL project: https://ontorail.org/RSM GitHub: https://github.com/UICrail/SemanticRSM"@en ;
+                                         dc:title "RSM topology"@en ;
+                                         dc:type "RDF/OWL ontology"@en ;
+                                         dcterms:license "EUPL 1.2; see https://interoperable-europe.ec.europa.eu/sites/default/files/custom-page/attachment/eupl_v1.2_en.pdf"@en ;
+                                         owl:versionInfo "1.0rc2" ;
+                                         <https://vocab.org/vann/preferredNamespacePrefix> "topo" ;
+                                         <https://vocab.org/vann/preferredNamespaceURI> "http://cdm.ovh/rsm/topology/topology#"@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/abstract
+dc:abstract rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/contributor
+dc:contributor rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/creator
+dc:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/date
+dc:date rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/relation
+dc:relation rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+dc:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/type
+dc:type rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+dcterms:license rdf:type owl:AnnotationProperty .
+
+
+###  https://vocab.org/vann/preferredNamespacePrefix
+<https://vocab.org/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  https://vocab.org/vann/preferredNamespaceURI
+<https://vocab.org/vann/preferredNamespaceURI> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://cdm.ovh/rsm/eddy/connectedWith
+<http://cdm.ovh/rsm/eddy/connectedWith> rdf:type owl:ObjectProperty ;
+                                        rdfs:subPropertyOf <http://cdm.ovh/rsm/eddy/connectedWithTransitive> ;
+                                        rdfs:label "connected with"@en .
+
+
+###  http://cdm.ovh/rsm/eddy/connectedWithTransitive
+<http://cdm.ovh/rsm/eddy/connectedWithTransitive> rdf:type owl:ObjectProperty ,
+                                                           owl:TransitiveProperty ;
+                                                  rdfs:domain <http://cdm.ovh/rsm/eddy/Port> ;
+                                                  rdfs:range <http://cdm.ovh/rsm/eddy/Port> ;
+                                                  rdfs:label "connected with (transitive)"@en .
+
+
+###  http://cdm.ovh/rsm/eddy/navigableTo
+<http://cdm.ovh/rsm/eddy/navigableTo> rdf:type owl:ObjectProperty ;
+                                      rdfs:subPropertyOf <http://cdm.ovh/rsm/eddy/navigableToTransitive> ;
+                                      owl:propertyChainAxiom ( topo:fromNavigability
+                                                               topo:toExitPort
+                                                             ) ;
+                                      rdfs:label "navigable to"@en .
+
+
+###  http://cdm.ovh/rsm/eddy/navigableToTransitive
+<http://cdm.ovh/rsm/eddy/navigableToTransitive> rdf:type owl:ObjectProperty ,
+                                                         owl:TransitiveProperty ;
+                                                rdfs:domain <http://cdm.ovh/rsm/eddy/Port> ;
+                                                rdfs:range <http://cdm.ovh/rsm/eddy/Port> ;
+                                                rdfs:label "navigable to (transitive)"@en .
+
+
+###  http://cdm.ovh/rsm/eddy/onElement
+<http://cdm.ovh/rsm/eddy/onElement> rdf:type owl:ObjectProperty ;
+                                    owl:inverseOf <http://cdm.ovh/rsm/eddy/port> ;
+                                    rdf:type owl:FunctionalProperty ;
+                                    rdfs:label "on element"@en .
+
+
+###  http://cdm.ovh/rsm/eddy/port
+<http://cdm.ovh/rsm/eddy/port> rdf:type owl:ObjectProperty ,
+                                        owl:InverseFunctionalProperty ;
+                               rdfs:domain topo:NetElement ;
+                               rdfs:range <http://cdm.ovh/rsm/eddy/Port> ;
+                               rdfs:label "port"@en .
+
+
+###  http://cdm.ovh/rsm/eddy/port1
+<http://cdm.ovh/rsm/eddy/port1> rdf:type owl:ObjectProperty ;
+                                rdfs:subPropertyOf <http://cdm.ovh/rsm/eddy/port> ;
+                                rdf:type owl:FunctionalProperty ,
+                                         owl:InverseFunctionalProperty ;
+                                rdfs:domain <http://cdm.ovh/rsm/eddy/LinearElement> ;
+                                owl:propertyDisjointWith <http://cdm.ovh/rsm/eddy/port_0> ;
+                                rdfs:label "port 1" .
+
+
+###  http://cdm.ovh/rsm/eddy/port_0
+<http://cdm.ovh/rsm/eddy/port_0> rdf:type owl:ObjectProperty ;
+                                 rdfs:subPropertyOf <http://cdm.ovh/rsm/eddy/port> ;
+                                 rdf:type owl:FunctionalProperty ,
+                                          owl:InverseFunctionalProperty ;
+                                 rdfs:label "port 0"@en .
+
+
+###  http://cdm.ovh/rsm/topology/topology#connection
+topo:connection rdf:type owl:ObjectProperty ;
+                owl:inverseOf topo:withPort .
+
+
+###  http://cdm.ovh/rsm/topology/topology#fromExitPort
+topo:fromExitPort rdf:type owl:ObjectProperty ;
+                  owl:inverseOf topo:toNavigability ;
+                  rdf:type owl:FunctionalProperty ;
+                  rdfs:domain topo:Navigabilities ;
+                  rdfs:range <http://cdm.ovh/rsm/eddy/Port> ;
+                  rdfs:label "from exit port"@en .
+
+
+###  http://cdm.ovh/rsm/topology/topology#fromNavigability
+topo:fromNavigability rdf:type owl:ObjectProperty ;
+                      owl:inverseOf topo:toExitPort ;
+                      rdfs:label "from Navigability"@en .
+
+
+###  http://cdm.ovh/rsm/topology/topology#leadsTo
+topo:leadsTo rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf topo:leadsToTranstitive ;
+             rdfs:domain topo:NetElement ;
+             rdfs:range topo:NetElement ;
+             owl:propertyChainAxiom ( <http://cdm.ovh/rsm/eddy/port>
+                                      <http://cdm.ovh/rsm/eddy/navigableTo>
+                                      <http://cdm.ovh/rsm/eddy/onElement>
+                                    ) ;
+             rdfs:label "leads to"@en .
+
+
+###  http://cdm.ovh/rsm/topology/topology#leadsToTranstitive
+topo:leadsToTranstitive rdf:type owl:ObjectProperty ;
+                        owl:propertyChainAxiom ( <http://cdm.ovh/rsm/eddy/port>
+                                                 <http://cdm.ovh/rsm/eddy/navigableToTransitive>
+                                                 <http://cdm.ovh/rsm/eddy/onElement>
+                                               ) ;
+                        rdfs:label "leads to (transtitive)"@en .
+
+
+###  http://cdm.ovh/rsm/topology/topology#nonNavigableTo
+topo:nonNavigableTo rdf:type owl:ObjectProperty ;
+                    rdfs:domain <http://cdm.ovh/rsm/eddy/Port> ;
+                    rdfs:range <http://cdm.ovh/rsm/eddy/Port> ;
+                    rdfs:label "non navigable to"@en .
+
+
+###  http://cdm.ovh/rsm/topology/topology#toExitPort
+topo:toExitPort rdf:type owl:ObjectProperty ,
+                         owl:FunctionalProperty ;
+                rdfs:domain topo:Navigabilities ;
+                rdfs:range <http://cdm.ovh/rsm/eddy/Port> ;
+                rdfs:label "to exit port"@en .
+
+
+###  http://cdm.ovh/rsm/topology/topology#toNavigability
+topo:toNavigability rdf:type owl:ObjectProperty ;
+                    rdfs:label "to navigability"@en .
+
+
+###  http://cdm.ovh/rsm/topology/topology#withPort
+topo:withPort rdf:type owl:ObjectProperty ;
+              rdfs:domain topo:Connection ;
+              rdfs:range <http://cdm.ovh/rsm/eddy/Port> ;
+              rdfs:label "with port"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://cdm.ovh/rsm/adapters/geosparql_adapter#Feature
+geo_ad:Feature rdf:type owl:Class .
+
+
+###  http://cdm.ovh/rsm/eddy/LinearElement
+<http://cdm.ovh/rsm/eddy/LinearElement> rdf:type owl:Class ;
+                                        rdfs:subClassOf topo:NetElement ;
+                                        owl:disjointWith <http://cdm.ovh/rsm/eddy/NonlinearElement> ;
+                                        rdfs:label "Linear element"@en .
+
+
+###  http://cdm.ovh/rsm/eddy/ListedPort
+<http://cdm.ovh/rsm/eddy/ListedPort> rdf:type owl:Class ;
+                                     rdfs:subClassOf <http://cdm.ovh/rsm/eddy/Port> ,
+                                                     list:OWLList ;
+                                     rdfs:label "Listed port"@en .
+
+
+###  http://cdm.ovh/rsm/eddy/NonlinearElement
+<http://cdm.ovh/rsm/eddy/NonlinearElement> rdf:type owl:Class ;
+                                           rdfs:subClassOf topo:NetElement ;
+                                           rdfs:label "Nonlinear element"@en .
+
+
+###  http://cdm.ovh/rsm/eddy/Port
+<http://cdm.ovh/rsm/eddy/Port> rdf:type owl:Class ;
+                               rdfs:subClassOf geo_ad:Feature ;
+                               owl:disjointWith topo:NetElement ;
+                               rdfs:label "Port" .
+
+
+###  http://cdm.ovh/rsm/topology/topology#BoundaryElement
+topo:BoundaryElement rdf:type owl:Class ;
+                     rdfs:subClassOf <http://cdm.ovh/rsm/eddy/LinearElement> ;
+                     rdfs:label "Boundary element"@en .
+
+
+###  http://cdm.ovh/rsm/topology/topology#Connection
+topo:Connection rdf:type owl:Class ;
+                rdfs:label "Connection"@en .
+
+
+###  http://cdm.ovh/rsm/topology/topology#Navigabilities
+topo:Navigabilities rdf:type owl:Class ;
+                    rdfs:label "Navigabilities"@en .
+
+
+###  http://cdm.ovh/rsm/topology/topology#Navigability
+topo:Navigability rdf:type owl:Class ;
+                  rdfs:subClassOf topo:Navigabilities ;
+                  owl:disjointWith topo:NonNavigability ;
+                  rdfs:label "Navigability"@en .
+
+
+###  http://cdm.ovh/rsm/topology/topology#NetElement
+topo:NetElement rdf:type owl:Class ;
+                rdfs:subClassOf geo_ad:Feature ;
+                rdfs:label "Net element"@en .
+
+
+###  http://cdm.ovh/rsm/topology/topology#NonNavigability
+topo:NonNavigability rdf:type owl:Class ;
+                     rdfs:subClassOf topo:Navigabilities ;
+                     rdfs:label "Non navigability"@en .
+
+
+###  https://w3id.org/list#OWLList
+list:OWLList rdf:type owl:Class .
+
+
+###  Generated by the OWL API (version 4.5.29) https://github.com/owlcs/owlapi
