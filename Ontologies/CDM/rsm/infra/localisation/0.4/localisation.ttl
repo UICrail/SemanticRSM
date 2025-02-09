@@ -6,6 +6,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix list: <https://w3id.org/list#> .
 @prefix loca: <https://cdm.ovh/rsm/localisation/localisation#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix topo: <https://cdm.ovh/rsm/topology/topology#> .
@@ -13,18 +14,51 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix geo_adap: <https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter#> .
 @prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix quantitykind: <https://qudt.org/vocab/quantitykind/> .
 @base <https://cdm.ovh/rsm/localisation/localisation> .
 
 <https://cdm.ovh/rsm/localisation/localisation> rdf:type owl:Ontology ;
                                                  owl:versionIRI <https://cdm.ovh/rsm/localisation/0.4/localisation> ;
-                                                 vann:preferredNamespacePrefix "loca" .
+                                                 dc:abstract "This ontology allows to place things on the topology. Things may have locations of type spot-, linear-, or area location.For spot locations (and, by extension, for linear locations) on linear elements, it is possible to indicate offsets, quantitatively or qualitvely, in three directions: tangential (projected on the horizontal plane), transversal (orthogonal to tangential, same plane), and vertical."@en ;
+                                                 dc:creator "Airy Magnien" ;
+                                                 dc:date "9 February 2025"@en ;
+                                                 dc:title "Localisation"@en ;
+                                                 dcterms:license "EUPL 1.2"@en ;
+                                                 rdfs:label "Localisation"@en ;
+                                                 owl:versionInfo "0.4" ;
+                                                 vann:preferredNamespacePrefix "loca" ;
+                                                 vann:preferredNamespaceURI "https://cdm.ovh/rsm/localisation/localisation" .
 
 #################################################################
 #    Annotation properties
 #################################################################
 
+###  http://purl.org/dc/elements/1.1/abstract
+dc:abstract rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/creator
+dc:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/date
+dc:date rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+dc:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+dcterms:license rdf:type owl:AnnotationProperty .
+
+
 ###  https://vocab.org/vann/preferredNamespacePrefix
 vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
+
+
+###  https://vocab.org/vann/preferredNamespaceURI
+vann:preferredNamespaceURI rdf:type owl:AnnotationProperty .
 
 
 #################################################################
@@ -32,12 +66,17 @@ vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
 #################################################################
 
 ###  http://www.w3.org/2001/XMLSchema#float
-xsd:float rdf:type rdfs:Datatype .
+xsd:float rdf:type rdfs:Datatype ;
+          rdfs:comment "Value in [0,1]"@en .
 
 
 #################################################################
 #    Object Properties
 #################################################################
+
+###  http://qudt.org/schema/qudt/hasQuantityValue
+qudt:hasQuantityValue rdf:type owl:ObjectProperty .
+
 
 ###  https://cdm.ovh/rsm/localisation/localisation#areaLocation
 loca:areaLocation rdf:type owl:ObjectProperty ,
@@ -59,7 +98,14 @@ loca:elementList rdf:type owl:ObjectProperty ,
 loca:facing rdf:type owl:ObjectProperty ;
             rdfs:domain loca:LinearElementList ;
             rdfs:range loca:Side ;
+            rdfs:comment "was \"application direction\" in RSM 1.x"@en ;
             rdfs:label "facing"@en .
+
+
+###  https://cdm.ovh/rsm/localisation/localisation#lateralOffset
+loca:lateralOffset rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf loca:offset ;
+                   rdfs:label "lateral offset"@en .
 
 
 ###  https://cdm.ovh/rsm/localisation/localisation#linearElement
@@ -91,8 +137,9 @@ loca:netElement rdf:type owl:ObjectProperty ;
 
 ###  https://cdm.ovh/rsm/localisation/localisation#offset
 loca:offset rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf qudt:hasQuantityValue ;
             rdfs:domain loca:LinearElementList ;
-            rdfs:range loca:Offset ;
+            rdfs:range loca:OffsetValue ;
             rdfs:label "offset"@en .
 
 
@@ -101,6 +148,18 @@ loca:side rdf:type owl:ObjectProperty ;
           rdfs:domain loca:LinearElementList ;
           rdfs:range loca:Side ;
           rdfs:label "side"@en .
+
+
+###  https://cdm.ovh/rsm/localisation/localisation#tangentialOffset
+loca:tangentialOffset rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf loca:offset ;
+                      rdfs:label "tangential offset"@en .
+
+
+###  https://cdm.ovh/rsm/localisation/localisation#verticalOffset
+loca:verticalOffset rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf loca:offset ;
+                    rdfs:label "vertical offset"@en .
 
 
 ###  https://w3id.org/list#hasContents
@@ -132,6 +191,10 @@ loca:startsAt rdf:type owl:DatatypeProperty ,
 #################################################################
 #    Classes
 #################################################################
+
+###  http://qudt.org/schema/qudt/QuantityValue
+qudt:QuantityValue rdf:type owl:Class .
+
 
 ###  https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter#Feature
 geo_adap:Feature rdf:type owl:Class .
@@ -181,10 +244,11 @@ loca:NonLinearLocation rdf:type owl:Class ;
                        rdfs:label "Nonlinear location"@en .
 
 
-###  https://cdm.ovh/rsm/localisation/localisation#Offset
-loca:Offset rdf:type owl:Class ;
-            rdfs:comment "to be finalized. should host a float value, using QUDT or..."@en ;
-            rdfs:label "Offset"@en .
+###  https://cdm.ovh/rsm/localisation/localisation#OffsetValue
+loca:OffsetValue rdf:type owl:Class ;
+                 rdfs:subClassOf qudt:QuantityValue ;
+                 rdfs:comment "to be finalized. should host a float value, using QUDT or..."@en ;
+                 rdfs:label "Offset value"@en .
 
 
 ###  https://cdm.ovh/rsm/localisation/localisation#Side
