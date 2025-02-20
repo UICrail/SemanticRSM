@@ -21,9 +21,10 @@
                                                  owl:versionIRI <https://cdm.ovh/rsm/localisation/0.4/localisation> ;
                                                  dc:abstract "This ontology allows to place things on the topology. Things may have locations of type spot-, linear-, or area location.For spot locations (and, by extension, for linear locations) on linear elements, it is possible to indicate offsets, quantitatively or qualitvely, in three directions: tangential (projected on the horizontal plane), transversal (orthogonal to tangential, same plane), and vertical."@en ;
                                                  dc:creator "Airy Magnien" ;
-                                                 dc:date "9 February 2025"@en ;
+                                                 dc:date "20 February 2025"@en ;
                                                  dc:title "Localisation"@en ;
                                                  dcterms:license "EUPL 1.2"@en ;
+                                                 rdfs:comment "Left for future work:1 - using intrinsic coordinates in a more explicit way (formal references to GeoSPARQL and to ISO 19148, possibly via IFC or DATEX classes). This would entail the replacement of two data properties (startsAt, endsAt) by object properties. Whether this is worthwhile is a matter for debate.2 - offsets were lateral in earlier versions (up to RSM 1.2), and are now generalized to tangential and vertical, effectively defining a 3-axis local coordinate system. Explicitly defining a local cartesian coordinate system would be a conceptual simplification and could make use of IFC classes.3 - sticking to the OWL2 RL profile let to the removal of cardinality constraints (except those implied by \"functional\" and \"inverse functional\"); these could be kept in SHACL shapes, to be created.4 - a more general subject is, whether sticking to OWL2-RL is useful.5 - compliance with OWL2-DL (the decidable subset of OWL2, and a superset of RL) should be checked again with an independent tool."@en ;
                                                  rdfs:label "Localisation"@en ;
                                                  owl:versionInfo "0.4" ;
                                                  vann:preferredNamespacePrefix "loca" ;
@@ -53,6 +54,10 @@ dc:title rdf:type owl:AnnotationProperty .
 dcterms:license rdf:type owl:AnnotationProperty .
 
 
+###  http://www.w3.org/2004/02/skos/core#definition
+skos:definition rdf:type owl:AnnotationProperty .
+
+
 ###  https://vocab.org/vann/preferredNamespacePrefix
 vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
 
@@ -66,7 +71,8 @@ vann:preferredNamespaceURI rdf:type owl:AnnotationProperty .
 #################################################################
 
 ###  http://www.w3.org/2001/XMLSchema#float
-xsd:float rdf:type rdfs:Datatype .
+xsd:float rdf:type rdfs:Datatype ;
+          rdfs:comment "The restriction on values (range = [0,1]) is not expressed here, in order to remain inside the OWL2-RL profile. It shall be enforced using a SHACL shape."@en .
 
 
 #################################################################
@@ -81,12 +87,12 @@ qudt:hasQuantityValue rdf:type owl:ObjectProperty .
 qudt:quantityKind rdf:type owl:ObjectProperty .
 
 
-###  https://cdm.ovh/rsm/localisation/localisation#areaLocation
-loca:areaLocation rdf:type owl:ObjectProperty ,
-                           owl:InverseFunctionalProperty ;
-                  rdfs:domain loca:LocatedNetElement ;
-                  rdfs:range loca:AreaLocation ;
-                  rdfs:label "area location"@en .
+###  https://cdm.ovh/rsm/localisation/localisation#applicationDirection
+loca:applicationDirection rdf:type owl:ObjectProperty ;
+                          rdfs:domain loca:LinearElementList ;
+                          rdfs:range loca:Side ;
+                          rdfs:label "application direction"@en ;
+                          skos:definition "Allows to express the direction of travel for which the localized entity is relevant. Example: a signal generally applies to one travel direction; track occupancy detection systems may be oriented, etc.Direction of travel is expressed relative to the orientation of the linear element, from port 0 to port 1, or intrinsic coordinate 0 to 1. It is NOT expressed with respect to \"normal travel direction in operations\"."@en .
 
 
 ###  https://cdm.ovh/rsm/localisation/localisation#elementList
@@ -94,21 +100,25 @@ loca:elementList rdf:type owl:ObjectProperty ,
                           owl:FunctionalProperty ;
                  rdfs:domain loca:NonLinearLocation ;
                  rdfs:range loca:ElementList ;
-                 rdfs:label "element list"@en .
+                 rdfs:label "element list"@en ;
+                 skos:definition "Property pointing at the first element in the list of net elements that describe the non-linear location.Note: in the present case, the order in the list has no CDM semantics (actually, it is a bag or a set), and it is up to the user to choose which is the \"first\" element."@en .
 
 
-###  https://cdm.ovh/rsm/localisation/localisation#facing
-loca:facing rdf:type owl:ObjectProperty ;
-            rdfs:domain loca:LinearElementList ;
-            rdfs:range loca:Side ;
-            rdfs:comment "was \"application direction\" in RSM 1.x"@en ;
-            rdfs:label "facing"@en .
+###  https://cdm.ovh/rsm/localisation/localisation#elementLocation
+loca:elementLocation rdf:type owl:ObjectProperty ,
+                              owl:FunctionalProperty ,
+                              owl:InverseFunctionalProperty ;
+                     rdfs:domain loca:LocatedNetElement ;
+                     rdfs:range loca:BaseLocation ;
+                     rdfs:label "element Location"@en .
 
 
 ###  https://cdm.ovh/rsm/localisation/localisation#lateralOffset
 loca:lateralOffset rdf:type owl:ObjectProperty ;
                    rdfs:subPropertyOf loca:offset ;
-                   rdfs:label "lateral offset"@en .
+                   rdf:type owl:InverseFunctionalProperty ;
+                   rdfs:label "lateral offset"@en ;
+                   skos:definition "offset of location (usually: spot location) with respect to a perpendicular to the linear element, in the horizontal plane (not: track plane). Is positive when on the left and negative on the right (in order to respect the conventional orientation of cartesian reference systems, where X is the longitudinal axis, Y the transversal, and Z the vertical)."@en .
 
 
 ###  https://cdm.ovh/rsm/localisation/localisation#linearElement
@@ -121,12 +131,12 @@ loca:linearElement rdf:type owl:ObjectProperty ;
 
 
 ###  https://cdm.ovh/rsm/localisation/localisation#linearElementList
-loca:linearElementList rdf:type owl:ObjectProperty ;
-                       rdfs:subPropertyOf loca:elementList ;
-                       rdf:type owl:FunctionalProperty ;
+loca:linearElementList rdf:type owl:ObjectProperty ,
+                                owl:FunctionalProperty ;
                        rdfs:domain loca:LinearLocation ;
                        rdfs:range loca:LinearElementList ;
-                       rdfs:label "linear element list"@en .
+                       rdfs:label "linear element list"@en ;
+                       skos:definition " Property pointing to the first element in the linked list of linear elements (or parts thereof) describing the linear location.Note: in the present case, the list is actually a sequence (ordered list with repetitions allowed)."@en .
 
 
 ###  https://cdm.ovh/rsm/localisation/localisation#netElement
@@ -135,33 +145,41 @@ loca:netElement rdf:type owl:ObjectProperty ;
                 rdf:type owl:FunctionalProperty ;
                 rdfs:domain loca:ElementList ;
                 rdfs:range topo:NetElement ;
-                rdfs:label "net element"@en .
+                rdfs:label "net element"@en ;
+                skos:definition "Functional property referring to a net element being part of the non-linear location description.Note: if this net element is a linear element, it is included as a whole. If only a part of it is relevant, use sub-property linareElement."@en .
 
 
 ###  https://cdm.ovh/rsm/localisation/localisation#offset
 loca:offset rdf:type owl:ObjectProperty ;
             rdfs:subPropertyOf qudt:hasQuantityValue ;
+            rdf:type owl:InverseFunctionalProperty ;
             rdfs:domain loca:LinearElementList ;
             rdfs:range loca:OffsetValue ;
+            rdfs:comment "definitely not functional, to cope with the fact that values may be multiple (specified, observed...).definitely inverse functional, because values characterize a location relative to exactly one linear element. \"Exactly\" however is left for SHACL shapes (not in RL profile)."@en ;
             rdfs:label "offset"@en .
 
 
 ###  https://cdm.ovh/rsm/localisation/localisation#side
-loca:side rdf:type owl:ObjectProperty ;
+loca:side rdf:type owl:ObjectProperty ,
+                   owl:FunctionalProperty ;
           rdfs:domain loca:LinearElementList ;
           rdfs:range loca:Side ;
-          rdfs:label "side"@en .
+          rdfs:comment "consistency with lateral offset sign to be verified by SHACL shapes."@en ;
+          rdfs:label "side"@en ;
+          skos:definition "side of the linear element on which the location (usually a spot location) is situated.The orientation of the linear element is its own intrinsic orientation, from port 0 to port 1 (or intrinsic coordinate 0 to intrinsic coordinate 1)."@en .
 
 
 ###  https://cdm.ovh/rsm/localisation/localisation#tangentialOffset
 loca:tangentialOffset rdf:type owl:ObjectProperty ;
                       rdfs:subPropertyOf loca:offset ;
+                      rdf:type owl:InverseFunctionalProperty ;
                       rdfs:label "tangential offset"@en .
 
 
 ###  https://cdm.ovh/rsm/localisation/localisation#verticalOffset
 loca:verticalOffset rdf:type owl:ObjectProperty ;
                     rdfs:subPropertyOf loca:offset ;
+                    rdf:type owl:InverseFunctionalProperty ;
                     rdfs:label "vertical offset"@en .
 
 
@@ -180,7 +198,9 @@ loca:endsAt rdf:type owl:DatatypeProperty ,
                      owl:FunctionalProperty ;
             rdfs:domain loca:LinearElementList ;
             rdfs:range xsd:float ;
-            rdfs:label "ends at"@en .
+            rdfs:comment "cardinality \"exactly one value\" to be enforced via SHACL shape"@en ;
+            rdfs:label "ends at"@en ;
+            skos:definition "Property defining the end point of a linear location on the linear element that is referred to.See definition of startsAt for more explanations."@en .
 
 
 ###  https://cdm.ovh/rsm/localisation/localisation#startsAt
@@ -188,7 +208,9 @@ loca:startsAt rdf:type owl:DatatypeProperty ,
                        owl:FunctionalProperty ;
               rdfs:domain loca:LinearElementList ;
               rdfs:range xsd:float ;
-              rdfs:label "starts at"@en .
+              rdfs:comment "cardinality \"exactly one value\" to be enforced via SHACL shape"@en ;
+              rdfs:label "starts at"@en ;
+              skos:definition "Property defining the start point of a linear location on the linear element that is referred to.The value is an intrinsic coordinate (float; permissible range = [0,1]). The intrinsic coordinate is defined by the default geometry of the associated linear element (see GeoSPARQL adapter), using linear referencing method \"interpolation\" according to ISO 19148."@en .
 
 
 #################################################################
@@ -207,44 +229,62 @@ geo_adap:Feature rdf:type owl:Class .
 loca:AreaLocation rdf:type owl:Class ;
                   rdfs:subClassOf loca:NonLinearLocation ;
                   owl:disjointWith loca:SpotLocation ;
-                  rdfs:label "Area location"@en .
+                  rdfs:label "Area location"@en ;
+                  skos:definition "The class of all locations that are neither spot, nor linear. Concrete examples: the location of a GSM coverage area (i.e. the parts of topology elements that are in this area); a set of discontinuous or branching linear locations. An area location refers to a set of topology elements, or element parts: no order, no repetition."@en .
 
 
 ###  https://cdm.ovh/rsm/localisation/localisation#BaseLocation
 loca:BaseLocation rdf:type owl:Class ;
-                  rdfs:subClassOf geo_adap:Feature ;
-                  rdfs:label "Base location"@en .
+                  rdfs:subClassOf geo_adap:Feature ,
+                                  [ rdf:type owl:Class ;
+                                    owl:unionOf ( loca:LinearLocation
+                                                  loca:NonLinearLocation
+                                                )
+                                  ] ;
+                  rdfs:label "Base location"@en ;
+                  skos:definition "Class of all locations relative to a topology. Disjoint union of its three subclasses (spot, linear, area location)."@en .
 
 
 ###  https://cdm.ovh/rsm/localisation/localisation#ElementList
 loca:ElementList rdf:type owl:Class ;
                  rdfs:subClassOf list:OWLList ;
-                 rdfs:label "Element list"@en .
+                 rdfs:label "Element list"@en ;
+                 skos:definition "Linked list of all net elements (or parts of linear elements) constituting a location. A subclass of OWL List: this is a class from a vocabulary also used by IfcOwl.In the present case, the order of elements in the list is user-defined and has no CDM semantics.Repetition is allowed, but should be avoided as it has no meaning in the case of non-linear locations.Linear elements are referred to as a whole. If only part of a linear element is included in the location, use a LinearElementList individual.Orientation of each linear element (or part thereof) is described by startsAt and endsAt properties, but has no meaning in the case of non-linear locations."@en .
 
 
 ###  https://cdm.ovh/rsm/localisation/localisation#LinearElementList
 loca:LinearElementList rdf:type owl:Class ;
                        rdfs:subClassOf loca:ElementList ;
-                       rdfs:label "Linear element list"@en .
+                       rdfs:comment "When used to describe a spot location with relation to a linear element, startsAt and endsAt property values are identical, and endsAt can be omitted."@en ;
+                       rdfs:label "Linear element list"@en ;
+                       skos:definition "Linked list of all linear elements (or parts thereof) constituting a linear location. A subclass of OWL List: this is a class from a vocabulary also used by IfcOwl.Individual orientation of each linear element (or part thereof) is described by startsAt and endsAt properties."@en .
 
 
 ###  https://cdm.ovh/rsm/localisation/localisation#LinearLocation
 loca:LinearLocation rdf:type owl:Class ;
                     rdfs:subClassOf loca:BaseLocation ;
                     owl:disjointWith loca:NonLinearLocation ;
-                    rdfs:label "Linear location"@en .
+                    rdfs:label "Linear location"@en ;
+                    skos:definition "Location extending over consecutive linear elements or parts thereof. The involved linear elements are in a sequence (ordered list, with repetitions allowed). Each linear element in the sequence is oriented from start to end. Start and end may coincide with extremities or some point in between."@en .
 
 
 ###  https://cdm.ovh/rsm/localisation/localisation#LocatedNetElement
 loca:LocatedNetElement rdf:type owl:Class ;
                        rdfs:subClassOf topo:NetElement ;
-                       rdfs:label "Located net element"@en .
+                       rdfs:label "Located net element"@en ;
+                       skos:definition "Net element defined by its location on other net elements. Used for compositing, in lieu of the composite pattern in versions of topology before 1.0rc2."@en .
 
 
 ###  https://cdm.ovh/rsm/localisation/localisation#NonLinearLocation
 loca:NonLinearLocation rdf:type owl:Class ;
-                       rdfs:subClassOf loca:BaseLocation ;
-                       rdfs:label "Nonlinear location"@en .
+                       rdfs:subClassOf loca:BaseLocation ,
+                                       [ rdf:type owl:Class ;
+                                         owl:unionOf ( loca:AreaLocation
+                                                       loca:SpotLocation
+                                                     )
+                                       ] ;
+                       rdfs:label "Nonlinear location"@en ;
+                       skos:definition "Class for all non-linear locations. Disjoint union of its subclasses."@en .
 
 
 ###  https://cdm.ovh/rsm/localisation/localisation#OffsetValue
@@ -275,7 +315,8 @@ loca:Side rdf:type owl:Class ;
 ###  https://cdm.ovh/rsm/localisation/localisation#SpotLocation
 loca:SpotLocation rdf:type owl:Class ;
                   rdfs:subClassOf loca:NonLinearLocation ;
-                  rdfs:label "Spot location"@en .
+                  rdfs:label "Spot location"@en ;
+                  skos:definition "Class of all spot locations, i.e. locations that can be represented as a point on a map or schema. The spot location can relate to one or more net elements (concrete example: the location of a signal that addresses two converging tracks)."@en .
 
 
 ###  https://cdm.ovh/rsm/topology/topology#LinearElement
