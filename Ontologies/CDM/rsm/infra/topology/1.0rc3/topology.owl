@@ -1,0 +1,377 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://cdm.ovh/rsm/topology/topology#"
+     xml:base="https://cdm.ovh/rsm/topology/topology"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:list="https://w3id.org/list#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:topo="http://cdm.ovh/rsm/topology/topology#"
+     xmlns:vann="https://vocab.org/vann/"
+     xmlns:geo_ad="http://cdm.ovh/rsm/adapters/geosparql_adapter#"
+     xmlns:dcterms="http://purl.org/dc/terms/"
+     xmlns:geosparql="http://www.opengis.net/ont/geosparql#">
+    <owl:Ontology rdf:about="https://cdm.ovh/rsm/topology/topology">
+        <owl:versionIRI rdf:resource="https://cdm.ovh/rsm/topology/1.0rc3/topology"/>
+        <owl:imports rdf:resource="http://cdm.ovh/rsm/adapters/geosparql_adapter"/>
+        <dc:abstract xml:lang="en">Simplified RSM topology; relations between net elements ports only available as object properties (no reification).RSM is a member of the CDM (Conceptual Data Model), under development under the ERJU MOTIONAL project.Some properties that are most likely to be used are chained properties (equivalent to derived associations in UML).Superclasses for time-dependency are yet to be chosen and introduced.</dc:abstract>
+        <dc:contributor xml:lang="en">Pierre Tane, UIC</dc:contributor>
+        <dc:creator xml:lang="en">Airy Magnien, UIC</dc:creator>
+        <dc:date xml:lang="en">9 March 2025</dc:date>
+        <dc:relation xml:lang="en">MOTIONAL project: https://rail-research.europa.eu/eu-rail-projects/ ONTORAIL project: https://ontorail.org/RSM GitHub: https://github.com/UICrail/SemanticRSM</dc:relation>
+        <dc:title xml:lang="en">RSM topology</dc:title>
+        <dc:type xml:lang="en">RDF/OWL ontology</dc:type>
+        <dcterms:license xml:lang="en">EUPL 1.2; see https://interoperable-europe.ec.europa.eu/sites/default/files/custom-page/attachment/eupl_v1.2_en.pdf</dcterms:license>
+        <owl:versionInfo xml:lang="en">1.0rc3 - with some corrections on March 9, 2025 (mis-spelled geosparql_adapter IRI, wrong ontology version IRI)</owl:versionInfo>
+        <vann:preferredNamespacePrefix>topo</vann:preferredNamespacePrefix>
+        <vann:preferredNamespaceURI xml:lang="en">http://cdm.ovh/rsm/topology/topology#</vann:preferredNamespaceURI>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/abstract -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/abstract"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/contributor -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/contributor"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/creator -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/creator"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/date -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/date"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/relation -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/relation"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/title -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/title"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/type -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/type"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/license -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/license"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#definition -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#definition"/>
+    
+
+
+    <!-- https://vocab.org/vann/preferredNamespacePrefix -->
+
+    <owl:AnnotationProperty rdf:about="https://vocab.org/vann/preferredNamespacePrefix"/>
+    
+
+
+    <!-- https://vocab.org/vann/preferredNamespaceURI -->
+
+    <owl:AnnotationProperty rdf:about="https://vocab.org/vann/preferredNamespaceURI"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://cdm.ovh/rsm/eddy/connectedWith -->
+
+    <owl:ObjectProperty rdf:about="http://cdm.ovh/rsm/eddy/connectedWith">
+        <rdfs:subPropertyOf rdf:resource="http://cdm.ovh/rsm/eddy/connectedWithTransitive"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:label xml:lang="en">connected with</rdfs:label>
+        <skos:definition xml:lang="en">Relation between a port on a net element and the asjacent port on another net element. Geographic locations of related ports may not coincide, either because of uncertainties or rounding errors, or by construction (e.g. case of tracks joined via a turntable).</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://cdm.ovh/rsm/eddy/connectedWithTransitive -->
+
+    <owl:ObjectProperty rdf:about="http://cdm.ovh/rsm/eddy/connectedWithTransitive">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://cdm.ovh/rsm/eddy/Port"/>
+        <rdfs:range rdf:resource="http://cdm.ovh/rsm/eddy/Port"/>
+        <rdfs:label xml:lang="en">connected with (transitive)</rdfs:label>
+        <skos:definition xml:lang="en">transitive closure of connectedWith.</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://cdm.ovh/rsm/eddy/navigableTo -->
+
+    <owl:ObjectProperty rdf:about="http://cdm.ovh/rsm/eddy/navigableTo">
+        <rdfs:subPropertyOf rdf:resource="http://cdm.ovh/rsm/eddy/navigableToTransitive"/>
+        <owl:inverseOf rdf:resource="http://cdm.ovh/rsm/topology/topology#navigableFrom"/>
+        <rdfs:label xml:lang="en">navigable to</rdfs:label>
+        <skos:definition xml:lang="en">Relation between a port on a net element from which rolling stock can exit, to another port on an adjacent net element from which the same rolling stock can then exit, in one continuous movement (without direction reversal).</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://cdm.ovh/rsm/eddy/navigableToTransitive -->
+
+    <owl:ObjectProperty rdf:about="http://cdm.ovh/rsm/eddy/navigableToTransitive">
+        <owl:inverseOf rdf:resource="http://cdm.ovh/rsm/topology/topology#navigableFromTransitive"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://cdm.ovh/rsm/eddy/Port"/>
+        <rdfs:range rdf:resource="http://cdm.ovh/rsm/eddy/Port"/>
+        <rdfs:label xml:lang="en">navigable to (transitive)</rdfs:label>
+        <skos:definition xml:lang="en">transitive closure of navigableTo.</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://cdm.ovh/rsm/eddy/onElement -->
+
+    <owl:ObjectProperty rdf:about="http://cdm.ovh/rsm/eddy/onElement">
+        <owl:inverseOf rdf:resource="http://cdm.ovh/rsm/eddy/port"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">on element</rdfs:label>
+        <skos:definition xml:lang="en">inverse of port, port0, port1</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://cdm.ovh/rsm/eddy/port -->
+
+    <owl:ObjectProperty rdf:about="http://cdm.ovh/rsm/eddy/port">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://cdm.ovh/rsm/topology/topology#NetElement"/>
+        <rdfs:range rdf:resource="http://cdm.ovh/rsm/eddy/Port"/>
+        <rdfs:label xml:lang="en">port</rdfs:label>
+        <skos:definition xml:lang="en">Associated ports with net elements. This is an inverse functional property, meaning that a port can belong to at most one net element (if a port is found to belong to two net elements, the inference is that those two elements are the same).</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://cdm.ovh/rsm/eddy/port1 -->
+
+    <owl:ObjectProperty rdf:about="http://cdm.ovh/rsm/eddy/port1">
+        <rdfs:subPropertyOf rdf:resource="http://cdm.ovh/rsm/eddy/port"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://cdm.ovh/rsm/eddy/LinearElement"/>
+        <owl:propertyDisjointWith rdf:resource="http://cdm.ovh/rsm/eddy/port_0"/>
+        <rdfs:label>port 1</rdfs:label>
+        <skos:definition xml:lang="en">second (or end) port on a linear element.</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://cdm.ovh/rsm/eddy/port_0 -->
+
+    <owl:ObjectProperty rdf:about="http://cdm.ovh/rsm/eddy/port_0">
+        <rdfs:subPropertyOf rdf:resource="http://cdm.ovh/rsm/eddy/port"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:label xml:lang="en">port 0</rdfs:label>
+        <skos:definition xml:lang="en">First (or start) port of some net element. Allows to orient linear elements. Can also be used on others, with undefined semantics.</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology#leadsTo -->
+
+    <owl:ObjectProperty rdf:about="http://cdm.ovh/rsm/topology/topology#leadsTo">
+        <rdfs:subPropertyOf rdf:resource="http://cdm.ovh/rsm/topology/topology#leadsToTranstitive"/>
+        <rdfs:domain rdf:resource="http://cdm.ovh/rsm/topology/topology#NetElement"/>
+        <rdfs:range rdf:resource="http://cdm.ovh/rsm/topology/topology#NetElement"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://cdm.ovh/rsm/eddy/port"/>
+            <rdf:Description rdf:about="http://cdm.ovh/rsm/eddy/navigableTo"/>
+            <rdf:Description rdf:about="http://cdm.ovh/rsm/eddy/onElement"/>
+        </owl:propertyChainAxiom>
+        <rdfs:label xml:lang="en">leads to</rdfs:label>
+        <skos:definition xml:lang="en">relation between two adjacent net elements (i.e. having connected ports), where rolling stock can start moving from the first and arrive on the second without reversing travel direction.</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology#leadsToTranstitive -->
+
+    <owl:ObjectProperty rdf:about="http://cdm.ovh/rsm/topology/topology#leadsToTranstitive">
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://cdm.ovh/rsm/eddy/port"/>
+            <rdf:Description rdf:about="http://cdm.ovh/rsm/eddy/navigableToTransitive"/>
+            <rdf:Description rdf:about="http://cdm.ovh/rsm/eddy/onElement"/>
+        </owl:propertyChainAxiom>
+        <rdfs:label xml:lang="en">leads to (transtitive)</rdfs:label>
+        <skos:definition xml:lang="en">relation between non-adjacent net elements, where rolling stock may leave the first and reach the second without reversing travel direction.</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology#navigableFrom -->
+
+    <owl:ObjectProperty rdf:about="http://cdm.ovh/rsm/topology/topology#navigableFrom">
+        <rdfs:label xml:lang="en">navigable from</rdfs:label>
+        <skos:definition xml:lang="en">inverse of navigable to</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology#navigableFromTransitive -->
+
+    <owl:ObjectProperty rdf:about="http://cdm.ovh/rsm/topology/topology#navigableFromTransitive">
+        <rdfs:label xml:lang="en">navigable from (transitive)</rdfs:label>
+        <skos:definition xml:lang="en">inverse of navigable to (transitive)</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology#nonNavigableFrom -->
+
+    <owl:ObjectProperty rdf:about="http://cdm.ovh/rsm/topology/topology#nonNavigableFrom">
+        <owl:inverseOf rdf:resource="http://cdm.ovh/rsm/topology/topology#nonNavigableTo"/>
+        <rdfs:label xml:lang="en">non navigable from</rdfs:label>
+        <skos:definition xml:lang="en">inverse of non navigable to</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology#nonNavigableTo -->
+
+    <owl:ObjectProperty rdf:about="http://cdm.ovh/rsm/topology/topology#nonNavigableTo">
+        <rdfs:domain rdf:resource="http://cdm.ovh/rsm/eddy/Port"/>
+        <rdfs:range rdf:resource="http://cdm.ovh/rsm/eddy/Port"/>
+        <rdfs:label xml:lang="en">non navigable to</rdfs:label>
+        <skos:definition xml:lang="en">Expresses that there is no navigability link between the related ports. Given the OWA (open world assumption), a navigability not expressed does not mean &quot;non navigability&quot;. Consequently, non-navigability should be explicitly stated, as it is important knowledge.</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://cdm.ovh/rsm/adapters/geosparql_adapter#Feature -->
+
+    <owl:Class rdf:about="http://cdm.ovh/rsm/adapters/geosparql_adapter#Feature"/>
+    
+
+
+    <!-- http://cdm.ovh/rsm/eddy/LinearElement -->
+
+    <owl:Class rdf:about="http://cdm.ovh/rsm/eddy/LinearElement">
+        <rdfs:subClassOf rdf:resource="http://cdm.ovh/rsm/topology/topology#NetElement"/>
+        <owl:disjointWith rdf:resource="http://cdm.ovh/rsm/eddy/NonlinearElement"/>
+        <rdfs:label xml:lang="en">Linear element</rdfs:label>
+        <skos:definition xml:lang="en">Class of linear elements, i.e. all those elements that have two extremities (ports) and a meaningful measure between those extremities, such that the linear element can be considered a metric space (in the mathematical sense).</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://cdm.ovh/rsm/eddy/ListedPort -->
+
+    <owl:Class rdf:about="http://cdm.ovh/rsm/eddy/ListedPort">
+        <rdfs:subClassOf rdf:resource="http://cdm.ovh/rsm/eddy/Port"/>
+        <rdfs:subClassOf rdf:resource="https://w3id.org/list#OWLList"/>
+        <rdfs:label xml:lang="en">Listed port</rdfs:label>
+        <skos:definition xml:lang="en">A port in an ordered list (with successors; no contents needed). See also OWLList ontology.</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://cdm.ovh/rsm/eddy/NonlinearElement -->
+
+    <owl:Class rdf:about="http://cdm.ovh/rsm/eddy/NonlinearElement">
+        <rdfs:subClassOf rdf:resource="http://cdm.ovh/rsm/topology/topology#NetElement"/>
+        <rdfs:label xml:lang="en">Nonlinear element</rdfs:label>
+        <skos:definition xml:lang="en">Net element with any number of ports except two. Used for expressing connexities and navigabilities outside a complex network area (e.g. a yard or a station).</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://cdm.ovh/rsm/eddy/Port -->
+
+    <owl:Class rdf:about="http://cdm.ovh/rsm/eddy/Port">
+        <rdfs:subClassOf rdf:resource="http://cdm.ovh/rsm/adapters/geosparql_adapter#Feature"/>
+        <owl:disjointWith rdf:resource="http://cdm.ovh/rsm/topology/topology#NetElement"/>
+        <rdfs:label>Port</rdfs:label>
+        <skos:definition xml:lang="en">Any place, at the boundary of a net element, that can be an entry and/or exit point for rolling stock.</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology#BoundaryElement -->
+
+    <owl:Class rdf:about="http://cdm.ovh/rsm/topology/topology#BoundaryElement">
+        <rdfs:subClassOf rdf:resource="http://cdm.ovh/rsm/eddy/LinearElement"/>
+        <rdfs:label xml:lang="en">Boundary element</rdfs:label>
+        <skos:definition xml:lang="en">Linear element with length = 0. It still has two distinct port, allowing to express connectivity and navigability. To be used at the borders of networks managed by different entities.</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- http://cdm.ovh/rsm/topology/topology#NetElement -->
+
+    <owl:Class rdf:about="http://cdm.ovh/rsm/topology/topology#NetElement">
+        <rdfs:subClassOf rdf:resource="http://cdm.ovh/rsm/adapters/geosparql_adapter#Feature"/>
+        <rdfs:label xml:lang="en">Net element</rdfs:label>
+        <skos:definition xml:lang="en">Superclass for net elements (network elements)</skos:definition>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/list#OWLList -->
+
+    <owl:Class rdf:about="https://w3id.org/list#OWLList"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29) https://github.com/owlcs/owlapi -->
+
