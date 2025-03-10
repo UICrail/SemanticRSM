@@ -15,12 +15,12 @@
                                                                     owl:versionIRI <https://cdm.ovh/rsm/adapters/geosparql_adapter/0.3/geosparql_adapter> ;
                                                                     <http://purl.org/dc/elements/1.1/abstract> "Adapter vocabulary for connecting various parts of RSM with GeoSPARQL 1.1."@en ;
                                                                     <http://purl.org/dc/elements/1.1/creator> "Airy Magnien, UIC" ;
-                                                                    <http://purl.org/dc/elements/1.1/relations> "\"MOTIONAL project: https://rail-research.europa.eu/eu-rail-projects/ ONTORAIL project: https://ontorail.org/RSM GitHub: https://github.com/UICrail/SemanticRSM\""@en ; ;
+                                                                    <http://purl.org/dc/elements/1.1/relations> "\"MOTIONAL project: https://rail-research.europa.eu/eu-rail-projects/ ONTORAIL project: https://ontorail.org/RSM GitHub: https://github.com/UICrail/SemanticRSM\""@en ;
                                                                     <http://purl.org/dc/elements/1.1/title> "GeoSPARQL adapter for semantic RSM"@en ;
                                                                     <http://purl.org/dc/terms/license> "EUPL 1.2" ;
                                                                     rdfs:label "GeoSPARQL adapter for CDM/RSM"@en ;
                                                                     owl:versionIRI "https://cdm.ovh/rsm/adapters/geosparql_adapter/0.3/geosparql_adapter" ;
-                                                                    owl:versionInfo "Corrections, March 9, 2025:- using geo, the preferred prefix for geosparql- correcting all IRIs to https:// instead of http://Addition, same date:- LinearLocation was added to the domain of hasMetricLength"@en ;
+                                                                    owl:versionInfo "Corrections, March 9, 2025:- using geo, the preferred prefix for geosparql- correcting all IRIs to https:// instead of http://"@en ;
                                                                     <https://vocab.org/vann/preferredNamespacePrefix> "geo_ad" ;
                                                                     <https://vocab.org/vann/preferredNamespaceURI> "https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter" .
 
@@ -132,9 +132,8 @@ geo_ad:hasMetricLength rdf:type owl:DatatypeProperty ;
                                                  )
                                    ] ;
                        rdfs:range xsd:double ;
-                       rdfs:comment "Neither hasMetricLength nor its subproperties are functional properties. This is because such lengths may be specified, or measured, and may vary with time."@en ;
                        rdfs:label "has metric length"@en ;
-                       <http://www.w3.org/2004/02/skos/core#definition> "Length (in meter) of a Linear Element (see topology) or a Linear Location (see Localisation)."@en .
+                       <http://www.w3.org/2004/02/skos/core#definition> "Length (in meter) of a Linear Element."@en .
 
 
 ###  https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter#hasNominalMetricLength
@@ -142,9 +141,8 @@ geo_ad:hasNominalMetricLength rdf:type owl:DatatypeProperty ;
                               rdfs:subPropertyOf geo_ad:hasMetricLength ;
                               rdfs:domain topo:LinearElement ;
                               rdfs:range xsd:double ;
-                              rdfs:comment "This length is assumed to be derived from the chosen Nominal Geometry.The Nominal Metric Length is supposed to be used for conversions between linear referencing methods \"absolute\" (distance along, e.g. used in CCS/TMS data model) and \"interpolation\" (intrinsic coordinates, with values 0 to 1, used in RSM and others)."@en ;
                               rdfs:label "has nominal metric length"@en ;
-                              <http://www.w3.org/2004/02/skos/core#definition> "Nominal length of a linear element (see topology), in meters."@en .
+                              <http://www.w3.org/2004/02/skos/core#definition> "This length is assumed to be derived from the chosen Nominal Geometry.The Nominal Metric Length is supposed to be used for conversions between linear referencing methods \"absolute\" (distance along, e.g. used in CCS/TMS data model) and \"interpolation\" (intrinsic coordinates, with values 0 to 1, used in RSM and others)." .
 
 
 #################################################################
