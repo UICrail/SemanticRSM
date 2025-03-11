@@ -257,28 +257,28 @@
     
 
 
-    <!-- https://cdm.ovh/rsm/topology/topology#port1 -->
-
-    <owl:ObjectProperty rdf:about="https://cdm.ovh/rsm/topology/topology#port1">
-        <rdfs:subPropertyOf rdf:resource="https://cdm.ovh/rsm/topology/topology#port"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
-        <rdfs:domain rdf:resource="https://cdm.ovh/rsm/topology/topology#LinearElement"/>
-        <owl:propertyDisjointWith rdf:resource="https://cdm.ovh/rsm/topology/topology#port_0"/>
-        <rdfs:label>port 1</rdfs:label>
-        <skos:definition xml:lang="en">second (or end) port on a linear element.</skos:definition>
-    </owl:ObjectProperty>
-    
-
-
     <!-- https://cdm.ovh/rsm/topology/topology#port_0 -->
 
     <owl:ObjectProperty rdf:about="https://cdm.ovh/rsm/topology/topology#port_0">
         <rdfs:subPropertyOf rdf:resource="https://cdm.ovh/rsm/topology/topology#port"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <owl:propertyDisjointWith rdf:resource="https://cdm.ovh/rsm/topology/topology#port_1"/>
         <rdfs:label xml:lang="en">port 0</rdfs:label>
         <skos:definition xml:lang="en">First (or start) port of some net element. Allows to orient linear elements. Can also be used on others, with undefined semantics.</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://cdm.ovh/rsm/topology/topology#port_1 -->
+
+    <owl:ObjectProperty rdf:about="https://cdm.ovh/rsm/topology/topology#port_1">
+        <rdfs:subPropertyOf rdf:resource="https://cdm.ovh/rsm/topology/topology#port"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="https://cdm.ovh/rsm/topology/topology#LinearElement"/>
+        <rdfs:label>port 1</rdfs:label>
+        <skos:definition xml:lang="en">second (or end) port on a linear element.</skos:definition>
     </owl:ObjectProperty>
     
 

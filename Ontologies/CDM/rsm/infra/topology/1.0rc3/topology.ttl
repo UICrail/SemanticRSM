@@ -179,24 +179,24 @@ topo:port rdf:type owl:ObjectProperty ,
           skos:definition "Associated ports with net elements. This is an inverse functional property, meaning that a port can belong to at most one net element (if a port is found to belong to two net elements, the inference is that those two elements are the same)."@en .
 
 
-###  https://cdm.ovh/rsm/topology/topology#port1
-topo:port1 rdf:type owl:ObjectProperty ;
-           rdfs:subPropertyOf topo:port ;
-           rdf:type owl:FunctionalProperty ,
-                    owl:InverseFunctionalProperty ;
-           rdfs:domain topo:LinearElement ;
-           owl:propertyDisjointWith topo:port_0 ;
-           rdfs:label "port 1" ;
-           skos:definition "second (or end) port on a linear element."@en .
-
-
 ###  https://cdm.ovh/rsm/topology/topology#port_0
 topo:port_0 rdf:type owl:ObjectProperty ;
             rdfs:subPropertyOf topo:port ;
             rdf:type owl:FunctionalProperty ,
                      owl:InverseFunctionalProperty ;
+            owl:propertyDisjointWith topo:port_1 ;
             rdfs:label "port 0"@en ;
             skos:definition "First (or start) port of some net element. Allows to orient linear elements. Can also be used on others, with undefined semantics."@en .
+
+
+###  https://cdm.ovh/rsm/topology/topology#port_1
+topo:port_1 rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf topo:port ;
+            rdf:type owl:FunctionalProperty ,
+                     owl:InverseFunctionalProperty ;
+            rdfs:domain topo:LinearElement ;
+            rdfs:label "port 1" ;
+            skos:definition "second (or end) port on a linear element."@en .
 
 
 #################################################################
