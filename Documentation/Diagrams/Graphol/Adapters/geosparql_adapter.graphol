@@ -215,9 +215,8 @@ RSM GitHub: https://github.com/UICrail/SemanticRSM"</lexicalForm>
               <subject>https://cdm.ovh/rsm/adapters/geosparql_adapter</subject>
               <property>http://www.w3.org/2002/07/owl#versionInfo</property>
               <object>
-                <lexicalForm>Corrections, March 9, 2025:
-- using geo, the preferred prefix for geosparql
-- correcting all IRIs to https:// instead of http://</lexicalForm>
+                <lexicalForm>Addition, March 12, 2025:
+- property geometryOf, inverse of hasGeometry</lexicalForm>
                 <datatype/>
                 <language>en</language>
               </object>
@@ -319,6 +318,38 @@ RSM GitHub: https://github.com/UICrail/SemanticRSM"</lexicalForm>
               <object>
                 <lexicalForm>Geometry</lexicalForm>
                 <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+          </annotations>
+        </iri>
+        <iri>
+          <value>https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter#geometryOf</value>
+          <annotations>
+            <annotation>
+              <subject>https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter#geometryOf</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#label</property>
+              <object>
+                <lexicalForm>geometry of</lexicalForm>
+                <datatype>http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral</datatype>
+                <language>en</language>
+              </object>
+            </annotation>
+            <annotation>
+              <subject>https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter#geometryOf</subject>
+              <property>http://www.w3.org/2004/02/skos/core#definition</property>
+              <object>
+                <lexicalForm>inverse of hasGeometry</lexicalForm>
+                <datatype/>
+                <language>en</language>
+              </object>
+            </annotation>
+            <annotation>
+              <subject>https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter#geometryOf</subject>
+              <property>http://www.w3.org/2000/01/rdf-schema#comment</property>
+              <object>
+                <lexicalForm>GeoSPARQL does not define this inverse property.</lexicalForm>
+                <datatype/>
                 <language>en</language>
               </object>
             </annotation>
@@ -670,6 +701,30 @@ The Nominal Metric Length is supposed to be used for conversions between linear 
         <edge type="inclusion" source="n9" target="n10" id="e6">
           <point y="20" x="90"/>
           <point y="-50" x="-10"/>
+        </edge>
+      </diagram>
+      <diagram name="inverse properties" height="5000" width="5000">
+        <node type="role" color="#fcfcfc" id="n0">
+          <geometry y="20" x="50" height="50" width="70"/>
+          <iri>https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter#hasGeometry</iri>
+          <label y="-10" x="50" size="12" height="23" customSize="0" width="80"/>
+        </node>
+        <node type="role" color="#fcfcfc" id="n2">
+          <geometry y="20" x="280" height="50" width="70"/>
+          <iri>https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter#geometryOf</iri>
+          <label y="-10" x="280" size="12" height="23" customSize="0" width="72"/>
+        </node>
+        <node type="role-inverse" color="#fcfcfc" id="n3">
+          <geometry y="20" x="160" height="30" width="50"/>
+          <label y="20" x="160" size="12" height="23" customSize="0" width="23"/>
+        </node>
+        <edge type="input" source="n0" target="n3" id="e0">
+          <point y="20" x="50"/>
+          <point y="20" x="160"/>
+        </edge>
+        <edge type="equivalence" source="n3" target="n2" id="e1">
+          <point y="20" x="160"/>
+          <point y="20" x="280"/>
         </edge>
       </diagram>
     </diagrams>
