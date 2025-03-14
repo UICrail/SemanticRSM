@@ -24,6 +24,8 @@
         <rdfs:label xml:lang="en">GeoSPARQL adapter for CDM/RSM</rdfs:label>
         <owl:versionIRI>https://cdm.ovh/rsm/adapters/geosparql_adapter/0.3/geosparql_adapter</owl:versionIRI>
         <owl:versionInfo xml:lang="en">Addition, March 12, 2025:- property geometryOf, inverse of hasGeometry</owl:versionInfo>
+        <owl:versionInfo xml:lang="en">version 0.5 : added an inverse property for hasNominalGeometry. Property hasGeometry characteristic set to inverse functional.</owl:versionInfo>
+        <owl:versionInfo xml:lang="en">version 0.5: hasGeometry characteristic set to inverse functional, hasNominalGeometry to functional and inverse functional. Inverse property nominalGeometryOf added.</owl:versionInfo>
         <vann:preferredNamespacePrefix>geo_ad</vann:preferredNamespacePrefix>
         <vann:preferredNamespaceURI>https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter</vann:preferredNamespaceURI>
     </owl:Ontology>
@@ -157,6 +159,7 @@
 
     <owl:ObjectProperty rdf:about="https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter#geometryOf">
         <owl:inverseOf rdf:resource="https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter#hasGeometry"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:comment xml:lang="en">GeoSPARQL does not define this inverse property.</rdfs:comment>
         <rdfs:label xml:lang="en">geometry of</rdfs:label>
         <skos:definition xml:lang="en">inverse of hasGeometry</skos:definition>
@@ -168,6 +171,7 @@
 
     <owl:ObjectProperty rdf:about="https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter#hasGeometry">
         <rdfs:subPropertyOf rdf:resource="http://www.opengis.net/ont/geosparql#hasGeometry"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
         <rdfs:domain rdf:resource="https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter#Feature"/>
         <rdfs:range rdf:resource="https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter#Geometry"/>
         <rdfs:label xml:lang="en">has geometry</rdfs:label>
@@ -181,8 +185,21 @@
     <owl:ObjectProperty rdf:about="https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter#hasNominalGeometry">
         <rdfs:subPropertyOf rdf:resource="http://www.opengis.net/ont/geosparql#hasDefaultGeometry"/>
         <rdfs:subPropertyOf rdf:resource="https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter#hasGeometry"/>
+        <owl:inverseOf rdf:resource="https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter#nominalGeometryOf"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
         <rdfs:label xml:lang="en">has nominal geometry</rdfs:label>
         <skos:definition xml:lang="en">The default Geometry to be used in spatial calculations. It is usually the most detailed Geometry. Takes into account SOSA/SSN viewpoint, i.e. there can be more than one default geometry (e.g. valid at different times).</skos:definition>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter#nominalGeometryOf -->
+
+    <owl:ObjectProperty rdf:about="https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter#nominalGeometryOf">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:label xml:lang="en">nominal geometry of</rdfs:label>
     </owl:ObjectProperty>
     
 

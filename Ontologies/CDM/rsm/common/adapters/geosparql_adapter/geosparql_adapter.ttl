@@ -20,7 +20,9 @@
                                                                     <http://purl.org/dc/terms/license> "EUPL 1.2" ;
                                                                     rdfs:label "GeoSPARQL adapter for CDM/RSM"@en ;
                                                                     owl:versionIRI "https://cdm.ovh/rsm/adapters/geosparql_adapter/0.3/geosparql_adapter" ;
-                                                                    owl:versionInfo "Addition, March 12, 2025:- property geometryOf, inverse of hasGeometry"@en ;
+                                                                    owl:versionInfo "Addition, March 12, 2025:- property geometryOf, inverse of hasGeometry"@en ,
+                                                                                    "version 0.5 : added an inverse property for hasNominalGeometry. Property hasGeometry characteristic set to inverse functional."@en ,
+                                                                                    "version 0.5: hasGeometry characteristic set to inverse functional, hasNominalGeometry to functional and inverse functional. Inverse property nominalGeometryOf added."@en ;
                                                                     <https://vocab.org/vann/preferredNamespacePrefix> "geo_ad" ;
                                                                     <https://vocab.org/vann/preferredNamespaceURI> "https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter" .
 
@@ -99,6 +101,7 @@ geo:hasGeometry rdf:type owl:ObjectProperty ;
 ###  https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter#geometryOf
 geo_ad:geometryOf rdf:type owl:ObjectProperty ;
                   owl:inverseOf geo_ad:hasGeometry ;
+                  rdf:type owl:FunctionalProperty ;
                   rdfs:comment "GeoSPARQL does not define this inverse property."@en ;
                   rdfs:label "geometry of"@en ;
                   <http://www.w3.org/2004/02/skos/core#definition> "inverse of hasGeometry"@en .
@@ -107,6 +110,7 @@ geo_ad:geometryOf rdf:type owl:ObjectProperty ;
 ###  https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter#hasGeometry
 geo_ad:hasGeometry rdf:type owl:ObjectProperty ;
                    rdfs:subPropertyOf geo:hasGeometry ;
+                   rdf:type owl:InverseFunctionalProperty ;
                    rdfs:domain geo_ad:Feature ;
                    rdfs:range geo_ad:Geometry ;
                    rdfs:label "has geometry"@en ;
@@ -117,8 +121,18 @@ geo_ad:hasGeometry rdf:type owl:ObjectProperty ;
 geo_ad:hasNominalGeometry rdf:type owl:ObjectProperty ;
                           rdfs:subPropertyOf geo:hasDefaultGeometry ,
                                              geo_ad:hasGeometry ;
+                          owl:inverseOf geo_ad:nominalGeometryOf ;
+                          rdf:type owl:FunctionalProperty ,
+                                   owl:InverseFunctionalProperty ;
                           rdfs:label "has nominal geometry"@en ;
                           <http://www.w3.org/2004/02/skos/core#definition> "The default Geometry to be used in spatial calculations. It is usually the most detailed Geometry. Takes into account SOSA/SSN viewpoint, i.e. there can be more than one default geometry (e.g. valid at different times)."@en .
+
+
+###  https://cdm.ovh/rsm/adapters/geosparql_adapter/geosparql_adapter#nominalGeometryOf
+geo_ad:nominalGeometryOf rdf:type owl:ObjectProperty ,
+                                  owl:FunctionalProperty ,
+                                  owl:InverseFunctionalProperty ;
+                         rdfs:label "nominal geometry of"@en .
 
 
 #################################################################
