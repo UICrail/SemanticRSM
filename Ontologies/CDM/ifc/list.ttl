@@ -1,0 +1,131 @@
+@prefix : <https://w3id.org/list#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dce: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix expr: <https://w3id.org/express#> .
+@prefix list: <https://w3id.org/list#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@base <https://w3id.org/list#> .
+
+<https://w3id.org/list> rdf:type owl:Ontology ;
+                         owl:imports <https://w3id.org/list> ;
+                         cc:license "http://creativecommons.org/licenses/by/3.0/" ;
+                         dce:creator "Pieter Pauwels (pipauwel.pauwels"@ugent.be) ,
+                                     "Walter Terkaj (walter.terkaj"@itia.cnr.it) ;
+                         dce:date "2015/12/11" ;
+                         dce:description "OWL ontology for LIST concepts" ;
+                         dce:language "en" ;
+                         dce:title "LIST" ;
+                         vann:preferredNamespacePrefix "list" ;
+                         vann:preferredNamespaceUri "https://w3id.org/list" ;
+                         rdfs:comment "A set of entities used to describe the OWL list pattern. " ,
+                                      "This ontology is identical to the ontology originally published by Drummond et al., with namespace http://www.co-ode.org/ontologies/lists/2008/09/11/list.owl# and available at web location http://owl.cs.manchester.ac.uk/wp-content/uploads/2015/07/list.owl_.txt on 11 December 2015." ;
+                         rdfs:seeAlso "http://owl-workshop.man.ac.uk/acceptedLong/submission_12.pdf"^^xsd:anyURI ;
+                         owl:versionInfo "1.0.0 " .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://creativecommons.org/ns#license
+cc:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/creator
+dce:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/date
+dce:date rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/description
+dce:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/language
+dce:language rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+dce:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/list#hasContents
+list:hasContents rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf list:hasListProperty ;
+                 rdf:type owl:FunctionalProperty .
+
+
+###  https://w3id.org/list#hasListProperty
+list:hasListProperty rdf:type owl:ObjectProperty ;
+                     rdfs:domain list:OWLList .
+
+
+###  https://w3id.org/list#hasNext
+list:hasNext rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf list:isFollowedBy ;
+             rdf:type owl:FunctionalProperty .
+
+
+###  https://w3id.org/list#isFollowedBy
+list:isFollowedBy rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf list:hasListProperty ;
+                  rdf:type owl:TransitiveProperty ;
+                  rdfs:range list:OWLList .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://w3id.org/list#EmptyList
+list:EmptyList rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( list:OWLList
+                                                          [ rdf:type owl:Class ;
+                                                            owl:complementOf [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty list:hasContents ;
+                                                                               owl:someValuesFrom owl:Thing
+                                                                             ]
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] ,
+                                   [ owl:intersectionOf ( list:OWLList
+                                                          [ rdf:type owl:Class ;
+                                                            owl:complementOf [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty list:isFollowedBy ;
+                                                                               owl:someValuesFrom owl:Thing
+                                                                             ]
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] .
+
+
+###  https://w3id.org/list#OWLList
+list:OWLList rdf:type owl:Class ;
+             rdfs:subClassOf owl:Thing ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty list:isFollowedBy ;
+                               owl:allValuesFrom list:OWLList
+                             ] .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
