@@ -23,9 +23,24 @@ In the present context, xsd:time usage is correct and should be kept.
 
 ## Imports and links, or absence thereof
 
+### Vocabularies used but not mentioned
+
+The ontology depends on various other vocabularies. There are no owl:import axioms and some @prefix statements . Following vocabularies are used in URIs but their usage is not documented:
+
+| URI Stem    | Occurrences                                 | Vocabulary/Standard                         |
+| ------------------------------ | :----------------------------: | ------------------------------------------- |
+| http://creativecommons.org/ns#       | 2 | Creative Commons Rights Expression          |
+| http://purl.org/dc/terms/      | 1539 | Dublin Core Terms                           |
+| http://xmlns.com/foaf/0.1/     | 14 | FOAF (Friend of a Friend)                   |
+| http://www.w3.org/ns/org#         | 12 | W3C Organization Ontology                   |
+| http://www.w3.org/2004/02/skos/core#   | 423 | SKOS (Simple Knowledge Organization System) |
+| http://qudt.org/vocab/unit/ | 72 | QUDT units vocabulary                       |
+
+**Readability and maintainability would be improved by using prefixes for the above**. This is especially true for QUDT, the usage of which is not commonplace.
+
 ### Not using W3C Time
 
-The sensible use of xsd:time does not preclude the usage of W3C Time ontology where relevant.
+The sensible use of xsd:time should not preclude the usage of W3C Time ontology where relevant.
 
 ### No link with infrastructure representation
 
@@ -34,11 +49,20 @@ The ontology can be called "standalone", in the sense that it does not import or
 - how to link between spatial entities in the ERA telematics ontology (such as primary location codes, paths, etc.) and the underlying infrastructure elements (such as linear or area locations)?
 - is it ERA intention to keep infra and telematics vocabularies separated but linked (with imports or references)? see also the general discussion about modularity in the context of the CDM.
 
+Note that it is difficult to check the consistency of ontologies published under the same namespaces but defined in different documents.
+
 ### Re-defining units as annotations
 
-While the ERA (infrastructure) vocabulary makes use of QUDT, this ontology redefines units with an annotation property (unitOfMeasure). This choice favours reasoner performance over semantic safety.
+This ontology defines units with an ad-hoc annotation property (unitOfMeasure), but does not use it. **It is identically defined in the ERA (RINF) ontology, sharing the same URI**.
 
-Given that 1) the infra ontology uses QUDT, and 2) in daily operations, the usage of reasoners is not very likely while data interoperability is of paramount importance, **this choice does not seem optimal**.
+**This raises a red flag:**
+
+- **ambiguity of authority**
+- **risk of divergence**
+
+The ERA (Infrastructure, RINF) ontology uses the same annotation property (same URI), as of version 3.1.2 (current). Property values are strings borrowed from QUDT (see http://qudt.org/vocab/unit/).
+
+Using an annotation property, rather than classes and object properties (QUDT approach), favours reasoner performance over semantic safety. It is probably meant for simplification and reduction of reasoner workload. Given that in daily operations, the usage of reasoners is not very likely, using annotation properties is not likely reducing the computation burden. On the other hand, data interoperability being and safe conversion being desirable, **this choice does not seem optimal**.
 
 ## Structure
 
