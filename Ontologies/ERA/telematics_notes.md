@@ -5,13 +5,22 @@ Revision: v6.0, published April 2025, downloaded August 2025. In the following, 
 
 ## URI
 
-This ontology is
+This ontology is:
 
 - documented on https://linkedvocabs.org/data/era-ontology/telematics/index-en.html
 - downloadable as ttl file from https://linkedvocabs.org/data/era-ontology/telematics/ontology.ttl
-- prefixed by @prefix : <http://data.europa.eu/949/>
+- prefixed by @prefix : <http://data.europa.eu/949/>, a namespace shared with the ERA (RINF) Ontology.
+
+The following axiom is enigmatic:
+
+```
+<http://www.era.europa.eu/ontologies/taf#> rdfs:seeAlso <http://data.europa.eu/949/> .
+```
+
+It is not displayed in Protégé desktop 5.5. The URI .../taf# cannot be de-referenced.
 
 ## OWL2 compliance
+
 The ontology uses xsd:time, while OWL2 does not support it (only xsd:datetime). Consequence is, HermiT reasoner will crash; Pellet reasoner won't take notice.
 
 From a user perspective, xsd:time (time of the day, i.e. of any day) is a valid choice in the context of timetabling.
@@ -23,20 +32,7 @@ In the present context, xsd:time usage is correct and should be kept.
 
 ## Imports and links, or absence thereof
 
-### Vocabularies used but not mentioned
 
-The ontology depends on various other vocabularies. There are no owl:import axioms and some @prefix statements . Following vocabularies are used in URIs but their usage is not documented:
-
-| URI Stem    | Occurrences                                 | Vocabulary/Standard                         |
-| ------------------------------ | :----------------------------: | ------------------------------------------- |
-| http://creativecommons.org/ns#       | 2 | Creative Commons Rights Expression          |
-| http://purl.org/dc/terms/      | 1539 | Dublin Core Terms                           |
-| http://xmlns.com/foaf/0.1/     | 14 | FOAF (Friend of a Friend)                   |
-| http://www.w3.org/ns/org#         | 12 | W3C Organization Ontology                   |
-| http://www.w3.org/2004/02/skos/core#   | 423 | SKOS (Simple Knowledge Organization System) |
-| http://qudt.org/vocab/unit/ | 72 | QUDT units vocabulary                       |
-
-**Readability and maintainability would be improved by using prefixes for the above**. This is especially true for QUDT, the usage of which is not commonplace.
 
 ### Not using W3C Time
 
@@ -60,7 +56,7 @@ This ontology defines units with an ad-hoc annotation property (unitOfMeasure), 
 - **ambiguity of authority**
 - **risk of divergence**
 
-The ERA (Infrastructure, RINF) ontology uses the same annotation property (same URI), as of version 3.1.2 (current). Property values are strings borrowed from QUDT (see http://qudt.org/vocab/unit/).
+The ERA (Infrastructure, RINF) ontology uses the same annotation property (same URI), as of version 3.1.2 (current).
 
 Using an annotation property, rather than classes and object properties (QUDT approach), favours reasoner performance over semantic safety. It is probably meant for simplification and reduction of reasoner workload. Given that in daily operations, the usage of reasoners is not very likely, using annotation properties is not likely reducing the computation burden. On the other hand, data interoperability being and safe conversion being desirable, **this choice does not seem optimal**.
 
