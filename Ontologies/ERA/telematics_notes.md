@@ -3,13 +3,23 @@
 ## Version considered
 Revision: v6.0, published April 2025, downloaded August 2025. In the following, it is called "the ontology" when not ambiguous.
 
+## URI
+
+This ontology is
+
+- documented on https://linkedvocabs.org/data/era-ontology/telematics/index-en.html
+- downloadable as ttl file from https://linkedvocabs.org/data/era-ontology/telematics/ontology.ttl
+- prefixed by @prefix : <http://data.europa.eu/949/>
+
 ## OWL2 compliance
 The ontology uses xsd:time, while OWL2 does not support it (only xsd:datetime). Consequence is, HermiT reasoner will crash; Pellet reasoner won't take notice.
 
 From a user perspective, xsd:time (time of the day, i.e. of any day) is a valid choice in the context of timetabling.
 
 OWL2 is probably too restrictive here, since temporal algebra (such as Allen temporal algebra) is not built into OWL2.
-The W3C time ontology defines such temporal properties and consequently uses xsd:date and xsd:datetime, but not xsd:time for which no total order can be defined. In the present context
+The W3C time ontology defines such temporal properties and consequently uses xsd:date and xsd:datetime, but not xsd:time for which no total order can be defined.
+
+In the present context, xsd:time usage is correct and should be kept.
 
 ## Imports and links, or absence thereof
 
