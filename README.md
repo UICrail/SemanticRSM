@@ -1,73 +1,115 @@
 # SemanticRSM
-RSM recast, based on direct RDF/OWL modelling.
 
-RSM stands for Rail System Model. RSM is a [UIC](https://uic.org) [IRS (International Railway Standard)](https://uic.org/standardisation/article/irs), first released in 2016 as RailTopoModel (RTM): see https://rsm.uic.org.
+**SemanticRSM** is a semantic reinterpretation of **UIC's Rail System Model (RSM)** based on direct **RDF/OWL modeling**.
 
-## License
-EUPL 1.2
+The project revisits the original RSM conceptual model and expresses it natively using Semantic Web technologies, enabling its use in **knowledge graph environments** while remaining compatible with previous UML-based versions.
 
-## Purpose
-RTM 1.0, RTM 1.1, RSM 1.2 and its extensions, all published by UIC, follow principles generally observed in conceptual modelling, 
-using UML 2.56 as a formal language. RSM 1.2 model was successfully transformed into an OWL ontology, using the Ontorail toolset developed by UIC.
+---
 
-However, the expressiveness of OWL differs from UML class diagrams.
-OWL offers possibilities to make RSM both more compact and more expressive, while remaining compatible with former, UML-based versions. The present repository summarizes the re-casting efforts.
+# Relationship with RSM and RTM
 
-## Design goals
-* Backward compatibility ("easy" automated transformation of data provided under previous versions of the model).
-* Simplification (not: dumbing down).
-* Separation into small vocabularies (high-cohesion, low-dependency principle) to facilitate ontology management.
-* Improvements:
-    - about topology:
-        - navigability as a transitive property,
-        - internal navigability in non-linear elements such as "operational points" (yards, stations),
-        - more flexible composition of net elements.
-* Systematic, explicit usage of well-established external vocabularies, where relevant: SOSA/SSN, GeoSPARQL, systems of units ontologies, w3c time...
-* Ability to determine paths under constraints using SPARQL and inference engines, even though bespoke code may be recommended for computing efficiency.
+RSM (Rail System Model) is an evolution of an **UIC International Railway Standard (IRS)** originally released in 2016 under the name **RailTopoModel (RTM)**.
 
-## Design process
-The process currently considers:
-* the [RINF](https://uat.ld4rail.fpfis.tech.ec.europa.eu/) use case, with priority to topology (expressed at micro level, or track level) and geographic referencing.
-* the System Pillar requirements regarding rolling stock modelling (typology)
-* FP5-TRANSF4M-R data requirements regarding the description of the "last mile of infrastructure" and of rolling stock defects.
-* Any relevant FPx-MOTIONAL works.
+RTM and subsequent RSM versions were defined using **UML conceptual modeling**, following widely accepted conceptual modeling principles.
 
-However the design, as previously with RSM, emphasizes generality and usability, while avoiding ad-hoc solutions.
+The SemanticRSM project revisits these models and represents them directly in **RDF/OWL**, taking advantage of the expressive capabilities of Semantic Web technologies.
 
-Other important concepts may come from other pieces of EU Law, such as TAF TSI, or from ongoing EU projects.
+More information about the RSM standard can be found at:
 
-## Tools
-* [Eddy](https://github.com/obdasystems/eddy) and [Grapholscape](https://obdasystems.github.io/grapholscape/stable/), both based on the visual language GRAPHOL, for ontology design, checking, and export to RDF/OWL.
-* [Protégé](https://protege.stanford.edu/) desktop 5.x for RDF edition, checking, and saving to different formats.
-* [EasyRdf](https://www.easyrdf.org/converter) for format conversion (between RDF/XML and Turtle, mostly).
-* [OOPS! pitfall scanner](https://oops.linkeddata.es/), in addition to Protégé, for ontology checking.
-* Graphics:
-    - Sparx Enterprise Architect (v. 16 or later) for UML diagrams, possibly using the built-in [ODM](https://www.omg.org/odm/) UML profile.
-    - Visual Paradigm also for UML diagrams (most illustrations come from Visual Paradigm).
-    - [Draw.io](https://draw.io/) for hand-drawn graphics.
-    - Some diagrams (in the Wiki) were generated from extended markdown using [Mermaid](https://github.com/mermaid-js/mermaid) scripts, or
-    - from ttl files using [OntoMermaid](https://github.com/floresbakker/OntoMermaid), a Python program returning a Mermaid script.
-    - from IFC Step files, using [OpenIFCViewer](https://openifcviewer.com/).
- As Sparx Enterprise Architect and Visual Paradigm are paid applications, copies of the diagrams are also provided in PNG.
+https://rsm.uic.org
 
-## Demos
-* Using a schematic track plan made in draw.io to generate a sRSM file in RDF Turtle.
-* Using an OpenStreetMap query output to generate a sRSM file.
+---
 
-See the Flask folder and launch `__init__.py`. You'll be able to process files with your usual web navigator, via a local server (127.0.0.1:8000).
- 
-## Data
-* [Sample data sets](https://github.com/UICrail/SemanticRSM/tree/main/Source_data):
-    - based on fictive or real networks, or
-    - based on OpenStreetMap, using [Overpass Turbo](https://overpass-turbo.eu/): these data are from www.openstreetmap.org. The data are made available under ODbL (see [this page](https://opendatacommons.org/licenses/odbl/)).
-    - from actual sample sets (e.g. Scheibenberg test line).
+# Purpose
 
-## Languages
-RDF, [RDF-star](https://www.w3.org/2022/08/rdf-star-wg-charter/), OWL, SHACL (for constraints), SPARQL (for queries), SPARQL-star, Python; some SWI Prolog (for demo purposes).
+Previous work successfully transformed **RSM 1.2 UML models into OWL ontologies** using the Ontorail toolset developed by UIC.
 
-# Documentation
-## Wiki
-The [Wiki](https://github.com/UICrail/SemanticRSM/wiki) documents the design process, esp. main design choices. This is an integrated wiki, also accessible via the GitHub menu bar.
+However, **OWL has different modeling capabilities than UML class diagrams**.
 
-## Documentation folder
-Only contains diagrams (class diagrams for instance) and illustrations for use by the wiki and in other repositories. Full documentation is in the wiki.
+When used directly rather than through automated translation, OWL enables models that are:
+
+- more compact
+- more expressive
+- more suitable for semantic reasoning
+
+SemanticRSM therefore represents a **native OWL reinterpretation of RSM**, designed to preserve compatibility with previous UML-based models while improving semantic expressiveness.
+
+---
+
+# Design goals
+
+The project follows several guiding principles.
+
+### Backward compatibility
+
+Data conforming to earlier RTM or RSM versions should be convertible with minimal effort, enabling automated transformation where possible.
+
+### Simplification
+
+The goal is **simplification without loss of meaning**, taking advantage of OWL expressiveness to remove unnecessary modeling complexity.
+
+### Modular ontology structure
+
+The model is divided into **small, coherent vocabularies** following the principle:
+
+> high cohesion, low dependency
+
+This facilitates ontology maintenance and reuse.
+
+### Improvements to topology modeling
+
+Several enhancements have been introduced compared with earlier UML models:
+
+- navigability expressed as a **transitive property**
+- internal navigability within non-linear elements such as **stations and yards**
+- more flexible composition of **network elements**
+
+### Reuse of established vocabularies
+
+Where relevant, SemanticRSM relies on widely adopted ontologies, including:
+
+- **SOSA / SSN**
+- **GeoSPARQL**
+- **W3C Time**
+- ontologies for **quantities and units**
+
+This improves interoperability with other semantic models.
+
+### Reasoning-based path computation
+
+The model allows **path determination under constraints** using:
+
+- SPARQL queries
+- inference engines
+
+Dedicated algorithms may still be preferable for performance reasons in operational systems.
+
+---
+
+# Design inputs
+
+The design of SemanticRSM is influenced by several practical use cases and initiatives.
+
+Key inputs include:
+
+- the **RINF (Register of Infrastructure)** use case, with emphasis on micro-level topology and geographic referencing
+- **System Pillar requirements** related to rolling stock typology
+- **FP5 TRANSF4M-R** requirements concerning the description of infrastructure “last mile” and rolling stock defects
+- other **FPx MOTIONAL** initiatives
+
+Relevant concepts may also originate from **European railway legislation**, such as **TAF TSI**, or from ongoing EU research projects.
+
+Despite these inputs, the model prioritizes **generality and long-term usability**, avoiding ad-hoc solutions.
+
+---
+
+# Demonstrations
+
+Two demonstration workflows illustrate the generation of SemanticRSM data:
+
+- generating an RDF/Turtle representation from a **schematic track plan** created in draw.io
+- generating SemanticRSM data from **OpenStreetMap queries**
+
+The demonstrations are available in the **Flask** folder.
+
+To run the demo server locally:
